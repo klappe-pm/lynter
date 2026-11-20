@@ -1,0 +1,57 @@
+{
+  "id": "trailing-spaces",
+  "examples": [
+    {
+      "n": 1,
+      "input": "# H1\nLine with trailing spaces and tabs.\t        \n",
+      "options": {},
+      "expected": "# H1\nLine with trailing spaces and tabs.\n"
+    },
+    {
+      "n": 2,
+      "input": "# H1\nLine with trailing spaces and tabs.  \n",
+      "options": {
+        "two-space-linebreak": true
+      },
+      "expected": "# H1\nLine with trailing spaces and tabs.  \n"
+    },
+    {
+      "n": 3,
+      "input": "a   \nb\n",
+      "options": {
+        "two-space-linebreak": true
+      },
+      "expected": "a\nb\n"
+    },
+    {
+      "n": 4,
+      "input": "a\n   \nb\n",
+      "options": {},
+      "expected": "a\n\nb\n"
+    },
+    {
+      "n": 5,
+      "input": "```\nx   \n```\ny   \n",
+      "options": {},
+      "expected": "```\nx   \n```\ny\n"
+    },
+    {
+      "n": 6,
+      "input": "> [!note]  \n> text \t\n",
+      "options": {},
+      "expected": "> [!note]\n> text\n"
+    },
+    {
+      "n": 7,
+      "input": "a  \r\nb\t\r\n",
+      "options": {},
+      "expected": "a\r\nb\r\n"
+    },
+    {
+      "n": 8,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

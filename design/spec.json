@@ -1,0 +1,48 @@
+{
+  "$schema": "design-spec/1",
+  "name": "lynter",
+  "description": "Settings interface of the Lynter Obsidian plugin, which inherits the host theme.",
+  "roles": {
+    "primary": "var(--interactive-accent, #7c3aed)",
+    "on-primary": "var(--text-on-accent, #ffffff)",
+    "surface": "var(--background-primary, #ffffff)",
+    "surface-variant": "var(--background-secondary, #f6f6f6)",
+    "on-surface": "var(--text-normal, #222222)",
+    "on-surface-variant": "var(--text-muted, #5c5c5c)",
+    "outline": "var(--background-modifier-border, #e0e0e0)",
+    "error": "var(--text-error, #e93147)"
+  },
+  "rolesDark": null,
+  "colors": {
+    "accent": "var(--interactive-accent, #7c3aed)",
+    "on-accent": "var(--text-on-accent, #ffffff)",
+    "surface": "var(--background-primary, #ffffff)",
+    "surface-alt": "var(--background-secondary, #f6f6f6)",
+    "ink": "var(--text-normal, #222222)",
+    "muted": "var(--text-muted, #5c5c5c)",
+    "faint": "var(--text-faint, #ababab)",
+    "error": "var(--text-error, #e93147)",
+    "outline": "var(--background-modifier-border, #e0e0e0)"
+  },
+  "typography": {
+    "body-medium": {
+      "fontFamily": "var(--font-interface, sans-serif)",
+      "fontSize": "var(--font-ui-medium, 15px)",
+      "fontWeight": 400,
+      "lineHeight": 1.5
+    },
+    "label-small": {
+      "fontFamily": "var(--font-interface, sans-serif)",
+      "fontSize": "var(--font-ui-small, 13px)",
+      "fontWeight": 400,
+      "lineHeight": 1.3
+    }
+  },
+  "spacing": {},
+  "spacingUnit": "var(--size-4-1, 4px)",
+  "rounded": {
+    "small": "var(--radius-s, 4px)",
+    "medium": "var(--radius-m, 8px)"
+  },
+  "components": {}
+}

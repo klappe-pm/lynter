@@ -1,0 +1,7 @@
+node_modules/
+target/
+plugin/main.js
+packages/site/.next/
+packages/site/out/
+packages/site/next-env.d.ts
+packages/site/public/wasm/

@@ -1,0 +1,53 @@
+{
+  "id": "empty-line-around-blockquotes",
+  "examples": [
+    {
+      "n": 1,
+      "input": "> Quote content here\n> quote content continued\n# Title here\n",
+      "options": {},
+      "expected": "> Quote content here\n> quote content continued\n\n# Title here\n"
+    },
+    {
+      "n": 2,
+      "input": "# Heading 1\n> Quote content here\n> quote content continued\n",
+      "options": {},
+      "expected": "# Heading 1\n\n> Quote content here\n> quote content continued\n"
+    },
+    {
+      "n": 3,
+      "input": "# Make sure\n> Quote content here\n> quote content continued\n> > Nested Blockquote\n> > content continued\n\n**Note**\n",
+      "options": {},
+      "expected": "# Make sure\n\n> Quote content here\n> quote content continued\n>\n> > Nested Blockquote\n> > content continued\n\n**Note**\n"
+    },
+    {
+      "n": 4,
+      "input": "text\n> [!tip]\n> body\ntext\n",
+      "options": {},
+      "expected": "text\n\n> [!tip]\n> body\n\ntext\n"
+    },
+    {
+      "n": 5,
+      "input": "```\n> x\n```\n",
+      "options": {},
+      "expected": "```\n> x\n```\n"
+    },
+    {
+      "n": 6,
+      "input": "a\n\n> q\n\nb\n",
+      "options": {},
+      "expected": "a\n\n> q\n\nb\n"
+    },
+    {
+      "n": 7,
+      "input": "a\r\n> q\r\nb",
+      "options": {},
+      "expected": "a\r\n\r\n> q\r\n\r\nb"
+    },
+    {
+      "n": 8,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

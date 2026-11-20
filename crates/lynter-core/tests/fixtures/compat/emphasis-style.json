@@ -1,0 +1,71 @@
+{
+  "id": "emphasis-style",
+  "examples": [
+    {
+      "n": 1,
+      "input": "*Test emphasis*\n* Test not emphasized *\nThis is *emphasized* mid sentence with a second *emphasis* on the same line\nThis is ***bold and emphasized***\n* List Item1 with *emphasized text*\n",
+      "options": {
+        "style": "underscore"
+      },
+      "expected": "_Test emphasis_\n* Test not emphasized *\nThis is _emphasized_ mid sentence with a second _emphasis_ on the same line\nThis is _**bold and emphasized**_\n* List Item1 with _emphasized text_\n"
+    },
+    {
+      "n": 2,
+      "input": "***nested bold** and ending emphasized*\n***nested emphasis* and ending bold**\n",
+      "options": {
+        "style": "underscore"
+      },
+      "expected": "_**nested bold** and ending emphasized_\n**_nested emphasis_ and ending bold**\n"
+    },
+    {
+      "n": 3,
+      "input": "_Test emphasis_\n_ Test not emphasized _\nThis is _emphasized_ mid sentence\n___bold and emphasized___\n",
+      "options": {
+        "style": "asterisk"
+      },
+      "expected": "*Test emphasis*\n_ Test not emphasized _\nThis is *emphasized* mid sentence\n*__bold and emphasized__*\n"
+    },
+    {
+      "n": 4,
+      "input": "*First emphasis*\nThis is _emphasized_ mid sentence\n__Test bold__\n",
+      "options": {},
+      "expected": "*First emphasis*\nThis is *emphasized* mid sentence\n__Test bold__\n"
+    },
+    {
+      "n": 5,
+      "input": "**_First emphasis_**\nThis is *emphasized* mid sentence\nwith a second *emphasis* here\n",
+      "options": {},
+      "expected": "**_First emphasis_**\nThis is _emphasized_ mid sentence\nwith a second _emphasis_ here\n"
+    },
+    {
+      "n": 6,
+      "input": "`*a*` and *b*\n",
+      "options": {
+        "style": "underscore"
+      },
+      "expected": "`*a*` and _b_\n"
+    },
+    {
+      "n": 7,
+      "input": "snake_case_name and _real_\n",
+      "options": {
+        "style": "asterisk"
+      },
+      "expected": "snake_case_name and *real*\n"
+    },
+    {
+      "n": 8,
+      "input": "*a*\r\n*b*",
+      "options": {
+        "style": "underscore"
+      },
+      "expected": "_a_\r\n_b_"
+    },
+    {
+      "n": 9,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

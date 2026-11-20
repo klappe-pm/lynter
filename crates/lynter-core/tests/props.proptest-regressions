@@ -1,0 +1,17 @@
+# Seeds for failure cases proptest has generated in the past. It is
+# automatically read and these particular cases re-run before any
+# novel cases are generated.
+#
+# It is recommended to check this file in to source control so that
+# everyone who runs the test benefits from these saved cases.
+cc e4b0b752d2a8f48ccf929a834deee55580c01554def70359caecedf10545c941 # shrinks to text = "#  $$it is not$$\n"
+cc fb1775bff57bd3f27bb072d63ca065946a3dd0ec3c9f33e4409092dc5ca61360 # shrinks to text = "**$$it is not$$\n**bold** text\n", variant = 0
+cc afb748d554d96bb6e3efb09f3f6fbd870826a1be9d040a5d55bd85d53f4b3b2d # shrinks to text = "<div>it is not **x**</div>\n😀 it is **ok**\nplain words\n", variant = 0
+cc 7521e1db71f654709994c6f361c4addfa8c0a073eab86cd24ecf5d25f97f6ed1 # shrinks to text = "😀 it is **ok**\n`code **x** it is not` plain words\nplain words\n", variant = 0
+cc 1f14b46d0b7f6ec45b0716944758fa359ce70d92ebe0acd7b93f200adcfc2e38 # shrinks to text = "--- \r     indented **x** it is not\nplain words\n", variant = 0
+cc a89484fce9ed44ba324585c3e9e639cac6ed66df48f415d2212dc3ee098d927d # shrinks to text = "#  —\n    indented **x** it is not\n"
+cc 97d9ef8aebb0f3f3c5fcf295f5e40421ad46a3722b61545ab58593ca4875b121 # shrinks to text = "plain words $$\nplain words\n$$it is not$$\n", variant = 0
+cc 402f0c39fac2678c683b873e4a6ccbae1c524f4a0e8c7fb18e8fe5a5cb64bf69 # shrinks to text = "---\n---\n", variant = 0
+cc 312a78aa61e5b9f75506baac64f382e10403e6a40c8ebddcd798093387f6d0bb # shrinks to text = "plain words---https://ex.com/a**b**c\n", variant = 0
+cc 8156bfa801b6a2db56dac293283689554b5ac2844e762da0ed222f8a1c24dc87 # shrinks to text = "| a | b | \r\n\r\n", variant = 0
+cc d5ac829ea95911fd008d66d185d60ecb8869c86fed96e90141d4485e0cb74e9c # shrinks to text = "__```\n__under__ score\n```\nIt is not ready\n"

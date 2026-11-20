@@ -1,0 +1,12 @@
+changelog:
+  categories:
+    - title: Rules
+      labels: [rules]
+    - title: Plugin
+      labels: [plugin]
+    - title: CLI and CI
+      labels: [cli, ci]
+    - title: Fixes
+      labels: [bug]
+    - title: Other changes
+      labels: ["*"]

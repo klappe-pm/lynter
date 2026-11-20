@@ -1,0 +1,59 @@
+{
+  "id": "proper-ellipsis",
+  "examples": [
+    {
+      "n": 1,
+      "input": "Lorem (...) Impsum.\n",
+      "options": {},
+      "expected": "Lorem (…) Impsum.\n"
+    },
+    {
+      "n": 2,
+      "input": "Wait...\n",
+      "options": {},
+      "expected": "Wait…\n"
+    },
+    {
+      "n": 3,
+      "input": "a..b\n",
+      "options": {},
+      "expected": "a..b\n"
+    },
+    {
+      "n": 4,
+      "input": "a....b\n",
+      "options": {},
+      "expected": "a....b\n"
+    },
+    {
+      "n": 5,
+      "input": "Use `a...b` here...\n",
+      "options": {},
+      "expected": "Use `a...b` here…\n"
+    },
+    {
+      "n": 6,
+      "input": "See https://example.com/a...b ok...\n",
+      "options": {},
+      "expected": "See https://example.com/a...b ok…\n"
+    },
+    {
+      "n": 7,
+      "input": "> [!note]\n> and so...\n",
+      "options": {},
+      "expected": "> [!note]\n> and so…\n"
+    },
+    {
+      "n": 8,
+      "input": "a...\r\n",
+      "options": {},
+      "expected": "a…\r\n"
+    },
+    {
+      "n": 9,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

@@ -1,0 +1,667 @@
+{
+ "cases": [
+  {
+   "name": "minimal",
+   "yaml": "version: 1\n",
+   "ok": true,
+   "warnings": []
+  },
+  {
+   "name": "no version",
+   "yaml": "defaults: {}\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "version",
+     "message": "must be 1"
+    }
+   ]
+  },
+  {
+   "name": "wrong version",
+   "yaml": "version: 2\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "version",
+     "message": "must be 1"
+    }
+   ]
+  },
+  {
+   "name": "version string",
+   "yaml": "version: \"1\"\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "version",
+     "message": "must be 1"
+    }
+   ]
+  },
+  {
+   "name": "empty",
+   "yaml": "",
+   "ok": false,
+   "errors": [
+    {
+     "path": "",
+     "message": "config must be a yaml mapping"
+    }
+   ]
+  },
+  {
+   "name": "not a mapping",
+   "yaml": "- a\n- b\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "",
+     "message": "config must be a yaml mapping"
+    }
+   ]
+  },
+  {
+   "name": "scalar",
+   "yaml": "hello\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "",
+     "message": "config must be a yaml mapping"
+    }
+   ]
+  },
+  {
+   "name": "bad yaml",
+   "yaml": "version: 1\n  bad: [\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "",
+     "message": "yaml parse error: Nested mappings are not allowed in compact mappings at line 1, column 10:\n\nversion: 1\n         ^\n"
+    }
+   ]
+  },
+  {
+   "name": "unknown top key",
+   "yaml": "version: 1\nfoo: bar\n",
+   "ok": true,
+   "warnings": [
+    "unknown key \"foo\" ignored"
+   ]
+  },
+  {
+   "name": "defaults not map",
+   "yaml": "version: 1\ndefaults: 3\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "defaults",
+     "message": "must be a mapping"
+    }
+   ]
+  },
+  {
+   "name": "defaults unknown",
+   "yaml": "version: 1\ndefaults:\n  x: 1\n  rules:\n    a: {enabled: true}\n",
+   "ok": true,
+   "warnings": [
+    "unknown key \"defaults.x\" ignored"
+   ]
+  },
+  {
+   "name": "rules not map",
+   "yaml": "version: 1\ndefaults:\n  rules: [a]\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "defaults.rules",
+     "message": "must be a mapping of rule id to rule config"
+    }
+   ]
+  },
+  {
+   "name": "rule cfg not map",
+   "yaml": "version: 1\ndefaults:\n  rules:\n    a: 3\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "defaults.rules.a",
+     "message": "rule config must be a mapping"
+    }
+   ]
+  },
+  {
+   "name": "enabled not bool",
+   "yaml": "version: 1\ndefaults:\n  rules:\n    a: {enabled: \"yes\"}\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "defaults.rules.a.enabled",
+     "message": "must be a boolean"
+    }
+   ]
+  },
+  {
+   "name": "rule-order bad",
+   "yaml": "version: 1\nrule-order: [a, 1]\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "rule-order",
+     "message": "must be a list of rule ids"
+    }
+   ]
+  },
+  {
+   "name": "profiles bad",
+   "yaml": "version: 1\nprofiles: 4\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "profiles",
+     "message": "must be a mapping of profile name to profile config"
+    }
+   ]
+  },
+  {
+   "name": "profile not map",
+   "yaml": "version: 1\nprofiles:\n  p: 4\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "profiles.p",
+     "message": "profile must be a mapping"
+    }
+   ]
+  },
+  {
+   "name": "profile unknown key",
+   "yaml": "version: 1\nprofiles:\n  p:\n    nope: 1\n    match: {path: [a], zzz: 1}\n",
+   "ok": true,
+   "warnings": [
+    "unknown key \"profiles.p.nope\" ignored",
+    "unknown key \"profiles.p.match.zzz\" ignored"
+   ]
+  },
+  {
+   "name": "match lists bad",
+   "yaml": "version: 1\nprofiles:\n  p:\n    match: {path: a, extension: [1], tag: x, age: 1, backlink: {}, alias: [a, 2]}\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "profiles.p.match.path",
+     "message": "must be a list of strings"
+    },
+    {
+     "path": "profiles.p.match.extension",
+     "message": "must be a list of strings"
+    },
+    {
+     "path": "profiles.p.match.tag",
+     "message": "must be a list of strings"
+    },
+    {
+     "path": "profiles.p.match.age",
+     "message": "must be a list of strings"
+    },
+    {
+     "path": "profiles.p.match.backlink",
+     "message": "must be a list of strings"
+    },
+    {
+     "path": "profiles.p.match.alias",
+     "message": "must be a list of strings"
+    }
+   ]
+  },
+  {
+   "name": "match not map",
+   "yaml": "version: 1\nprofiles:\n  p:\n    match: [a]\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "profiles.p.match",
+     "message": "must be a mapping"
+    }
+   ]
+  },
+  {
+   "name": "date range bad",
+   "yaml": "version: 1\nprofiles:\n  p:\n    match:\n      date-created: {after: 2024-13-01, before: \"2024-02-30\"}\n      date-revised: 5\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "profiles.p.match.date-created.after",
+     "message": "must be an ISO yyyy-MM-dd string"
+    },
+    {
+     "path": "profiles.p.match.date-created.before",
+     "message": "must be an ISO yyyy-MM-dd string"
+    },
+    {
+     "path": "profiles.p.match.date-revised",
+     "message": "must be a mapping with after and/or before"
+    }
+   ]
+  },
+  {
+   "name": "date range ok",
+   "yaml": "version: 1\nprofiles:\n  p:\n    match:\n      date-created: {after: \"2024-01-01\", before: \"2024-02-29\"}\n",
+   "ok": true,
+   "warnings": []
+  },
+  {
+   "name": "frontmatter bad",
+   "yaml": "version: 1\nprofiles:\n  p:\n    match:\n      frontmatter: {a: {b: 1}, c: [[1]], d: null, e: x}\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "profiles.p.match.frontmatter.a",
+     "message": "must be a scalar or a list of scalars"
+    },
+    {
+     "path": "profiles.p.match.frontmatter.c",
+     "message": "must be a scalar or a list of scalars"
+    },
+    {
+     "path": "profiles.p.match.frontmatter.d",
+     "message": "must be a scalar or a list of scalars"
+    }
+   ]
+  },
+  {
+   "name": "frontmatter not map",
+   "yaml": "version: 1\nprofiles:\n  p:\n    match:\n      frontmatter: [a]\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "profiles.p.match.frontmatter",
+     "message": "must be a mapping of key to value predicate"
+    }
+   ]
+  },
+  {
+   "name": "rule-order profile bad",
+   "yaml": "version: 1\nprofiles:\n  p:\n    rule-order: x\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "profiles.p.rule-order",
+     "message": "must be a list of rule ids"
+    }
+   ]
+  },
+  {
+   "name": "note-types bad",
+   "yaml": "version: 1\nnote-types: [a]\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "note-types",
+     "message": "must be a mapping of note type name to schema"
+    }
+   ]
+  },
+  {
+   "name": "note-type not map",
+   "yaml": "version: 1\nnote-types:\n  a: 1\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "note-types.a",
+     "message": "note type schema must be a mapping"
+    }
+   ]
+  },
+  {
+   "name": "note-type details",
+   "yaml": "version: 1\nnote-types:\n  a:\n    unknown: 1\n    required: {k: {x: 1}, j: null, i: [1, a]}\n    key-order: [a, 1]\n    values: {k: x, j: [1, 2]}\n    date-keys: {created: 1, zzz: a, revised: r}\n    match: 4\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "note-types.a.required.k",
+     "message": "must be a scalar, a list of scalars, or null"
+    },
+    {
+     "path": "note-types.a.key-order",
+     "message": "must be a list of strings"
+    },
+    {
+     "path": "note-types.a.values.k",
+     "message": "must be a list of scalars"
+    },
+    {
+     "path": "note-types.a.date-keys.created",
+     "message": "must be a string"
+    },
+    {
+     "path": "note-types.a.match",
+     "message": "must be a mapping"
+    }
+   ]
+  },
+  {
+   "name": "note-type shapes",
+   "yaml": "version: 1\nnote-types:\n  a:\n    required: 3\n    values: 4\n    date-keys: 5\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "note-types.a.required",
+     "message": "must be a mapping of key to default value"
+    },
+    {
+     "path": "note-types.a.values",
+     "message": "must be a mapping of key to allowed values"
+    },
+    {
+     "path": "note-types.a.date-keys",
+     "message": "must be a mapping with optional created/revised keys"
+    }
+   ]
+  },
+  {
+   "name": "governance violation",
+   "yaml": "version: 1\nnote-types:\n  base:\n    required: {title: null}\n  child:\n    required: {title: null, extra: 1}\n  other:\n    required: {nope: 1}\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "note-types.child.required.extra",
+     "message": "required key not present in the base note-type's required set; a scoped schema may only drop or reorder base-required keys, never introduce new ones"
+    },
+    {
+     "path": "note-types.other.required.nope",
+     "message": "required key not present in the base note-type's required set; a scoped schema may only drop or reorder base-required keys, never introduce new ones"
+    }
+   ]
+  },
+  {
+   "name": "governance ok",
+   "yaml": "version: 1\nnote-types:\n  base:\n    required: {title: null, date: null}\n  child:\n    required: {title: null}\n",
+   "ok": true,
+   "warnings": []
+  },
+  {
+   "name": "templates bad",
+   "yaml": "version: 1\ntemplates: 3\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "templates",
+     "message": "must be a mapping with optional global and by-scope"
+    }
+   ]
+  },
+  {
+   "name": "templates details",
+   "yaml": "version: 1\ntemplates:\n  other: 1\n  global: {pinned-keys: a, frontmatter: {a: {b: 1}, c: null}, body: 3, age-line: \"x\", zzz: 1}\n  by-scope:\n    - name: a\n    - name: a\n      extends: other\n      toggles: {a: yes, b: maybe, c: on}\n    - {name: \"  \"}\n    - 5\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "templates.global.pinned-keys",
+     "message": "must be a list of strings"
+    },
+    {
+     "path": "templates.global.frontmatter.a",
+     "message": "must be a scalar, a list of scalars, or null"
+    },
+    {
+     "path": "templates.global.body",
+     "message": "must be a string"
+    },
+    {
+     "path": "templates.global.age-line",
+     "message": "must be a boolean"
+    },
+    {
+     "path": "templates.by-scope[1].name",
+     "message": "duplicate template name \"a\""
+    },
+    {
+     "path": "templates.by-scope[1].extends",
+     "message": "only \"global\" is supported"
+    },
+    {
+     "path": "templates.by-scope[1].toggles.a",
+     "message": "must be a boolean or \"on\"/\"off\""
+    },
+    {
+     "path": "templates.by-scope[1].toggles.b",
+     "message": "must be a boolean or \"on\"/\"off\""
+    },
+    {
+     "path": "templates.by-scope[2].name",
+     "message": "must be a non-empty string"
+    },
+    {
+     "path": "templates.by-scope[3]",
+     "message": "scoped template must be a mapping"
+    }
+   ]
+  },
+  {
+   "name": "templates by-scope not list",
+   "yaml": "version: 1\ntemplates:\n  by-scope: {}\n  global: 3\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "templates.global",
+     "message": "must be a mapping"
+    },
+    {
+     "path": "templates.by-scope",
+     "message": "must be a list of scoped templates"
+    }
+   ]
+  },
+  {
+   "name": "automations bad",
+   "yaml": "version: 1\nautomations: x\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "automations",
+     "message": "must be a list of automations"
+    }
+   ]
+  },
+  {
+   "name": "automations details",
+   "yaml": "version: 1\nautomations:\n  - {name: a, trigger: nope, action: zzz, failure: 1, log: x, report: y, schedule: 3, scope: 4, extra: 1}\n  - {name: a, trigger: schedule}\n  - 4\n  - {trigger: ci}\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "automations[0].trigger",
+     "message": "must be one of on-write, on-create, on-rename, pre-commit, ci, schedule, manual"
+    },
+    {
+     "path": "automations[0].action",
+     "message": "must be one of check, fix, apply-template"
+    },
+    {
+     "path": "automations[0].failure",
+     "message": "must be one of open, closed"
+    },
+    {
+     "path": "automations[0].log",
+     "message": "must be one of spool, none"
+    },
+    {
+     "path": "automations[0].report",
+     "message": "must be one of md, json, none"
+    },
+    {
+     "path": "automations[0].schedule",
+     "message": "must be a cron string"
+    },
+    {
+     "path": "automations[0].scope",
+     "message": "must be a mapping"
+    },
+    {
+     "path": "automations[1].name",
+     "message": "duplicate automation name \"a\""
+    },
+    {
+     "path": "automations[1].schedule",
+     "message": "a schedule trigger requires a cron string"
+    },
+    {
+     "path": "automations[2]",
+     "message": "automation must be a mapping"
+    },
+    {
+     "path": "automations[3].name",
+     "message": "must be a non-empty string"
+    }
+   ]
+  },
+  {
+   "name": "automations ok",
+   "yaml": "version: 1\nautomations:\n  - {name: a, trigger: schedule, schedule: \"0 0 * * *\", action: fix, failure: open, log: none, report: json}\n",
+   "ok": true,
+   "warnings": []
+  },
+  {
+   "name": "rename bad",
+   "yaml": "version: 1\nrename: x\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "rename",
+     "message": "must be a mapping with a mode key"
+    }
+   ]
+  },
+  {
+   "name": "rename details",
+   "yaml": "version: 1\nrename: {mode: nope, strategy: zzz, other: 1}\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "rename.mode",
+     "message": "must be one of \"off\", \"flag\", \"rename\""
+    },
+    {
+     "path": "rename.strategy",
+     "message": "must be one of \"replace\", \"prepend\", \"append\""
+    }
+   ]
+  },
+  {
+   "name": "rename ok",
+   "yaml": "version: 1\nrename: {mode: flag, strategy: append}\n",
+   "ok": true,
+   "warnings": []
+  },
+  {
+   "name": "ignore bad",
+   "yaml": "version: 1\nignore: x\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "ignore",
+     "message": "must be a mapping with optional folders/files lists"
+    }
+   ]
+  },
+  {
+   "name": "ignore details",
+   "yaml": "version: 1\nignore: {folders: a, files: [1], zzz: 1}\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "ignore.folders",
+     "message": "must be a list of strings"
+    },
+    {
+     "path": "ignore.files",
+     "message": "must be a list of strings"
+    }
+   ]
+  },
+  {
+   "name": "providers bad",
+   "yaml": "version: 1\nproviders: x\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "providers",
+     "message": "must be a mapping of provider namespace to config"
+    }
+   ]
+  },
+  {
+   "name": "providers details",
+   "yaml": "version: 1\nproviders:\n  a: 1\n  b: {rules: x, other: 1}\n  c: {rules: {r: {enabled: 1}}}\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "providers.a",
+     "message": "provider config must be a mapping"
+    },
+    {
+     "path": "providers.b.rules",
+     "message": "must be a mapping of rule id to rule config"
+    },
+    {
+     "path": "providers.c.rules.r.enabled",
+     "message": "must be a boolean"
+    }
+   ]
+  },
+  {
+   "name": "code-checks bad",
+   "yaml": "version: 1\ncode-checks: x\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "code-checks",
+     "message": "must be a mapping of check id to check definition"
+    }
+   ]
+  },
+  {
+   "name": "code-checks details",
+   "yaml": "version: 1\ncode-checks:\n  a: 1\n  b: {pattern: 3, languages: x, paths: [1], zzz: 1}\n  c: {pattern: \"x\", enabled: true}\n",
+   "ok": true,
+   "warnings": [
+    "\"code-checks.a\" skipped: must be a mapping",
+    "unknown key \"code-checks.b.zzz\" ignored",
+    "\"code-checks.b\" skipped: pattern must be a string",
+    "\"code-checks.b\" skipped: languages must be a list of strings",
+    "\"code-checks.b\" skipped: paths must be a list of strings"
+   ]
+  },
+  {
+   "name": "full ok",
+   "yaml": "version: 1\ndefaults:\n  rules:\n    strip-strong: {enabled: true}\nprofiles:\n  notes:\n    match: {path: [\"notes/**\"]}\n    rules:\n      contractions: {enabled: true, \"it is\": false}\n",
+   "ok": true,
+   "warnings": []
+  },
+  {
+   "name": "multiple errors",
+   "yaml": "version: 2\nrule-order: 3\nprofiles: 4\nrename: 5\n",
+   "ok": false,
+   "errors": [
+    {
+     "path": "version",
+     "message": "must be 1"
+    },
+    {
+     "path": "rule-order",
+     "message": "must be a list of rule ids"
+    },
+    {
+     "path": "profiles",
+     "message": "must be a mapping of profile name to profile config"
+    },
+    {
+     "path": "rename",
+     "message": "must be a mapping with a mode key"
+    }
+   ]
+  }
+ ]
+}

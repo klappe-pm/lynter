@@ -1,0 +1,797 @@
+{
+ "rule": "join-paragraph-lines",
+ "report_only": true,
+ "cases": [
+  {
+   "name": "input 0 variant 0",
+   "input": "",
+   "options": {},
+   "expected": "",
+   "expected_fixed": ""
+  },
+  {
+   "name": "input 1 variant 0",
+   "input": "\n",
+   "options": {},
+   "expected": "\n",
+   "expected_fixed": "\n"
+  },
+  {
+   "name": "input 2 variant 0",
+   "input": "---\n---\n",
+   "options": {},
+   "expected": "---\n---\n",
+   "expected_fixed": "---\n---\n"
+  },
+  {
+   "name": "input 3 variant 0",
+   "input": "---\ndomain: x\n---",
+   "options": {},
+   "expected": "---\ndomain: x\n---",
+   "expected_fixed": "---\ndomain: x\n---"
+  },
+  {
+   "name": "input 4 variant 0",
+   "input": "---\ndomain: x\n",
+   "options": {},
+   "expected": "---\ndomain: x\n",
+   "expected_fixed": "---\ndomain: x\n"
+  },
+  {
+   "name": "input 5 variant 0",
+   "input": "no frontmatter\n",
+   "options": {},
+   "expected": "no frontmatter\n",
+   "expected_fixed": "no frontmatter\n"
+  },
+  {
+   "name": "input 6 variant 0",
+   "input": "- a\n- b\n",
+   "options": {},
+   "expected": "- a\n- b\n",
+   "expected_fixed": "- a\n- b\n"
+  },
+  {
+   "name": "input 7 variant 0",
+   "input": "The kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "options": {},
+   "expected": "The kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "expected_fixed": "The kit includes:\n- a tent\n- a stove\n- two mats\n"
+  },
+  {
+   "name": "input 8 variant 0",
+   "input": "- apples\n- pears\n",
+   "options": {},
+   "expected": "- apples\n- pears\n",
+   "expected_fixed": "- apples\n- pears\n"
+  },
+  {
+   "name": "input 9 variant 0",
+   "input": "- first item\n- second item\nlazy continuation of the item\n",
+   "options": {},
+   "expected": "- first item\n- second item\nlazy continuation of the item\n",
+   "expected_fixed": "- first item\n- second item\nlazy continuation of the item\n"
+  },
+  {
+   "name": "input 10 variant 0",
+   "input": "- outer\n  - inner\n- other\n",
+   "options": {},
+   "expected": "- outer\n  - inner\n- other\n",
+   "expected_fixed": "- outer\n  - inner\n- other\n"
+  },
+  {
+   "name": "input 11 variant 0",
+   "input": "- [ ] todo one\n- [x] done two\n",
+   "options": {},
+   "expected": "- [ ] todo one\n- [x] done two\n",
+   "expected_fixed": "- [ ] todo one\n- [x] done two\n"
+  },
+  {
+   "name": "input 12 variant 0",
+   "input": "one\n\n\n\ntwo\n",
+   "options": {},
+   "expected": "one\n\n\n\ntwo\n",
+   "expected_fixed": "one\n\n\n\ntwo\n"
+  },
+  {
+   "name": "input 13 variant 0",
+   "input": "\n\none\n\n\n",
+   "options": {},
+   "expected": "\n\none\n\n\n",
+   "expected_fixed": "\n\none\n\n\n"
+  },
+  {
+   "name": "input 14 variant 0",
+   "input": "```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "options": {},
+   "expected": "```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "expected_fixed": "```\ncode\n\n\nmore\n```\n\n\ntext\n"
+  },
+  {
+   "name": "input 15 variant 0",
+   "input": "wrapped\nat a column\nby an\nold editor.\n",
+   "options": {},
+   "expected": "wrapped at a column by an old editor.\n",
+   "expected_fixed": "wrapped at a column by an old editor.\n"
+  },
+  {
+   "name": "input 16 variant 0",
+   "input": "line one ends here  \nline two\nline three\n",
+   "options": {},
+   "expected": "line one ends here  \nline two line three\n",
+   "expected_fixed": "line one ends here  \nline two line three\n"
+  },
+  {
+   "name": "input 17 variant 0",
+   "input": "# Title\n\nbody\n",
+   "options": {},
+   "expected": "# Title\n\nbody\n",
+   "expected_fixed": "# Title\n\nbody\n"
+  },
+  {
+   "name": "input 18 variant 0",
+   "input": "# Wrong\n\nbody\n",
+   "options": {},
+   "expected": "# Wrong\n\nbody\n",
+   "expected_fixed": "# Wrong\n\nbody\n"
+  },
+  {
+   "name": "input 19 variant 0",
+   "input": "```\n# in fence\n```\n",
+   "options": {},
+   "expected": "```\n# in fence\n```\n",
+   "expected_fixed": "```\n# in fence\n```\n"
+  },
+  {
+   "name": "input 20 variant 0",
+   "input": "---\ntitle: x\n---\n# Old\n",
+   "options": {},
+   "expected": "---\ntitle: x\n---\n# Old\n",
+   "expected_fixed": "---\ntitle: x\n---\n# Old\n"
+  },
+  {
+   "name": "input 21 variant 0",
+   "input": "---\ntitle: x\n---\nbody only\n",
+   "options": {},
+   "expected": "---\ntitle: x\n---\nbody only\n",
+   "expected_fixed": "---\ntitle: x\n---\nbody only\n"
+  },
+  {
+   "name": "input 22 variant 0",
+   "input": "Prose with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "options": {},
+   "expected": "Prose with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "expected_fixed": "Prose with two trailing spaces stays  \n\n```bash\necho hi   \n```\n"
+  },
+  {
+   "name": "input 23 variant 0",
+   "input": "```js\nfoo12 here  \n```\n",
+   "options": {},
+   "expected": "```js\nfoo12 here  \n```\n",
+   "expected_fixed": "```js\nfoo12 here  \n```\n"
+  },
+  {
+   "name": "input 24 variant 0",
+   "input": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "options": {},
+   "expected": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "expected_fixed": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n"
+  },
+  {
+   "name": "input 25 variant 0",
+   "input": "```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "options": {},
+   "expected": "```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "expected_fixed": "```\nAKIAABCDEFGHIJKLMNOP\n```\n"
+  },
+  {
+   "name": "input 26 variant 0",
+   "input": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\nBody.\n",
+   "options": {},
+   "expected": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\nBody.\n",
+   "expected_fixed": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\nBody.\n"
+  },
+  {
+   "name": "input 27 variant 0",
+   "input": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\nBody.\n",
+   "options": {},
+   "expected": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\nBody.\n",
+   "expected_fixed": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\nBody.\n"
+  },
+  {
+   "name": "input 30 variant 0",
+   "input": "---\nstatus: DRAFT\ndate-revised: 2024-01-03\nZeta: 1\naliases: [second, first]\naliases: [second, first]\nalpha: 2\n---\n![[embed]]\n$a**b$ and $$it is not$$\n[ref]: http://x.y",
+   "options": {},
+   "expected": "---\nstatus: DRAFT\ndate-revised: 2024-01-03\nZeta: 1\naliases: [second, first]\naliases: [second, first]\nalpha: 2\n---\n![[embed]]\n$a**b$ and $$it is not$$\n[ref]: http://x.y",
+   "expected_fixed": "---\nstatus: DRAFT\ndate-revised: 2024-01-03\nZeta: 1\naliases: [second, first]\naliases: [second, first]\nalpha: 2\n---\n![[embed]]\n$a**b$ and $$it is not$$\n[ref]: http://x.y"
+  },
+  {
+   "name": "input 33 variant 0",
+   "input": "---\r\ndomain: development\r\ndate-created: 2024-01-02\r\ndate-created: 2024-01-02\r\n---\r\n#\ttab heading\r\n- \r\n```\r\nunclosed fence it is\r\n- pears\r\n",
+   "options": {},
+   "expected": "---\r\ndomain: development\r\ndate-created: 2024-01-02\r\ndate-created: 2024-01-02\r\n---\r\n#\ttab heading\r\n- \r\n```\r\nunclosed fence it is\r\n- pears\r\n",
+   "expected_fixed": "---\r\ndomain: development\r\ndate-created: 2024-01-02\r\ndate-created: 2024-01-02\r\n---\r\n#\ttab heading\r\n- \r\n```\r\nunclosed fence it is\r\n- pears\r\n"
+  },
+  {
+   "name": "input 36 variant 0",
+   "input": "---\ntype: base\ntags:\n  - zeta\n  - Alpha\n  - beta\n---\n\n~~~sh\necho hi   \nIntro line  \n<div>it is not **x**</div>\n~~~js\nwe are\n~~~\nreadlink -f x\nwrapped line one\nwrapped line two\n- item, with comma;\n",
+   "options": {},
+   "expected": "---\ntype: base\ntags:\n  - zeta\n  - Alpha\n  - beta\n---\n\n~~~sh\necho hi   \nIntro line  \n<div>it is not **x**</div>\n~~~js\nwe are\n~~~\nreadlink -f x wrapped line one wrapped line two\n- item, with comma;\n",
+   "expected_fixed": "---\ntype: base\ntags:\n  - zeta\n  - Alpha\n  - beta\n---\n\n~~~sh\necho hi   \nIntro line  \n<div>it is not **x**</div>\n~~~js\nwe are\n~~~\nreadlink -f x wrapped line one wrapped line two\n- item, with comma;\n"
+  },
+  {
+   "name": "input 39 variant 0",
+   "input": "\n---\n  - nested\nThe kit includes:\n![[embed]]\n- [x] done\n```\nunclosed fence it is",
+   "options": {},
+   "expected": "\n---\n  - nested\nThe kit includes:\n![[embed]]\n- [x] done\n```\nunclosed fence it is",
+   "expected_fixed": "\n---\n  - nested\nThe kit includes:\n![[embed]]\n- [x] done\n```\nunclosed fence it is"
+  },
+  {
+   "name": "input 42 variant 0",
+   "input": "---\nn: 3\naliases:\n  - x\nnested:\n  a: 1\n  b: 2\nempty:\ntags:\n  - zeta\n  - Alpha\n  - beta\ntags: [one]\nit is, but they are not\n> more quote\ncafé foo9\nlet us go\n\n<div>\n\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n- apples.",
+   "options": {},
+   "expected": "---\nn: 3\naliases:\n  - x\nnested:\n  a: 1\n  b: 2\nempty:\ntags:\n  - zeta\n  - Alpha\n  - beta\ntags: [one]\nit is, but they are not\n> more quote\ncafé foo9\nlet us go\n\n<div>\n\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n- apples.",
+   "expected_fixed": "---\nn: 3\naliases:\n  - x\nnested:\n  a: 1\n  b: 2\nempty:\ntags:\n  - zeta\n  - Alpha\n  - beta\ntags: [one]\nit is, but they are not\n> more quote\ncafé foo9\nlet us go\n\n<div>\n\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n- apples."
+  },
+  {
+   "name": "input 45 variant 0",
+   "input": "---\ndomain: development\nflag: true\nalpha: 2\n---\nwe are here\nIntro line  \n```bash\n___\n",
+   "options": {},
+   "expected": "---\ndomain: development\nflag: true\nalpha: 2\n---\nwe are here Intro line  \n```bash\n___\n",
+   "expected_fixed": "---\ndomain: development\nflag: true\nalpha: 2\n---\nwe are here Intro line  \n```bash\n___\n"
+  },
+  {
+   "name": "input 48 variant 0",
+   "input": "---\ndup: 1\ndup: 2\ntype: base\n---\n```\nunclosed fence it is\ndo not go\n- [x] done\nx\t\n___\n",
+   "options": {},
+   "expected": "---\ndup: 1\ndup: 2\ntype: base\n---\n```\nunclosed fence it is\ndo not go\n- [x] done\nx\t\n___\n",
+   "expected_fixed": "---\ndup: 1\ndup: 2\ntype: base\n---\n```\nunclosed fence it is\ndo not go\n- [x] done\nx\t\n___\n"
+  },
+  {
+   "name": "input 51 variant 0",
+   "input": "---\n\"quoted key\": v\nstatus: DRAFT\n---\nwrapped line one\n- \n- list **item** it is\nplain prose  \nx\n",
+   "options": {},
+   "expected": "---\n\"quoted key\": v\nstatus: DRAFT\n---\nwrapped line one\n- \n- list **item** it is\nplain prose  \nx\n",
+   "expected_fixed": "---\n\"quoted key\": v\nstatus: DRAFT\n---\nwrapped line one\n- \n- list **item** it is\nplain prose  \nx\n"
+  },
+  {
+   "name": "input 54 variant 0",
+   "input": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\naliases:\n  - x\naliases: [second, first]\nstatus: DRAFT\ndomain: development\n---\n- one\n\n![[embed]]\n  - nested\n- one\n![[embed]]\necho hi   \n__under__ score\n",
+   "options": {},
+   "expected": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\naliases:\n  - x\naliases: [second, first]\nstatus: DRAFT\ndomain: development\n---\n- one\n\n![[embed]]\n  - nested\n- one\n![[embed]]\necho hi   \n__under__ score\n",
+   "expected_fixed": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\naliases:\n  - x\naliases: [second, first]\nstatus: DRAFT\ndomain: development\n---\n- one\n\n![[embed]]\n  - nested\n- one\n![[embed]]\necho hi   \n__under__ score\n"
+  },
+  {
+   "name": "input 57 variant 0",
+   "input": "#\ttab heading\n* two\nit  is\nx\t\n- \na—b\n",
+   "options": {},
+   "expected": "#\ttab heading\n* two\nit  is\nx\t\n- \na—b\n",
+   "expected_fixed": "#\ttab heading\n* two\nit  is\nx\t\n- \na—b\n"
+  },
+  {
+   "name": "input 60 variant 0",
+   "input": "---\nalpha: 2\nnested:\n  a: 1\n  b: 2\nmulti: [a, \"b\"]\n---\n![[embed]]\n~~~js\nwe are\n~~~\n\n- pears\n~~~js\nwe are\n~~~\n### camelCaseHeading\n```js\n```\n",
+   "options": {},
+   "expected": "---\nalpha: 2\nnested:\n  a: 1\n  b: 2\nmulti: [a, \"b\"]\n---\n![[embed]]\n~~~js\nwe are\n~~~\n\n- pears\n~~~js\nwe are\n~~~\n### camelCaseHeading\n```js\n```\n",
+   "expected_fixed": "---\nalpha: 2\nnested:\n  a: 1\n  b: 2\nmulti: [a, \"b\"]\n---\n![[embed]]\n~~~js\nwe are\n~~~\n\n- pears\n~~~js\nwe are\n~~~\n### camelCaseHeading\n```js\n```\n"
+  },
+  {
+   "name": "input 63 variant 0",
+   "input": "---\naliases: [second, first]\n---\n##### Final Heading\n<span>a</span> it is\n> more quote\n$a**b$ and $$it is not$$\nplain sentence.\n***both*** ok\n<div>\n\n",
+   "options": {},
+   "expected": "---\naliases: [second, first]\n---\n##### Final Heading\n<span>a</span> it is\n> more quote\n$a**b$ and $$it is not$$ plain sentence. ***both*** ok\n<div>\n\n",
+   "expected_fixed": "---\naliases: [second, first]\n---\n##### Final Heading\n<span>a</span> it is\n> more quote\n$a**b$ and $$it is not$$ plain sentence. ***both*** ok\n<div>\n\n"
+  },
+  {
+   "name": "input 66 variant 0",
+   "input": "[ref]: http://x.y\n<span>a</span> it is\nx\t\n",
+   "options": {},
+   "expected": "[ref]: http://x.y\n<span>a</span> it is\nx\t\n",
+   "expected_fixed": "[ref]: http://x.y\n<span>a</span> it is\nx\t\n"
+  },
+  {
+   "name": "input 69 variant 0",
+   "input": "---\n---\n- \n\n| - | - |\n~~~js\nwe are\n~~~\n— leading\n",
+   "options": {},
+   "expected": "---\n---\n- \n\n| - | - |\n~~~js\nwe are\n~~~\n— leading\n",
+   "expected_fixed": "---\n---\n- \n\n| - | - |\n~~~js\nwe are\n~~~\n— leading\n"
+  },
+  {
+   "name": "input 72 variant 0",
+   "input": "---\nn: 3\n---\n````\nx\nplain prose  \n___\n- \nAKIAABCDEFGHIJKLMNOP\nghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n~~~sh\n- one\n\n",
+   "options": {},
+   "expected": "---\nn: 3\n---\n````\nx\nplain prose  \n___\n- \nAKIAABCDEFGHIJKLMNOP\nghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n~~~sh\n- one\n\n",
+   "expected_fixed": "---\nn: 3\n---\n````\nx\nplain prose  \n___\n- \nAKIAABCDEFGHIJKLMNOP\nghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n~~~sh\n- one\n\n"
+  },
+  {
+   "name": "input 75 variant 0",
+   "input": "---\r\nZeta: 1\r\nsub-category: x\r\nrelo-folder: \"\"\r\n2) second\r\n",
+   "options": {},
+   "expected": "---\r Zeta: 1\r sub-category: x\r relo-folder: \"\"\r\n2) second\r\n",
+   "expected_fixed": "---\r Zeta: 1\r sub-category: x\r relo-folder: \"\"\r\n2) second\r\n"
+  },
+  {
+   "name": "input 78 variant 0",
+   "input": "---\ntitle: \"Quoted: Title\"\nmulti: [a, \"b\"]\nalpha: 2\n---\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\nThe kit includes:\nflock x\n\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n#    \n** spaced **\nI am sure\n",
+   "options": {},
+   "expected": "---\ntitle: \"Quoted: Title\"\nmulti: [a, \"b\"]\nalpha: 2\n---\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\nThe kit includes: flock x\n\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n#    \n** spaced ** I am sure\n",
+   "expected_fixed": "---\ntitle: \"Quoted: Title\"\nmulti: [a, \"b\"]\nalpha: 2\n---\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\nThe kit includes: flock x\n\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n#    \n** spaced ** I am sure\n"
+  },
+  {
+   "name": "input 81 variant 0",
+   "input": "---\nrelo-folder: \"\"\ndomain: development\ndate-created: 2024-01-02\nrelo-file: false\n---\n— leading\n1. first\n| it is | **x** |\na — b\n$$\n| a | b |",
+   "options": {},
+   "expected": "---\nrelo-folder: \"\"\ndomain: development\ndate-created: 2024-01-02\nrelo-file: false\n---\n— leading\n1. first\n| it is | **x** |\na — b\n$$\n| a | b |",
+   "expected_fixed": "---\nrelo-folder: \"\"\ndomain: development\ndate-created: 2024-01-02\nrelo-file: false\n---\n— leading\n1. first\n| it is | **x** |\na — b\n$$\n| a | b |"
+  },
+  {
+   "name": "input 84 variant 0",
+   "input": "---\n---\n- [ ] task\nreadlink -f x\nplain prose  \n___\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n",
+   "options": {},
+   "expected": "---\n---\n- [ ] task\nreadlink -f x plain prose  \n___\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n",
+   "expected_fixed": "---\n---\n- [ ] task\nreadlink -f x plain prose  \n___\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n"
+  },
+  {
+   "name": "input 87 variant 0",
+   "input": "---\ncategory: notes\n\"quoted key\": v\ntags:\n  - zeta\n  - Alpha\n  - beta\n---\nwrapped line one\n- apples.\n",
+   "options": {},
+   "expected": "---\ncategory: notes\n\"quoted key\": v\ntags:\n  - zeta\n  - Alpha\n  - beta\n---\nwrapped line one\n- apples.\n",
+   "expected_fixed": "---\ncategory: notes\n\"quoted key\": v\ntags:\n  - zeta\n  - Alpha\n  - beta\n---\nwrapped line one\n- apples.\n"
+  },
+  {
+   "name": "input 90 variant 0",
+   "input": "---\n---\n1. numbered we are\n- \n> quote\n  - nested\n![[embed]]\n~~~sh\n1. first\n+ three\nbr tag<br>",
+   "options": {},
+   "expected": "---\n---\n1. numbered we are\n- \n> quote\n  - nested\n![[embed]]\n~~~sh\n1. first\n+ three\nbr tag<br>",
+   "expected_fixed": "---\n---\n1. numbered we are\n- \n> quote\n  - nested\n![[embed]]\n~~~sh\n1. first\n+ three\nbr tag<br>"
+  },
+  {
+   "name": "input 93 variant 0",
+   "input": "---\nmulti: [a, \"b\"]\nnested:\n  a: 1\n  b: 2\n---\n```\ncode it is not **x** —\n# Not A Heading\n```\n#### kebab-case-title\n- [x] done\n nbsp lead\n- one\n---\n**outer __inner__ text**\ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n<span>a</span> it is",
+   "options": {},
+   "expected": "---\nmulti: [a, \"b\"]\nnested:\n  a: 1\n  b: 2\n---\n```\ncode it is not **x** —\n# Not A Heading\n```\n#### kebab-case-title\n- [x] done\n nbsp lead\n- one\n---\n**outer __inner__ text** token abcdef0123abcdef0123abcdef0123abcdef0123\n<span>a</span> it is",
+   "expected_fixed": "---\nmulti: [a, \"b\"]\nnested:\n  a: 1\n  b: 2\n---\n```\ncode it is not **x** —\n# Not A Heading\n```\n#### kebab-case-title\n- [x] done\n nbsp lead\n- one\n---\n**outer __inner__ text** token abcdef0123abcdef0123abcdef0123abcdef0123\n<span>a</span> it is"
+  },
+  {
+   "name": "input 96 variant 0",
+   "input": "---\nmulti: [a, \"b\"]\ncategory: notes\ncategory: notes\ntype: base\n---\n### camelCaseHeading\n<div>\n##### Final Heading\n`code **x** it is not`\n\n\n\n***\n\n~~~js\nwe are\n~~~\n",
+   "options": {},
+   "expected": "---\nmulti: [a, \"b\"]\ncategory: notes\ncategory: notes\ntype: base\n---\n### camelCaseHeading\n<div>\n##### Final Heading\n`code **x** it is not`\n\n\n\n***\n\n~~~js\nwe are\n~~~\n",
+   "expected_fixed": "---\nmulti: [a, \"b\"]\ncategory: notes\ncategory: notes\ntype: base\n---\n### camelCaseHeading\n<div>\n##### Final Heading\n`code **x** it is not`\n\n\n\n***\n\n~~~js\nwe are\n~~~\n"
+  },
+  {
+   "name": "input 99 variant 0",
+   "input": "---\nrelo-folder: \"\"\n\n\nSetext two\n---\n",
+   "options": {},
+   "expected": "---\nrelo-folder: \"\"\n\n\nSetext two\n---\n",
+   "expected_fixed": "---\nrelo-folder: \"\"\n\n\nSetext two\n---\n"
+  },
+  {
+   "name": "input 102 variant 0",
+   "input": "---\npreset: p\ndate-created: 2024-01-02\npreset: p\n# comment\ndate-revised: 2024-01-03\n---\n- pears\n\nsed -i s/a/b/ f\n> quote\n\n> more quote\n- [ ] task\n1. first\n",
+   "options": {},
+   "expected": "---\npreset: p\ndate-created: 2024-01-02\npreset: p\n# comment\ndate-revised: 2024-01-03\n---\n- pears\n\nsed -i s/a/b/ f\n> quote\n\n> more quote\n- [ ] task\n1. first\n",
+   "expected_fixed": "---\npreset: p\ndate-created: 2024-01-02\npreset: p\n# comment\ndate-revised: 2024-01-03\n---\n- pears\n\nsed -i s/a/b/ f\n> quote\n\n> more quote\n- [ ] task\n1. first\n"
+  },
+  {
+   "name": "input 105 variant 0",
+   "input": "\n```bash\n```bash\n$$\n$$\nsed -i s/a/b/ f\nIt is not ready\ncafé foo9",
+   "options": {},
+   "expected": "\n```bash\n```bash\n$$\n$$\nsed -i s/a/b/ f\nIt is not ready\ncafé foo9",
+   "expected_fixed": "\n```bash\n```bash\n$$\n$$\nsed -i s/a/b/ f\nIt is not ready\ncafé foo9"
+  },
+  {
+   "name": "input 108 variant 0",
+   "input": "\r\n-\ttab\r\nbr tag<br>\r\nSetext\n===\r\n    indented code it is not **x**\r\n\r\n\r\n",
+   "options": {},
+   "expected": "\r\n-\ttab\r\nbr tag<br>\r Setext ===\r\n    indented code it is not **x**\r\n\r\n\r\n",
+   "expected_fixed": "\r\n-\ttab\r\nbr tag<br>\r Setext ===\r\n    indented code it is not **x**\r\n\r\n\r\n"
+  },
+  {
+   "name": "input 111 variant 0",
+   "input": "---\nn: 3\naliases:\n  - x\nsub-category: x\nrelo-folder: \"\"\nalpha: 2\ntypes: [t]\n---\n- [ ] task\n",
+   "options": {},
+   "expected": "---\nn: 3\naliases:\n  - x\nsub-category: x\nrelo-folder: \"\"\nalpha: 2\ntypes: [t]\n---\n- [ ] task\n",
+   "expected_fixed": "---\nn: 3\naliases:\n  - x\nsub-category: x\nrelo-folder: \"\"\nalpha: 2\ntypes: [t]\n---\n- [ ] task\n"
+  },
+  {
+   "name": "input 114 variant 0",
+   "input": "ghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n| - | - |\n\nwhere is it\n\n\n# the quick BROWN fox\n\na—b\n",
+   "options": {},
+   "expected": "ghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n| - | - |\n\nwhere is it\n\n\n# the quick BROWN fox\n\na—b\n",
+   "expected_fixed": "ghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n| - | - |\n\nwhere is it\n\n\n# the quick BROWN fox\n\na—b\n"
+  },
+  {
+   "name": "input 117 variant 0",
+   "input": "---\ncategory: notes\ndate-created: 2024-01-02\n# comment\n---\n$$\n![[embed]]\n-  spaced\n$$\n![[embed]]\n\n- apples.\n# the quick BROWN fox\n",
+   "options": {},
+   "expected": "---\ncategory: notes\ndate-created: 2024-01-02\n# comment\n---\n$$\n![[embed]]\n-  spaced\n$$\n![[embed]]\n\n- apples.\n# the quick BROWN fox\n",
+   "expected_fixed": "---\ncategory: notes\ndate-created: 2024-01-02\n# comment\n---\n$$\n![[embed]]\n-  spaced\n$$\n![[embed]]\n\n- apples.\n# the quick BROWN fox\n"
+  },
+  {
+   "name": "input 120 variant 0",
+   "input": "---\n---\n$$\n- pears\ntimeout 5 cmd\nflock x\n",
+   "options": {},
+   "expected": "---\n---\n$$\n- pears\ntimeout 5 cmd\nflock x\n",
+   "expected_fixed": "---\n---\n$$\n- pears\ntimeout 5 cmd\nflock x\n"
+  },
+  {
+   "name": "input 123 variant 0",
+   "input": "** spaced **\n",
+   "options": {},
+   "expected": "** spaced **\n",
+   "expected_fixed": "** spaced **\n"
+  },
+  {
+   "name": "input 126 variant 0",
+   "input": "<div>\nAKIAABCDEFGHIJKLMNOP\n- item, with comma;\nSetext\n===\nCould Have been\n~~~js\nwe are\n~~~\n nbsp lead\n> quote\n***both*** ok\n",
+   "options": {},
+   "expected": "<div>\nAKIAABCDEFGHIJKLMNOP\n- item, with comma;\nSetext\n===\nCould Have been\n~~~js\nwe are\n~~~\n nbsp lead\n> quote\n***both*** ok\n",
+   "expected_fixed": "<div>\nAKIAABCDEFGHIJKLMNOP\n- item, with comma;\nSetext\n===\nCould Have been\n~~~js\nwe are\n~~~\n nbsp lead\n> quote\n***both*** ok\n"
+  },
+  {
+   "name": "input 129 variant 0",
+   "input": "---\ntags: [one]\ntitle: \"Quoted: Title\"\n---\n\nAKIAABCDEFGHIJKLMNOP\n`code **x** it is not`\n-\ttab\nit is, but they are not\n-  spaced\nsed -i '' s/a/b/ f\n[ref]: http://x.y\n",
+   "options": {},
+   "expected": "---\ntags: [one]\ntitle: \"Quoted: Title\"\n---\n\nAKIAABCDEFGHIJKLMNOP `code **x** it is not`\n-\ttab\nit is, but they are not\n-  spaced\nsed -i '' s/a/b/ f\n[ref]: http://x.y\n",
+   "expected_fixed": "---\ntags: [one]\ntitle: \"Quoted: Title\"\n---\n\nAKIAABCDEFGHIJKLMNOP `code **x** it is not`\n-\ttab\nit is, but they are not\n-  spaced\nsed -i '' s/a/b/ f\n[ref]: http://x.y\n"
+  },
+  {
+   "name": "input 132 variant 0",
+   "input": "- pears\nCould Have been\nit’s fine and it is not\n",
+   "options": {},
+   "expected": "- pears\nCould Have been it’s fine and it is not\n",
+   "expected_fixed": "- pears\nCould Have been it’s fine and it is not\n"
+  },
+  {
+   "name": "input 135 variant 0",
+   "input": "---\n# comment\nmulti: [a, \"b\"]\n\"quoted key\": v\nrelo-folder: \"\"\nnested:\n  a: 1\n  b: 2\ndomain: development\n---\n- item, with comma;\n\nCANNOT stop\n\nThe kit includes:\n   indented text\ntimeout 5 cmd\nIntro line  \n```\n",
+   "options": {},
+   "expected": "---\n# comment\nmulti: [a, \"b\"]\n\"quoted key\": v\nrelo-folder: \"\"\nnested:\n  a: 1\n  b: 2\ndomain: development\n---\n- item, with comma;\n\nCANNOT stop\n\nThe kit includes:\n   indented text\ntimeout 5 cmd Intro line  \n```\n",
+   "expected_fixed": "---\n# comment\nmulti: [a, \"b\"]\n\"quoted key\": v\nrelo-folder: \"\"\nnested:\n  a: 1\n  b: 2\ndomain: development\n---\n- item, with comma;\n\nCANNOT stop\n\nThe kit includes:\n   indented text\ntimeout 5 cmd Intro line  \n```\n"
+  },
+  {
+   "name": "input 138 variant 0",
+   "input": "---\nrelo-folder: \"\"\ntitle: \"Quoted: Title\"\n\"quoted key\": v\ndomain: development\n---\n$$\nlet us go\nSetext\n===\nwrapped line one\n```bash\n```bash\n\n\n    indented code it is not **x**\n",
+   "options": {},
+   "expected": "---\nrelo-folder: \"\"\ntitle: \"Quoted: Title\"\n\"quoted key\": v\ndomain: development\n---\n$$\nlet us go\nSetext\n===\nwrapped line one\n```bash\n```bash\n\n\n    indented code it is not **x**\n",
+   "expected_fixed": "---\nrelo-folder: \"\"\ntitle: \"Quoted: Title\"\n\"quoted key\": v\ndomain: development\n---\n$$\nlet us go\nSetext\n===\nwrapped line one\n```bash\n```bash\n\n\n    indented code it is not **x**\n"
+  },
+  {
+   "name": "input 141 variant 0",
+   "input": "---\nempty:\ndup: 1\ndup: 2\n---\n\n<div>\nsed -i s/a/b/ f\nI am sure\n\n nbsp lead\n![[embed]]\n___\n| a | b |\n",
+   "options": {},
+   "expected": "---\nempty:\ndup: 1\ndup: 2\n---\n\n<div>\nsed -i s/a/b/ f I am sure\n\n nbsp lead\n![[embed]]\n___\n| a | b |\n",
+   "expected_fixed": "---\nempty:\ndup: 1\ndup: 2\n---\n\n<div>\nsed -i s/a/b/ f I am sure\n\n nbsp lead\n![[embed]]\n___\n| a | b |\n"
+  },
+  {
+   "name": "input 144 variant 0",
+   "input": "---\r\n---\r\n| a | b |",
+   "options": {},
+   "expected": "---\r\n---\r\n| a | b |",
+   "expected_fixed": "---\r\n---\r\n| a | b |"
+  },
+  {
+   "name": "input 147 variant 0",
+   "input": "---\ntype: base\naliases: [second, first]\nstatus: DRAFT\n```\nunclosed fence it is\nx\n$$\nx\n1. numbered we are\n> quote\n",
+   "options": {},
+   "expected": "---\ntype: base aliases: [second, first] status: DRAFT\n```\nunclosed fence it is\nx\n$$\nx\n1. numbered we are\n> quote\n",
+   "expected_fixed": "---\ntype: base aliases: [second, first] status: DRAFT\n```\nunclosed fence it is\nx\n$$\nx\n1. numbered we are\n> quote\n"
+  },
+  {
+   "name": "input 150 variant 0",
+   "input": "---\nZeta: 1\nmulti: [a, \"b\"]\n---\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n nbsp lead\nwrapped line two\n```bash\n~~~js\nwe are\n~~~\n| - | - |\n",
+   "options": {},
+   "expected": "---\nZeta: 1\nmulti: [a, \"b\"]\n---\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n nbsp lead\nwrapped line two\n```bash\n~~~js\nwe are\n~~~\n| - | - |\n",
+   "expected_fixed": "---\nZeta: 1\nmulti: [a, \"b\"]\n---\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n nbsp lead\nwrapped line two\n```bash\n~~~js\nwe are\n~~~\n| - | - |\n"
+  },
+  {
+   "name": "input 153 variant 0",
+   "input": "> quote\n\n1. first\n\n* * *\n",
+   "options": {},
+   "expected": "> quote\n\n1. first\n\n* * *\n",
+   "expected_fixed": "> quote\n\n1. first\n\n* * *\n"
+  },
+  {
+   "name": "input 156 variant 0",
+   "input": "---\ntypes: [t]\npreset: p\n---\n   indented text\n- apples.\n`code **x** it is not`\n-  spaced\n\n",
+   "options": {},
+   "expected": "---\ntypes: [t]\npreset: p\n---\n   indented text\n- apples.\n`code **x** it is not`\n-  spaced\n\n",
+   "expected_fixed": "---\ntypes: [t]\npreset: p\n---\n   indented text\n- apples.\n`code **x** it is not`\n-  spaced\n\n"
+  },
+  {
+   "name": "input 162 variant 0",
+   "input": "---\r\ndomain: development\r\n# comment\r\n'single': v\r\n\r\n$$\r\na it is **b**\r\n$$\r\nSetext two\n---\r\n---\r\ntitle: \"**keep** it is\"\r\ntags: [a]\r\n---\r\n\r\n$$\r\n\r\n[[wiki **link** it is]]\r\n",
+   "options": {},
+   "expected": "---\r\ndomain: development\r\n# comment\r\n'single': v\r\n\r\n$$\r\na it is **b**\r\n$$\r\nSetext two\n---\r\n---\r title: \"**keep** it is\"\r tags: [a]\r ---\r\n\r\n$$\r\n\r\n[[wiki **link** it is]]\r\n",
+   "expected_fixed": "---\r\ndomain: development\r\n# comment\r\n'single': v\r\n\r\n$$\r\na it is **b**\r\n$$\r\nSetext two\n---\r\n---\r title: \"**keep** it is\"\r tags: [a]\r ---\r\n\r\n$$\r\n\r\n[[wiki **link** it is]]\r\n"
+  },
+  {
+   "name": "input 165 variant 0",
+   "input": "---\nlist-of-maps:\n  - a: 1\ntypes: [t]\nempty:\ntypes: [t]\ndate-created: 2024-01-02\ndup: 1\ndup: 2\n---\nsed -i '' s/a/b/ f\nThe kit includes:\n### camelCaseHeading\n- [ ] task\nshe will not\n\n\n\n```  JS extra\n",
+   "options": {},
+   "expected": "---\nlist-of-maps:\n  - a: 1\ntypes: [t]\nempty:\ntypes: [t]\ndate-created: 2024-01-02\ndup: 1\ndup: 2\n---\nsed -i '' s/a/b/ f The kit includes:\n### camelCaseHeading\n- [ ] task\nshe will not\n\n\n\n```  JS extra\n",
+   "expected_fixed": "---\nlist-of-maps:\n  - a: 1\ntypes: [t]\nempty:\ntypes: [t]\ndate-created: 2024-01-02\ndup: 1\ndup: 2\n---\nsed -i '' s/a/b/ f The kit includes:\n### camelCaseHeading\n- [ ] task\nshe will not\n\n\n\n```  JS extra\n"
+  },
+  {
+   "name": "input 168 variant 0",
+   "input": "\n- [ ] task\nCould Have been\n-\n[[wiki **link** it is]]\n-\ttab\n",
+   "options": {},
+   "expected": "\n- [ ] task\nCould Have been\n-\n[[wiki **link** it is]]\n-\ttab\n",
+   "expected_fixed": "\n- [ ] task\nCould Have been\n-\n[[wiki **link** it is]]\n-\ttab\n"
+  },
+  {
+   "name": "input 171 variant 0",
+   "input": "---\nempty:\nn: 3\nalpha: 2\n# comment\ndate-created: 2024-01-02\n---\n",
+   "options": {},
+   "expected": "---\nempty:\nn: 3\nalpha: 2\n# comment\ndate-created: 2024-01-02\n---\n",
+   "expected_fixed": "---\nempty:\nn: 3\nalpha: 2\n# comment\ndate-created: 2024-01-02\n---\n"
+  },
+  {
+   "name": "input 174 variant 0",
+   "input": "---\n---\n\n````\n* two\n\n> quote\n\n",
+   "options": {},
+   "expected": "---\n---\n\n````\n* two\n\n> quote\n\n",
+   "expected_fixed": "---\n---\n\n````\n* two\n\n> quote\n\n"
+  },
+  {
+   "name": "input 177 variant 0",
+   "input": "---\r\ntitle: \"Quoted: Title\"\r\naliases: [second, first]\r\nrelo-folder: \"\"\r\n---\r\n~~~js\r\nwe are\r\n~~~\r\n2) second\r\n<div>\r\n-\r\n2) second\r\ntext with trailing backslash\\\r\nemoji 😀 it is **ok**\r\n\r\n",
+   "options": {},
+   "expected": "---\r\ntitle: \"Quoted: Title\"\r\naliases: [second, first]\r\nrelo-folder: \"\"\r\n---\r\n~~~js\r\nwe are\r\n~~~\r\n2) second\r\n<div>\r\n-\r\n2) second\r\ntext with trailing backslash\\\r\nemoji 😀 it is **ok**\r\n\r\n",
+   "expected_fixed": "---\r\ntitle: \"Quoted: Title\"\r\naliases: [second, first]\r\nrelo-folder: \"\"\r\n---\r\n~~~js\r\nwe are\r\n~~~\r\n2) second\r\n<div>\r\n-\r\n2) second\r\ntext with trailing backslash\\\r\nemoji 😀 it is **ok**\r\n\r\n"
+  },
+  {
+   "name": "input 180 variant 0",
+   "input": "---\r\n'single': v\r\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\r\ntypes: [t]\r\ntags: [b, a, C]\r\ntags:\n  - zeta\n  - Alpha\n  - beta\r\nrelo-folder: \"\"\r\n---\r\nSetext\n===\r\n##### Final Heading\r\nsnake__case__word\r\n#\ttab heading\r\nsed -i s/a/b/ f\r\nplain prose  \r\ncafé foo9\r\n",
+   "options": {},
+   "expected": "---\r\n'single': v\r\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\r\ntypes: [t]\r\ntags: [b, a, C]\r\ntags:\n  - zeta\n  - Alpha\n  - beta\r\nrelo-folder: \"\"\r\n---\r\nSetext ===\r\n##### Final Heading\r\nsnake__case__word\r\n#\ttab heading\r\nsed -i s/a/b/ f\r plain prose  \r café foo9\r\n",
+   "expected_fixed": "---\r\n'single': v\r\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\r\ntypes: [t]\r\ntags: [b, a, C]\r\ntags:\n  - zeta\n  - Alpha\n  - beta\r\nrelo-folder: \"\"\r\n---\r\nSetext ===\r\n##### Final Heading\r\nsnake__case__word\r\n#\ttab heading\r\nsed -i s/a/b/ f\r plain prose  \r café foo9\r\n"
+  },
+  {
+   "name": "input 183 variant 0",
+   "input": "token abcdef0123abcdef0123abcdef0123abcdef0123\n> quote it is not\n",
+   "options": {},
+   "expected": "token abcdef0123abcdef0123abcdef0123abcdef0123\n> quote it is not\n",
+   "expected_fixed": "token abcdef0123abcdef0123abcdef0123abcdef0123\n> quote it is not\n"
+  },
+  {
+   "name": "input 186 variant 0",
+   "input": "---\ndomain: development\n---\n- [ ] task\n* * *\n\n",
+   "options": {},
+   "expected": "---\ndomain: development\n---\n- [ ] task\n* * *\n\n",
+   "expected_fixed": "---\ndomain: development\n---\n- [ ] task\n* * *\n\n"
+  },
+  {
+   "name": "input 189 variant 0",
+   "input": "---\n\"quoted key\": v\ntags:\n  - zeta\n  - Alpha\n  - beta\nsub-category: x\nrelo-file: false\ntype: base\n---\nIntro line  \nIntro line  \nplain prose  \n---\n| - | - |\nsed -i s/a/b/ f\nghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n* * *\n1. first\n",
+   "options": {},
+   "expected": "---\n\"quoted key\": v\ntags:\n  - zeta\n  - Alpha\n  - beta\nsub-category: x\nrelo-file: false\ntype: base\n---\nIntro line  \nIntro line  \nplain prose  \n---\n| - | - |\nsed -i s/a/b/ f ghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n* * *\n1. first\n",
+   "expected_fixed": "---\n\"quoted key\": v\ntags:\n  - zeta\n  - Alpha\n  - beta\nsub-category: x\nrelo-file: false\ntype: base\n---\nIntro line  \nIntro line  \nplain prose  \n---\n| - | - |\nsed -i s/a/b/ f ghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n* * *\n1. first\n"
+  },
+  {
+   "name": "input 192 variant 0",
+   "input": "---\ndup: 1\ndup: 2\nmulti: [a, \"b\"]\ndup: 1\ndup: 2\nn: 3\nempty:\n---\nAKIAABCDEFGHIJKLMNOP\n> quote\n\n",
+   "options": {},
+   "expected": "---\ndup: 1\ndup: 2\nmulti: [a, \"b\"]\ndup: 1\ndup: 2\nn: 3\nempty:\n---\nAKIAABCDEFGHIJKLMNOP\n> quote\n\n",
+   "expected_fixed": "---\ndup: 1\ndup: 2\nmulti: [a, \"b\"]\ndup: 1\ndup: 2\nn: 3\nempty:\n---\nAKIAABCDEFGHIJKLMNOP\n> quote\n\n"
+  },
+  {
+   "name": "input 195 variant 0",
+   "input": "---\nZeta: 1\n\"quoted key\": v\ndate-created: 2024-01-02\nn: 3\n# comment\nempty:\n---\n````\nAKIAABCDEFGHIJKLMNOP\n### camelCaseHeading\nplain words here\n- one\n***\n> quote it is not\n**bold** text\n",
+   "options": {},
+   "expected": "---\nZeta: 1\n\"quoted key\": v\ndate-created: 2024-01-02\nn: 3\n# comment\nempty:\n---\n````\nAKIAABCDEFGHIJKLMNOP\n### camelCaseHeading\nplain words here\n- one\n***\n> quote it is not\n**bold** text\n",
+   "expected_fixed": "---\nZeta: 1\n\"quoted key\": v\ndate-created: 2024-01-02\nn: 3\n# comment\nempty:\n---\n````\nAKIAABCDEFGHIJKLMNOP\n### camelCaseHeading\nplain words here\n- one\n***\n> quote it is not\n**bold** text\n"
+  },
+  {
+   "name": "input 198 variant 0",
+   "input": "\n> more quote\n\n| --- | --- |\n---\n",
+   "options": {},
+   "expected": "\n> more quote\n\n| --- | --- |\n---\n",
+   "expected_fixed": "\n> more quote\n\n| --- | --- |\n---\n"
+  },
+  {
+   "name": "input 201 variant 0",
+   "input": "***\n nbsp lead\n",
+   "options": {},
+   "expected": "***\n nbsp lead\n",
+   "expected_fixed": "***\n nbsp lead\n"
+  },
+  {
+   "name": "input 204 variant 0",
+   "input": "---\nnested:\n  a: 1\n  b: 2\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\nflag: true\nrelo-folder: \"\"\nflag: true\n---\nshe will not\n##### Final Heading\nshe will not\n-\ttab\n\n-\ttab\n# the quick BROWN fox\n1. numbered we are\nsed -i s/a/b/ f\n",
+   "options": {},
+   "expected": "---\nnested:\n  a: 1\n  b: 2\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\nflag: true\nrelo-folder: \"\"\nflag: true\n---\nshe will not\n##### Final Heading\nshe will not\n-\ttab\n\n-\ttab\n# the quick BROWN fox\n1. numbered we are\nsed -i s/a/b/ f\n",
+   "expected_fixed": "---\nnested:\n  a: 1\n  b: 2\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\nflag: true\nrelo-folder: \"\"\nflag: true\n---\nshe will not\n##### Final Heading\nshe will not\n-\ttab\n\n-\ttab\n# the quick BROWN fox\n1. numbered we are\nsed -i s/a/b/ f\n"
+  },
+  {
+   "name": "input 207 variant 0",
+   "input": "```  JS extra\n-\ttab\ncafé foo9\nSetext two\n---\nAKIAABCDEFGHIJKLMNOP\n````\n-\ttab\n",
+   "options": {},
+   "expected": "```  JS extra\n-\ttab\ncafé foo9\nSetext two\n---\nAKIAABCDEFGHIJKLMNOP\n````\n-\ttab\n",
+   "expected_fixed": "```  JS extra\n-\ttab\ncafé foo9\nSetext two\n---\nAKIAABCDEFGHIJKLMNOP\n````\n-\ttab\n"
+  },
+  {
+   "name": "input 210 variant 0",
+   "input": "emoji 😀 it is **ok**\n  - nested\nSetext two\n---\n-\ttab\n***\n\n#hashtag\n- list **item** it is\n",
+   "options": {},
+   "expected": "emoji 😀 it is **ok**\n  - nested\nSetext two\n---\n-\ttab\n***\n\n#hashtag\n- list **item** it is\n",
+   "expected_fixed": "emoji 😀 it is **ok**\n  - nested\nSetext two\n---\n-\ttab\n***\n\n#hashtag\n- list **item** it is\n"
+  },
+  {
+   "name": "input 213 variant 0",
+   "input": "---\nZeta: 1\nlist-of-maps:\n  - a: 1\nrelo-folder: \"\"\n# comment\n# comment\ntitle: \"Quoted: Title\"\n---\n> quote it is not\nx\t\n- [ ] task\n",
+   "options": {},
+   "expected": "---\nZeta: 1\nlist-of-maps:\n  - a: 1\nrelo-folder: \"\"\n# comment\n# comment\ntitle: \"Quoted: Title\"\n---\n> quote it is not\nx\t\n- [ ] task\n",
+   "expected_fixed": "---\nZeta: 1\nlist-of-maps:\n  - a: 1\nrelo-folder: \"\"\n# comment\n# comment\ntitle: \"Quoted: Title\"\n---\n> quote it is not\nx\t\n- [ ] task\n"
+  },
+  {
+   "name": "input 216 variant 0",
+   "input": "---\naliases: [second, first]\n---\nx\n\nsed -i s/a/b/ f\n\nThe kit includes:\n> quote\n",
+   "options": {},
+   "expected": "---\naliases: [second, first]\n---\nx\n\nsed -i s/a/b/ f\n\nThe kit includes:\n> quote\n",
+   "expected_fixed": "---\naliases: [second, first]\n---\nx\n\nsed -i s/a/b/ f\n\nThe kit includes:\n> quote\n"
+  },
+  {
+   "name": "input 219 variant 0",
+   "input": "---\r\n'single': v\r\nflag: true\r\ntags: [one]\r\ncategory: notes\r\nnested:\n  a: 1\n  b: 2\r\nstatus: DRAFT\r\n---\r\n- one\r\nghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n- \r\n```\r\nunclosed fence it is\r\n",
+   "options": {},
+   "expected": "---\r\n'single': v\r\nflag: true\r\ntags: [one]\r\ncategory: notes\r\nnested:\n  a: 1\n  b: 2\r\nstatus: DRAFT\r\n---\r\n- one\r\nghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n- \r\n```\r\nunclosed fence it is\r\n",
+   "expected_fixed": "---\r\n'single': v\r\nflag: true\r\ntags: [one]\r\ncategory: notes\r\nnested:\n  a: 1\n  b: 2\r\nstatus: DRAFT\r\n---\r\n- one\r\nghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n- \r\n```\r\nunclosed fence it is\r\n"
+  },
+  {
+   "name": "input 222 variant 0",
+   "input": "---\r\nsub-category: x\r\ntags: [one]\r\nmulti: [a, \"b\"]\r\nmulti: [a, \"b\"]\r\n---\r\nit\tis\r\n- pears\r\n- [ ] task\r\nIntro line  \r\n",
+   "options": {},
+   "expected": "---\r\nsub-category: x\r\ntags: [one]\r\nmulti: [a, \"b\"]\r\nmulti: [a, \"b\"]\r\n---\r\nit\tis\r\n- pears\r\n- [ ] task\r\nIntro line  \r\n",
+   "expected_fixed": "---\r\nsub-category: x\r\ntags: [one]\r\nmulti: [a, \"b\"]\r\nmulti: [a, \"b\"]\r\n---\r\nit\tis\r\n- pears\r\n- [ ] task\r\nIntro line  \r\n"
+  },
+  {
+   "name": "input 225 variant 0",
+   "input": "---\nstatus: DRAFT\ntypes: [t]\ntags:\n  - zeta\n  - Alpha\n  - beta\naliases: [second, first]\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\ntags:\n  - zeta\n  - Alpha\n  - beta\n---\n### camelCaseHeading\n> quote\n[[wiki **link** it is]]",
+   "options": {},
+   "expected": "---\nstatus: DRAFT\ntypes: [t]\ntags:\n  - zeta\n  - Alpha\n  - beta\naliases: [second, first]\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\ntags:\n  - zeta\n  - Alpha\n  - beta\n---\n### camelCaseHeading\n> quote\n[[wiki **link** it is]]",
+   "expected_fixed": "---\nstatus: DRAFT\ntypes: [t]\ntags:\n  - zeta\n  - Alpha\n  - beta\naliases: [second, first]\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\ntags:\n  - zeta\n  - Alpha\n  - beta\n---\n### camelCaseHeading\n> quote\n[[wiki **link** it is]]"
+  },
+  {
+   "name": "input 228 variant 0",
+   "input": "---\nstatus: DRAFT\ntags:\n  - zeta\n  - Alpha\n  - beta\ntypes: [t]\ntitle: \"Quoted: Title\"\ntitle: \"Quoted: Title\"\n## Some Section_here\n   # indented heading\nwrapped line one\nx\t\n1. first\nreadlink -f x\n\nwrapped line one\n\n",
+   "options": {},
+   "expected": "---\nstatus: DRAFT tags:\n  - zeta\n  - Alpha\n  - beta\ntypes: [t] title: \"Quoted: Title\" title: \"Quoted: Title\"\n## Some Section_here\n   # indented heading\nwrapped line one x\t\n1. first\nreadlink -f x\n\nwrapped line one\n\n",
+   "expected_fixed": "---\nstatus: DRAFT tags:\n  - zeta\n  - Alpha\n  - beta\ntypes: [t] title: \"Quoted: Title\" title: \"Quoted: Title\"\n## Some Section_here\n   # indented heading\nwrapped line one x\t\n1. first\nreadlink -f x\n\nwrapped line one\n\n"
+  },
+  {
+   "name": "input 231 variant 0",
+   "input": "-  spaced\n| it is | **x** |\n```\nunclosed fence it is\n-  spaced\nshe will not",
+   "options": {},
+   "expected": "-  spaced\n| it is | **x** |\n```\nunclosed fence it is\n-  spaced\nshe will not",
+   "expected_fixed": "-  spaced\n| it is | **x** |\n```\nunclosed fence it is\n-  spaced\nshe will not"
+  },
+  {
+   "name": "input 234 variant 0",
+   "input": "- one\n- apples.\n\n1. numbered we are\n# Heading with `code` span\nIntro line  \ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n",
+   "options": {},
+   "expected": "- one\n- apples.\n\n1. numbered we are\n# Heading with `code` span\nIntro line  \ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n",
+   "expected_fixed": "- one\n- apples.\n\n1. numbered we are\n# Heading with `code` span\nIntro line  \ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n"
+  },
+  {
+   "name": "input 237 variant 0",
+   "input": "---\ndup: 1\ndup: 2\n---\n\n# Heading with `code` span\n- \n-\nÜnïcode it is\nit  is\n\n",
+   "options": {},
+   "expected": "---\ndup: 1\ndup: 2\n---\n\n# Heading with `code` span\n- \n-\nÜnïcode it is it  is\n\n",
+   "expected_fixed": "---\ndup: 1\ndup: 2\n---\n\n# Heading with `code` span\n- \n-\nÜnïcode it is it  is\n\n"
+  },
+  {
+   "name": "input 240 variant 0",
+   "input": "---\n'single': v\nsub-category: x\n---\n\n##### Final Heading\n**bold** text\n```  JS extra\nÜnïcode it is\n\n~~~js\nwe are\n~~~\n1. first",
+   "options": {},
+   "expected": "---\n'single': v\nsub-category: x\n---\n\n##### Final Heading\n**bold** text\n```  JS extra\nÜnïcode it is\n\n~~~js\nwe are\n~~~\n1. first",
+   "expected_fixed": "---\n'single': v\nsub-category: x\n---\n\n##### Final Heading\n**bold** text\n```  JS extra\nÜnïcode it is\n\n~~~js\nwe are\n~~~\n1. first"
+  },
+  {
+   "name": "input 243 variant 0",
+   "input": "---\ncategory: notes\nrelo-folder: \"\"\n---\nAKIAABCDEFGHIJKLMNOP\n```  JS extra\n+ three\n```js",
+   "options": {},
+   "expected": "---\ncategory: notes\nrelo-folder: \"\"\n---\nAKIAABCDEFGHIJKLMNOP\n```  JS extra\n+ three\n```js",
+   "expected_fixed": "---\ncategory: notes\nrelo-folder: \"\"\n---\nAKIAABCDEFGHIJKLMNOP\n```  JS extra\n+ three\n```js"
+  },
+  {
+   "name": "input 246 variant 0",
+   "input": "---\nalpha: 2\n---\necho hi   \n\n",
+   "options": {},
+   "expected": "---\nalpha: 2\n---\necho hi   \n\n",
+   "expected_fixed": "---\nalpha: 2\n---\necho hi   \n\n"
+  },
+  {
+   "name": "input 249 variant 0",
+   "input": "CANNOT stop__under__ score\tTab code **x**\n$$\na it is **b**\n$$\n#### kebab-case-title#hashtag\n** spaced ** # the quick BROWN fox #    \n```\nunclosed fence it is\n[t](http://x.y/**z**) we are here > quote it is not\n",
+   "options": {},
+   "expected": "CANNOT stop__under__ score\tTab code **x**\n$$\na it is **b**\n$$\n#### kebab-case-title#hashtag\n** spaced ** # the quick BROWN fox #    \n```\nunclosed fence it is\n[t](http://x.y/**z**) we are here > quote it is not\n",
+   "expected_fixed": "CANNOT stop__under__ score\tTab code **x**\n$$\na it is **b**\n$$\n#### kebab-case-title#hashtag\n** spaced ** # the quick BROWN fox #    \n```\nunclosed fence it is\n[t](http://x.y/**z**) we are here > quote it is not\n"
+  },
+  {
+   "name": "input 252 variant 0",
+   "input": "# Heading with `code` span\n\n~~~js\nwe are\n~~~\n###### x\nit is, but they are not where is it\n- [ ] task it is- [ ] task it is\n`code **x** it is not`\n#    Could Have been- [ ] task it is\n",
+   "options": {},
+   "expected": "# Heading with `code` span\n\n~~~js\nwe are\n~~~\n###### x\nit is, but they are not where is it\n- [ ] task it is- [ ] task it is\n`code **x** it is not`\n#    Could Have been- [ ] task it is\n",
+   "expected_fixed": "# Heading with `code` span\n\n~~~js\nwe are\n~~~\n###### x\nit is, but they are not where is it\n- [ ] task it is- [ ] task it is\n`code **x** it is not`\n#    Could Have been- [ ] task it is\n"
+  },
+  {
+   "name": "input 255 variant 0",
+   "input": "she will not\na — b   # indented heading\n#### kebab-case-title - [ ] task it is\n- [ ] task it is\nCANNOT stop## Some Section_here- list **item** it is\n# the quick BROWN fox\n10–12__under__ score\ntrailing — - [ ] task it is\n",
+   "options": {},
+   "expected": "she will not a — b   # indented heading\n#### kebab-case-title - [ ] task it is\n- [ ] task it is\nCANNOT stop## Some Section_here- list **item** it is\n# the quick BROWN fox\n10–12__under__ score trailing — - [ ] task it is\n",
+   "expected_fixed": "she will not a — b   # indented heading\n#### kebab-case-title - [ ] task it is\n- [ ] task it is\nCANNOT stop## Some Section_here- list **item** it is\n# the quick BROWN fox\n10–12__under__ score trailing — - [ ] task it is\n"
+  },
+  {
+   "name": "input 258 variant 0",
+   "input": "---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n##### Final Heading> quote it is not> quote it is not\n\n# Heading with `code` span\n$a**b$ and $$it is not$$emoji 😀 it is **ok**\nwe are here",
+   "options": {},
+   "expected": "---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n##### Final Heading> quote it is not> quote it is not\n\n# Heading with `code` span\n$a**b$ and $$it is not$$emoji 😀 it is **ok** we are here",
+   "expected_fixed": "---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n##### Final Heading> quote it is not> quote it is not\n\n# Heading with `code` span\n$a**b$ and $$it is not$$emoji 😀 it is **ok** we are here"
+  },
+  {
+   "name": "input 261 variant 0",
+   "input": "---\r\ntitle: \"**keep** it is\"\r\ntags: [a]\r\n---\r\ndo not go\r\n",
+   "options": {},
+   "expected": "---\r\ntitle: \"**keep** it is\"\r\ntags: [a]\r\n---\r\ndo not go\r\n",
+   "expected_fixed": "---\r\ntitle: \"**keep** it is\"\r\ntags: [a]\r\n---\r\ndo not go\r\n"
+  },
+  {
+   "name": "input 264 variant 0",
+   "input": "   # indented heading\n```\ncode it is not **x** —\n# Not A Heading\n```\n$$\na it is **b**\n$$\n```\ncode it is not **x** —\n# Not A Heading\n```",
+   "options": {},
+   "expected": "   # indented heading\n```\ncode it is not **x** —\n# Not A Heading\n```\n$$\na it is **b**\n$$\n```\ncode it is not **x** —\n# Not A Heading\n```",
+   "expected_fixed": "   # indented heading\n```\ncode it is not **x** —\n# Not A Heading\n```\n$$\na it is **b**\n$$\n```\ncode it is not **x** —\n# Not A Heading\n```"
+  },
+  {
+   "name": "input 267 variant 0",
+   "input": "---\ntitle: \"**keep** it is\"\ntags: [a]\n---\nwhere is it\n| --- | --- | # Heading with `code` span    # indented heading\n",
+   "options": {},
+   "expected": "---\ntitle: \"**keep** it is\"\ntags: [a]\n---\nwhere is it\n| --- | --- | # Heading with `code` span    # indented heading\n",
+   "expected_fixed": "---\ntitle: \"**keep** it is\"\ntags: [a]\n---\nwhere is it\n| --- | --- | # Heading with `code` span    # indented heading\n"
+  },
+  {
+   "name": "input 270 variant 0",
+   "input": "Could Have been x – y\n- [ ] task it is**bold** text\n###### x10–12\ntrailing —\n",
+   "options": {},
+   "expected": "Could Have been x – y\n- [ ] task it is**bold** text\n###### x10–12\ntrailing —\n",
+   "expected_fixed": "Could Have been x – y\n- [ ] task it is**bold** text\n###### x10–12\ntrailing —\n"
+  },
+  {
+   "name": "input 273 variant 0",
+   "input": "I am sure\n# the quick BROWN fox 1. numbered we are | it is | **x** |\n__under__ score __under__ score - list **item** it is",
+   "options": {},
+   "expected": "I am sure\n# the quick BROWN fox 1. numbered we are | it is | **x** |\n__under__ score __under__ score - list **item** it is",
+   "expected_fixed": "I am sure\n# the quick BROWN fox 1. numbered we are | it is | **x** |\n__under__ score __under__ score - list **item** it is"
+  },
+  {
+   "name": "input 276 variant 0",
+   "input": "---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n# Heading with `code` span\nwe are here\n# Heading with `code` span\tTab code **x**rock–solid\n~~~js\nwe are\n~~~\n$$\na it is **b**\n$$\n\n## Some Section_here\n```\ncode it is not **x** —\n# Not A Heading\n```\n",
+   "options": {},
+   "expected": "---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n# Heading with `code` span\nwe are here\n# Heading with `code` span\tTab code **x**rock–solid\n~~~js\nwe are\n~~~\n$$\na it is **b**\n$$\n\n## Some Section_here\n```\ncode it is not **x** —\n# Not A Heading\n```\n",
+   "expected_fixed": "---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n# Heading with `code` span\nwe are here\n# Heading with `code` span\tTab code **x**rock–solid\n~~~js\nwe are\n~~~\n$$\na it is **b**\n$$\n\n## Some Section_here\n```\ncode it is not **x** —\n# Not A Heading\n```\n"
+  },
+  {
+   "name": "input 279 variant 0",
+   "input": "---\ntitle: \"**keep** it is\"\ntags: [a]\n---\nCANNOT stop - list **item** it is\n\tTab code **x** CANNOT stop #hashtag\n```\nunclosed fence it is\na—b | a | b | __under__ score\n- list **item** it is\nCANNOT stop #### kebab-case-title\n<div>it is not **x**</div> we are here\n\n| a | b |\n",
+   "options": {},
+   "expected": "---\ntitle: \"**keep** it is\"\ntags: [a]\n---\nCANNOT stop - list **item** it is\n\tTab code **x** CANNOT stop #hashtag\n```\nunclosed fence it is\na—b | a | b | __under__ score\n- list **item** it is\nCANNOT stop #### kebab-case-title\n<div>it is not **x**</div> we are here\n\n| a | b |\n",
+   "expected_fixed": "---\ntitle: \"**keep** it is\"\ntags: [a]\n---\nCANNOT stop - list **item** it is\n\tTab code **x** CANNOT stop #hashtag\n```\nunclosed fence it is\na—b | a | b | __under__ score\n- list **item** it is\nCANNOT stop #### kebab-case-title\n<div>it is not **x**</div> we are here\n\n| a | b |\n"
+  },
+  {
+   "name": "input 282 variant 0",
+   "input": "let us go [t](http://x.y/**z**) **bold** text\n# Heading with `code` span\n** spaced **\n```\ncode it is not **x** —\n# Not A Heading\n```\n",
+   "options": {},
+   "expected": "let us go [t](http://x.y/**z**) **bold** text\n# Heading with `code` span\n** spaced **\n```\ncode it is not **x** —\n# Not A Heading\n```\n",
+   "expected_fixed": "let us go [t](http://x.y/**z**) **bold** text\n# Heading with `code` span\n** spaced **\n```\ncode it is not **x** —\n# Not A Heading\n```\n"
+  },
+  {
+   "name": "input 285 variant 0",
+   "input": "#### kebab-case-title\n\n   # indented heading\nrock–solid https://ex.com/a**b**c/it_is\n— leading\n- list **item** it is Could Have been\n# Heading with `code` span\n[[wiki **link** it is]]it  is$a**b$ and $$it is not$$",
+   "options": {},
+   "expected": "#### kebab-case-title\n\n   # indented heading\nrock–solid https://ex.com/a**b**c/it_is — leading\n- list **item** it is Could Have been\n# Heading with `code` span\n[[wiki **link** it is]]it  is$a**b$ and $$it is not$$",
+   "expected_fixed": "#### kebab-case-title\n\n   # indented heading\nrock–solid https://ex.com/a**b**c/it_is — leading\n- list **item** it is Could Have been\n# Heading with `code` span\n[[wiki **link** it is]]it  is$a**b$ and $$it is not$$"
+  }
+ ]
+}

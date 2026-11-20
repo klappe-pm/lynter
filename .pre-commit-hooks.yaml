@@ -1,0 +1,16 @@
+# language: system runs the `lynter` binary found on PATH, so the hook needs no
+# build step and no network at commit time. Install it first with
+# `npm install -g lynter`, `brew install lynter`, or a release download.
+- id: lynter-check
+  name: lynter check
+  description: Check Markdown files with Lynter.
+  entry: lynter check
+  language: system
+  types: [markdown]
+
+- id: lynter-fix
+  name: lynter fix
+  description: Fix Markdown files in place with Lynter.
+  entry: lynter fix
+  language: system
+  types: [markdown]

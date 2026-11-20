@@ -1,0 +1,14 @@
+version: 1
+defaults:
+  rules:
+    strip-strong: {enabled: true}
+    replace-em-dash: {enabled: true}
+    header-case: {enabled: true, h1: "First letter"}
+    contractions: {enabled: true}
+profiles:
+  drafts:
+    match: {path: ["drafts/**"]}
+    rules:
+      header-case: {enabled: false}
+ignore:
+  files: [notes/skip.md]

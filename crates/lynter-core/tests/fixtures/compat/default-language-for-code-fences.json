@@ -1,0 +1,75 @@
+{
+  "id": "default-language-for-code-fences",
+  "examples": [
+    {
+      "n": 1,
+      "input": "```\nvar temp = 'text';\n```\n",
+      "options": {
+        "language": "javascript"
+      },
+      "expected": "```javascript\nvar temp = 'text';\n```\n"
+    },
+    {
+      "n": 2,
+      "input": "```javascript\nvar a;\n```\n",
+      "options": {
+        "language": "javascript"
+      },
+      "expected": "```javascript\nvar a;\n```\n"
+    },
+    {
+      "n": 3,
+      "input": "```\nvar a;\n```\n",
+      "options": {
+        "language": ""
+      },
+      "expected": "```\nvar a;\n```\n"
+    },
+    {
+      "n": 4,
+      "input": "```\na\n```\n\n```py\nb\n```\n\n```\nc\n```\n",
+      "options": {
+        "language": "text"
+      },
+      "expected": "```text\na\n```\n\n```py\nb\n```\n\n```text\nc\n```\n"
+    },
+    {
+      "n": 5,
+      "input": "````\n```\ninner\n```\n````\n",
+      "options": {
+        "language": "md"
+      },
+      "expected": "````md\n```\ninner\n```\n````\n"
+    },
+    {
+      "n": 6,
+      "input": "~~~\nls\n~~~\n",
+      "options": {
+        "language": "sh"
+      },
+      "expected": "~~~sh\nls\n~~~\n"
+    },
+    {
+      "n": 7,
+      "input": "> [!note]\n> ```\n> ls\n> ```\n",
+      "options": {
+        "language": "sh"
+      },
+      "expected": "> [!note]\n> ```sh\n> ls\n> ```\n"
+    },
+    {
+      "n": 8,
+      "input": "```\r\nls\r\n```\r\n",
+      "options": {
+        "language": "sh"
+      },
+      "expected": "```sh\r\nls\r\n```\r\n"
+    },
+    {
+      "n": 9,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

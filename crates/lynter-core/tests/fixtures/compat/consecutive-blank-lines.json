@@ -1,0 +1,53 @@
+{
+  "id": "consecutive-blank-lines",
+  "examples": [
+    {
+      "n": 1,
+      "input": "Some text\n\n\nSome more text\n",
+      "options": {},
+      "expected": "Some text\n\nSome more text\n"
+    },
+    {
+      "n": 2,
+      "input": "a\n\n\n\n\n\nb\n",
+      "options": {},
+      "expected": "a\n\nb\n"
+    },
+    {
+      "n": 3,
+      "input": "a\n  \n\t\nb\n",
+      "options": {},
+      "expected": "a\n\nb\n"
+    },
+    {
+      "n": 4,
+      "input": "```\na\n\n\nb\n```\n",
+      "options": {},
+      "expected": "```\na\n\n\nb\n```\n"
+    },
+    {
+      "n": 5,
+      "input": "> a\n>\n>\n> b\n",
+      "options": {},
+      "expected": "> a\n>\n>\n> b\n"
+    },
+    {
+      "n": 6,
+      "input": "---\na: 1\n\n\nb: 2\n---\n\n\ntext\n",
+      "options": {},
+      "expected": "---\na: 1\n\n\nb: 2\n---\n\ntext\n"
+    },
+    {
+      "n": 7,
+      "input": "a\r\n\r\n\r\nb",
+      "options": {},
+      "expected": "a\r\n\r\nb"
+    },
+    {
+      "n": 8,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

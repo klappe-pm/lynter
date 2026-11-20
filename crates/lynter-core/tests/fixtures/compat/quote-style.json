@@ -1,0 +1,77 @@
+{
+  "id": "quote-style",
+  "examples": [
+    {
+      "n": 1,
+      "input": "“There are many”\n„More than you would think”\n«Spanish»\n‘Simple’\n‚Another’\n‹Even this›\n",
+      "options": {},
+      "expected": "\"There are many\"\n\"More than you would think\"\n\"Spanish\"\n'Simple'\n'Another'\n'Even this'\n"
+    },
+    {
+      "n": 2,
+      "input": "\"As you can see\"\n\"Nesting a quote like so: 'here I am' is handled\"\n'Single quotes by themselves'\nPam's dog and can't stop\n",
+      "options": {
+        "single-quote-style": "smart",
+        "double-quote-style": "smart"
+      },
+      "expected": "“As you can see”\n“Nesting a quote like so: ‘here I am’ is handled”\n‘Single quotes by themselves’\nPam’s dog and can’t stop\n"
+    },
+    {
+      "n": 3,
+      "input": "\"a\" <% tp.date.now(\"YYYY-MM-DD\", 7) %>\n",
+      "options": {
+        "single-quote-style": "smart",
+        "double-quote-style": "smart"
+      },
+      "expected": "“a” <% tp.date.now(\"YYYY-MM-DD\", 7) %>\n"
+    },
+    {
+      "n": 4,
+      "input": "He said \"hi\" and 'bye'\n",
+      "options": {
+        "single-quote-enabled": false,
+        "double-quote-style": "smart"
+      },
+      "expected": "He said “hi” and 'bye'\n"
+    },
+    {
+      "n": 5,
+      "input": "\"one\" and \"two\n",
+      "options": {
+        "single-quote-style": "smart",
+        "double-quote-style": "smart"
+      },
+      "expected": "\"one\" and \"two\n"
+    },
+    {
+      "n": 6,
+      "input": "Use `\"x\"` and \"y\"\n",
+      "options": {
+        "single-quote-style": "smart",
+        "double-quote-style": "smart"
+      },
+      "expected": "Use `\"x\"` and “y”\n"
+    },
+    {
+      "n": 7,
+      "input": "it’s fine\n",
+      "options": {},
+      "expected": "it's fine\n"
+    },
+    {
+      "n": 8,
+      "input": "\"a\"\r\n\"b\"",
+      "options": {
+        "single-quote-style": "smart",
+        "double-quote-style": "smart"
+      },
+      "expected": "“a”\r\n“b”"
+    },
+    {
+      "n": 9,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

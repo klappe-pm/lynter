@@ -1,0 +1,27 @@
+{
+  "name": "lynter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lynter: one lynter.yaml for notes and code. This root is the workspace for the website and the shared lint tooling; the Obsidian plugin in plugin/ has its own package.",
+  "author": "LappeLabs LLC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klappe-pm/lynter.git"
+  },
+  "workspaces": [
+    "packages/site"
+  ],
+  "scripts": {
+    "lint": "eslint . --ext .ts",
+    "build": "npm run build -w @lynter/site",
+    "test": "npm test -w @lynter/site"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.2"
+  },
+  "homepage": "https://lynter.dev"
+}

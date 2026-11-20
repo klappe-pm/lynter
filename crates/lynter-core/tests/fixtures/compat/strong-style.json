@@ -1,0 +1,71 @@
+{
+  "id": "strong-style",
+  "examples": [
+    {
+      "n": 1,
+      "input": "**Test bold**\n** Test not bold **\nThis is **bold** mid sentence with a second **bold** on the same line\nThis is ***bold and emphasized***\n* List Item1 with **bold text**\n",
+      "options": {
+        "style": "underscore"
+      },
+      "expected": "__Test bold__\n** Test not bold **\nThis is __bold__ mid sentence with a second __bold__ on the same line\nThis is *__bold and emphasized__*\n* List Item1 with __bold text__\n"
+    },
+    {
+      "n": 2,
+      "input": "***nested bold** and ending emphasized*\n***nested emphasis* and ending bold**\n",
+      "options": {
+        "style": "underscore"
+      },
+      "expected": "*__nested bold__ and ending emphasized*\n__*nested emphasis* and ending bold__\n"
+    },
+    {
+      "n": 3,
+      "input": "__Test bold__\n__ Test not bold __\nThis is __bold__ mid sentence\n___bold and emphasized___\n",
+      "options": {
+        "style": "asterisk"
+      },
+      "expected": "**Test bold**\n__ Test not bold __\nThis is **bold** mid sentence\n_**bold and emphasized**_\n"
+    },
+    {
+      "n": 4,
+      "input": "**First bold**\nThis is __bold__ mid sentence\n__Test bold__\n",
+      "options": {},
+      "expected": "**First bold**\nThis is **bold** mid sentence\n**Test bold**\n"
+    },
+    {
+      "n": 5,
+      "input": "__First bold__\nThis is **bold** mid sentence\n**Test bold**\n",
+      "options": {},
+      "expected": "__First bold__\nThis is __bold__ mid sentence\n__Test bold__\n"
+    },
+    {
+      "n": 6,
+      "input": "`__a__` and __b__\n",
+      "options": {
+        "style": "asterisk"
+      },
+      "expected": "`__a__` and **b**\n"
+    },
+    {
+      "n": 7,
+      "input": "*e* and **s**\n",
+      "options": {
+        "style": "underscore"
+      },
+      "expected": "*e* and __s__\n"
+    },
+    {
+      "n": 8,
+      "input": "**a**\r\n**b**",
+      "options": {
+        "style": "underscore"
+      },
+      "expected": "__a__\r\n__b__"
+    },
+    {
+      "n": 9,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

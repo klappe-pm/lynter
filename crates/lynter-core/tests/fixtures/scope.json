@@ -1,0 +1,1921 @@
+{
+ "configs": {
+  "precedence": "{\"version\":1,\"defaults\":{\"rules\":{\"marker\":{\"enabled\":true,\"winner\":\"defaults\"},\"other\":{\"enabled\":false,\"a\":1}}},\"rule-order\":[\"global-a\",\"global-b\"],\"profiles\":{\"ext-a\":{\"match\":{\"extension\":[\"md\"]},\"rules\":{\"marker\":{\"winner\":\"ext-a\"}}},\"ext-b\":{\"match\":{\"extension\":[\"MD\",\"txt\"]},\"rules\":{\"marker\":{\"winner\":\"ext-b\"},\"other\":{\"b\":2}}},\"path-shallow\":{\"match\":{\"path\":[\"notes/**\"]},\"rules\":{\"marker\":{\"winner\":\"path-shallow\"}}},\"path-deep-a\":{\"match\":{\"path\":[\"notes/projects/*\"]},\"rules\":{\"marker\":{\"winner\":\"path-deep-a\"}}},\"path-deep-b\":{\"match\":{\"path\":[\"notes/*/deep.md\"]},\"rules\":{\"marker\":{\"winner\":\"path-deep-b\"}},\"rule-order\":[\"p-b\"]},\"path-multi\":{\"match\":{\"path\":[\"archive/**/old/*.md\",\"x?/y.md\",\"a[1]/{b}.md\"]},\"rules\":{\"marker\":{\"winner\":\"path-multi\"}}},\"fm-a\":{\"match\":{\"frontmatter\":{\"type\":\"project\"}},\"rules\":{\"marker\":{\"winner\":\"fm-a\"}}},\"fm-b\":{\"match\":{\"tag\":[\"work\",\"#home\"]},\"rules\":{\"marker\":{\"winner\":\"fm-b\"}}},\"fm-list\":{\"match\":{\"frontmatter\":{\"areas\":[\"a\",\"b\"],\"draft\":false,\"n\":3}},\"rules\":{\"marker\":{\"winner\":\"fm-list\"}}},\"fm-and-path\":{\"match\":{\"path\":[\"notes/**\"],\"frontmatter\":{\"type\":\"project\"}},\"rules\":{\"marker\":{\"winner\":\"fm-and-path\"}},\"rule-order\":[\"p-c\"]},\"age-young\":{\"match\":{\"age\":[\"1-5\"]},\"rules\":{\"marker\":{\"winner\":\"age-young\"}}},\"dated\":{\"match\":{\"date-created\":{\"after\":\"2024-01-01\",\"before\":\"2024-12-31\"}},\"rules\":{\"marker\":{\"winner\":\"dated\"}}},\"alias-p\":{\"match\":{\"alias\":[\"Foo\"],\"backlink\":[\"hub\"]},\"rules\":{\"marker\":{\"winner\":\"alias-p\"}}},\"unmatchable\":{\"rules\":{\"marker\":{\"winner\":\"unmatchable\"},\"extra\":{\"enabled\":true}}}},\"note-types\":{\"project\":{\"match\":{\"path\":[\"projects/**\"]}},\"meeting\":{\"match\":{\"frontmatter\":{\"type\":\"meeting\"}}},\"base\":{\"required\":{\"title\":null}}}}"
+ },
+ "cases": [
+  {
+   "name": "{\"path\":\"readme.md\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "readme.md",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"readme.MD\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "readme.MD",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"a.txt\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "a.txt",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"noext\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "noext",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "defaults"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\".hidden\"}",
+   "config": "precedence",
+   "facts": {
+    "path": ".hidden",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "defaults"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"a/b.c.md\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "a/b.c.md",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"notes/a.md\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "notes/a.md",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "path-shallow"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "path-shallow"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"notes\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "notes",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "path-shallow"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "path-shallow"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"notes/projects/p.md\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "notes/projects/p.md",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "path-shallow",
+     "path-deep-a"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "path-deep-a"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"notes/projects/deep.md\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "notes/projects/deep.md",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "path-shallow",
+     "path-deep-a",
+     "path-deep-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "path-deep-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "p-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"notes/x/deep.md\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "notes/x/deep.md",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "path-shallow",
+     "path-deep-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "path-deep-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "p-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"notes/projects/sub/deep.md\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "notes/projects/sub/deep.md",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "path-shallow"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "path-shallow"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"archive/old/z.md\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "archive/old/z.md",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "path-multi"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "path-multi"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"archive/1/2/old/z.md\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "archive/1/2/old/z.md",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "path-multi"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "path-multi"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"archive/old/z.txt\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "archive/old/z.txt",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"xa/y.md\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "xa/y.md",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "path-multi"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "path-multi"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"x/y.md\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "x/y.md",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"a[1]/{b}.md\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "a[1]/{b}.md",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "path-multi"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "path-multi"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"a1/b.md\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "a1/b.md",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"projects/p.md\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "projects/p.md",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": "project"
+   }
+  },
+  {
+   "name": "{\"path\":\"projects\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "projects",
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "defaults"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": "project"
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"type: project\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "type: project"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "fm-a"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "fm-a"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"notes/n.md\",\"frontmatter\":\"type: project\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "notes/n.md",
+    "frontmatter": "type: project"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "path-shallow",
+     "fm-a",
+     "fm-and-path"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "fm-and-path"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "p-c"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"type: meeting\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "type: meeting"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": "meeting"
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"tags: [work]\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "tags: [work]"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "fm-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "fm-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"tags: \\\"#home, x\\\"\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "tags: \"#home, x\""
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "fm-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "fm-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"tag: work\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "tag: work"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "fm-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "fm-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"tags:\\n  - Work\\n  - 2\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "tags:\n  - Work\n  - 2"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"tags: ~\\ntag: home\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "tags: ~\ntag: home"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "fm-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "fm-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"tags\":[\"work\"]}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "tags": [
+     "work"
+    ],
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "fm-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "fm-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"tags\":[\"#home\"]}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "tags": [
+     "#home"
+    ],
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "fm-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "fm-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"areas: [a, b, c]\\ndraft: false\\nn: 3\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "areas: [a, b, c]\ndraft: false\nn: 3"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "fm-list"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "fm-list"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"areas: [a]\\ndraft: false\\nn: 3\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "areas: [a]\ndraft: false\nn: 3"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"areas: [a, b]\\ndraft: \\\"false\\\"\\nn: 3\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "areas: [a, b]\ndraft: \"false\"\nn: 3"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"areas: a\\ndraft: false\\nn: 3.0\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "areas: a\ndraft: false\nn: 3.0"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"type: [project, x]\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "type: [project, x]"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "fm-a"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "fm-a"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"type: Project\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "type: Project"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"linter-profile: ext-a\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "linter-profile: ext-a"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-b",
+     "ext-a"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-a"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"type: project\\nlinter-profile: fm-a\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "type: project\nlinter-profile: fm-a"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "fm-a"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "fm-a"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"linter-profile: unmatchable\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "linter-profile: unmatchable"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "unmatchable"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "unmatchable"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     },
+     "extra": {
+      "enabled": true
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"linter-profile: missing\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "linter-profile: missing"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"linter-profile: [ext-a]\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "linter-profile: [ext-a]"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"notes/n.md\",\"frontmatter\":\"linter-profile: path-shallow\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "notes/n.md",
+    "frontmatter": "linter-profile: path-shallow"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "path-shallow"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "path-shallow"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"date-created: 2024-06-15\",\"today\":\"2024-06-17\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "date-created: 2024-06-15",
+    "today": "2024-06-17"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "age-young",
+     "dated"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "dated"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"date-created: 2024-06-15\",\"today\":\"2024-06-21\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "date-created: 2024-06-15",
+    "today": "2024-06-21"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "dated"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "dated"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"date-created: 2024-06-15\",\"today\":\"2024-06-15\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "date-created: 2024-06-15",
+    "today": "2024-06-15"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "age-young",
+     "dated"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "dated"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"date-created: 2024-06-15\",\"today\":\"2024-06-01\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "date-created: 2024-06-15",
+    "today": "2024-06-01"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "age-young",
+     "dated"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "dated"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"date-created: 2023-06-15\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "date-created: 2023-06-15"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"date-created: 2024-02-30\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "date-created: 2024-02-30"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"date-created: \\\"2024-01-01T10:00:00\\\"\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "date-created: \"2024-01-01T10:00:00\""
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "dated"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "dated"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"aliases\":[\"foo\"],\"backlinks\":[\"Hub\"]}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "aliases": [
+     "foo"
+    ],
+    "backlinks": [
+     "Hub"
+    ],
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "alias-p"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "alias-p"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"aliases\":[\"foo\"]}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "aliases": [
+     "foo"
+    ],
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"aliases\":[\"bar\"],\"backlinks\":[\"hub\"]}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "aliases": [
+     "bar"
+    ],
+    "backlinks": [
+     "hub"
+    ],
+    "frontmatter": null
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\": : bad yaml [\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": ": : bad yaml ["
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"- a\\n- b\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "- a\n- b"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": ""
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"   \"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "   "
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"1: a\\ntype: project\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "1: a\ntype: project"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b",
+     "fm-a"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "fm-a"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"n.md\",\"frontmatter\":\"type: project\\ntype: other\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "n.md",
+    "frontmatter": "type: project\ntype: other"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "global-a",
+     "global-b"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "{\"path\":\"notes/projects/p.md\",\"frontmatter\":\"type: project\\ntags: [work]\\nlinter-profile: ext-b\"}",
+   "config": "precedence",
+   "facts": {
+    "path": "notes/projects/p.md",
+    "frontmatter": "type: project\ntags: [work]\nlinter-profile: ext-b"
+   },
+   "expected": {
+    "chain": [
+     "defaults",
+     "ext-a",
+     "path-shallow",
+     "path-deep-a",
+     "fm-a",
+     "fm-b",
+     "fm-and-path",
+     "ext-b"
+    ],
+    "rules": {
+     "marker": {
+      "enabled": true,
+      "winner": "ext-b"
+     },
+     "other": {
+      "enabled": false,
+      "a": 1,
+      "b": 2
+     }
+    },
+    "ruleOrder": [
+     "p-c"
+    ],
+    "noteType": null
+   }
+  }
+ ]
+}

@@ -1,0 +1,57 @@
+{
+  "id": "heading-blank-lines",
+  "examples": [
+    {
+      "n": 1,
+      "input": "# H1\n## H2\n\n\n# H1\nline\n## H2\n",
+      "options": {},
+      "expected": "# H1\n\n## H2\n\n# H1\n\nline\n\n## H2\n"
+    },
+    {
+      "n": 2,
+      "input": "# H1\nline\n## H2\n# H1\nline\n",
+      "options": {
+        "bottom": false
+      },
+      "expected": "# H1\nline\n\n## H2\n\n# H1\nline\n"
+    },
+    {
+      "n": 3,
+      "input": "---\nkey: value\n---\n\n# Header\nParagraph here...\n",
+      "options": {
+        "empty-line-between-yaml-and-header": false
+      },
+      "expected": "---\nkey: value\n---\n# Header\n\nParagraph here...\n"
+    },
+    {
+      "n": 4,
+      "input": "---\nkey: value\n---\n# Header\ntext\n",
+      "options": {},
+      "expected": "---\nkey: value\n---\n\n# Header\n\ntext\n"
+    },
+    {
+      "n": 5,
+      "input": "text\n```\n# not heading\n```\n# Real\n",
+      "options": {},
+      "expected": "text\n```\n# not heading\n```\n\n# Real\n"
+    },
+    {
+      "n": 6,
+      "input": "> [!note]\n> text\n> ## Inner\n> more\n",
+      "options": {},
+      "expected": "> [!note]\n> text\n>\n> ## Inner\n>\n> more\n"
+    },
+    {
+      "n": 7,
+      "input": "a\r\n# H\r\nb",
+      "options": {},
+      "expected": "a\r\n\r\n# H\r\n\r\nb"
+    },
+    {
+      "n": 8,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

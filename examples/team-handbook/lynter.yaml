@@ -1,0 +1,42 @@
+version: 1
+defaults:
+  rules:
+    yaml-key-sort:
+      enabled: true
+      priority-keys: [title, status, owner]
+    yaml-timestamp:
+      enabled: true
+    h1-matches-stem:
+      enabled: true
+    kebab-case-filename:
+      enabled: true
+    replace-em-dash:
+      enabled: true
+    paragraph-spacing:
+      enabled: true
+      blank-lines: 1
+    list-style:
+      enabled: true
+      marker: '-'
+      tighten: true
+profiles:
+  legal:
+    match:
+      path: ["handbook/legal/**"]
+    rules:
+      contractions:
+        enabled: true
+note-types:
+  policy:
+    match:
+      frontmatter: {type: policy}
+    required:
+      status: DRAFT
+      owner: unassigned
+    key-order: [title, status, owner]
+    values:
+      status: [DRAFT, REVIEW, APPROVED, ARCHIVED]
+rename:
+  mode: flag
+ignore:
+  folders: [templates, .obsidian]

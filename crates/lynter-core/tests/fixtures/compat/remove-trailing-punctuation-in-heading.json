@@ -1,0 +1,61 @@
+{
+  "id": "remove-trailing-punctuation-in-heading",
+  "examples": [
+    {
+      "n": 1,
+      "input": "# Heading ends in a period.\n## Other heading ends in an exclamation mark! ##\n",
+      "options": {},
+      "expected": "# Heading ends in a period\n## Other heading ends in an exclamation mark ##\n"
+    },
+    {
+      "n": 2,
+      "input": "# Heading 1\n## Heading &amp;\n",
+      "options": {},
+      "expected": "# Heading 1\n## Heading &amp;\n"
+    },
+    {
+      "n": 3,
+      "input": "## What?!..\n",
+      "options": {},
+      "expected": "## What?\n"
+    },
+    {
+      "n": 4,
+      "input": "## Why?\n",
+      "options": {},
+      "expected": "## Why?\n"
+    },
+    {
+      "n": 5,
+      "input": "## Why?\n",
+      "options": {
+        "trailing-punctuation": "?"
+      },
+      "expected": "## Why\n"
+    },
+    {
+      "n": 6,
+      "input": "Paragraph ends here.\n",
+      "options": {},
+      "expected": "Paragraph ends here.\n"
+    },
+    {
+      "n": 7,
+      "input": "```\n# done.\n```\n",
+      "options": {},
+      "expected": "```\n# done.\n```\n"
+    },
+    {
+      "n": 8,
+      "input": "# A.\r\n",
+      "options": {},
+      "expected": "# A\r\n"
+    },
+    {
+      "n": 9,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

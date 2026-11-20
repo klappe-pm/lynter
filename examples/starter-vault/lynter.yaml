@@ -1,0 +1,30 @@
+version: 1
+defaults:
+  rules:
+    yaml-key-sort:
+      enabled: true
+      priority-keys: [title, status, tags]
+    alphabetize-property-values:
+      enabled: true
+    header-case:
+      enabled: true
+      h2: First letter
+      h3: First letter
+    paragraph-spacing:
+      enabled: true
+      blank-lines: 1
+    list-style:
+      enabled: true
+      marker: '-'
+      tighten: true
+    strip-strong:
+      enabled: true
+    contractions:
+      enabled: true
+profiles:
+  journal:
+    match:
+      path: ["journal/**"]
+    rules:
+      strip-strong:
+        enabled: false

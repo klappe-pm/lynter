@@ -1,0 +1,38 @@
+name: plugin
+
+on:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: plugin-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  plugin:
+    name: plugin
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: plugin/package-lock.json
+      - name: Install, build and test
+        run: cd plugin && npm ci && npm run build && npm test
+      - name: Size gate
+        run: |
+          size=$(stat -c %s plugin/main.js)
+          echo "main.js is $size bytes"
+          test "$size" -le 1300000
+      - name: No Node built-ins in the bundle
+        run: |
+          count=$(grep -cE 'require\("(fs|zlib)"\)|Buffer\.' plugin/main.js || true)
+          echo "$count"
+          test "$count" = 0

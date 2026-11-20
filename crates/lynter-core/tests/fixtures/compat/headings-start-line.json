@@ -1,0 +1,53 @@
+{
+  "id": "headings-start-line",
+  "examples": [
+    {
+      "n": 1,
+      "input": "   ## Other heading preceded by 2 spaces ##\n_note_\n",
+      "options": {},
+      "expected": "## Other heading preceded by 2 spaces ##\n_note_\n"
+    },
+    {
+      "n": 2,
+      "input": "  #test\n  # Heading &amp;\n",
+      "options": {},
+      "expected": "  #test\n# Heading &amp;\n"
+    },
+    {
+      "n": 3,
+      "input": "    # code\n",
+      "options": {},
+      "expected": "    # code\n"
+    },
+    {
+      "n": 4,
+      "input": "\t# x",
+      "options": {},
+      "expected": "\t# x"
+    },
+    {
+      "n": 5,
+      "input": "```\n  # x\n```\n",
+      "options": {},
+      "expected": "```\n  # x\n```\n"
+    },
+    {
+      "n": 6,
+      "input": "> [!note]\n>   ## Title\n",
+      "options": {},
+      "expected": "> [!note]\n> ## Title\n"
+    },
+    {
+      "n": 7,
+      "input": " # A\r\ntext\r\n",
+      "options": {},
+      "expected": "# A\r\ntext\r\n"
+    },
+    {
+      "n": 8,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

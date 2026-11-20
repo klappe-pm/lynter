@@ -1,0 +1,122 @@
+/**
+ * Browser wrapper over the Rust core compiled to WebAssembly (crates/lynter-wasm).
+ * The site never reimplements a rule. The module loads once from
+ * /wasm/ (built by scripts/build-wasm.sh and committed); until it is ready,
+ * lint returns the note unchanged.
+ */
+import {useEffect, useState} from 'react';
+
+export interface LintOk {
+  ok: true;
+  text: string;
+  changed: boolean;
+  rules: string[];
+  profileChain: string[];
+  noteType: string | null;
+}
+
+export interface LintFailed {
+  ok: false;
+  errors: string[];
+}
+
+export type LintOutcome = LintOk | LintFailed;
+
+interface WasmApi {
+  lint(config: string, note: string, path: string, today: string): string;
+  profile_chain(config: string, path: string): string;
+  convert_data_json(json: string): string | undefined;
+  scaffold(): string;
+  version(): string;
+}
+
+let api: WasmApi | null = null;
+let loading: Promise<void> | null = null;
+
+/** Load and instantiate the WASM module once; later calls share the promise. */
+export function initEngine(): Promise<void> {
+  if (!loading) {
+    loading = (async () => {
+      const url = '/wasm/lynter_wasm.mjs';
+      const mod = await import(/* webpackIgnore: true */ url);
+      await mod.default({module_or_path: '/wasm/lynter_wasm_bg.wasm'});
+      api = mod as WasmApi;
+    })().catch((error) => {
+      loading = null;
+      throw error;
+    });
+  }
+  return loading;
+}
+
+/** Whether the module is loaded. */
+export function engineReady(): boolean {
+  return api !== null;
+}
+
+/**
+ * React hook: starts the load and reports state. `slow` turns true only when
+ * loading takes over 100 ms, so a fast load never flashes a loading state.
+ */
+export function useEngine(): {ready: boolean; slow: boolean} {
+  const [ready, setReady] = useState(engineReady());
+  const [slow, setSlow] = useState(false);
+  useEffect(() => {
+    if (engineReady()) {
+      setReady(true);
+      return undefined;
+    }
+    const timer = setTimeout(() => setSlow(true), 100);
+    let live = true;
+    initEngine().then(
+        () => live && setReady(true),
+        () => undefined,
+    );
+    return () => {
+      live = false;
+      clearTimeout(timer);
+    };
+  }, []);
+  return {ready, slow: slow && !ready};
+}
+
+/**
+ * Lint one note against a linter.yaml text.
+ * @param {string} configText linter.yaml contents
+ * @param {string} note Markdown note contents
+ * @param {string} path vault-relative path used for scope matching
+ * @param {string} today ISO date for timestamp rules
+ * @return {LintOutcome} the fixed note, or the config errors that stopped it
+ */
+export function lint(configText: string, note: string, path: string, today: string): LintOutcome {
+  if (!api) return {ok: true, text: note, changed: false, rules: [], profileChain: [], noteType: null};
+  return JSON.parse(api.lint(configText, note, path || 'note.md', today)) as LintOutcome;
+}
+
+/**
+ * Resolve the profile chain for a path without caring about note content.
+ * @param {string} configText linter.yaml contents
+ * @param {string} path vault-relative path
+ * @return {string[]} profiles applied in order, base first
+ */
+export function profileChain(configText: string, path: string): string[] {
+  if (!api) return [];
+  return JSON.parse(api.profile_chain(configText, path)) as string[];
+}
+
+/**
+ * Convert an Obsidian Linter data.json text to a lynter.yaml text.
+ * @param {string} dataJson the plugin's data.json contents
+ * @return {string | null} lynter.yaml text, or null when the input cannot be converted
+ */
+export function convertDataJson(dataJson: string): string | null {
+  if (!api) return null;
+  return api.convert_data_json(dataJson) ?? null;
+}
+
+/** Today as yyyy-MM-dd in the viewer's local time. */
+export function todayIso(): string {
+  const d = new Date();
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}

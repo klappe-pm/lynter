@@ -1,0 +1,53 @@
+{
+  "id": "format-tags-in-yaml",
+  "examples": [
+    {
+      "n": 1,
+      "input": "---\ntags: #one #two #three #nested/four/five\n---\n",
+      "options": {},
+      "expected": "---\ntags: one two three nested/four/five\n---\n"
+    },
+    {
+      "n": 2,
+      "input": "---\ntags: [#one #two #three]\n---\n",
+      "options": {},
+      "expected": "---\ntags: [one two three]\n---\n"
+    },
+    {
+      "n": 3,
+      "input": "---\ntag: [#one #two #three]\n---\n",
+      "options": {},
+      "expected": "---\ntag: [one two three]\n---\n"
+    },
+    {
+      "n": 4,
+      "input": "---\ntags:\n- #tag1\n- #tag2\n---\n",
+      "options": {},
+      "expected": "---\ntags:\n- tag1\n- tag2\n---\n"
+    },
+    {
+      "n": 5,
+      "input": "---\ntags: [a#b, #c]\n---\n",
+      "options": {},
+      "expected": "---\ntags: [a#b, c]\n---\n"
+    },
+    {
+      "n": 6,
+      "input": "---\ntitle: #1 fan\ntags: [#x]\n---\n#body\n",
+      "options": {},
+      "expected": "---\ntitle: #1 fan\ntags: [x]\n---\n#body\n"
+    },
+    {
+      "n": 7,
+      "input": "---\r\ntags: [#a]\r\n---\r\n",
+      "options": {},
+      "expected": "---\r\ntags: [a]\r\n---\r\n"
+    },
+    {
+      "n": 8,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

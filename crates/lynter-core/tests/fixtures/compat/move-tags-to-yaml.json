@@ -1,0 +1,64 @@
+{
+  "id": "move-tags-to-yaml",
+  "examples": [
+    {
+      "n": 1,
+      "input": "Text has to do with #test and #markdown\n\n#test content here\n```\n#ignored\n```\n\nThis inline code `#ignored content`\n\n#ignored-tag is ignored\n",
+      "options": {
+        "tags-to-ignore": [
+          "ignored-tag"
+        ]
+      },
+      "expected": "---\ntags: [test, markdown]\n---\nText has to do with #test and #markdown\n\n#test content here\n```\n#ignored\n```\n\nThis inline code `#ignored content`\n\n#ignored-tag is ignored\n"
+    },
+    {
+      "n": 2,
+      "input": "---\ntags: [test, tag2]\n---\nText has to do with #test and #markdown\n",
+      "options": {},
+      "expected": "---\ntags: [test, tag2, markdown]\n---\nText has to do with #test and #markdown\n"
+    },
+    {
+      "n": 3,
+      "input": "---\ntags: [test, tag2]\n---\nText has to do with #test and #markdown\n\nstays #yet-another-ignored-tag\n",
+      "options": {
+        "body-tag-operation": "remove-hashtag",
+        "tags-to-ignore": [
+          "yet-another-ignored-tag"
+        ]
+      },
+      "expected": "---\ntags: [test, tag2, markdown]\n---\nText has to do with test and markdown\n\nstays #yet-another-ignored-tag\n"
+    },
+    {
+      "n": 4,
+      "input": "---\ntags: [test, tag2]\n---\nThis document will have #tags removed and a space before the hashtag #warning\n",
+      "options": {
+        "body-tag-operation": "remove-whole-tag"
+      },
+      "expected": "---\ntags: [test, tag2, tags, warning]\n---\nThis document will have removed and a space before the hashtag\n"
+    },
+    {
+      "n": 5,
+      "input": "---\ntags:\n  - a\n---\nNew #b here\n",
+      "options": {},
+      "expected": "---\ntags:\n  - a\n  - b\n---\nNew #b here\n"
+    },
+    {
+      "n": 6,
+      "input": "# Heading\nIssue #123 and C# code\n",
+      "options": {},
+      "expected": "# Heading\nIssue #123 and C# code\n"
+    },
+    {
+      "n": 7,
+      "input": "a #x\r\n",
+      "options": {},
+      "expected": "---\r\ntags: [x]\r\n---\r\na #x\r\n"
+    },
+    {
+      "n": 8,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

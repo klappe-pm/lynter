@@ -1,0 +1,42 @@
+[package]
+name = "lynter-code"
+version = "0.1.0"
+description = "Lynter code host: tree-sitter language registry, code rules, and JSON and YAML data rules."
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+rust-version.workspace = true
+
+[features]
+default = [
+    "lang-rust",
+    "lang-python",
+    "lang-typescript",
+    "lang-javascript",
+    "lang-go",
+    "lang-java",
+    "lang-csharp",
+]
+lang-rust = ["dep:tree-sitter-rust"]
+lang-python = ["dep:tree-sitter-python"]
+lang-typescript = ["dep:tree-sitter-typescript"]
+lang-javascript = ["dep:tree-sitter-javascript"]
+lang-sql = ["dep:tree-sitter-sequel"]
+lang-go = ["dep:tree-sitter-go"]
+lang-java = ["dep:tree-sitter-java"]
+lang-csharp = ["dep:tree-sitter-c-sharp"]
+
+[dependencies]
+lynter-core = { path = "../lynter-core" }
+tree-sitter = "=0.27.2"
+tree-sitter-rust = { version = "=0.24.2", optional = true }
+tree-sitter-python = { version = "=0.25.0", optional = true }
+tree-sitter-typescript = { version = "=0.23.2", optional = true }
+tree-sitter-javascript = { version = "=0.25.0", optional = true }
+tree-sitter-sequel = { version = "=0.3.13", optional = true }
+tree-sitter-go = { version = "=0.25.0", optional = true }
+tree-sitter-java = { version = "=0.23.5", optional = true }
+tree-sitter-c-sharp = { version = "=0.23.5", optional = true }
+serde_json = { version = "1", features = ["preserve_order"] }
+serde_yaml_ng = "0.10"
+saphyr-parser = "0.3"

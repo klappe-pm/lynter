@@ -1,0 +1,8233 @@
+{
+ "configs": {
+  "everything": "{\"version\":1,\"defaults\":{\"rules\":{\"join-paragraph-lines\":{\"enabled\":true},\"join-paragraph-lines-fix\":{\"enabled\":true},\"strip-strong\":{\"enabled\":true},\"replace-em-dash\":{\"enabled\":true},\"prose-list-to-sentences\":{\"enabled\":true},\"prose-list-to-sentences-fix\":{\"enabled\":true},\"header-case\":{\"enabled\":true,\"h1\":\"Title Case\",\"h2\":\"First letter\"},\"paragraph-spacing\":{\"enabled\":true},\"list-style\":{\"enabled\":true},\"contractions\":{\"enabled\":true},\"yaml-key-sort\":{\"enabled\":true,\"priority-keys\":[\"domain\",\"status\"]},\"alphabetize-property-values\":{\"enabled\":true},\"yaml-timestamp\":{\"enabled\":true},\"note-type-insert-keys\":{\"enabled\":true},\"note-type-key-sort\":{\"enabled\":true},\"note-type-date-keys\":{\"enabled\":true},\"note-type-validate\":{\"enabled\":true},\"h1-matches-stem\":{\"enabled\":true},\"kebab-case-filename\":{\"enabled\":true},\"code-checks\":{\"enabled\":true},\"code-checks-fix\":{\"enabled\":true}}},\"note-types\":{\"project\":{\"match\":{\"path\":[\"projects/**\"]},\"required\":{\"status\":\"NEW\",\"domain\":null},\"key-order\":[\"domain\",\"status\"],\"date-keys\":{\"created\":\"date-created\",\"revised\":\"date-revised\"},\"values\":{\"status\":[\"NEW\",\"DONE\"]}},\"base\":{\"required\":{\"type\":\"base\",\"status\":\"NEW\",\"domain\":null}}},\"code-checks\":{\"no-trailing-whitespace-in-code\":{\"enabled\":true},\"no-token-shaped-strings\":{\"enabled\":true}},\"rename\":{\"mode\":\"flag\",\"strategy\":\"prepend\"}}",
+  "ordered": "{\"version\":1,\"defaults\":{\"rules\":{\"join-paragraph-lines\":{\"enabled\":true},\"join-paragraph-lines-fix\":{\"enabled\":true},\"strip-strong\":{\"enabled\":true},\"replace-em-dash\":{\"enabled\":true},\"prose-list-to-sentences\":{\"enabled\":true},\"prose-list-to-sentences-fix\":{\"enabled\":true},\"header-case\":{\"enabled\":false},\"paragraph-spacing\":{\"enabled\":true},\"list-style\":{\"enabled\":true},\"contractions\":{\"enabled\":true},\"yaml-key-sort\":{\"enabled\":true},\"alphabetize-property-values\":{\"enabled\":true},\"yaml-timestamp\":{\"enabled\":true},\"note-type-insert-keys\":{\"enabled\":true},\"note-type-key-sort\":{\"enabled\":true},\"note-type-date-keys\":{\"enabled\":true},\"note-type-validate\":{\"enabled\":true},\"h1-matches-stem\":{\"enabled\":false},\"kebab-case-filename\":{\"enabled\":true},\"code-checks\":{\"enabled\":true},\"code-checks-fix\":{\"enabled\":true}}},\"rule-order\":[\"list-style\",\"prose-list-to-sentences-fix\",\"join-paragraph-lines-fix\"],\"profiles\":{\"loud\":{\"match\":{\"path\":[\"loud/**\"]},\"rules\":{\"replace-em-dash\":{\"replacement\":\" - \"},\"contractions\":{\"enabled\":false}},\"rule-order\":[\"paragraph-spacing\",\"strip-strong\"]},\"typed\":{\"match\":{\"frontmatter\":{\"type\":\"project\"}},\"rules\":{\"list-style\":{\"marker\":\"*\"}}},\"off\":{\"match\":{\"extension\":[\"txt\"]},\"rules\":{\"strip-strong\":{\"enabled\":false},\"yaml-timestamp\":{\"enabled\":false}}}},\"note-types\":{\"base\":{\"required\":{\"status\":\"NEW\"}},\"project\":{\"match\":{\"frontmatter\":{\"type\":\"project\"}},\"required\":{\"status\":\"NEW\"},\"date-keys\":{\"created\":\"created\"}}}}",
+  "codechecks": "{\"version\":1,\"defaults\":{\"rules\":{\"code-checks\":{\"enabled\":false},\"paragraph-spacing\":{\"enabled\":true}}},\"code-checks\":{\"mine\":{\"enabled\":true,\"pattern\":\"foo(\\\\d+)\",\"flags\":\"i\",\"fix\":{\"replacement\":\"bar$1\"}},\"no-gnu-only-flags-in-sh\":{\"enabled\":true}},\"rename\":{\"mode\":\"flag\",\"strategy\":\"append\"}}",
+  "tsdefaults": "{\"version\":1,\"defaults\":{\"rules\":{\"yaml-key-sort\":{\"enabled\":true,\"priority-keys\":[\"preset\",\"domain\",\"category\",\"sub-category\",\"types\",\"date-created\",\"date-revised\",\"links\"]},\"yaml-timestamp\":{\"enabled\":true},\"alphabetize-property-values\":{\"enabled\":true},\"h1-matches-stem\":{\"enabled\":true},\"kebab-case-filename\":{\"enabled\":true},\"header-case\":{\"enabled\":true},\"paragraph-spacing\":{\"enabled\":true,\"blank-lines\":1},\"list-style\":{\"enabled\":true,\"marker\":\"-\",\"tighten\":true},\"code-checks\":{\"enabled\":true},\"code-checks-fix\":{\"enabled\":true},\"strip-strong\":{\"enabled\":true},\"replace-em-dash\":{\"enabled\":true},\"contractions\":{\"enabled\":true},\"join-paragraph-lines\":{\"enabled\":true},\"prose-list-to-sentences\":{\"enabled\":true}}},\"profiles\":{},\"note-types\":{\"base\":{\"required\":{\"domain\":null,\"category\":null,\"sub-category\":null,\"type\":\"base\",\"status\":\"NEW\",\"aliases\":[],\"tags\":[],\"relo-file\":false,\"relo-folder\":\"\"},\"key-order\":[\"domain\",\"category\",\"sub-category\",\"date-created\",\"date-revised\",\"type\",\"status\",\"aliases\",\"tags\"],\"values\":{\"type\":[\"base\"],\"status\":[\"NEW\",\"PROPOSED\",\"DRAFT\",\"INPRG\",\"REVIEW\",\"DONE\",\"ARCHIVED\"]},\"date-keys\":{\"created\":\"date-created\",\"revised\":\"date-revised\"},\"match\":{\"frontmatter\":{\"type\":\"base\"}}}},\"rename\":{\"mode\":\"flag\"},\"ignore\":{\"folders\":[],\"files\":[]}}",
+  "empty": "{\"version\":1}"
+ },
+ "cases": [
+  {
+   "name": "everything 0",
+   "config": "everything",
+   "input": "",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "# my note\n",
+    "violations": [
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 1",
+   "config": "everything",
+   "input": "\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\nstatus: NEW\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Big Project\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "note-type-insert-keys",
+      true
+     ],
+     [
+      "note-type-validate",
+      false
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": "project"
+   }
+  },
+  {
+   "name": "everything 2",
+   "config": "everything",
+   "input": "---\n---\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Shout\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 3",
+   "config": "everything",
+   "input": "---\ndomain: x\n---",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\ndomain: x\n---\n\n# a.txt",
+    "violations": [
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 4",
+   "config": "everything",
+   "input": "---\ndomain: x\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Café\n\n---\ndomain: x\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 5",
+   "config": "everything",
+   "input": "no frontmatter\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# my note\n\nno frontmatter\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 6",
+   "config": "everything",
+   "input": "- a\n- b\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\nstatus: NEW\n---\n\n# Big Project\n\na and b.\n",
+    "violations": [
+     [
+      "prose-list-to-sentences",
+      false
+     ],
+     [
+      "prose-list-to-sentences-fix",
+      true
+     ],
+     [
+      "note-type-insert-keys",
+      true
+     ],
+     [
+      "note-type-validate",
+      false
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": "project"
+   }
+  },
+  {
+   "name": "everything 7",
+   "config": "everything",
+   "input": "The kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Shout\n\nThe kit includes: a tent, a stove, and two mats.\n",
+    "violations": [
+     [
+      "prose-list-to-sentences",
+      false
+     ],
+     [
+      "prose-list-to-sentences-fix",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 8",
+   "config": "everything",
+   "input": "- apples\n- pears\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# a.txt\n\napples and pears.\n",
+    "violations": [
+     [
+      "prose-list-to-sentences",
+      false
+     ],
+     [
+      "prose-list-to-sentences-fix",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 9",
+   "config": "everything",
+   "input": "- first item\n- second item\nlazy continuation of the item\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "# Café\n\n- first item\n- second item\nlazy continuation of the item\n",
+    "violations": [
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 10",
+   "config": "everything",
+   "input": "- outer\n  - inner\n- other\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# my note\n\n- outer\n  - inner\n- other\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 11",
+   "config": "everything",
+   "input": "- [ ] todo one\n- [x] done two\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\nstatus: NEW\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Big Project\n\n- [ ] todo one\n- [x] done two\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "note-type-insert-keys",
+      true
+     ],
+     [
+      "note-type-validate",
+      false
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": "project"
+   }
+  },
+  {
+   "name": "everything 12",
+   "config": "everything",
+   "input": "one\n\n\n\ntwo\n",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "# Shout\n\none\n\ntwo\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 13",
+   "config": "everything",
+   "input": "\n\none\n\n\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# a.txt\n\none\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 14",
+   "config": "everything",
+   "input": "```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Café\n\n```\ncode\n\n\nmore\n```\n\ntext\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 15",
+   "config": "everything",
+   "input": "wrapped\nat a column\nby an\nold editor.\n",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "# my note\n\nwrapped at a column by an old editor.\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 16",
+   "config": "everything",
+   "input": "line one ends here  \nline two\nline three\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\nstatus: NEW\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Big Project\n\nline one ends here  \nline two line three\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "note-type-insert-keys",
+      true
+     ],
+     [
+      "note-type-validate",
+      false
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": "project"
+   }
+  },
+  {
+   "name": "everything 17",
+   "config": "everything",
+   "input": "# Title\n\nbody\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n# Shout\n\nbody\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 18",
+   "config": "everything",
+   "input": "# Wrong\n\nbody\n",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "# a.txt\n\nbody\n",
+    "violations": [
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 19",
+   "config": "everything",
+   "input": "```\n# in fence\n```\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Café\n\n```\n# in fence\n```\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 20",
+   "config": "everything",
+   "input": "---\ntitle: x\n---\n# Old\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\ntitle: x\n---\n# my note\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 21",
+   "config": "everything",
+   "input": "---\ntitle: x\n---\nbody only\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\nstatus: NEW\ntitle: x\n---\n\n# Big Project\n\nbody only\n",
+    "violations": [
+     [
+      "note-type-insert-keys",
+      true
+     ],
+     [
+      "note-type-validate",
+      false
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": "project"
+   }
+  },
+  {
+   "name": "everything 22",
+   "config": "everything",
+   "input": "Prose with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Shout\n\nProse with two trailing spaces stays  \n\n```bash\necho hi\n```\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ],
+     [
+      "code-checks-fix",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 23",
+   "config": "everything",
+   "input": "```js\nfoo12 here  \n```\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# a.txt\n\n```js\nfoo12 here\n```\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ],
+     [
+      "code-checks-fix",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 24",
+   "config": "everything",
+   "input": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "# Café\n\n```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+    "violations": [
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 25",
+   "config": "everything",
+   "input": "```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# my note\n\n```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ],
+     [
+      "code-checks",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 26",
+   "config": "everything",
+   "input": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\nBody.\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\nstatus: DRAFT\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\naliases: [first, second]\ntags:\n  - alpha\n  - zeta\n---\n\n# Big Project\n\nBody.\n",
+    "violations": [
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "alphabetize-property-values",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "note-type-key-sort",
+      true
+     ],
+     [
+      "note-type-validate",
+      false
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": "project"
+   }
+  },
+  {
+   "name": "everything 27",
+   "config": "everything",
+   "input": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\nBody.\n",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\ndomain: development\nstatus: DRAFT\ncategory: notes\ntags:\n  - x\n---\n\n# Shout\n\nBody.\n",
+    "violations": [
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 29",
+   "config": "everything",
+   "input": "- one\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Café\n\n- one\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 31",
+   "config": "everything",
+   "input": "---\npreset: p\ndup: 1\ndup: 2\n\"quoted key\": v\n---\n- item, with comma;\n<span>a</span> it is\n[ref]: http://x.y\n## Some Section_here\n\n1. first\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\npreset: p\ndup: 1\ndup: 2\n\"quoted key\": v\n---\n\n# Big Project\n\n- item, with comma;\n<span>a</span> it's\n[ref]: http://x.y\n## Some section here\n\n1. first\n",
+    "violations": [
+     [
+      "header-case",
+      true
+     ],
+     [
+      "contractions",
+      true
+     ],
+     [
+      "note-type-validate",
+      false
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": "project"
+   }
+  },
+  {
+   "name": "everything 33",
+   "config": "everything",
+   "input": "---\naliases:\n  - x\n---\nIntro line  \n",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\naliases:\n  - x\n---\n\n# a.txt\n\nIntro line  \n",
+    "violations": [
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 35",
+   "config": "everything",
+   "input": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\nn: 3\ntags: [one]\ndomain: development\n---\n> quote\n\n\n- \n~~~sh\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n\n\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ntags:\n  - Alpha\n  - beta\n  - zeta\nn: 3\ntags: [one]\ndomain: development\n---\n\n# my note\n\n> quote\n\n- \n~~~sh\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n\n\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "alphabetize-property-values",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 37",
+   "config": "everything",
+   "input": "café foo9\n# Heading with `code` span\n[ref]: http://x.y\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\ncafé foo9\n# Shout\n[ref]: http://x.y\n",
+    "violations": [
+     [
+      "header-case",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 39",
+   "config": "everything",
+   "input": "  - nested\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "# Café\n\n  - nested\n",
+    "violations": [
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 41",
+   "config": "everything",
+   "input": "---\ndomain: development\nn: 3\ntags: [one]\nn: 3\ntype: base\n---\n\n- [x] done\n+ three",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndomain: development\nn: 3\ntags: [one]\nn: 3\ntype: base\n---\n\n# Big Project\n\n- [x] done\n- three",
+    "violations": [
+     [
+      "list-style",
+      true
+     ],
+     [
+      "note-type-validate",
+      false
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": "project"
+   }
+  },
+  {
+   "name": "everything 43",
+   "config": "everything",
+   "input": "[ref]: http://x.y\nplain prose  \nfoo123 FOO45\nsed -i s/a/b/ f\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\nwrapped line two\n$$\na it is **b**\n$$\nbr tag<br>\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# a.txt\n\n[ref]: http://x.y\nplain prose  \nfoo123 FOO45\nsed -i s/a/b/ f\n---\ntitle: \"keep it's\"\ntags: [a]\n---\nwrapped line two\n$$\na it is **b**\n$$\nbr tag<br>\n",
+    "violations": [
+     [
+      "strip-strong",
+      true
+     ],
+     [
+      "contractions",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 45",
+   "config": "everything",
+   "input": "---\naliases:\n  - x\nrelo-file: false\ntype: base\naliases:\n  - x\n\n\n# Heading with `code` span\n<div>\n    indented code it is not **x**\n\n",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\naliases:\n  - x\nrelo-file: false type: base aliases:\n  - x\n\n# my note\n<div>\n    indented code it isn't x\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "strip-strong",
+      true
+     ],
+     [
+      "header-case",
+      true
+     ],
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "contractions",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 47",
+   "config": "everything",
+   "input": " nbsp lead\n___\n-\nÜnïcode it is\nplain sentence.\n![[embed]]\n```js\n- apples.\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Shout\n\n nbsp lead\n___\n-\nÜnïcode it's plain sentence.\n![[embed]]\n```js\n- apples.\n\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "contractions",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 49",
+   "config": "everything",
+   "input": "\nit\tis\n\n- apples.\n| a | b |\n-  spaced\n#    ",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\nit's\n\n- apples.\n| a | b |\n- spaced\n# Café",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "list-style",
+      true
+     ],
+     [
+      "contractions",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 51",
+   "config": "everything",
+   "input": "---\ntitle: \"Quoted: Title\"\nempty:\nrelo-folder: \"\"\ncategory: notes\ndate-created: 2024-01-02\n---\n***\n![[embed]]\nSetext two\n---\nCould Have been\n~~~js\nwe are\n~~~\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\nstatus: NEW\ncategory: notes\ndate-created: 2024-01-02\nempty:\ntitle: \"Quoted: Title\"\nrelo-folder: \"\"\n---\n\n# Big Project\n\n***\n![[embed]]\nSetext two\n---\nCould've been\n~~~js\nwe are\n~~~\n",
+    "violations": [
+     [
+      "contractions",
+      true
+     ],
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "note-type-insert-keys",
+      true
+     ],
+     [
+      "note-type-validate",
+      false
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": "project"
+   }
+  },
+  {
+   "name": "everything 53",
+   "config": "everything",
+   "input": "---\ndate-revised: 2024-01-03\n'single': v\n---\n# the quick BROWN fox\n\n```\ncode it is not **x** —\n# Not A Heading\n```\n| - | - |\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n'single': v\n---\n# a.txt\n\n```\ncode it is not **x** —\n# Not A Heading\n```\n| - | - |\n",
+    "violations": [
+     [
+      "header-case",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 55",
+   "config": "everything",
+   "input": "---\ntype: base\ncategory: notes\nbad: [unclosed\n---\n- item, with comma;\nreadlink -f x\nplain prose  \n| - | - |\ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n- item, with comma;\n> more quote\n   # indented heading\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ntype: base\ncategory: notes\nbad: [unclosed\n---\n\n# my note\n\n- item, with comma;\nreadlink -f x plain prose  \n| - | - |\ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n- item, with comma;\n> more quote\n   # Indented Heading\n---\ntitle: \"keep it's\"\ntags: [a]\n---\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "strip-strong",
+      true
+     ],
+     [
+      "header-case",
+      true
+     ],
+     [
+      "contractions",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 57",
+   "config": "everything",
+   "input": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\ntitle: \"Quoted: Title\"\nsub-category: x\ndate-created: 2024-01-02\naliases:\n  - x\nempty:\n---\n| a | b |\nrock–solid\n#\ttab heading\nbr tag<br>\n| - | - |\n- pears\n___\n",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\nsub-category: x\ndate-created: 2024-01-02\nempty:\ntitle: \"Quoted: Title\"\naliases:\n  - x\ntags:\n  - Alpha\n  - beta\n  - zeta\n---\n| a | b |\nrock, solid\n# Shout\nbr tag<br>\n| - | - |\n- pears\n___\n",
+    "violations": [
+     [
+      "replace-em-dash",
+      true
+     ],
+     [
+      "header-case",
+      true
+     ],
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "alphabetize-property-values",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 59",
+   "config": "everything",
+   "input": "---\nstatus: DRAFT\ncategory: notes\n---\n nbsp lead\n| - | - |\nwe are here\n<span>a</span> it is\n- one\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\nstatus: DRAFT\ncategory: notes\n---\n\n# Café\n\n nbsp lead\n| - | - |\nwe're here\n<span>a</span> it's\n- one\n",
+    "violations": [
+     [
+      "contractions",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 61",
+   "config": "everything",
+   "input": "Setext\n===\r\n\r\n<div>\r\n-  spaced\r\nrock–solid\r\n[ref]: http://x.y\r\nplain sentence.\r\n\r\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\nstatus: NEW\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Big Project\n\nSetext ===\r\n\n<div>\r\n-  spaced\r\nrock, solid\r\n[ref]: http://x.y\r\nplain sentence.\r\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "replace-em-dash",
+      true
+     ],
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "note-type-insert-keys",
+      true
+     ],
+     [
+      "note-type-validate",
+      false
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": "project"
+   }
+  },
+  {
+   "name": "everything 63",
+   "config": "everything",
+   "input": "---\n# comment\nsub-category: x\nrelo-folder: \"\"\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\ncategory: notes\n---\n**outer __inner__ text**\n* two\n   indented text\n> more quote\n-  spaced\n\nfoo123 FOO45\n```\n\n",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\n# comment\ncategory: notes\nsub-category: x\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\nrelo-folder: \"\"\n---\n\n# a.txt\n\nouter inner text\n- two\n   indented text\n> more quote\n- spaced\n\nfoo123 FOO45\n```\n\n\n",
+    "violations": [
+     [
+      "strip-strong",
+      true
+     ],
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "list-style",
+      true
+     ],
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 65",
+   "config": "everything",
+   "input": "---\nlist-of-maps:\n  - a: 1\naliases:\n  - x\ndup: 1\ndup: 2\nsub-category: x\ntags: [one]\n---\n nbsp lead\n- [ ] task\n\nsed -i s/a/b/ f\nAKIAABCDEFGHIJKLMNOP\n> more quote\n> quote\n- item, with comma;\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\nlist-of-maps:\n  - a: 1\naliases:\n  - x\ndup: 1\ndup: 2\nsub-category: x\ntags: [one]\n---\n\n# my note\n\n nbsp lead\n- [ ] task\n\nsed -i s/a/b/ f AKIAABCDEFGHIJKLMNOP\n> more quote\n> quote\n- item, with comma;\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 67",
+   "config": "everything",
+   "input": "---\ncategory: notes\ndomain: development\ntype: base\nmulti: [a, \"b\"]\ndomain: development\nalpha: 2\n---\n| a | b |\necho hi   \n[ref]: http://x.y\n* * *\n\n\n~~~sh\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ncategory: notes\ndomain: development\ntype: base\nmulti: [a, \"b\"]\ndomain: development\nalpha: 2\n---\n\n# Shout\n\n| a | b |\necho hi   \n[ref]: http://x.y\n* * *\n\n~~~sh\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 69",
+   "config": "everything",
+   "input": "\n```  JS extra\n`code **x** it is not`\n<div>\nsed -i '' s/a/b/ f\n-\ttab\nhttps://ex.com/a**b**c/it_is\n- apples.\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "# Café\n\n```  JS extra\n`code **x** it is not`\n<div>\nsed -i '' s/a/b/ f\n-\ttab\nhttps://ex.com/a**b**c/it_is\n- apples.\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 71",
+   "config": "everything",
+   "input": "---\nsub-category: x\nrelo-file: false\ndup: 1\ndup: 2\n'single': v\nnested:\n  a: 1\n  b: 2\nsub-category: x\n---\n## Some Section_here\nwrapped line one\nx – y\n> quote\nflock x\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\nsub-category: x\nrelo-file: false\ndup: 1\ndup: 2\n'single': v\nnested:\n  a: 1\n  b: 2\nsub-category: x\n---\n\n# Big Project\n\n## Some section here\nwrapped line one x, y\n> quote\nflock x\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "replace-em-dash",
+      true
+     ],
+     [
+      "header-case",
+      true
+     ],
+     [
+      "note-type-validate",
+      false
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": "project"
+   }
+  },
+  {
+   "name": "everything 73",
+   "config": "everything",
+   "input": "---\ndomain: development\n'single': v\n\"quoted key\": v\n---\n$$\n\n-\ttab\n- [ ] task it is\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndomain: development\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n\"quoted key\": v\n'single': v\n---\n\n# a.txt\n\n$$\n\n-\ttab\n- [ ] task it is\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 75",
+   "config": "everything",
+   "input": "---\nZeta: 1\ntags: [b, a, C]\n\"quoted key\": v\n---\nx\t\n\n",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\n\"quoted key\": v\nZeta: 1\ntags: [a, b, C]\n---\n\n# my note\n\nx\t\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "alphabetize-property-values",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 77",
+   "config": "everything",
+   "input": "***\n- [ ] task it is\n* * *\n````\n$$\na it is **b**\n$$\n- item, with comma;\n```  JS extra\n* two\nbr tag<br>\n\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Shout\n\n***\n- [ ] task it's\n* * *\n````\n$$\na it is **b**\n$$\n- item, with comma;\n```  JS extra\n* two\nbr tag<br>\n\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "contractions",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 79",
+   "config": "everything",
+   "input": "2) second\n* * *\n- \ndo not go\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Café\n\n2) second\n* * *\n- \ndon't go\n",
+    "violations": [
+     [
+      "contractions",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 81",
+   "config": "everything",
+   "input": "---\n# comment\ndate-created: 2024-01-02\ntags: [one]\nsub-category: x\n---\nAKIAABCDEFGHIJKLMNOP\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\n# comment\nstatus: NEW\nsub-category: x\ndate-created: 2024-01-02\ntags: [one]\n---\n\n# Big Project\n\nAKIAABCDEFGHIJKLMNOP\n",
+    "violations": [
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "note-type-insert-keys",
+      true
+     ],
+     [
+      "note-type-validate",
+      false
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": "project"
+   }
+  },
+  {
+   "name": "everything 83",
+   "config": "everything",
+   "input": "---\ntitle: \"Quoted: Title\"\nrelo-folder: \"\"\nZeta: 1\n---\nAKIAABCDEFGHIJKLMNOP\n#hashtag\nlet us go\n#\ttab heading\n```\ncode it is not **x** —\n# Not A Heading\n```\n> quote\n$a**b$ and $$it is not$$\nIt is not ready\n- \n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\ntitle: \"Quoted: Title\"\nZeta: 1\nrelo-folder: \"\"\n---\nAKIAABCDEFGHIJKLMNOP #hashtag let's go\n# a.txt\n```\ncode it is not **x** —\n# Not A Heading\n```\n> quote\n$a**b$ and $$it is not$$\nIt isn't ready\n- \n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "header-case",
+      true
+     ],
+     [
+      "contractions",
+      true
+     ],
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 85",
+   "config": "everything",
+   "input": "---\n nbsp lead\n\nplain sentence.\nreadlink -f x\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# my note\n\n---\n nbsp lead\n\nplain sentence. readlink -f x\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 87",
+   "config": "everything",
+   "input": "![[embed]]\ntrailing —\n$$\na it is **b**\n$$\n[ref]: http://x.y\n```  JS extra\n***both*** ok\n\na — b\n",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "# Shout\n\n![[embed]]\ntrailing,\n$$\na it is **b**\n$$\n[ref]: http://x.y\n```  JS extra\n***both*** ok\n\na — b\n\n",
+    "violations": [
+     [
+      "replace-em-dash",
+      true
+     ],
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "everything 89",
+   "config": "everything",
+   "input": "---\ntype: project\nstatus: BAD\n---\n# Heading\n\n- a\n- b\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\nstatus: BAD\ntype: project\n---\n# Café\n\na and b.\n",
+    "violations": [
+     [
+      "prose-list-to-sentences",
+      false
+     ],
+     [
+      "prose-list-to-sentences-fix",
+      true
+     ],
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 0",
+   "config": "ordered",
+   "input": "",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "",
+    "violations": [
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": false,
+    "chain": [
+     "defaults",
+     "loud"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 1",
+   "config": "ordered",
+   "input": "\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "off"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 2",
+   "config": "ordered",
+   "input": "---\n---\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 3",
+   "config": "ordered",
+   "input": "---\ndomain: x\n---",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\ndomain: x\n---",
+    "violations": [
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 4",
+   "config": "ordered",
+   "input": "---\ndomain: x\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n---\ndomain: x\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 5",
+   "config": "ordered",
+   "input": "no frontmatter\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\nno frontmatter\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "loud"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 6",
+   "config": "ordered",
+   "input": "- a\n- b\n",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "a and b.\n",
+    "violations": [
+     [
+      "prose-list-to-sentences-fix",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "off"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 7",
+   "config": "ordered",
+   "input": "The kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\nThe kit includes: a tent, a stove, and two mats.\n",
+    "violations": [
+     [
+      "prose-list-to-sentences-fix",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 8",
+   "config": "ordered",
+   "input": "- apples\n- pears\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\napples and pears.\n",
+    "violations": [
+     [
+      "prose-list-to-sentences-fix",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 9",
+   "config": "ordered",
+   "input": "- first item\n- second item\nlazy continuation of the item\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "- first item\n- second item\nlazy continuation of the item\n",
+    "violations": [
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 10",
+   "config": "ordered",
+   "input": "- outer\n  - inner\n- other\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n- outer\n  - inner\n- other\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "loud"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 11",
+   "config": "ordered",
+   "input": "- [ ] todo one\n- [x] done two\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "- [ ] todo one\n- [x] done two\n",
+    "violations": [
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": false,
+    "chain": [
+     "defaults",
+     "off"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 12",
+   "config": "ordered",
+   "input": "one\n\n\n\ntwo\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "one\n\ntwo\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 13",
+   "config": "ordered",
+   "input": "\n\none\n\n\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\none\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 14",
+   "config": "ordered",
+   "input": "```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n```\ncode\n\n\nmore\n```\n\ntext\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 15",
+   "config": "ordered",
+   "input": "wrapped\nat a column\nby an\nold editor.\n",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "wrapped at a column by an old editor.\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "loud"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 16",
+   "config": "ordered",
+   "input": "line one ends here  \nline two\nline three\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "line one ends here  \nline two line three\n",
+    "violations": [
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "off"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 17",
+   "config": "ordered",
+   "input": "# Title\n\nbody\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n# Title\n\nbody\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 18",
+   "config": "ordered",
+   "input": "# Wrong\n\nbody\n",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "# Wrong\n\nbody\n",
+    "violations": [
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 19",
+   "config": "ordered",
+   "input": "```\n# in fence\n```\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n```\n# in fence\n```\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 20",
+   "config": "ordered",
+   "input": "---\ntitle: x\n---\n# Old\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\ntitle: x\n---\n# Old\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "loud"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 21",
+   "config": "ordered",
+   "input": "---\ntitle: x\n---\nbody only\n",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\ntitle: x\n---\nbody only\n",
+    "violations": [
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": false,
+    "chain": [
+     "defaults",
+     "off"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 22",
+   "config": "ordered",
+   "input": "Prose with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\nProse with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 23",
+   "config": "ordered",
+   "input": "```js\nfoo12 here  \n```\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n```js\nfoo12 here  \n```\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 24",
+   "config": "ordered",
+   "input": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+    "violations": [
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 25",
+   "config": "ordered",
+   "input": "```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "loud"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 26",
+   "config": "ordered",
+   "input": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\nBody.\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\nstatus: DRAFT\naliases: [first, second]\ntags:\n  - alpha\n  - zeta\n---\nBody.\n",
+    "violations": [
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "alphabetize-property-values",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "off"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 27",
+   "config": "ordered",
+   "input": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\nBody.\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\ndomain: development\ncategory: notes\nstatus: DRAFT\ntags:\n  - x\n---\nBody.\n",
+    "violations": [
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 28",
+   "config": "ordered",
+   "input": "---\r\nmulti: [a, \"b\"]\r\n---\r\n$$",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n---\r\nmulti: [a, \"b\"]\r\n---\r\n$$",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 30",
+   "config": "ordered",
+   "input": "foo123 FOO45\n   indented text\nemoji 😀 it is **ok**\nSetext\n===\n| a | b |\n__under__ score\nplain sentence.\nreadlink -f x\n$$\na it is **b**\n$$\n* two",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "foo123 FOO45\n   indented text\nemoji 😀 it is ok\nSetext\n===\n| a | b |\nunder score plain sentence. readlink -f x\n$$\na it is **b**\n$$\n- two",
+    "violations": [
+     [
+      "strip-strong",
+      true
+     ],
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "list-style",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "loud"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 32",
+   "config": "ordered",
+   "input": "---\nsub-category: x\nrelo-folder: \"\"\ntags:\n  - zeta\n  - Alpha\n  - beta\naliases:\n  - x\ndomain: development\ntags: [b, a, C]\n---\n- apples.\n\nplain sentence.\nAKIAABCDEFGHIJKLMNOP\n-\ttab\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\nsub-category: x\nrelo-folder: \"\"\ntags:\n  - Alpha\n  - beta\n  - zeta\naliases:\n  - x\ndomain: development\ntags: [a, b, C]\n---\n- apples.\n\nplain sentence. AKIAABCDEFGHIJKLMNOP\n- tab\n",
+    "violations": [
+     [
+      "list-style",
+      true
+     ],
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "alphabetize-property-values",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 34",
+   "config": "ordered",
+   "input": "---\n---\nCANNOT stop\n* two\n+ three\n| - | - |\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\nCAN'T stop\n- two\n- three\n| - | - |\n",
+    "violations": [
+     [
+      "list-style",
+      true
+     ],
+     [
+      "contractions",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 36",
+   "config": "ordered",
+   "input": "---\nstatus: DRAFT\nalpha: 2\npreset: p\nn: 3\ndup: 1\ndup: 2\n---\nTHEY ARE HERE\n",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\nstatus: DRAFT\nalpha: 2\npreset: p\nn: 3\ndup: 1\ndup: 2\n---\nTHEY'RE HERE\n",
+    "violations": [
+     [
+      "contractions",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "off"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 38",
+   "config": "ordered",
+   "input": "---\n---\n***\n[ref]: http://x.y\n2) second\n[t](http://x.y/**z**)\n\nSetext two\n---\n```  JS extra\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n***\n[ref]: http://x.y\n2) second\n[t](http://x.y/**z**)\n\nSetext two\n---\n```  JS extra\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 40",
+   "config": "ordered",
+   "input": "Intro line  \n- [ ] task\nbr tag<br>\n![[embed]]\n```bash\nThe kit includes:\nx – y\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\nIntro line  \n- [ ] task\nbr tag<br>\n![[embed]]\n```bash\nThe kit includes:\nx – y\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "loud"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 42",
+   "config": "ordered",
+   "input": "---\nlist-of-maps:\n  - a: 1\n---\n-  spaced\n- [x] done\necho hi   \n- \nSetext two\n---\n#    \nSetext\n===\nSetext\n===\n\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\nlist-of-maps:\n  - a: 1\n---\n- spaced\n- [x] done\necho hi   \n- \nSetext two\n---\n#    \nSetext\n===\nSetext\n===\n",
+    "violations": [
+     [
+      "list-style",
+      true
+     ],
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 44",
+   "config": "ordered",
+   "input": "---\n'single': v\nrelo-file: false\nn: 3\ntype: base\n---\nAKIAABCDEFGHIJKLMNOP\nsnake__case__word\n```\nunclosed fence it is\nreadlink -f x\n**outer __inner__ text**\n* * *\ntext with trailing backslash\\\n\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\nn: 3\n'single': v\ntype: base\nrelo-file: false\n---\nAKIAABCDEFGHIJKLMNOP snake__case__word\n```\nunclosed fence it is\nreadlink -f x\n**outer __inner__ text**\n* * *\ntext with trailing backslash\\\n\n\n",
+    "violations": [
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 46",
+   "config": "ordered",
+   "input": "\n```\nunclosed fence it is\nit\tis\n[[wiki **link** it is]]\nCould Have been\nsed -i '' s/a/b/ f\n-  spaced\n| - | - |\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "```\nunclosed fence it is\nit\tis\n[[wiki **link** it is]]\nCould Have been\nsed -i '' s/a/b/ f\n-  spaced\n| - | - |\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "off"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 48",
+   "config": "ordered",
+   "input": "---\n---\n> more quote\n![[embed]]\n$$\nI am sure\n\nit  is\nx – y\n- [ ] task\n\n",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\n---\n> more quote\n![[embed]]\n$$\nI am sure\n\nit  is\nx – y\n- [ ] task\n\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 50",
+   "config": "ordered",
+   "input": "\n![[embed]]\n   indented text\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n![[embed]]\n   indented text\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "loud"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 52",
+   "config": "ordered",
+   "input": "---\nn: 3\ntags:\n  - zeta\n  - Alpha\n  - beta\n---\n- \n1. first\n#\ttab heading\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\nn: 3\ntags:\n  - Alpha\n  - beta\n  - zeta\n---\n- \n1. first\n#\ttab heading\n",
+    "violations": [
+     [
+      "alphabetize-property-values",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 54",
+   "config": "ordered",
+   "input": "\nsed -i s/a/b/ f\n````\n* * *\n**outer __inner__ text**\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "sed -i s/a/b/ f\n````\n* * *\n**outer __inner__ text**\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 56",
+   "config": "ordered",
+   "input": "___\n```\ncode it is not **x** —\n# Not A Heading\n```\n2) second\n10–12\n***\nAKIAABCDEFGHIJKLMNOP\nreadlink -f x\n***\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "___\n```\ncode it is not **x** —\n# Not A Heading\n```\n2) second\n10–12\n***\nAKIAABCDEFGHIJKLMNOP readlink -f x\n***\n",
+    "violations": [
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "off"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 58",
+   "config": "ordered",
+   "input": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\nflag: true\ncategory: notes\ncategory: notes\n---\n[ref]: http://x.y\n\tTab code **x**\n\nSetext two\n---\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ntags:\n  - Alpha\n  - beta\n  - zeta\nflag: true\ncategory: notes\ncategory: notes\n---\n[ref]: http://x.y\n\tTab code x\n\nSetext two\n---\n",
+    "violations": [
+     [
+      "strip-strong",
+      true
+     ],
+     [
+      "alphabetize-property-values",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 60",
+   "config": "ordered",
+   "input": "---\ndate-created: 2024-01-02\nempty:\nflag: true\n---\nit  is\n\n",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2024-01-02\nempty:\nflag: true\n---\nit  is\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "loud"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 62",
+   "config": "ordered",
+   "input": "---\r\nalpha: 2\r\ntypes: [t]\r\n$a**b$ and $$it is not$$\r\n```bash\r\nx\r\n![[embed]]\r\n\r\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n---\r alpha: 2\r types: [t]\r $a**b$ and $$it is not$$\r\n```bash\r\nx\r\n![[embed]]\r\n\r\n\n",
+    "violations": [
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 64",
+   "config": "ordered",
+   "input": "---\n'single': v\ntags:\n  - zeta\n  - Alpha\n  - beta\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\nmulti: [a, \"b\"]\naliases: [second, first]\n---\n\n![[embed]]\n- item, with comma;\n$a**b$ and $$it is not$$\n---\n$$\na it is **b**\n$$\n\nx\t\n> quote\n   indented text",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\nmulti: [a, \"b\"]\n'single': v\naliases: [first, second]\ntags:\n  - Alpha\n  - beta\n  - zeta\n---\n\n![[embed]]\n- item, with comma;\n$a**b$ and $$it is not$$\n---\n$$\na it is **b**\n$$\n\nx\t\n> quote\n   indented text",
+    "violations": [
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "alphabetize-property-values",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 66",
+   "config": "ordered",
+   "input": "---\n---\n![[embed]]\n2) second\n1. first\n-\nplain sentence.\n\nghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\necho hi   \n~~~js\nwe are\n~~~\n```  JS extra\n",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\n---\n![[embed]]\n2) second\n1. first\n-\nplain sentence.\n\nghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa echo hi   \n~~~js\nwe are\n~~~\n```  JS extra\n\n",
+    "violations": [
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "off"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 68",
+   "config": "ordered",
+   "input": "---\n---\n#\ttab heading\n[ref]: http://x.y\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n#\ttab heading\n[ref]: http://x.y\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 70",
+   "config": "ordered",
+   "input": "---\ntags: [b, a, C]\nempty:\nrelo-file: false\nrelo-file: false\nflag: true\ntags: [one]\nbad: [unclosed\n---\n\n> more quote\n| a | b |\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ntags: [a, b, C]\nempty:\nrelo-file: false\nrelo-file: false\nflag: true\ntags: [one]\nbad: [unclosed\n---\n\n> more quote\n| a | b |\n",
+    "violations": [
+     [
+      "alphabetize-property-values",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "loud"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 72",
+   "config": "ordered",
+   "input": "| - | - |\n$$\na it is **b**\n$$\n  - nested\n\n   indented text\n## Some Section_here\n\n<div>\n-\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "| - | - |\n$$\na it is **b**\n$$\n  - nested\n\n   indented text\n## Some Section_here\n\n<div>\n-\n",
+    "violations": [
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 74",
+   "config": "ordered",
+   "input": "---\nZeta: 1\nn: 3\ntypes: [t]\nn: 3\n---\n\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\nZeta: 1\nn: 3\ntypes: [t]\nn: 3\n---\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 76",
+   "config": "ordered",
+   "input": "---\nflag: true\n---\n```\ncode it is not **x** —\n# Not A Heading\n```\nhttps://ex.com/a**b**c/it_is\n***both*** ok\n- [ ] task\nCould Have been\n\necho hi   \n- [ ] task\n$$\nSetext\n===\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\nflag: true\n---\n```\ncode it is not **x** —\n# Not A Heading\n```\nhttps://ex.com/a**b**c/it_is ***both*** ok\n- [ ] task\nCould've been\n\necho hi   \n- [ ] task\n$$\nSetext\n===\n\n",
+    "violations": [
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "contractions",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "off"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 78",
+   "config": "ordered",
+   "input": "---\nalpha: 2\ndup: 1\ndup: 2\naliases:\n  - x\ncategory: notes\npreset: p\nZeta: 1\n| --- | --- |\n2) second",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\nalpha: 2 dup: 1 dup: 2 aliases:\n  - x\ncategory: notes preset: p Zeta: 1\n| --- | --- |\n2) second",
+    "violations": [
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 80",
+   "config": "ordered",
+   "input": "   # indented heading\nIntro line  \n```\ncode it is not **x** —\n# Not A Heading\n```\ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n* * *\n- [x] done\n  - nested\n* * *\n-\ttab\n    indented code it is not **x**\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n   # indented heading\nIntro line  \n```\ncode it is not **x** —\n# Not A Heading\n```\ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n* * *\n- [x] done\n  - nested\n* * *\n- tab\n    indented code it is not x\n",
+    "violations": [
+     [
+      "strip-strong",
+      true
+     ],
+     [
+      "list-style",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "loud"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 82",
+   "config": "ordered",
+   "input": "~~~js\nwe are\n~~~\n- pears\n> more quote\n<div>\n\n  - nested\n```\ncode it is not **x** —\n# Not A Heading\n```\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n~~~js\nwe are\n~~~\n- pears\n> more quote\n<div>\n\n  - nested\n```\ncode it is not **x** —\n# Not A Heading\n```\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 84",
+   "config": "ordered",
+   "input": "---\r\nsub-category: x\r\nn: 3\r\nrelo-folder: \"\"\r\nnested:\n  a: 1\n  b: 2\r\n---\r\n---\r\nit  is\r\nSetext\n===\r\nplain prose  \r\nwrapped line two\r\n[ref]: http://x.y\r\nSetext two\n---\r\n\r\n\r\nfoo123 FOO45\r\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\r\nsub-category: x\r\nn: 3\r\nrelo-folder: \"\"\r\nnested:\n  a: 1\n  b: 2\r\n---\r\n---\r it's\r Setext ===\r plain prose  \r wrapped line two\r\n[ref]: http://x.y\r\nSetext two ---\r\n\nfoo123 FOO45\r\n",
+    "violations": [
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "contractions",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 86",
+   "config": "ordered",
+   "input": "x\nsed -i s/a/b/ f",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "x sed -i s/a/b/ f",
+    "violations": [
+     [
+      "join-paragraph-lines-fix",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "off"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "ordered 88",
+   "config": "ordered",
+   "input": "---\ntype: project\n---\nBody it is not here.\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\ncreated: 2026-07-10\nstatus: NEW\ntype: project\n---\nBody it isn't here.\n",
+    "violations": [
+     [
+      "contractions",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "note-type-insert-keys",
+      true
+     ],
+     [
+      "note-type-date-keys",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults",
+     "typed"
+    ],
+    "noteType": "project"
+   }
+  },
+  {
+   "name": "codechecks 0",
+   "config": "codechecks",
+   "input": "",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 1",
+   "config": "codechecks",
+   "input": "\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 2",
+   "config": "codechecks",
+   "input": "---\n---\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\n---\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 3",
+   "config": "codechecks",
+   "input": "---\ndomain: x\n---",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\ndomain: x\n---",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 4",
+   "config": "codechecks",
+   "input": "---\ndomain: x\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndomain: x\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 5",
+   "config": "codechecks",
+   "input": "no frontmatter\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "no frontmatter\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 6",
+   "config": "codechecks",
+   "input": "- a\n- b\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "- a\n- b\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 7",
+   "config": "codechecks",
+   "input": "The kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "The kit includes:\n- a tent\n- a stove\n- two mats\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 8",
+   "config": "codechecks",
+   "input": "- apples\n- pears\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "- apples\n- pears\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 9",
+   "config": "codechecks",
+   "input": "- first item\n- second item\nlazy continuation of the item\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "- first item\n- second item\nlazy continuation of the item\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 10",
+   "config": "codechecks",
+   "input": "- outer\n  - inner\n- other\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "- outer\n  - inner\n- other\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 11",
+   "config": "codechecks",
+   "input": "- [ ] todo one\n- [x] done two\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "- [ ] todo one\n- [x] done two\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 12",
+   "config": "codechecks",
+   "input": "one\n\n\n\ntwo\n",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "one\n\ntwo\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 13",
+   "config": "codechecks",
+   "input": "\n\none\n\n\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "one\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 14",
+   "config": "codechecks",
+   "input": "```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "```\ncode\n\n\nmore\n```\n\ntext\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 15",
+   "config": "codechecks",
+   "input": "wrapped\nat a column\nby an\nold editor.\n",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "wrapped\nat a column\nby an\nold editor.\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 16",
+   "config": "codechecks",
+   "input": "line one ends here  \nline two\nline three\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "line one ends here  \nline two\nline three\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 17",
+   "config": "codechecks",
+   "input": "# Title\n\nbody\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "# Title\n\nbody\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 18",
+   "config": "codechecks",
+   "input": "# Wrong\n\nbody\n",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "# Wrong\n\nbody\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 19",
+   "config": "codechecks",
+   "input": "```\n# in fence\n```\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "```\n# in fence\n```\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 20",
+   "config": "codechecks",
+   "input": "---\ntitle: x\n---\n# Old\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ntitle: x\n---\n# Old\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 21",
+   "config": "codechecks",
+   "input": "---\ntitle: x\n---\nbody only\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\ntitle: x\n---\nbody only\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 22",
+   "config": "codechecks",
+   "input": "Prose with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "Prose with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 23",
+   "config": "codechecks",
+   "input": "```js\nfoo12 here  \n```\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "```js\nbar12 here  \n```\n",
+    "violations": [
+     [
+      "code-checks-fix",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 24",
+   "config": "codechecks",
+   "input": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 25",
+   "config": "codechecks",
+   "input": "```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 26",
+   "config": "codechecks",
+   "input": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\nBody.\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\nBody.\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 27",
+   "config": "codechecks",
+   "input": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\nBody.\n",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\nBody.\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 29",
+   "config": "codechecks",
+   "input": "- one\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "- one\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 31",
+   "config": "codechecks",
+   "input": "---\npreset: p\ndup: 1\ndup: 2\n\"quoted key\": v\n---\n- item, with comma;\n<span>a</span> it is\n[ref]: http://x.y\n## Some Section_here\n\n1. first\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\npreset: p\ndup: 1\ndup: 2\n\"quoted key\": v\n---\n- item, with comma;\n<span>a</span> it is\n[ref]: http://x.y\n## Some Section_here\n\n1. first\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 33",
+   "config": "codechecks",
+   "input": "---\naliases:\n  - x\n---\nIntro line  \n",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\naliases:\n  - x\n---\nIntro line  \n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 35",
+   "config": "codechecks",
+   "input": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\nn: 3\ntags: [one]\ndomain: development\n---\n> quote\n\n\n- \n~~~sh\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n\n\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\nn: 3\ntags: [one]\ndomain: development\n---\n> quote\n\n- \n~~~sh\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n\n\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 37",
+   "config": "codechecks",
+   "input": "café foo9\n# Heading with `code` span\n[ref]: http://x.y\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "café foo9\n# Heading with `code` span\n[ref]: http://x.y\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 39",
+   "config": "codechecks",
+   "input": "  - nested\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "  - nested\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 41",
+   "config": "codechecks",
+   "input": "---\ndomain: development\nn: 3\ntags: [one]\nn: 3\ntype: base\n---\n\n- [x] done\n+ three",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndomain: development\nn: 3\ntags: [one]\nn: 3\ntype: base\n---\n\n- [x] done\n+ three",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 43",
+   "config": "codechecks",
+   "input": "[ref]: http://x.y\nplain prose  \nfoo123 FOO45\nsed -i s/a/b/ f\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\nwrapped line two\n$$\na it is **b**\n$$\nbr tag<br>\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "[ref]: http://x.y\nplain prose  \nfoo123 FOO45\nsed -i s/a/b/ f\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\nwrapped line two\n$$\na it is **b**\n$$\nbr tag<br>\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 45",
+   "config": "codechecks",
+   "input": "---\naliases:\n  - x\nrelo-file: false\ntype: base\naliases:\n  - x\n\n\n# Heading with `code` span\n<div>\n    indented code it is not **x**\n\n",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\naliases:\n  - x\nrelo-file: false\ntype: base\naliases:\n  - x\n\n# Heading with `code` span\n<div>\n    indented code it is not **x**\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 47",
+   "config": "codechecks",
+   "input": " nbsp lead\n___\n-\nÜnïcode it is\nplain sentence.\n![[embed]]\n```js\n- apples.\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": " nbsp lead\n___\n-\nÜnïcode it is\nplain sentence.\n![[embed]]\n```js\n- apples.\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 49",
+   "config": "codechecks",
+   "input": "\nit\tis\n\n- apples.\n| a | b |\n-  spaced\n#    ",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "it\tis\n\n- apples.\n| a | b |\n-  spaced\n#    ",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 51",
+   "config": "codechecks",
+   "input": "---\ntitle: \"Quoted: Title\"\nempty:\nrelo-folder: \"\"\ncategory: notes\ndate-created: 2024-01-02\n---\n***\n![[embed]]\nSetext two\n---\nCould Have been\n~~~js\nwe are\n~~~\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\ntitle: \"Quoted: Title\"\nempty:\nrelo-folder: \"\"\ncategory: notes\ndate-created: 2024-01-02\n---\n***\n![[embed]]\nSetext two\n---\nCould Have been\n~~~js\nwe are\n~~~\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 53",
+   "config": "codechecks",
+   "input": "---\ndate-revised: 2024-01-03\n'single': v\n---\n# the quick BROWN fox\n\n```\ncode it is not **x** —\n# Not A Heading\n```\n| - | - |\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-revised: 2024-01-03\n'single': v\n---\n# the quick BROWN fox\n\n```\ncode it is not **x** —\n# Not A Heading\n```\n| - | - |\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 55",
+   "config": "codechecks",
+   "input": "---\ntype: base\ncategory: notes\nbad: [unclosed\n---\n- item, with comma;\nreadlink -f x\nplain prose  \n| - | - |\ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n- item, with comma;\n> more quote\n   # indented heading\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ntype: base\ncategory: notes\nbad: [unclosed\n---\n- item, with comma;\nreadlink -f x\nplain prose  \n| - | - |\ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n- item, with comma;\n> more quote\n   # indented heading\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 57",
+   "config": "codechecks",
+   "input": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\ntitle: \"Quoted: Title\"\nsub-category: x\ndate-created: 2024-01-02\naliases:\n  - x\nempty:\n---\n| a | b |\nrock–solid\n#\ttab heading\nbr tag<br>\n| - | - |\n- pears\n___\n",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\ntitle: \"Quoted: Title\"\nsub-category: x\ndate-created: 2024-01-02\naliases:\n  - x\nempty:\n---\n| a | b |\nrock–solid\n#\ttab heading\nbr tag<br>\n| - | - |\n- pears\n___\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 59",
+   "config": "codechecks",
+   "input": "---\nstatus: DRAFT\ncategory: notes\n---\n nbsp lead\n| - | - |\nwe are here\n<span>a</span> it is\n- one\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\nstatus: DRAFT\ncategory: notes\n---\n nbsp lead\n| - | - |\nwe are here\n<span>a</span> it is\n- one\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 61",
+   "config": "codechecks",
+   "input": "Setext\n===\r\n\r\n<div>\r\n-  spaced\r\nrock–solid\r\n[ref]: http://x.y\r\nplain sentence.\r\n\r\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "Setext\n===\r\n\n<div>\r\n-  spaced\r\nrock–solid\r\n[ref]: http://x.y\r\nplain sentence.\r\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 63",
+   "config": "codechecks",
+   "input": "---\n# comment\nsub-category: x\nrelo-folder: \"\"\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\ncategory: notes\n---\n**outer __inner__ text**\n* two\n   indented text\n> more quote\n-  spaced\n\nfoo123 FOO45\n```\n\n",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\n# comment\nsub-category: x\nrelo-folder: \"\"\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\ncategory: notes\n---\n**outer __inner__ text**\n* two\n   indented text\n> more quote\n-  spaced\n\nfoo123 FOO45\n```\n\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 65",
+   "config": "codechecks",
+   "input": "---\nlist-of-maps:\n  - a: 1\naliases:\n  - x\ndup: 1\ndup: 2\nsub-category: x\ntags: [one]\n---\n nbsp lead\n- [ ] task\n\nsed -i s/a/b/ f\nAKIAABCDEFGHIJKLMNOP\n> more quote\n> quote\n- item, with comma;\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\nlist-of-maps:\n  - a: 1\naliases:\n  - x\ndup: 1\ndup: 2\nsub-category: x\ntags: [one]\n---\n nbsp lead\n- [ ] task\n\nsed -i s/a/b/ f\nAKIAABCDEFGHIJKLMNOP\n> more quote\n> quote\n- item, with comma;\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 67",
+   "config": "codechecks",
+   "input": "---\ncategory: notes\ndomain: development\ntype: base\nmulti: [a, \"b\"]\ndomain: development\nalpha: 2\n---\n| a | b |\necho hi   \n[ref]: http://x.y\n* * *\n\n\n~~~sh\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ncategory: notes\ndomain: development\ntype: base\nmulti: [a, \"b\"]\ndomain: development\nalpha: 2\n---\n| a | b |\necho hi   \n[ref]: http://x.y\n* * *\n\n~~~sh\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 69",
+   "config": "codechecks",
+   "input": "\n```  JS extra\n`code **x** it is not`\n<div>\nsed -i '' s/a/b/ f\n-\ttab\nhttps://ex.com/a**b**c/it_is\n- apples.\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "```  JS extra\n`code **x** it is not`\n<div>\nsed -i '' s/a/b/ f\n-\ttab\nhttps://ex.com/a**b**c/it_is\n- apples.\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 71",
+   "config": "codechecks",
+   "input": "---\nsub-category: x\nrelo-file: false\ndup: 1\ndup: 2\n'single': v\nnested:\n  a: 1\n  b: 2\nsub-category: x\n---\n## Some Section_here\nwrapped line one\nx – y\n> quote\nflock x\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\nsub-category: x\nrelo-file: false\ndup: 1\ndup: 2\n'single': v\nnested:\n  a: 1\n  b: 2\nsub-category: x\n---\n## Some Section_here\nwrapped line one\nx – y\n> quote\nflock x\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 73",
+   "config": "codechecks",
+   "input": "---\ndomain: development\n'single': v\n\"quoted key\": v\n---\n$$\n\n-\ttab\n- [ ] task it is\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndomain: development\n'single': v\n\"quoted key\": v\n---\n$$\n\n-\ttab\n- [ ] task it is\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 75",
+   "config": "codechecks",
+   "input": "---\nZeta: 1\ntags: [b, a, C]\n\"quoted key\": v\n---\nx\t\n\n",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\nZeta: 1\ntags: [b, a, C]\n\"quoted key\": v\n---\nx\t\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 77",
+   "config": "codechecks",
+   "input": "***\n- [ ] task it is\n* * *\n````\n$$\na it is **b**\n$$\n- item, with comma;\n```  JS extra\n* two\nbr tag<br>\n\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "***\n- [ ] task it is\n* * *\n````\n$$\na it is **b**\n$$\n- item, with comma;\n```  JS extra\n* two\nbr tag<br>\n\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 79",
+   "config": "codechecks",
+   "input": "2) second\n* * *\n- \ndo not go\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "2) second\n* * *\n- \ndo not go\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 81",
+   "config": "codechecks",
+   "input": "---\n# comment\ndate-created: 2024-01-02\ntags: [one]\nsub-category: x\n---\nAKIAABCDEFGHIJKLMNOP\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\n# comment\ndate-created: 2024-01-02\ntags: [one]\nsub-category: x\n---\nAKIAABCDEFGHIJKLMNOP\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 83",
+   "config": "codechecks",
+   "input": "---\ntitle: \"Quoted: Title\"\nrelo-folder: \"\"\nZeta: 1\n---\nAKIAABCDEFGHIJKLMNOP\n#hashtag\nlet us go\n#\ttab heading\n```\ncode it is not **x** —\n# Not A Heading\n```\n> quote\n$a**b$ and $$it is not$$\nIt is not ready\n- \n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ntitle: \"Quoted: Title\"\nrelo-folder: \"\"\nZeta: 1\n---\nAKIAABCDEFGHIJKLMNOP\n#hashtag\nlet us go\n#\ttab heading\n```\ncode it is not **x** —\n# Not A Heading\n```\n> quote\n$a**b$ and $$it is not$$\nIt is not ready\n- \n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 85",
+   "config": "codechecks",
+   "input": "---\n nbsp lead\n\nplain sentence.\nreadlink -f x\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\n nbsp lead\n\nplain sentence.\nreadlink -f x\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 87",
+   "config": "codechecks",
+   "input": "![[embed]]\ntrailing —\n$$\na it is **b**\n$$\n[ref]: http://x.y\n```  JS extra\n***both*** ok\n\na — b\n",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "![[embed]]\ntrailing —\n$$\na it is **b**\n$$\n[ref]: http://x.y\n```  JS extra\n***both*** ok\n\na — b\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "codechecks 89",
+   "config": "codechecks",
+   "input": "---\ntype: project\nstatus: BAD\n---\n# Heading\n\n- a\n- b\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ntype: project\nstatus: BAD\n---\n# Heading\n\n- a\n- b\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 0",
+   "config": "tsdefaults",
+   "input": "",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "# my note\n",
+    "violations": [
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 1",
+   "config": "tsdefaults",
+   "input": "\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Big Project\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 2",
+   "config": "tsdefaults",
+   "input": "---\n---\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Shout\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 3",
+   "config": "tsdefaults",
+   "input": "---\ndomain: x\n---",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\ndomain: x\n---\n\n# a.txt",
+    "violations": [
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 4",
+   "config": "tsdefaults",
+   "input": "---\ndomain: x\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Café\n\n---\ndomain: x\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 5",
+   "config": "tsdefaults",
+   "input": "no frontmatter\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# my note\n\nno frontmatter\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 6",
+   "config": "tsdefaults",
+   "input": "- a\n- b\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "# Big Project\n\n- a\n- b\n",
+    "violations": [
+     [
+      "prose-list-to-sentences",
+      false
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 7",
+   "config": "tsdefaults",
+   "input": "The kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Shout\n\nThe kit includes:\n- a tent\n- a stove\n- two mats\n",
+    "violations": [
+     [
+      "prose-list-to-sentences",
+      false
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 8",
+   "config": "tsdefaults",
+   "input": "- apples\n- pears\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# a.txt\n\n- apples\n- pears\n",
+    "violations": [
+     [
+      "prose-list-to-sentences",
+      false
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 9",
+   "config": "tsdefaults",
+   "input": "- first item\n- second item\nlazy continuation of the item\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "# Café\n\n- first item\n- second item\nlazy continuation of the item\n",
+    "violations": [
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 10",
+   "config": "tsdefaults",
+   "input": "- outer\n  - inner\n- other\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# my note\n\n- outer\n  - inner\n- other\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 11",
+   "config": "tsdefaults",
+   "input": "- [ ] todo one\n- [x] done two\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Big Project\n\n- [ ] todo one\n- [x] done two\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 12",
+   "config": "tsdefaults",
+   "input": "one\n\n\n\ntwo\n",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "# Shout\n\none\n\ntwo\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 13",
+   "config": "tsdefaults",
+   "input": "\n\none\n\n\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# a.txt\n\none\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 14",
+   "config": "tsdefaults",
+   "input": "```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Café\n\n```\ncode\n\n\nmore\n```\n\ntext\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 15",
+   "config": "tsdefaults",
+   "input": "wrapped\nat a column\nby an\nold editor.\n",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "# my note\n\nwrapped\nat a column\nby an\nold editor.\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 16",
+   "config": "tsdefaults",
+   "input": "line one ends here  \nline two\nline three\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Big Project\n\nline one ends here  \nline two\nline three\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 17",
+   "config": "tsdefaults",
+   "input": "# Title\n\nbody\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n# Shout\n\nbody\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 18",
+   "config": "tsdefaults",
+   "input": "# Wrong\n\nbody\n",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "# a.txt\n\nbody\n",
+    "violations": [
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 19",
+   "config": "tsdefaults",
+   "input": "```\n# in fence\n```\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Café\n\n```\n# in fence\n```\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 20",
+   "config": "tsdefaults",
+   "input": "---\ntitle: x\n---\n# Old\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\ntitle: x\n---\n# my note\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 21",
+   "config": "tsdefaults",
+   "input": "---\ntitle: x\n---\nbody only\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\ntitle: x\n---\n\n# Big Project\n\nbody only\n",
+    "violations": [
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 22",
+   "config": "tsdefaults",
+   "input": "Prose with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Shout\n\nProse with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 23",
+   "config": "tsdefaults",
+   "input": "```js\nfoo12 here  \n```\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# a.txt\n\n```js\nfoo12 here  \n```\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 24",
+   "config": "tsdefaults",
+   "input": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "# Café\n\n```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+    "violations": [
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 25",
+   "config": "tsdefaults",
+   "input": "```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# my note\n\n```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 26",
+   "config": "tsdefaults",
+   "input": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\nBody.\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\nstatus: DRAFT\naliases: [first, second]\ntags:\n  - alpha\n  - zeta\n---\n\n# Big Project\n\nBody.\n",
+    "violations": [
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "alphabetize-property-values",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 27",
+   "config": "tsdefaults",
+   "input": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\nBody.\n",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\ndomain: development\ncategory: notes\nstatus: DRAFT\ntags:\n  - x\n---\n\n# Shout\n\nBody.\n",
+    "violations": [
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 29",
+   "config": "tsdefaults",
+   "input": "- one\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Café\n\n- one\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 31",
+   "config": "tsdefaults",
+   "input": "---\npreset: p\ndup: 1\ndup: 2\n\"quoted key\": v\n---\n- item, with comma;\n<span>a</span> it is\n[ref]: http://x.y\n## Some Section_here\n\n1. first\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\npreset: p\ndup: 1\ndup: 2\n\"quoted key\": v\n---\n\n# Big Project\n\n- item, with comma;\n<span>a</span> it's\n[ref]: http://x.y\n## Some Section_here\n\n1. first\n",
+    "violations": [
+     [
+      "contractions",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 33",
+   "config": "tsdefaults",
+   "input": "---\naliases:\n  - x\n---\nIntro line  \n",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\naliases:\n  - x\n---\n\n# a.txt\n\nIntro line  \n",
+    "violations": [
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 35",
+   "config": "tsdefaults",
+   "input": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\nn: 3\ntags: [one]\ndomain: development\n---\n> quote\n\n\n- \n~~~sh\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n\n\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ntags:\n  - Alpha\n  - beta\n  - zeta\nn: 3\ntags: [one]\ndomain: development\n---\n\n# my note\n\n> quote\n\n- \n~~~sh\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n\n\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "alphabetize-property-values",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 37",
+   "config": "tsdefaults",
+   "input": "café foo9\n# Heading with `code` span\n[ref]: http://x.y\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\ncafé foo9\n# Shout\n[ref]: http://x.y\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 39",
+   "config": "tsdefaults",
+   "input": "  - nested\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "# Café\n\n  - nested\n",
+    "violations": [
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 41",
+   "config": "tsdefaults",
+   "input": "---\ndomain: development\nn: 3\ntags: [one]\nn: 3\ntype: base\n---\n\n- [x] done\n+ three",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndomain: development\nn: 3\ntags: [one]\nn: 3\ntype: base\n---\n\n# Big Project\n\n- [x] done\n- three",
+    "violations": [
+     [
+      "list-style",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 43",
+   "config": "tsdefaults",
+   "input": "[ref]: http://x.y\nplain prose  \nfoo123 FOO45\nsed -i s/a/b/ f\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\nwrapped line two\n$$\na it is **b**\n$$\nbr tag<br>\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# a.txt\n\n[ref]: http://x.y\nplain prose  \nfoo123 FOO45\nsed -i s/a/b/ f\n---\ntitle: \"keep it's\"\ntags: [a]\n---\nwrapped line two\n$$\na it is **b**\n$$\nbr tag<br>\n",
+    "violations": [
+     [
+      "strip-strong",
+      true
+     ],
+     [
+      "contractions",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 45",
+   "config": "tsdefaults",
+   "input": "---\naliases:\n  - x\nrelo-file: false\ntype: base\naliases:\n  - x\n\n\n# Heading with `code` span\n<div>\n    indented code it is not **x**\n\n",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\naliases:\n  - x\nrelo-file: false\ntype: base\naliases:\n  - x\n\n# my note\n<div>\n    indented code it isn't x\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "strip-strong",
+      true
+     ],
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "contractions",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 47",
+   "config": "tsdefaults",
+   "input": " nbsp lead\n___\n-\nÜnïcode it is\nplain sentence.\n![[embed]]\n```js\n- apples.\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Shout\n\n nbsp lead\n___\n-\nÜnïcode it's\nplain sentence.\n![[embed]]\n```js\n- apples.\n\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "contractions",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 49",
+   "config": "tsdefaults",
+   "input": "\nit\tis\n\n- apples.\n| a | b |\n-  spaced\n#    ",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\nit's\n\n- apples.\n| a | b |\n- spaced\n# Café",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "list-style",
+      true
+     ],
+     [
+      "contractions",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 51",
+   "config": "tsdefaults",
+   "input": "---\ntitle: \"Quoted: Title\"\nempty:\nrelo-folder: \"\"\ncategory: notes\ndate-created: 2024-01-02\n---\n***\n![[embed]]\nSetext two\n---\nCould Have been\n~~~js\nwe are\n~~~\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\ncategory: notes\ndate-created: 2024-01-02\nempty:\ntitle: \"Quoted: Title\"\nrelo-folder: \"\"\n---\n\n# Big Project\n\n***\n![[embed]]\nSetext two\n---\nCould've been\n~~~js\nwe are\n~~~\n",
+    "violations": [
+     [
+      "contractions",
+      true
+     ],
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 53",
+   "config": "tsdefaults",
+   "input": "---\ndate-revised: 2024-01-03\n'single': v\n---\n# the quick BROWN fox\n\n```\ncode it is not **x** —\n# Not A Heading\n```\n| - | - |\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n'single': v\n---\n# a.txt\n\n```\ncode it is not **x** —\n# Not A Heading\n```\n| - | - |\n",
+    "violations": [
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 55",
+   "config": "tsdefaults",
+   "input": "---\ntype: base\ncategory: notes\nbad: [unclosed\n---\n- item, with comma;\nreadlink -f x\nplain prose  \n| - | - |\ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n- item, with comma;\n> more quote\n   # indented heading\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ntype: base\ncategory: notes\nbad: [unclosed\n---\n\n# my note\n\n- item, with comma;\nreadlink -f x\nplain prose  \n| - | - |\ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n- item, with comma;\n> more quote\n   # indented heading\n---\ntitle: \"keep it's\"\ntags: [a]\n---\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "strip-strong",
+      true
+     ],
+     [
+      "contractions",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 57",
+   "config": "tsdefaults",
+   "input": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\ntitle: \"Quoted: Title\"\nsub-category: x\ndate-created: 2024-01-02\naliases:\n  - x\nempty:\n---\n| a | b |\nrock–solid\n#\ttab heading\nbr tag<br>\n| - | - |\n- pears\n___\n",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\nsub-category: x\ndate-created: 2024-01-02\nempty:\ntitle: \"Quoted: Title\"\naliases:\n  - x\ntags:\n  - Alpha\n  - beta\n  - zeta\n---\n| a | b |\nrock, solid\n# Shout\nbr tag<br>\n| - | - |\n- pears\n___\n",
+    "violations": [
+     [
+      "replace-em-dash",
+      true
+     ],
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "alphabetize-property-values",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 59",
+   "config": "tsdefaults",
+   "input": "---\nstatus: DRAFT\ncategory: notes\n---\n nbsp lead\n| - | - |\nwe are here\n<span>a</span> it is\n- one\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ncategory: notes\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\nstatus: DRAFT\n---\n\n# Café\n\n nbsp lead\n| - | - |\nwe're here\n<span>a</span> it's\n- one\n",
+    "violations": [
+     [
+      "contractions",
+      true
+     ],
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 61",
+   "config": "tsdefaults",
+   "input": "Setext\n===\r\n\r\n<div>\r\n-  spaced\r\nrock–solid\r\n[ref]: http://x.y\r\nplain sentence.\r\n\r\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Big Project\n\nSetext\n===\r\n\n<div>\r\n-  spaced\r\nrock, solid\r\n[ref]: http://x.y\r\nplain sentence.\r\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "replace-em-dash",
+      true
+     ],
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 63",
+   "config": "tsdefaults",
+   "input": "---\n# comment\nsub-category: x\nrelo-folder: \"\"\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\ncategory: notes\n---\n**outer __inner__ text**\n* two\n   indented text\n> more quote\n-  spaced\n\nfoo123 FOO45\n```\n\n",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\n# comment\ncategory: notes\nsub-category: x\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\nrelo-folder: \"\"\n---\n\n# a.txt\n\nouter inner text\n- two\n   indented text\n> more quote\n- spaced\n\nfoo123 FOO45\n```\n\n\n",
+    "violations": [
+     [
+      "strip-strong",
+      true
+     ],
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "list-style",
+      true
+     ],
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 65",
+   "config": "tsdefaults",
+   "input": "---\nlist-of-maps:\n  - a: 1\naliases:\n  - x\ndup: 1\ndup: 2\nsub-category: x\ntags: [one]\n---\n nbsp lead\n- [ ] task\n\nsed -i s/a/b/ f\nAKIAABCDEFGHIJKLMNOP\n> more quote\n> quote\n- item, with comma;\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\nlist-of-maps:\n  - a: 1\naliases:\n  - x\ndup: 1\ndup: 2\nsub-category: x\ntags: [one]\n---\n\n# my note\n\n nbsp lead\n- [ ] task\n\nsed -i s/a/b/ f\nAKIAABCDEFGHIJKLMNOP\n> more quote\n> quote\n- item, with comma;\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 67",
+   "config": "tsdefaults",
+   "input": "---\ncategory: notes\ndomain: development\ntype: base\nmulti: [a, \"b\"]\ndomain: development\nalpha: 2\n---\n| a | b |\necho hi   \n[ref]: http://x.y\n* * *\n\n\n~~~sh\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ncategory: notes\ndomain: development\ntype: base\nmulti: [a, \"b\"]\ndomain: development\nalpha: 2\n---\n\n# Shout\n\n| a | b |\necho hi   \n[ref]: http://x.y\n* * *\n\n~~~sh\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 69",
+   "config": "tsdefaults",
+   "input": "\n```  JS extra\n`code **x** it is not`\n<div>\nsed -i '' s/a/b/ f\n-\ttab\nhttps://ex.com/a**b**c/it_is\n- apples.\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "# Café\n\n```  JS extra\n`code **x** it is not`\n<div>\nsed -i '' s/a/b/ f\n-\ttab\nhttps://ex.com/a**b**c/it_is\n- apples.\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 71",
+   "config": "tsdefaults",
+   "input": "---\nsub-category: x\nrelo-file: false\ndup: 1\ndup: 2\n'single': v\nnested:\n  a: 1\n  b: 2\nsub-category: x\n---\n## Some Section_here\nwrapped line one\nx – y\n> quote\nflock x\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\nsub-category: x\nrelo-file: false\ndup: 1\ndup: 2\n'single': v\nnested:\n  a: 1\n  b: 2\nsub-category: x\n---\n\n# Big Project\n\n## Some Section_here\nwrapped line one\nx, y\n> quote\nflock x\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "replace-em-dash",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 73",
+   "config": "tsdefaults",
+   "input": "---\ndomain: development\n'single': v\n\"quoted key\": v\n---\n$$\n\n-\ttab\n- [ ] task it is\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndomain: development\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n\"quoted key\": v\n'single': v\n---\n\n# a.txt\n\n$$\n\n-\ttab\n- [ ] task it is\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 75",
+   "config": "tsdefaults",
+   "input": "---\nZeta: 1\ntags: [b, a, C]\n\"quoted key\": v\n---\nx\t\n\n",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\n\"quoted key\": v\nZeta: 1\ntags: [a, b, C]\n---\n\n# my note\n\nx\t\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "alphabetize-property-values",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 77",
+   "config": "tsdefaults",
+   "input": "***\n- [ ] task it is\n* * *\n````\n$$\na it is **b**\n$$\n- item, with comma;\n```  JS extra\n* two\nbr tag<br>\n\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Shout\n\n***\n- [ ] task it's\n* * *\n````\n$$\na it is **b**\n$$\n- item, with comma;\n```  JS extra\n* two\nbr tag<br>\n\n\n",
+    "violations": [
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "contractions",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 79",
+   "config": "tsdefaults",
+   "input": "2) second\n* * *\n- \ndo not go\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# Café\n\n2) second\n* * *\n- \ndon't go\n",
+    "violations": [
+     [
+      "contractions",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 81",
+   "config": "tsdefaults",
+   "input": "---\n# comment\ndate-created: 2024-01-02\ntags: [one]\nsub-category: x\n---\nAKIAABCDEFGHIJKLMNOP\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\n# comment\nsub-category: x\ndate-created: 2024-01-02\ntags: [one]\n---\n\n# Big Project\n\nAKIAABCDEFGHIJKLMNOP\n",
+    "violations": [
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 83",
+   "config": "tsdefaults",
+   "input": "---\ntitle: \"Quoted: Title\"\nrelo-folder: \"\"\nZeta: 1\n---\nAKIAABCDEFGHIJKLMNOP\n#hashtag\nlet us go\n#\ttab heading\n```\ncode it is not **x** —\n# Not A Heading\n```\n> quote\n$a**b$ and $$it is not$$\nIt is not ready\n- \n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\ntitle: \"Quoted: Title\"\nZeta: 1\nrelo-folder: \"\"\n---\nAKIAABCDEFGHIJKLMNOP\n#hashtag\nlet's go\n# a.txt\n```\ncode it is not **x** —\n# Not A Heading\n```\n> quote\n$a**b$ and $$it is not$$\nIt isn't ready\n- \n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "contractions",
+      true
+     ],
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 85",
+   "config": "tsdefaults",
+   "input": "---\n nbsp lead\n\nplain sentence.\nreadlink -f x\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\n---\n\n# my note\n\n---\n nbsp lead\n\nplain sentence.\nreadlink -f x\n",
+    "violations": [
+     [
+      "join-paragraph-lines",
+      false
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 87",
+   "config": "tsdefaults",
+   "input": "![[embed]]\ntrailing —\n$$\na it is **b**\n$$\n[ref]: http://x.y\n```  JS extra\n***both*** ok\n\na — b\n",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "# Shout\n\n![[embed]]\ntrailing,\n$$\na it is **b**\n$$\n[ref]: http://x.y\n```  JS extra\n***both*** ok\n\na — b\n\n",
+    "violations": [
+     [
+      "replace-em-dash",
+      true
+     ],
+     [
+      "paragraph-spacing",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "tsdefaults 89",
+   "config": "tsdefaults",
+   "input": "---\ntype: project\nstatus: BAD\n---\n# Heading\n\n- a\n- b\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndate-created: 2026-07-10\ndate-revised: 2026-07-10\nstatus: BAD\ntype: project\n---\n# Café\n\n- a\n- b\n",
+    "violations": [
+     [
+      "prose-list-to-sentences",
+      false
+     ],
+     [
+      "yaml-key-sort",
+      true
+     ],
+     [
+      "yaml-timestamp",
+      true
+     ],
+     [
+      "h1-matches-stem",
+      true
+     ],
+     [
+      "kebab-case-filename",
+      false
+     ]
+    ],
+    "changed": true,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 0",
+   "config": "empty",
+   "input": "",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 1",
+   "config": "empty",
+   "input": "\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 2",
+   "config": "empty",
+   "input": "---\n---\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\n---\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 3",
+   "config": "empty",
+   "input": "---\ndomain: x\n---",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\ndomain: x\n---",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 4",
+   "config": "empty",
+   "input": "---\ndomain: x\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ndomain: x\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 5",
+   "config": "empty",
+   "input": "no frontmatter\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "no frontmatter\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 6",
+   "config": "empty",
+   "input": "- a\n- b\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "- a\n- b\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 7",
+   "config": "empty",
+   "input": "The kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "The kit includes:\n- a tent\n- a stove\n- two mats\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 8",
+   "config": "empty",
+   "input": "- apples\n- pears\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "- apples\n- pears\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 9",
+   "config": "empty",
+   "input": "- first item\n- second item\nlazy continuation of the item\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "- first item\n- second item\nlazy continuation of the item\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 10",
+   "config": "empty",
+   "input": "- outer\n  - inner\n- other\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "- outer\n  - inner\n- other\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 11",
+   "config": "empty",
+   "input": "- [ ] todo one\n- [x] done two\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "- [ ] todo one\n- [x] done two\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 12",
+   "config": "empty",
+   "input": "one\n\n\n\ntwo\n",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "one\n\n\n\ntwo\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 13",
+   "config": "empty",
+   "input": "\n\none\n\n\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "\n\none\n\n\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 14",
+   "config": "empty",
+   "input": "```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "```\ncode\n\n\nmore\n```\n\n\ntext\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 15",
+   "config": "empty",
+   "input": "wrapped\nat a column\nby an\nold editor.\n",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "wrapped\nat a column\nby an\nold editor.\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 16",
+   "config": "empty",
+   "input": "line one ends here  \nline two\nline three\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "line one ends here  \nline two\nline three\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 17",
+   "config": "empty",
+   "input": "# Title\n\nbody\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "# Title\n\nbody\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 18",
+   "config": "empty",
+   "input": "# Wrong\n\nbody\n",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "# Wrong\n\nbody\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 19",
+   "config": "empty",
+   "input": "```\n# in fence\n```\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "```\n# in fence\n```\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 20",
+   "config": "empty",
+   "input": "---\ntitle: x\n---\n# Old\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ntitle: x\n---\n# Old\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 21",
+   "config": "empty",
+   "input": "---\ntitle: x\n---\nbody only\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\ntitle: x\n---\nbody only\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 22",
+   "config": "empty",
+   "input": "Prose with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "Prose with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 23",
+   "config": "empty",
+   "input": "```js\nfoo12 here  \n```\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "```js\nfoo12 here  \n```\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 24",
+   "config": "empty",
+   "input": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 25",
+   "config": "empty",
+   "input": "```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 26",
+   "config": "empty",
+   "input": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\nBody.\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\nBody.\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 27",
+   "config": "empty",
+   "input": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\nBody.\n",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\nBody.\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 28",
+   "config": "empty",
+   "input": "---\r\nmulti: [a, \"b\"]\r\n---\r\n$$",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\r\nmulti: [a, \"b\"]\r\n---\r\n$$",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 30",
+   "config": "empty",
+   "input": "foo123 FOO45\n   indented text\nemoji 😀 it is **ok**\nSetext\n===\n| a | b |\n__under__ score\nplain sentence.\nreadlink -f x\n$$\na it is **b**\n$$\n* two",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "foo123 FOO45\n   indented text\nemoji 😀 it is **ok**\nSetext\n===\n| a | b |\n__under__ score\nplain sentence.\nreadlink -f x\n$$\na it is **b**\n$$\n* two",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 32",
+   "config": "empty",
+   "input": "---\nsub-category: x\nrelo-folder: \"\"\ntags:\n  - zeta\n  - Alpha\n  - beta\naliases:\n  - x\ndomain: development\ntags: [b, a, C]\n---\n- apples.\n\nplain sentence.\nAKIAABCDEFGHIJKLMNOP\n-\ttab\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\nsub-category: x\nrelo-folder: \"\"\ntags:\n  - zeta\n  - Alpha\n  - beta\naliases:\n  - x\ndomain: development\ntags: [b, a, C]\n---\n- apples.\n\nplain sentence.\nAKIAABCDEFGHIJKLMNOP\n-\ttab\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 34",
+   "config": "empty",
+   "input": "---\n---\nCANNOT stop\n* two\n+ three\n| - | - |\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\n---\nCANNOT stop\n* two\n+ three\n| - | - |\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 36",
+   "config": "empty",
+   "input": "---\nstatus: DRAFT\nalpha: 2\npreset: p\nn: 3\ndup: 1\ndup: 2\n---\nTHEY ARE HERE\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\nstatus: DRAFT\nalpha: 2\npreset: p\nn: 3\ndup: 1\ndup: 2\n---\nTHEY ARE HERE\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 38",
+   "config": "empty",
+   "input": "---\n---\n***\n[ref]: http://x.y\n2) second\n[t](http://x.y/**z**)\n\nSetext two\n---\n```  JS extra\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\n---\n***\n[ref]: http://x.y\n2) second\n[t](http://x.y/**z**)\n\nSetext two\n---\n```  JS extra\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 40",
+   "config": "empty",
+   "input": "Intro line  \n- [ ] task\nbr tag<br>\n![[embed]]\n```bash\nThe kit includes:\nx – y\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "Intro line  \n- [ ] task\nbr tag<br>\n![[embed]]\n```bash\nThe kit includes:\nx – y\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 42",
+   "config": "empty",
+   "input": "---\nlist-of-maps:\n  - a: 1\n---\n-  spaced\n- [x] done\necho hi   \n- \nSetext two\n---\n#    \nSetext\n===\nSetext\n===\n\n",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\nlist-of-maps:\n  - a: 1\n---\n-  spaced\n- [x] done\necho hi   \n- \nSetext two\n---\n#    \nSetext\n===\nSetext\n===\n\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 44",
+   "config": "empty",
+   "input": "---\n'single': v\nrelo-file: false\nn: 3\ntype: base\n---\nAKIAABCDEFGHIJKLMNOP\nsnake__case__word\n```\nunclosed fence it is\nreadlink -f x\n**outer __inner__ text**\n* * *\ntext with trailing backslash\\\n\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\n'single': v\nrelo-file: false\nn: 3\ntype: base\n---\nAKIAABCDEFGHIJKLMNOP\nsnake__case__word\n```\nunclosed fence it is\nreadlink -f x\n**outer __inner__ text**\n* * *\ntext with trailing backslash\\\n\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 46",
+   "config": "empty",
+   "input": "\n```\nunclosed fence it is\nit\tis\n[[wiki **link** it is]]\nCould Have been\nsed -i '' s/a/b/ f\n-  spaced\n| - | - |\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "\n```\nunclosed fence it is\nit\tis\n[[wiki **link** it is]]\nCould Have been\nsed -i '' s/a/b/ f\n-  spaced\n| - | - |\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 48",
+   "config": "empty",
+   "input": "---\n---\n> more quote\n![[embed]]\n$$\nI am sure\n\nit  is\nx – y\n- [ ] task\n\n",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\n---\n> more quote\n![[embed]]\n$$\nI am sure\n\nit  is\nx – y\n- [ ] task\n\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 50",
+   "config": "empty",
+   "input": "\n![[embed]]\n   indented text\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "\n![[embed]]\n   indented text\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 52",
+   "config": "empty",
+   "input": "---\nn: 3\ntags:\n  - zeta\n  - Alpha\n  - beta\n---\n- \n1. first\n#\ttab heading\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\nn: 3\ntags:\n  - zeta\n  - Alpha\n  - beta\n---\n- \n1. first\n#\ttab heading\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 54",
+   "config": "empty",
+   "input": "\nsed -i s/a/b/ f\n````\n* * *\n**outer __inner__ text**\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "\nsed -i s/a/b/ f\n````\n* * *\n**outer __inner__ text**\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 56",
+   "config": "empty",
+   "input": "___\n```\ncode it is not **x** —\n# Not A Heading\n```\n2) second\n10–12\n***\nAKIAABCDEFGHIJKLMNOP\nreadlink -f x\n***\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "___\n```\ncode it is not **x** —\n# Not A Heading\n```\n2) second\n10–12\n***\nAKIAABCDEFGHIJKLMNOP\nreadlink -f x\n***\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 58",
+   "config": "empty",
+   "input": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\nflag: true\ncategory: notes\ncategory: notes\n---\n[ref]: http://x.y\n\tTab code **x**\n\nSetext two\n---\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\nflag: true\ncategory: notes\ncategory: notes\n---\n[ref]: http://x.y\n\tTab code **x**\n\nSetext two\n---\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 60",
+   "config": "empty",
+   "input": "---\ndate-created: 2024-01-02\nempty:\nflag: true\n---\nit  is\n\n",
+   "path": "notes/my note.md",
+   "today": null,
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ndate-created: 2024-01-02\nempty:\nflag: true\n---\nit  is\n\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 62",
+   "config": "empty",
+   "input": "---\r\nalpha: 2\r\ntypes: [t]\r\n$a**b$ and $$it is not$$\r\n```bash\r\nx\r\n![[embed]]\r\n\r\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\r\nalpha: 2\r\ntypes: [t]\r\n$a**b$ and $$it is not$$\r\n```bash\r\nx\r\n![[embed]]\r\n\r\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 64",
+   "config": "empty",
+   "input": "---\n'single': v\ntags:\n  - zeta\n  - Alpha\n  - beta\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\nmulti: [a, \"b\"]\naliases: [second, first]\n---\n\n![[embed]]\n- item, with comma;\n$a**b$ and $$it is not$$\n---\n$$\na it is **b**\n$$\n\nx\t\n> quote\n   indented text",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\n'single': v\ntags:\n  - zeta\n  - Alpha\n  - beta\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\nmulti: [a, \"b\"]\naliases: [second, first]\n---\n\n![[embed]]\n- item, with comma;\n$a**b$ and $$it is not$$\n---\n$$\na it is **b**\n$$\n\nx\t\n> quote\n   indented text",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 66",
+   "config": "empty",
+   "input": "---\n---\n![[embed]]\n2) second\n1. first\n-\nplain sentence.\n\nghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\necho hi   \n~~~js\nwe are\n~~~\n```  JS extra\n",
+   "path": "projects/Big Project.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\n---\n![[embed]]\n2) second\n1. first\n-\nplain sentence.\n\nghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\necho hi   \n~~~js\nwe are\n~~~\n```  JS extra\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 68",
+   "config": "empty",
+   "input": "---\n---\n#\ttab heading\n[ref]: http://x.y\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\n---\n#\ttab heading\n[ref]: http://x.y\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 70",
+   "config": "empty",
+   "input": "---\ntags: [b, a, C]\nempty:\nrelo-file: false\nrelo-file: false\nflag: true\ntags: [one]\nbad: [unclosed\n---\n\n> more quote\n| a | b |\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "---\ntags: [b, a, C]\nempty:\nrelo-file: false\nrelo-file: false\nflag: true\ntags: [one]\nbad: [unclosed\n---\n\n> more quote\n| a | b |\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 72",
+   "config": "empty",
+   "input": "| - | - |\n$$\na it is **b**\n$$\n  - nested\n\n   indented text\n## Some Section_here\n\n<div>\n-\n",
+   "path": "loud/Shout.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "| - | - |\n$$\na it is **b**\n$$\n  - nested\n\n   indented text\n## Some Section_here\n\n<div>\n-\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 74",
+   "config": "empty",
+   "input": "---\nZeta: 1\nn: 3\ntypes: [t]\nn: 3\n---\n\n",
+   "path": "Café.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\nZeta: 1\nn: 3\ntypes: [t]\nn: 3\n---\n\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 76",
+   "config": "empty",
+   "input": "---\nflag: true\n---\n```\ncode it is not **x** —\n# Not A Heading\n```\nhttps://ex.com/a**b**c/it_is\n***both*** ok\n- [ ] task\nCould Have been\n\necho hi   \n- [ ] task\n$$\nSetext\n===\n",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\nflag: true\n---\n```\ncode it is not **x** —\n# Not A Heading\n```\nhttps://ex.com/a**b**c/it_is\n***both*** ok\n- [ ] task\nCould Have been\n\necho hi   \n- [ ] task\n$$\nSetext\n===\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 78",
+   "config": "empty",
+   "input": "---\nalpha: 2\ndup: 1\ndup: 2\naliases:\n  - x\ncategory: notes\npreset: p\nZeta: 1\n| --- | --- |\n2) second",
+   "path": "a.txt",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\nalpha: 2\ndup: 1\ndup: 2\naliases:\n  - x\ncategory: notes\npreset: p\nZeta: 1\n| --- | --- |\n2) second",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 80",
+   "config": "empty",
+   "input": "   # indented heading\nIntro line  \n```\ncode it is not **x** —\n# Not A Heading\n```\ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n* * *\n- [x] done\n  - nested\n* * *\n-\ttab\n    indented code it is not **x**\n",
+   "path": "notes/my note.md",
+   "today": "2026-07-10",
+   "scope": {
+    "backlinks": [
+     "hub"
+    ],
+    "aliases": [
+     "foo"
+    ]
+   },
+   "expected": {
+    "text": "   # indented heading\nIntro line  \n```\ncode it is not **x** —\n# Not A Heading\n```\ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n* * *\n- [x] done\n  - nested\n* * *\n-\ttab\n    indented code it is not **x**\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 82",
+   "config": "empty",
+   "input": "~~~js\nwe are\n~~~\n- pears\n> more quote\n<div>\n\n  - nested\n```\ncode it is not **x** —\n# Not A Heading\n```\n",
+   "path": "loud/Shout.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "~~~js\nwe are\n~~~\n- pears\n> more quote\n<div>\n\n  - nested\n```\ncode it is not **x** —\n# Not A Heading\n```\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 84",
+   "config": "empty",
+   "input": "---\r\nsub-category: x\r\nn: 3\r\nrelo-folder: \"\"\r\nnested:\n  a: 1\n  b: 2\r\n---\r\n---\r\nit  is\r\nSetext\n===\r\nplain prose  \r\nwrapped line two\r\n[ref]: http://x.y\r\nSetext two\n---\r\n\r\n\r\nfoo123 FOO45\r\n",
+   "path": "Café.md",
+   "today": null,
+   "scope": null,
+   "expected": {
+    "text": "---\r\nsub-category: x\r\nn: 3\r\nrelo-folder: \"\"\r\nnested:\n  a: 1\n  b: 2\r\n---\r\n---\r\nit  is\r\nSetext\n===\r\nplain prose  \r\nwrapped line two\r\n[ref]: http://x.y\r\nSetext two\n---\r\n\r\n\r\nfoo123 FOO45\r\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 86",
+   "config": "empty",
+   "input": "x\nsed -i s/a/b/ f",
+   "path": "projects/Big Project.md",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "x\nsed -i s/a/b/ f",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  },
+  {
+   "name": "empty 88",
+   "config": "empty",
+   "input": "---\ntype: project\n---\nBody it is not here.\n",
+   "path": "a.txt",
+   "today": "2026-07-10",
+   "scope": null,
+   "expected": {
+    "text": "---\ntype: project\n---\nBody it is not here.\n",
+    "violations": [],
+    "changed": false,
+    "chain": [
+     "defaults"
+    ],
+    "noteType": null
+   }
+  }
+ ]
+}

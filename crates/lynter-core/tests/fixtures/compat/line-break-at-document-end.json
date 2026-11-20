@@ -1,0 +1,53 @@
+{
+  "id": "line-break-at-document-end",
+  "examples": [
+    {
+      "n": 1,
+      "input": "Lorem ipsum dolor sit amet.",
+      "options": {},
+      "expected": "Lorem ipsum dolor sit amet.\n"
+    },
+    {
+      "n": 2,
+      "input": "Lorem ipsum dolor sit amet.\n\n\n\n",
+      "options": {},
+      "expected": "Lorem ipsum dolor sit amet.\n"
+    },
+    {
+      "n": 3,
+      "input": "a\n",
+      "options": {},
+      "expected": "a\n"
+    },
+    {
+      "n": 4,
+      "input": "a\n  \n\t\n",
+      "options": {},
+      "expected": "a\n"
+    },
+    {
+      "n": 5,
+      "input": "a\r\nb\r\n\r\n",
+      "options": {},
+      "expected": "a\r\nb\r\n"
+    },
+    {
+      "n": 6,
+      "input": "```\nx\n```\n\n",
+      "options": {},
+      "expected": "```\nx\n```\n"
+    },
+    {
+      "n": 7,
+      "input": "",
+      "options": {},
+      "expected": ""
+    },
+    {
+      "n": 8,
+      "input": "\n\n",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

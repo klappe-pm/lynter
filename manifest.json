@@ -1,0 +1,10 @@
+{
+  "id": "lynter",
+  "name": "Lynter",
+  "version": "0.1.0",
+  "minAppVersion": "1.12.0",
+  "description": "Format and tidy your notes with Lynter, driven by a lynter.yaml file at the vault root.",
+  "author": "LappeLabs",
+  "authorUrl": "https://lappelabs.dev",
+  "isDesktopOnly": false
+}

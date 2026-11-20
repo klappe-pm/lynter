@@ -1,0 +1,12 @@
+# Seeds for failure cases proptest has generated in the past. It is
+# automatically read and these particular cases re-run before any
+# novel cases are generated.
+#
+# It is recommended to check this file in to source control so that
+# everyone who runs the test benefits from these saved cases.
+cc f24bfed1aae98914a42db28b4b651836cdaeb57323c4b8706ccaae598d89faa8 # shrinks to text = "---\n---\nplain words\n---\nplain words"
+cc 0302e80573af0834019ac609d2b672a1c2adf4ec969e28a91ea70ee080766ee1 # shrinks to text = "$$\n"
+cc 9c1daff32c09b1f303b62786619c86d998e9c4217b9b2fabab9286529c3cb847 # shrinks to text = "---\n```bash\necho hi   \n---\nplain words"
+cc 331b64761703eb76d27577b8f9d3b7388a61b270760d06ed9eb8e36024272867 # shrinks to text = "---\n# Title\n---\nplain words"
+cc 480113944e230036b29fd955a6a296b55d1daca2bd46726487c9ca50908fff95 # shrinks to text = "$$\n```bash\necho hi   "
+cc d14c75f50b237a810dcd74b64b1034f1677cde2614071a555673d0cd0d237524 # shrinks to text = "---\n~~~\n---\n~~~\n~~~\n$$\necho hi   "

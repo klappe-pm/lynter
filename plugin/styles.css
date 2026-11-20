@@ -1,0 +1,20 @@
+.lynter-config-view {
+  max-height: 20em;
+  overflow: auto;
+  padding: var(--size-4-2);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-s);
+  background: var(--background-secondary);
+  font-family: var(--font-monospace);
+  font-size: var(--font-smaller);
+  white-space: pre;
+  user-select: text;
+}
+
+.lynter-validation-ok {
+  color: var(--text-success);
+}
+
+.lynter-validation-error {
+  color: var(--text-error);
+}

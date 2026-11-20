@@ -1,0 +1,53 @@
+{
+  "id": "space-after-list-markers",
+  "examples": [
+    {
+      "n": 1,
+      "input": "1.   Item 1\n2.  Item 2\n\n-   [ ] Item 1\n- [x]    Item 2\n\t-  [ ] Item 3\n",
+      "options": {},
+      "expected": "1. Item 1\n2. Item 2\n\n- [ ] Item 1\n- [x] Item 2\n\t- [ ] Item 3\n"
+    },
+    {
+      "n": 2,
+      "input": "-\titem\n",
+      "options": {},
+      "expected": "- item\n"
+    },
+    {
+      "n": 3,
+      "input": "- a\n1. b\n",
+      "options": {},
+      "expected": "- a\n1. b\n"
+    },
+    {
+      "n": 4,
+      "input": "**bold**   text\n",
+      "options": {},
+      "expected": "**bold**   text\n"
+    },
+    {
+      "n": 5,
+      "input": "> - a\n>   -   b\n",
+      "options": {},
+      "expected": "> - a\n>   - b\n"
+    },
+    {
+      "n": 6,
+      "input": "```\n-   x\n```\n",
+      "options": {},
+      "expected": "```\n-   x\n```\n"
+    },
+    {
+      "n": 7,
+      "input": "-   a\r\n",
+      "options": {},
+      "expected": "- a\r\n"
+    },
+    {
+      "n": 8,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

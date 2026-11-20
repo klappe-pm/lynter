@@ -1,0 +1,53 @@
+{
+  "id": "empty-line-around-math-block",
+  "examples": [
+    {
+      "n": 1,
+      "input": "$$\n\\boldsymbol{a}=1\n$$\nsome more text\n",
+      "options": {},
+      "expected": "$$\n\\boldsymbol{a}=1\n$$\n\nsome more text\n"
+    },
+    {
+      "n": 2,
+      "input": "$$\\boldsymbol{a}=1$$\nsome more text\n",
+      "options": {},
+      "expected": "$$\\boldsymbol{a}=1$$\n\nsome more text\n"
+    },
+    {
+      "n": 3,
+      "input": "Some text\n$$\na=1\n$$\n",
+      "options": {},
+      "expected": "Some text\n\n$$\na=1\n$$\n"
+    },
+    {
+      "n": 4,
+      "input": "Some text\n$$\na=1\n$$\nsome more text\n",
+      "options": {},
+      "expected": "Some text\n\n$$\na=1\n$$\n\nsome more text\n"
+    },
+    {
+      "n": 5,
+      "input": "> Math block in blockquote\n> $$\n> a=1\n> $$\n\nMore\n",
+      "options": {},
+      "expected": "> Math block in blockquote\n>\n> $$\n> a=1\n> $$\n\nMore\n"
+    },
+    {
+      "n": 6,
+      "input": "Cost is $5 and $6 here\nnext\n",
+      "options": {},
+      "expected": "Cost is $5 and $6 here\nnext\n"
+    },
+    {
+      "n": 7,
+      "input": "a\r\n$$\r\nx\r\n$$\r\nb",
+      "options": {},
+      "expected": "a\r\n\r\n$$\r\nx\r\n$$\r\n\r\nb"
+    },
+    {
+      "n": 8,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+version: 1
+defaults:
+  rules:
+    h1-matches-stem:
+      enabled: true
+    kebab-case-filename:
+      enabled: true
+    header-case:
+      enabled: true
+      h1: First letter
+      h2: First letter
+      h3: First letter
+    paragraph-spacing:
+      enabled: true
+      blank-lines: 1
+    list-style:
+      enabled: true
+      marker: '-'
+      tighten: true
+    replace-em-dash:
+      enabled: true
+    prose-list-to-sentences:
+      enabled: true
+rename:
+  mode: flag
+ignore:
+  folders: [node_modules, .next]

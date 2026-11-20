@@ -1,0 +1,53 @@
+{
+  "id": "empty-line-around-code-fences",
+  "examples": [
+    {
+      "n": 1,
+      "input": "``` js\nvar temp = 'text';\n```\nText after code block.\n",
+      "options": {},
+      "expected": "``` js\nvar temp = 'text';\n```\n\nText after code block.\n"
+    },
+    {
+      "n": 2,
+      "input": "# Heading 1\n```\nHere is a code block\n```\n",
+      "options": {},
+      "expected": "# Heading 1\n\n```\nHere is a code block\n```\n"
+    },
+    {
+      "n": 3,
+      "input": "> text\n> ```js\n> var a;\n> ```\n> more\n",
+      "options": {},
+      "expected": "> text\n>\n> ```js\n> var a;\n> ```\n>\n> more\n"
+    },
+    {
+      "n": 4,
+      "input": "```markdown\n# Header\n\n````JavaScript\nvar text = 1;\n````\n```\n",
+      "options": {},
+      "expected": "```markdown\n# Header\n\n````JavaScript\nvar text = 1;\n````\n\n```\n"
+    },
+    {
+      "n": 5,
+      "input": "text\n~~~\ncode\n~~~\ntext\n",
+      "options": {},
+      "expected": "text\n\n~~~\ncode\n~~~\n\ntext\n"
+    },
+    {
+      "n": 6,
+      "input": "a\n\n```\nx\n```\n\nb\n",
+      "options": {},
+      "expected": "a\n\n```\nx\n```\n\nb\n"
+    },
+    {
+      "n": 7,
+      "input": "a\r\n```\r\nx\r\n```\r\nb",
+      "options": {},
+      "expected": "a\r\n\r\n```\r\nx\r\n```\r\n\r\nb"
+    },
+    {
+      "n": 8,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

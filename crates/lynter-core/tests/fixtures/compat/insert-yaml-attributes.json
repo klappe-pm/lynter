@@ -1,0 +1,57 @@
+{
+  "id": "insert-yaml-attributes",
+  "examples": [
+    {
+      "n": 1,
+      "input": "---\nanimal: cat\n---\n",
+      "options": {
+        "text-to-insert": "aliases:\ntags: doc\nanimal: dog"
+      },
+      "expected": "---\naliases:\ntags: doc\nanimal: cat\n---\n"
+    },
+    {
+      "n": 2,
+      "input": "Body\n",
+      "options": {},
+      "expected": "---\naliases:\ntags:\n---\nBody\n"
+    },
+    {
+      "n": 3,
+      "input": "---\naliases: [x]\ntags: [y]\n---\nBody\n",
+      "options": {},
+      "expected": "---\naliases: [x]\ntags: [y]\n---\nBody\n"
+    },
+    {
+      "n": 4,
+      "input": "---\ntags: [y]\n---\nBody\n",
+      "options": {},
+      "expected": "---\naliases:\ntags: [y]\n---\nBody\n"
+    },
+    {
+      "n": 5,
+      "input": "---\naliases:\n---\n",
+      "options": {},
+      "expected": "---\ntags:\naliases:\n---\n"
+    },
+    {
+      "n": 6,
+      "input": "---\na: 1\n---\n",
+      "options": {
+        "text-to-insert": ""
+      },
+      "expected": "---\na: 1\n---\n"
+    },
+    {
+      "n": 7,
+      "input": "---\r\nanimal: cat\r\n---\r\n",
+      "options": {},
+      "expected": "---\r\naliases:\r\ntags:\r\nanimal: cat\r\n---\r\n"
+    },
+    {
+      "n": 8,
+      "input": "",
+      "options": {},
+      "expected": "---\naliases:\ntags:\n---\n"
+    }
+  ]
+}

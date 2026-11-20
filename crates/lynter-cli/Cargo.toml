@@ -1,0 +1,42 @@
+[package]
+name = "lynter-cli"
+version = "0.1.0"
+description = "The lynter command line: check, fix, explain, and init for Markdown vaults."
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "lynter"
+path = "src/main.rs"
+
+[features]
+default = [
+    "lang-rust",
+    "lang-python",
+    "lang-typescript",
+    "lang-javascript",
+    "lang-go",
+    "lang-java",
+    "lang-csharp",
+]
+lang-rust = ["lynter-code/lang-rust"]
+lang-python = ["lynter-code/lang-python"]
+lang-typescript = ["lynter-code/lang-typescript"]
+lang-javascript = ["lynter-code/lang-javascript"]
+lang-sql = ["lynter-code/lang-sql"]
+lang-go = ["lynter-code/lang-go"]
+lang-java = ["lynter-code/lang-java"]
+lang-csharp = ["lynter-code/lang-csharp"]
+
+[dependencies]
+lynter-core = { path = "../lynter-core" }
+lynter-code = { path = "../lynter-code", default-features = false }
+clap = { version = "4", features = ["derive"] }
+ignore = "0.4"
+serde_json = { version = "1", features = ["preserve_order"] }
+
+[dev-dependencies]
+assert_cmd = "2"
+tempfile = "3"

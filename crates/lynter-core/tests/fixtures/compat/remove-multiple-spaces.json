@@ -1,0 +1,53 @@
+{
+  "id": "remove-multiple-spaces",
+  "examples": [
+    {
+      "n": 1,
+      "input": "Lorem ipsum   dolor  sit amet.\n",
+      "options": {},
+      "expected": "Lorem ipsum dolor sit amet.\n"
+    },
+    {
+      "n": 2,
+      "input": "- a\n    - b   c\n",
+      "options": {},
+      "expected": "- a\n    - b c\n"
+    },
+    {
+      "n": 3,
+      "input": "line one  \nline two\n",
+      "options": {},
+      "expected": "line one  \nline two\n"
+    },
+    {
+      "n": 4,
+      "input": "use `a   b`   now\n",
+      "options": {},
+      "expected": "use `a   b` now\n"
+    },
+    {
+      "n": 5,
+      "input": "| a   | b |\n|-----|---|\n| 1   | 2 |\n",
+      "options": {},
+      "expected": "| a   | b |\n|-----|---|\n| 1   | 2 |\n"
+    },
+    {
+      "n": 6,
+      "input": ">   [!note]\n> a   b\n",
+      "options": {},
+      "expected": ">   [!note]\n> a b\n"
+    },
+    {
+      "n": 7,
+      "input": "a   b\r\n",
+      "options": {},
+      "expected": "a b\r\n"
+    },
+    {
+      "n": 8,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

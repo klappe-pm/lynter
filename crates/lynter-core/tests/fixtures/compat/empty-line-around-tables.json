@@ -1,0 +1,59 @@
+{
+  "id": "empty-line-around-tables",
+  "examples": [
+    {
+      "n": 1,
+      "input": "| Column 1 | Column 2 |\n|----------|----------|\n| foo      | bar      |\nMore text.\n# Heading\n",
+      "options": {},
+      "expected": "| Column 1 | Column 2 |\n|----------|----------|\n| foo      | bar      |\n\nMore text.\n# Heading\n"
+    },
+    {
+      "n": 2,
+      "input": "Intro\n| a | b |\n|---|---|\n| 1 | 2 |\nOutro\n",
+      "options": {},
+      "expected": "Intro\n\n| a | b |\n|---|---|\n| 1 | 2 |\n\nOutro\n"
+    },
+    {
+      "n": 3,
+      "input": "Intro\n| a | b |\n|---|---|\n| 1 | 2 |\n",
+      "options": {},
+      "expected": "Intro\n\n| a | b |\n|---|---|\n| 1 | 2 |\n"
+    },
+    {
+      "n": 4,
+      "input": "x\n| a | b |\n|:--|--:|\n| 1 | 2 |\n",
+      "options": {},
+      "expected": "x\n\n| a | b |\n|:--|--:|\n| 1 | 2 |\n"
+    },
+    {
+      "n": 5,
+      "input": "a | b\nc | d\n",
+      "options": {},
+      "expected": "a | b\nc | d\n"
+    },
+    {
+      "n": 6,
+      "input": "```\nx\n| a |\n|---|\n```\n",
+      "options": {},
+      "expected": "```\nx\n| a |\n|---|\n```\n"
+    },
+    {
+      "n": 7,
+      "input": "> [!note]\n> text\n> | a |\n> |---|\n> | 1 |\n> end\n",
+      "options": {},
+      "expected": "> [!note]\n> text\n>\n> | a |\n> |---|\n> | 1 |\n>\n> end\n"
+    },
+    {
+      "n": 8,
+      "input": "x\r\n| a |\r\n|---|\r\n| 1 |\r\ny",
+      "options": {},
+      "expected": "x\r\n\r\n| a |\r\n|---|\r\n| 1 |\r\n\r\ny"
+    },
+    {
+      "n": 9,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

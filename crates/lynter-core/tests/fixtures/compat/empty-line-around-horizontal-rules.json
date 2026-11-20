@@ -1,0 +1,59 @@
+{
+  "id": "empty-line-around-horizontal-rules",
+  "examples": [
+    {
+      "n": 1,
+      "input": "***\n\n\nContent\n",
+      "options": {},
+      "expected": "***\n\nContent\n"
+    },
+    {
+      "n": 2,
+      "input": "***\nContent\n***\n",
+      "options": {},
+      "expected": "***\n\nContent\n\n***\n"
+    },
+    {
+      "n": 3,
+      "input": "- Content 1\n***\n- Content 2\n---\n- Content 3\n___\n- Content 4\n",
+      "options": {},
+      "expected": "- Content 1\n\n***\n\n- Content 2\n\n---\n\n- Content 3\n\n___\n\n- Content 4\n"
+    },
+    {
+      "n": 4,
+      "input": "---\nprop: value\n---\n\nContent\n",
+      "options": {},
+      "expected": "---\nprop: value\n---\n\nContent\n"
+    },
+    {
+      "n": 5,
+      "input": "---\nprop: value\n---\nContent\n",
+      "options": {},
+      "expected": "---\nprop: value\n---\nContent\n"
+    },
+    {
+      "n": 6,
+      "input": "Content\n---\n",
+      "options": {},
+      "expected": "Content\n---\n"
+    },
+    {
+      "n": 7,
+      "input": "a\n* * *\nb\n",
+      "options": {},
+      "expected": "a\n\n* * *\n\nb\n"
+    },
+    {
+      "n": 8,
+      "input": "a\r\n***\r\nb",
+      "options": {},
+      "expected": "a\r\n\r\n***\r\n\r\nb"
+    },
+    {
+      "n": 9,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

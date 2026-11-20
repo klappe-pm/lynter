@@ -1,0 +1,77 @@
+name: lynter
+description: Download a Lynter release binary and run lynter check.
+inputs:
+  paths:
+    description: Space-separated files or directories to check.
+    default: .
+  config:
+    description: Path to a Lynter config file. Empty uses discovery.
+    default: ''
+  changed:
+    description: Check only files changed against the base ref (true or false).
+    default: 'false'
+  version:
+    description: Release tag to install, such as v0.1.0, or latest.
+    default: latest
+  repository:
+    description: Repository that hosts the release assets.
+    default: klappe-pm/lynter
+runs:
+  using: composite
+  steps:
+    - name: install lynter
+      shell: bash
+      env:
+        VERSION: ${{ inputs.version }}
+        REPO: ${{ inputs.repository }}
+        GH_TOKEN: ${{ github.token }}
+        RUNNER_OS_NAME: ${{ runner.os }}
+        RUNNER_ARCH_NAME: ${{ runner.arch }}
+      run: |
+        set -euo pipefail
+        case "$RUNNER_OS_NAME-$RUNNER_ARCH_NAME" in
+          Linux-X64) target=x86_64-unknown-linux-gnu; ext=tar.gz ;;
+          Linux-ARM64) target=aarch64-unknown-linux-gnu; ext=tar.gz ;;
+          macOS-X64) target=x86_64-apple-darwin; ext=tar.gz ;;
+          macOS-ARM64) target=aarch64-apple-darwin; ext=tar.gz ;;
+          Windows-X64) target=x86_64-pc-windows-msvc; ext=zip ;;
+          *) echo "unsupported runner: $RUNNER_OS_NAME-$RUNNER_ARCH_NAME" >&2; exit 1 ;;
+        esac
+        if [ "$VERSION" = latest ]; then
+          VERSION=$(gh release view --repo "$REPO" --json tagName --jq .tagName)
+        fi
+        name="lynter-${VERSION}-${target}"
+        dir="${RUNNER_TEMP}/lynter-install"
+        mkdir -p "$dir"
+        gh release download "$VERSION" --repo "$REPO" --dir "$dir" \
+          --pattern "${name}.${ext}" --pattern SHA256SUMS
+        (cd "$dir" && grep " ${name}.${ext}\$" SHA256SUMS | sha256sum -c -)
+        if [ "$ext" = zip ]; then
+          (cd "$dir" && 7z x -y "${name}.zip" > /dev/null)
+        else
+          tar -xzf "$dir/${name}.tar.gz" -C "$dir"
+        fi
+        echo "$dir/$name" >> "$GITHUB_PATH"
+    - name: lynter check
+      shell: bash
+      env:
+        PATHS: ${{ inputs.paths }}
+        CONFIG: ${{ inputs.config }}
+        CHANGED: ${{ inputs.changed }}
+        BASE_REF: ${{ github.base_ref }}
+      run: |
+        set -euo pipefail
+        args=()
+        if [ -n "$CONFIG" ]; then args+=(--config "$CONFIG"); fi
+        if [ "$CHANGED" = true ]; then
+          base="${BASE_REF:-HEAD~1}"
+          git fetch --no-tags --depth=1 origin "$base" 2>/dev/null || true
+          ref="origin/$base"
+          git rev-parse -q --verify "$ref" > /dev/null || ref="$base"
+          mapfile -t files < <(git diff --name-only --diff-filter=ACMR "$ref"...HEAD -- $PATHS | grep -E '\.(md|markdown)$' || true)
+          if [ "${#files[@]}" -eq 0 ]; then echo "no changed markdown files"; exit 0; fi
+          lynter check "${args[@]}" "${files[@]}"
+        else
+          # shellcheck disable=SC2086
+          lynter check "${args[@]}" $PATHS
+        fi

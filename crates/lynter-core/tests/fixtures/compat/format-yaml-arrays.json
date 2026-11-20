@@ -1,0 +1,65 @@
+{
+  "id": "format-yaml-arrays",
+  "examples": [
+    {
+      "n": 1,
+      "input": "---\ntags:\n  - computer\n  - research\naliases: Title 1, Title2\ntest: this is a value\n---\n\n# Notes:\n",
+      "options": {
+        "aliases-style": "multi-line",
+        "force-single-line-keys": [
+          "test"
+        ]
+      },
+      "expected": "---\ntags: [computer, research]\naliases:\n  - Title 1\n  - Title2\ntest: [this is a value]\n---\n\n# Notes:\n"
+    },
+    {
+      "n": 2,
+      "input": "---\naliases: Typescript\ntypes:\n  - thought provoking\n  - peer reviewed\ntags: [computer, science, trajectory]\n---\n",
+      "options": {
+        "tags-style": "single string space delimited",
+        "format-aliases": false
+      },
+      "expected": "---\naliases: Typescript\ntypes: [thought provoking, peer reviewed]\ntags: computer science trajectory\n---\n"
+    },
+    {
+      "n": 3,
+      "input": "---\ngists:\n  - id: test123\n    url: 'some_url'\n    filename: file.md\n    isPublic: true\n---\n",
+      "options": {},
+      "expected": "---\ngists:\n  - id: test123\n    url: 'some_url'\n    filename: file.md\n    isPublic: true\n---\n"
+    },
+    {
+      "n": 4,
+      "input": "---\nkeys: [a, b]\n---\n",
+      "options": {
+        "default-array-style": "multi-line"
+      },
+      "expected": "---\nkeys:\n  - a\n  - b\n---\n"
+    },
+    {
+      "n": 5,
+      "input": "---\naliases:\n  - One\n---\n",
+      "options": {
+        "aliases-style": "single string to single-line"
+      },
+      "expected": "---\naliases: One\n---\n"
+    },
+    {
+      "n": 6,
+      "input": "- a\n- b\n",
+      "options": {},
+      "expected": "- a\n- b\n"
+    },
+    {
+      "n": 7,
+      "input": "---\r\ntags:\r\n  - a\r\n  - b\r\n---\r\n",
+      "options": {},
+      "expected": "---\r\ntags: [a, b]\r\n---\r\n"
+    },
+    {
+      "n": 8,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

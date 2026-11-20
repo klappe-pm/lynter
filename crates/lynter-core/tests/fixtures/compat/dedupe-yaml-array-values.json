@@ -1,0 +1,65 @@
+{
+  "id": "dedupe-yaml-array-values",
+  "examples": [
+    {
+      "n": 1,
+      "input": "---\ntags: [computer, research, computer, Computer]\naliases:\n  - Title 1\n  - Title2\n---\n",
+      "options": {},
+      "expected": "---\ntags: [computer, research, Computer]\naliases:\n  - Title 1\n  - Title2\n---\n"
+    },
+    {
+      "n": 2,
+      "input": "---\naliases:\n  - Title 1\n  - Title2\n  - Title 1\n  - Title2\n  - Title 3\n---\n",
+      "options": {},
+      "expected": "---\naliases:\n  - Title 1\n  - Title2\n  - Title 3\n---\n"
+    },
+    {
+      "n": 3,
+      "input": "---\narr1: [val, val1, val, val2, Val]\narr2:\n  - Val\n  - Val\n  - val\n  - val2\n  - Val2\n---\n",
+      "options": {},
+      "expected": "---\narr1: [val, val1, val2, Val]\narr2:\n  - Val\n  - val\n  - val2\n  - Val2\n---\n"
+    },
+    {
+      "n": 4,
+      "input": "---\narr1: [val, val, x]\narr2:\n  - Val\n  - Val\n---\n",
+      "options": {
+        "keys-to-ignore": [
+          "arr2"
+        ]
+      },
+      "expected": "---\narr1: [val, x]\narr2:\n  - Val\n  - Val\n---\n"
+    },
+    {
+      "n": 5,
+      "input": "---\ntags: [a, a]\naliases: [b, b]\n---\n",
+      "options": {
+        "dedupe-tags": false
+      },
+      "expected": "---\ntags: [a, a]\naliases: [b]\n---\n"
+    },
+    {
+      "n": 6,
+      "input": "---\nk: [\"a\", a]\n---\n",
+      "options": {},
+      "expected": "---\nk: [\"a\"]\n---\n"
+    },
+    {
+      "n": 7,
+      "input": "- a\n- a\n",
+      "options": {},
+      "expected": "- a\n- a\n"
+    },
+    {
+      "n": 8,
+      "input": "---\r\ntags: [a, a]\r\n---\r\n",
+      "options": {},
+      "expected": "---\r\ntags: [a]\r\n---\r\n"
+    },
+    {
+      "n": 9,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

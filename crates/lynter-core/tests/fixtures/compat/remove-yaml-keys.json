@@ -1,0 +1,88 @@
+{
+  "id": "remove-yaml-keys",
+  "examples": [
+    {
+      "n": 1,
+      "input": "---\nlanguage: Typescript\ntype: programming\ntags: computer\nkeywords:\n  - keyword1\n  - keyword2\nstatus: WIP\ndate: 02/15/2022\n---\n\n# Header Context\n",
+      "options": {
+        "keys": [
+          "status:",
+          "keywords",
+          "date"
+        ]
+      },
+      "expected": "---\nlanguage: Typescript\ntype: programming\ntags: computer\n---\n\n# Header Context\n"
+    },
+    {
+      "n": 2,
+      "input": "---\na: 1\nb: 2\n---\n",
+      "options": {
+        "keys": [
+          "a:"
+        ]
+      },
+      "expected": "---\nb: 2\n---\n"
+    },
+    {
+      "n": 3,
+      "input": "---\nparent:\n  name: x\nname: y\n---\n",
+      "options": {
+        "keys": [
+          "name"
+        ]
+      },
+      "expected": "---\nparent:\n  name: x\n---\n"
+    },
+    {
+      "n": 4,
+      "input": "---\nstatus: a\n---\n",
+      "options": {
+        "keys": [
+          "Status"
+        ]
+      },
+      "expected": "---\nstatus: a\n---\n"
+    },
+    {
+      "n": 5,
+      "input": "---\na: 1\nb: 2\n---\nBody\n",
+      "options": {
+        "keys": [
+          "a",
+          "b"
+        ]
+      },
+      "expected": "---\n---\nBody\n"
+    },
+    {
+      "n": 6,
+      "input": "---\nd: |\n  line1\n  line2\ne: 1\n---\n",
+      "options": {
+        "keys": [
+          "d"
+        ]
+      },
+      "expected": "---\ne: 1\n---\n"
+    },
+    {
+      "n": 7,
+      "input": "---\r\na: 1\r\nb: 2\r\n---\r\n",
+      "options": {
+        "keys": [
+          "a"
+        ]
+      },
+      "expected": "---\r\nb: 2\r\n---\r\n"
+    },
+    {
+      "n": 8,
+      "input": "",
+      "options": {
+        "keys": [
+          "a"
+        ]
+      },
+      "expected": ""
+    }
+  ]
+}

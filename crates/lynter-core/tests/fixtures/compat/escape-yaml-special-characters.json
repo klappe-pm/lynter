@@ -1,0 +1,57 @@
+{
+  "id": "escape-yaml-special-characters",
+  "examples": [
+    {
+      "n": 1,
+      "input": "---\nkey: value\notherKey: []\n---\n",
+      "options": {},
+      "expected": "---\nkey: value\notherKey: []\n---\n"
+    },
+    {
+      "n": 2,
+      "input": "---\nkey: value: with colon in the middle\nsecondKey: value with ' a single quote present\nthirdKey: \"already escaped: value\"\nfourthKey: value with \" a double quote present\nfifthKey: value with both ' \" present\nsixthKey: colon:between characters is fine\n---\n",
+      "options": {},
+      "expected": "---\nkey: \"value: with colon in the middle\"\nsecondKey: \"value with ' a single quote present\"\nthirdKey: \"already escaped: value\"\nfourthKey: 'value with \" a double quote present'\nfifthKey: value with both ' \" present\nsixthKey: colon:between characters is fine\n---\n"
+    },
+    {
+      "n": 3,
+      "input": "---\nkey:\n  - value: with colon in the middle\n  - value with ' a single quote present\n  - 'already escaped: value'\n  - value with \" a double quote present\n  - colon:between characters is fine\n---\n",
+      "options": {
+        "default-escape-character": "'"
+      },
+      "expected": "---\nkey:\n  - 'value: with colon in the middle'\n  - \"value with ' a single quote present\"\n  - 'already escaped: value'\n  - 'value with \" a double quote present'\n  - colon:between characters is fine\n---\n"
+    },
+    {
+      "n": 4,
+      "input": "---\narray: [value: with colon, \"already: ok\", plain]\nnested: [[a: b], c]\n---\n",
+      "options": {
+        "escape-single-line-arrays": true
+      },
+      "expected": "---\narray: [\"value: with colon\", \"already: ok\", plain]\nnested: [[\"a: b\"], c]\n---\n"
+    },
+    {
+      "n": 5,
+      "input": "---\narray: [value: with colon]\n---\n",
+      "options": {},
+      "expected": "---\narray: [value: with colon]\n---\n"
+    },
+    {
+      "n": 6,
+      "input": "---\na: 1\n---\nkey: value: x\n",
+      "options": {},
+      "expected": "---\na: 1\n---\nkey: value: x\n"
+    },
+    {
+      "n": 7,
+      "input": "---\r\na: x: y\r\n---\r\n",
+      "options": {},
+      "expected": "---\r\na: \"x: y\"\r\n---\r\n"
+    },
+    {
+      "n": 8,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

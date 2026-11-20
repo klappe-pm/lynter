@@ -1,0 +1,2094 @@
+{
+ "rule": "h1-matches-stem",
+ "report_only": false,
+ "cases": [
+  {
+   "name": "input 0 variant 0",
+   "input": "",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n",
+   "expected_fixed": "# my-note\n"
+  },
+  {
+   "name": "input 0 variant 1",
+   "input": "",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n",
+   "expected_fixed": "# Weird Name\n"
+  },
+  {
+   "name": "input 0 variant 2",
+   "input": "",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n",
+   "expected_fixed": "# c\n"
+  },
+  {
+   "name": "input 0 variant 3",
+   "input": "",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "",
+   "expected_fixed": ""
+  },
+  {
+   "name": "input 0 variant 4",
+   "input": "",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n",
+   "expected_fixed": "# no-ext\n"
+  },
+  {
+   "name": "input 0 variant 5",
+   "input": "",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n",
+   "expected_fixed": "# Café\n"
+  },
+  {
+   "name": "input 1 variant 0",
+   "input": "\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\n",
+   "expected_fixed": "# my-note\n\n"
+  },
+  {
+   "name": "input 1 variant 1",
+   "input": "\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\n",
+   "expected_fixed": "# Weird Name\n\n"
+  },
+  {
+   "name": "input 1 variant 2",
+   "input": "\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\n",
+   "expected_fixed": "# c\n\n"
+  },
+  {
+   "name": "input 1 variant 3",
+   "input": "\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "\n",
+   "expected_fixed": "\n"
+  },
+  {
+   "name": "input 1 variant 4",
+   "input": "\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\n",
+   "expected_fixed": "# no-ext\n\n"
+  },
+  {
+   "name": "input 1 variant 5",
+   "input": "\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\n",
+   "expected_fixed": "# Café\n\n"
+  },
+  {
+   "name": "input 2 variant 0",
+   "input": "---\n---\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "---\n---\n\n# my-note\n",
+   "expected_fixed": "---\n---\n\n# my-note\n"
+  },
+  {
+   "name": "input 2 variant 1",
+   "input": "---\n---\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "---\n---\n\n# Weird Name\n",
+   "expected_fixed": "---\n---\n\n# Weird Name\n"
+  },
+  {
+   "name": "input 2 variant 2",
+   "input": "---\n---\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "---\n---\n\n# c\n",
+   "expected_fixed": "---\n---\n\n# c\n"
+  },
+  {
+   "name": "input 2 variant 3",
+   "input": "---\n---\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "---\n---\n",
+   "expected_fixed": "---\n---\n"
+  },
+  {
+   "name": "input 2 variant 4",
+   "input": "---\n---\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "---\n---\n\n# no-ext\n",
+   "expected_fixed": "---\n---\n\n# no-ext\n"
+  },
+  {
+   "name": "input 2 variant 5",
+   "input": "---\n---\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "---\n---\n\n# Café\n",
+   "expected_fixed": "---\n---\n\n# Café\n"
+  },
+  {
+   "name": "input 3 variant 0",
+   "input": "---\ndomain: x\n---",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "---\ndomain: x\n---\n\n# my-note",
+   "expected_fixed": "---\ndomain: x\n---\n\n# my-note"
+  },
+  {
+   "name": "input 3 variant 1",
+   "input": "---\ndomain: x\n---",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "---\ndomain: x\n---\n\n# Weird Name",
+   "expected_fixed": "---\ndomain: x\n---\n\n# Weird Name"
+  },
+  {
+   "name": "input 3 variant 2",
+   "input": "---\ndomain: x\n---",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "---\ndomain: x\n---\n\n# c",
+   "expected_fixed": "---\ndomain: x\n---\n\n# c"
+  },
+  {
+   "name": "input 3 variant 3",
+   "input": "---\ndomain: x\n---",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "---\ndomain: x\n---",
+   "expected_fixed": "---\ndomain: x\n---"
+  },
+  {
+   "name": "input 3 variant 4",
+   "input": "---\ndomain: x\n---",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "---\ndomain: x\n---\n\n# no-ext",
+   "expected_fixed": "---\ndomain: x\n---\n\n# no-ext"
+  },
+  {
+   "name": "input 3 variant 5",
+   "input": "---\ndomain: x\n---",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "---\ndomain: x\n---\n\n# Café",
+   "expected_fixed": "---\ndomain: x\n---\n\n# Café"
+  },
+  {
+   "name": "input 4 variant 0",
+   "input": "---\ndomain: x\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\n---\ndomain: x\n",
+   "expected_fixed": "# my-note\n\n---\ndomain: x\n"
+  },
+  {
+   "name": "input 4 variant 1",
+   "input": "---\ndomain: x\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\n---\ndomain: x\n",
+   "expected_fixed": "# Weird Name\n\n---\ndomain: x\n"
+  },
+  {
+   "name": "input 4 variant 2",
+   "input": "---\ndomain: x\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\n---\ndomain: x\n",
+   "expected_fixed": "# c\n\n---\ndomain: x\n"
+  },
+  {
+   "name": "input 4 variant 3",
+   "input": "---\ndomain: x\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "---\ndomain: x\n",
+   "expected_fixed": "---\ndomain: x\n"
+  },
+  {
+   "name": "input 4 variant 4",
+   "input": "---\ndomain: x\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\n---\ndomain: x\n",
+   "expected_fixed": "# no-ext\n\n---\ndomain: x\n"
+  },
+  {
+   "name": "input 4 variant 5",
+   "input": "---\ndomain: x\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\n---\ndomain: x\n",
+   "expected_fixed": "# Café\n\n---\ndomain: x\n"
+  },
+  {
+   "name": "input 5 variant 0",
+   "input": "no frontmatter\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\nno frontmatter\n",
+   "expected_fixed": "# my-note\n\nno frontmatter\n"
+  },
+  {
+   "name": "input 5 variant 1",
+   "input": "no frontmatter\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\nno frontmatter\n",
+   "expected_fixed": "# Weird Name\n\nno frontmatter\n"
+  },
+  {
+   "name": "input 5 variant 2",
+   "input": "no frontmatter\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\nno frontmatter\n",
+   "expected_fixed": "# c\n\nno frontmatter\n"
+  },
+  {
+   "name": "input 5 variant 3",
+   "input": "no frontmatter\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "no frontmatter\n",
+   "expected_fixed": "no frontmatter\n"
+  },
+  {
+   "name": "input 5 variant 4",
+   "input": "no frontmatter\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\nno frontmatter\n",
+   "expected_fixed": "# no-ext\n\nno frontmatter\n"
+  },
+  {
+   "name": "input 5 variant 5",
+   "input": "no frontmatter\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\nno frontmatter\n",
+   "expected_fixed": "# Café\n\nno frontmatter\n"
+  },
+  {
+   "name": "input 6 variant 0",
+   "input": "- a\n- b\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\n- a\n- b\n",
+   "expected_fixed": "# my-note\n\n- a\n- b\n"
+  },
+  {
+   "name": "input 6 variant 1",
+   "input": "- a\n- b\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\n- a\n- b\n",
+   "expected_fixed": "# Weird Name\n\n- a\n- b\n"
+  },
+  {
+   "name": "input 6 variant 2",
+   "input": "- a\n- b\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\n- a\n- b\n",
+   "expected_fixed": "# c\n\n- a\n- b\n"
+  },
+  {
+   "name": "input 6 variant 3",
+   "input": "- a\n- b\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "- a\n- b\n",
+   "expected_fixed": "- a\n- b\n"
+  },
+  {
+   "name": "input 6 variant 4",
+   "input": "- a\n- b\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\n- a\n- b\n",
+   "expected_fixed": "# no-ext\n\n- a\n- b\n"
+  },
+  {
+   "name": "input 6 variant 5",
+   "input": "- a\n- b\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\n- a\n- b\n",
+   "expected_fixed": "# Café\n\n- a\n- b\n"
+  },
+  {
+   "name": "input 7 variant 0",
+   "input": "The kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\nThe kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "expected_fixed": "# my-note\n\nThe kit includes:\n- a tent\n- a stove\n- two mats\n"
+  },
+  {
+   "name": "input 7 variant 1",
+   "input": "The kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\nThe kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "expected_fixed": "# Weird Name\n\nThe kit includes:\n- a tent\n- a stove\n- two mats\n"
+  },
+  {
+   "name": "input 7 variant 2",
+   "input": "The kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\nThe kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "expected_fixed": "# c\n\nThe kit includes:\n- a tent\n- a stove\n- two mats\n"
+  },
+  {
+   "name": "input 7 variant 3",
+   "input": "The kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "The kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "expected_fixed": "The kit includes:\n- a tent\n- a stove\n- two mats\n"
+  },
+  {
+   "name": "input 7 variant 4",
+   "input": "The kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\nThe kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "expected_fixed": "# no-ext\n\nThe kit includes:\n- a tent\n- a stove\n- two mats\n"
+  },
+  {
+   "name": "input 7 variant 5",
+   "input": "The kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\nThe kit includes:\n- a tent\n- a stove\n- two mats\n",
+   "expected_fixed": "# Café\n\nThe kit includes:\n- a tent\n- a stove\n- two mats\n"
+  },
+  {
+   "name": "input 8 variant 0",
+   "input": "- apples\n- pears\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\n- apples\n- pears\n",
+   "expected_fixed": "# my-note\n\n- apples\n- pears\n"
+  },
+  {
+   "name": "input 8 variant 1",
+   "input": "- apples\n- pears\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\n- apples\n- pears\n",
+   "expected_fixed": "# Weird Name\n\n- apples\n- pears\n"
+  },
+  {
+   "name": "input 8 variant 2",
+   "input": "- apples\n- pears\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\n- apples\n- pears\n",
+   "expected_fixed": "# c\n\n- apples\n- pears\n"
+  },
+  {
+   "name": "input 8 variant 3",
+   "input": "- apples\n- pears\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "- apples\n- pears\n",
+   "expected_fixed": "- apples\n- pears\n"
+  },
+  {
+   "name": "input 8 variant 4",
+   "input": "- apples\n- pears\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\n- apples\n- pears\n",
+   "expected_fixed": "# no-ext\n\n- apples\n- pears\n"
+  },
+  {
+   "name": "input 8 variant 5",
+   "input": "- apples\n- pears\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\n- apples\n- pears\n",
+   "expected_fixed": "# Café\n\n- apples\n- pears\n"
+  },
+  {
+   "name": "input 9 variant 0",
+   "input": "- first item\n- second item\nlazy continuation of the item\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\n- first item\n- second item\nlazy continuation of the item\n",
+   "expected_fixed": "# my-note\n\n- first item\n- second item\nlazy continuation of the item\n"
+  },
+  {
+   "name": "input 9 variant 1",
+   "input": "- first item\n- second item\nlazy continuation of the item\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\n- first item\n- second item\nlazy continuation of the item\n",
+   "expected_fixed": "# Weird Name\n\n- first item\n- second item\nlazy continuation of the item\n"
+  },
+  {
+   "name": "input 9 variant 2",
+   "input": "- first item\n- second item\nlazy continuation of the item\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\n- first item\n- second item\nlazy continuation of the item\n",
+   "expected_fixed": "# c\n\n- first item\n- second item\nlazy continuation of the item\n"
+  },
+  {
+   "name": "input 9 variant 3",
+   "input": "- first item\n- second item\nlazy continuation of the item\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "- first item\n- second item\nlazy continuation of the item\n",
+   "expected_fixed": "- first item\n- second item\nlazy continuation of the item\n"
+  },
+  {
+   "name": "input 9 variant 4",
+   "input": "- first item\n- second item\nlazy continuation of the item\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\n- first item\n- second item\nlazy continuation of the item\n",
+   "expected_fixed": "# no-ext\n\n- first item\n- second item\nlazy continuation of the item\n"
+  },
+  {
+   "name": "input 9 variant 5",
+   "input": "- first item\n- second item\nlazy continuation of the item\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\n- first item\n- second item\nlazy continuation of the item\n",
+   "expected_fixed": "# Café\n\n- first item\n- second item\nlazy continuation of the item\n"
+  },
+  {
+   "name": "input 10 variant 0",
+   "input": "- outer\n  - inner\n- other\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\n- outer\n  - inner\n- other\n",
+   "expected_fixed": "# my-note\n\n- outer\n  - inner\n- other\n"
+  },
+  {
+   "name": "input 10 variant 1",
+   "input": "- outer\n  - inner\n- other\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\n- outer\n  - inner\n- other\n",
+   "expected_fixed": "# Weird Name\n\n- outer\n  - inner\n- other\n"
+  },
+  {
+   "name": "input 10 variant 2",
+   "input": "- outer\n  - inner\n- other\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\n- outer\n  - inner\n- other\n",
+   "expected_fixed": "# c\n\n- outer\n  - inner\n- other\n"
+  },
+  {
+   "name": "input 10 variant 3",
+   "input": "- outer\n  - inner\n- other\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "- outer\n  - inner\n- other\n",
+   "expected_fixed": "- outer\n  - inner\n- other\n"
+  },
+  {
+   "name": "input 10 variant 4",
+   "input": "- outer\n  - inner\n- other\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\n- outer\n  - inner\n- other\n",
+   "expected_fixed": "# no-ext\n\n- outer\n  - inner\n- other\n"
+  },
+  {
+   "name": "input 10 variant 5",
+   "input": "- outer\n  - inner\n- other\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\n- outer\n  - inner\n- other\n",
+   "expected_fixed": "# Café\n\n- outer\n  - inner\n- other\n"
+  },
+  {
+   "name": "input 11 variant 0",
+   "input": "- [ ] todo one\n- [x] done two\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\n- [ ] todo one\n- [x] done two\n",
+   "expected_fixed": "# my-note\n\n- [ ] todo one\n- [x] done two\n"
+  },
+  {
+   "name": "input 11 variant 1",
+   "input": "- [ ] todo one\n- [x] done two\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\n- [ ] todo one\n- [x] done two\n",
+   "expected_fixed": "# Weird Name\n\n- [ ] todo one\n- [x] done two\n"
+  },
+  {
+   "name": "input 11 variant 2",
+   "input": "- [ ] todo one\n- [x] done two\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\n- [ ] todo one\n- [x] done two\n",
+   "expected_fixed": "# c\n\n- [ ] todo one\n- [x] done two\n"
+  },
+  {
+   "name": "input 11 variant 3",
+   "input": "- [ ] todo one\n- [x] done two\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "- [ ] todo one\n- [x] done two\n",
+   "expected_fixed": "- [ ] todo one\n- [x] done two\n"
+  },
+  {
+   "name": "input 11 variant 4",
+   "input": "- [ ] todo one\n- [x] done two\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\n- [ ] todo one\n- [x] done two\n",
+   "expected_fixed": "# no-ext\n\n- [ ] todo one\n- [x] done two\n"
+  },
+  {
+   "name": "input 11 variant 5",
+   "input": "- [ ] todo one\n- [x] done two\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\n- [ ] todo one\n- [x] done two\n",
+   "expected_fixed": "# Café\n\n- [ ] todo one\n- [x] done two\n"
+  },
+  {
+   "name": "input 12 variant 0",
+   "input": "one\n\n\n\ntwo\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\none\n\n\n\ntwo\n",
+   "expected_fixed": "# my-note\n\none\n\n\n\ntwo\n"
+  },
+  {
+   "name": "input 12 variant 1",
+   "input": "one\n\n\n\ntwo\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\none\n\n\n\ntwo\n",
+   "expected_fixed": "# Weird Name\n\none\n\n\n\ntwo\n"
+  },
+  {
+   "name": "input 12 variant 2",
+   "input": "one\n\n\n\ntwo\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\none\n\n\n\ntwo\n",
+   "expected_fixed": "# c\n\none\n\n\n\ntwo\n"
+  },
+  {
+   "name": "input 12 variant 3",
+   "input": "one\n\n\n\ntwo\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "one\n\n\n\ntwo\n",
+   "expected_fixed": "one\n\n\n\ntwo\n"
+  },
+  {
+   "name": "input 12 variant 4",
+   "input": "one\n\n\n\ntwo\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\none\n\n\n\ntwo\n",
+   "expected_fixed": "# no-ext\n\none\n\n\n\ntwo\n"
+  },
+  {
+   "name": "input 12 variant 5",
+   "input": "one\n\n\n\ntwo\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\none\n\n\n\ntwo\n",
+   "expected_fixed": "# Café\n\none\n\n\n\ntwo\n"
+  },
+  {
+   "name": "input 13 variant 0",
+   "input": "\n\none\n\n\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\n\none\n\n\n",
+   "expected_fixed": "# my-note\n\n\none\n\n\n"
+  },
+  {
+   "name": "input 13 variant 1",
+   "input": "\n\none\n\n\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\n\none\n\n\n",
+   "expected_fixed": "# Weird Name\n\n\none\n\n\n"
+  },
+  {
+   "name": "input 13 variant 2",
+   "input": "\n\none\n\n\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\n\none\n\n\n",
+   "expected_fixed": "# c\n\n\none\n\n\n"
+  },
+  {
+   "name": "input 13 variant 3",
+   "input": "\n\none\n\n\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "\n\none\n\n\n",
+   "expected_fixed": "\n\none\n\n\n"
+  },
+  {
+   "name": "input 13 variant 4",
+   "input": "\n\none\n\n\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\n\none\n\n\n",
+   "expected_fixed": "# no-ext\n\n\none\n\n\n"
+  },
+  {
+   "name": "input 13 variant 5",
+   "input": "\n\none\n\n\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\n\none\n\n\n",
+   "expected_fixed": "# Café\n\n\none\n\n\n"
+  },
+  {
+   "name": "input 14 variant 0",
+   "input": "```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\n```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "expected_fixed": "# my-note\n\n```\ncode\n\n\nmore\n```\n\n\ntext\n"
+  },
+  {
+   "name": "input 14 variant 1",
+   "input": "```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\n```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "expected_fixed": "# Weird Name\n\n```\ncode\n\n\nmore\n```\n\n\ntext\n"
+  },
+  {
+   "name": "input 14 variant 2",
+   "input": "```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\n```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "expected_fixed": "# c\n\n```\ncode\n\n\nmore\n```\n\n\ntext\n"
+  },
+  {
+   "name": "input 14 variant 3",
+   "input": "```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "expected_fixed": "```\ncode\n\n\nmore\n```\n\n\ntext\n"
+  },
+  {
+   "name": "input 14 variant 4",
+   "input": "```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\n```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "expected_fixed": "# no-ext\n\n```\ncode\n\n\nmore\n```\n\n\ntext\n"
+  },
+  {
+   "name": "input 14 variant 5",
+   "input": "```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\n```\ncode\n\n\nmore\n```\n\n\ntext\n",
+   "expected_fixed": "# Café\n\n```\ncode\n\n\nmore\n```\n\n\ntext\n"
+  },
+  {
+   "name": "input 15 variant 0",
+   "input": "wrapped\nat a column\nby an\nold editor.\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\nwrapped\nat a column\nby an\nold editor.\n",
+   "expected_fixed": "# my-note\n\nwrapped\nat a column\nby an\nold editor.\n"
+  },
+  {
+   "name": "input 15 variant 1",
+   "input": "wrapped\nat a column\nby an\nold editor.\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\nwrapped\nat a column\nby an\nold editor.\n",
+   "expected_fixed": "# Weird Name\n\nwrapped\nat a column\nby an\nold editor.\n"
+  },
+  {
+   "name": "input 15 variant 2",
+   "input": "wrapped\nat a column\nby an\nold editor.\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\nwrapped\nat a column\nby an\nold editor.\n",
+   "expected_fixed": "# c\n\nwrapped\nat a column\nby an\nold editor.\n"
+  },
+  {
+   "name": "input 15 variant 3",
+   "input": "wrapped\nat a column\nby an\nold editor.\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "wrapped\nat a column\nby an\nold editor.\n",
+   "expected_fixed": "wrapped\nat a column\nby an\nold editor.\n"
+  },
+  {
+   "name": "input 15 variant 4",
+   "input": "wrapped\nat a column\nby an\nold editor.\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\nwrapped\nat a column\nby an\nold editor.\n",
+   "expected_fixed": "# no-ext\n\nwrapped\nat a column\nby an\nold editor.\n"
+  },
+  {
+   "name": "input 15 variant 5",
+   "input": "wrapped\nat a column\nby an\nold editor.\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\nwrapped\nat a column\nby an\nold editor.\n",
+   "expected_fixed": "# Café\n\nwrapped\nat a column\nby an\nold editor.\n"
+  },
+  {
+   "name": "input 16 variant 0",
+   "input": "line one ends here  \nline two\nline three\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\nline one ends here  \nline two\nline three\n",
+   "expected_fixed": "# my-note\n\nline one ends here  \nline two\nline three\n"
+  },
+  {
+   "name": "input 16 variant 1",
+   "input": "line one ends here  \nline two\nline three\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\nline one ends here  \nline two\nline three\n",
+   "expected_fixed": "# Weird Name\n\nline one ends here  \nline two\nline three\n"
+  },
+  {
+   "name": "input 16 variant 2",
+   "input": "line one ends here  \nline two\nline three\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\nline one ends here  \nline two\nline three\n",
+   "expected_fixed": "# c\n\nline one ends here  \nline two\nline three\n"
+  },
+  {
+   "name": "input 16 variant 3",
+   "input": "line one ends here  \nline two\nline three\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "line one ends here  \nline two\nline three\n",
+   "expected_fixed": "line one ends here  \nline two\nline three\n"
+  },
+  {
+   "name": "input 16 variant 4",
+   "input": "line one ends here  \nline two\nline three\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\nline one ends here  \nline two\nline three\n",
+   "expected_fixed": "# no-ext\n\nline one ends here  \nline two\nline three\n"
+  },
+  {
+   "name": "input 16 variant 5",
+   "input": "line one ends here  \nline two\nline three\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\nline one ends here  \nline two\nline three\n",
+   "expected_fixed": "# Café\n\nline one ends here  \nline two\nline three\n"
+  },
+  {
+   "name": "input 17 variant 0",
+   "input": "# Title\n\nbody\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\nbody\n",
+   "expected_fixed": "# my-note\n\nbody\n"
+  },
+  {
+   "name": "input 17 variant 1",
+   "input": "# Title\n\nbody\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\nbody\n",
+   "expected_fixed": "# Weird Name\n\nbody\n"
+  },
+  {
+   "name": "input 17 variant 2",
+   "input": "# Title\n\nbody\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\nbody\n",
+   "expected_fixed": "# c\n\nbody\n"
+  },
+  {
+   "name": "input 17 variant 3",
+   "input": "# Title\n\nbody\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "# Title\n\nbody\n",
+   "expected_fixed": "# Title\n\nbody\n"
+  },
+  {
+   "name": "input 17 variant 4",
+   "input": "# Title\n\nbody\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\nbody\n",
+   "expected_fixed": "# no-ext\n\nbody\n"
+  },
+  {
+   "name": "input 17 variant 5",
+   "input": "# Title\n\nbody\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\nbody\n",
+   "expected_fixed": "# Café\n\nbody\n"
+  },
+  {
+   "name": "input 18 variant 0",
+   "input": "# Wrong\n\nbody\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\nbody\n",
+   "expected_fixed": "# my-note\n\nbody\n"
+  },
+  {
+   "name": "input 18 variant 1",
+   "input": "# Wrong\n\nbody\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\nbody\n",
+   "expected_fixed": "# Weird Name\n\nbody\n"
+  },
+  {
+   "name": "input 18 variant 2",
+   "input": "# Wrong\n\nbody\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\nbody\n",
+   "expected_fixed": "# c\n\nbody\n"
+  },
+  {
+   "name": "input 18 variant 3",
+   "input": "# Wrong\n\nbody\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "# Wrong\n\nbody\n",
+   "expected_fixed": "# Wrong\n\nbody\n"
+  },
+  {
+   "name": "input 18 variant 4",
+   "input": "# Wrong\n\nbody\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\nbody\n",
+   "expected_fixed": "# no-ext\n\nbody\n"
+  },
+  {
+   "name": "input 18 variant 5",
+   "input": "# Wrong\n\nbody\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\nbody\n",
+   "expected_fixed": "# Café\n\nbody\n"
+  },
+  {
+   "name": "input 19 variant 0",
+   "input": "```\n# in fence\n```\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\n```\n# in fence\n```\n",
+   "expected_fixed": "# my-note\n\n```\n# in fence\n```\n"
+  },
+  {
+   "name": "input 19 variant 1",
+   "input": "```\n# in fence\n```\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\n```\n# in fence\n```\n",
+   "expected_fixed": "# Weird Name\n\n```\n# in fence\n```\n"
+  },
+  {
+   "name": "input 19 variant 2",
+   "input": "```\n# in fence\n```\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\n```\n# in fence\n```\n",
+   "expected_fixed": "# c\n\n```\n# in fence\n```\n"
+  },
+  {
+   "name": "input 19 variant 3",
+   "input": "```\n# in fence\n```\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "```\n# in fence\n```\n",
+   "expected_fixed": "```\n# in fence\n```\n"
+  },
+  {
+   "name": "input 19 variant 4",
+   "input": "```\n# in fence\n```\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\n```\n# in fence\n```\n",
+   "expected_fixed": "# no-ext\n\n```\n# in fence\n```\n"
+  },
+  {
+   "name": "input 19 variant 5",
+   "input": "```\n# in fence\n```\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\n```\n# in fence\n```\n",
+   "expected_fixed": "# Café\n\n```\n# in fence\n```\n"
+  },
+  {
+   "name": "input 20 variant 0",
+   "input": "---\ntitle: x\n---\n# Old\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "---\ntitle: x\n---\n# my-note\n",
+   "expected_fixed": "---\ntitle: x\n---\n# my-note\n"
+  },
+  {
+   "name": "input 20 variant 1",
+   "input": "---\ntitle: x\n---\n# Old\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "---\ntitle: x\n---\n# Weird Name\n",
+   "expected_fixed": "---\ntitle: x\n---\n# Weird Name\n"
+  },
+  {
+   "name": "input 20 variant 2",
+   "input": "---\ntitle: x\n---\n# Old\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "---\ntitle: x\n---\n# c\n",
+   "expected_fixed": "---\ntitle: x\n---\n# c\n"
+  },
+  {
+   "name": "input 20 variant 3",
+   "input": "---\ntitle: x\n---\n# Old\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "---\ntitle: x\n---\n# Old\n",
+   "expected_fixed": "---\ntitle: x\n---\n# Old\n"
+  },
+  {
+   "name": "input 20 variant 4",
+   "input": "---\ntitle: x\n---\n# Old\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "---\ntitle: x\n---\n# no-ext\n",
+   "expected_fixed": "---\ntitle: x\n---\n# no-ext\n"
+  },
+  {
+   "name": "input 20 variant 5",
+   "input": "---\ntitle: x\n---\n# Old\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "---\ntitle: x\n---\n# Café\n",
+   "expected_fixed": "---\ntitle: x\n---\n# Café\n"
+  },
+  {
+   "name": "input 21 variant 0",
+   "input": "---\ntitle: x\n---\nbody only\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "---\ntitle: x\n---\n\n# my-note\n\nbody only\n",
+   "expected_fixed": "---\ntitle: x\n---\n\n# my-note\n\nbody only\n"
+  },
+  {
+   "name": "input 21 variant 1",
+   "input": "---\ntitle: x\n---\nbody only\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "---\ntitle: x\n---\n\n# Weird Name\n\nbody only\n",
+   "expected_fixed": "---\ntitle: x\n---\n\n# Weird Name\n\nbody only\n"
+  },
+  {
+   "name": "input 21 variant 2",
+   "input": "---\ntitle: x\n---\nbody only\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "---\ntitle: x\n---\n\n# c\n\nbody only\n",
+   "expected_fixed": "---\ntitle: x\n---\n\n# c\n\nbody only\n"
+  },
+  {
+   "name": "input 21 variant 3",
+   "input": "---\ntitle: x\n---\nbody only\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "---\ntitle: x\n---\nbody only\n",
+   "expected_fixed": "---\ntitle: x\n---\nbody only\n"
+  },
+  {
+   "name": "input 21 variant 4",
+   "input": "---\ntitle: x\n---\nbody only\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "---\ntitle: x\n---\n\n# no-ext\n\nbody only\n",
+   "expected_fixed": "---\ntitle: x\n---\n\n# no-ext\n\nbody only\n"
+  },
+  {
+   "name": "input 21 variant 5",
+   "input": "---\ntitle: x\n---\nbody only\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "---\ntitle: x\n---\n\n# Café\n\nbody only\n",
+   "expected_fixed": "---\ntitle: x\n---\n\n# Café\n\nbody only\n"
+  },
+  {
+   "name": "input 22 variant 0",
+   "input": "Prose with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\nProse with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "expected_fixed": "# my-note\n\nProse with two trailing spaces stays  \n\n```bash\necho hi   \n```\n"
+  },
+  {
+   "name": "input 22 variant 1",
+   "input": "Prose with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\nProse with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "expected_fixed": "# Weird Name\n\nProse with two trailing spaces stays  \n\n```bash\necho hi   \n```\n"
+  },
+  {
+   "name": "input 22 variant 2",
+   "input": "Prose with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\nProse with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "expected_fixed": "# c\n\nProse with two trailing spaces stays  \n\n```bash\necho hi   \n```\n"
+  },
+  {
+   "name": "input 22 variant 3",
+   "input": "Prose with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "Prose with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "expected_fixed": "Prose with two trailing spaces stays  \n\n```bash\necho hi   \n```\n"
+  },
+  {
+   "name": "input 22 variant 4",
+   "input": "Prose with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\nProse with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "expected_fixed": "# no-ext\n\nProse with two trailing spaces stays  \n\n```bash\necho hi   \n```\n"
+  },
+  {
+   "name": "input 22 variant 5",
+   "input": "Prose with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\nProse with two trailing spaces stays  \n\n```bash\necho hi   \n```\n",
+   "expected_fixed": "# Café\n\nProse with two trailing spaces stays  \n\n```bash\necho hi   \n```\n"
+  },
+  {
+   "name": "input 23 variant 0",
+   "input": "```js\nfoo12 here  \n```\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\n```js\nfoo12 here  \n```\n",
+   "expected_fixed": "# my-note\n\n```js\nfoo12 here  \n```\n"
+  },
+  {
+   "name": "input 23 variant 1",
+   "input": "```js\nfoo12 here  \n```\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\n```js\nfoo12 here  \n```\n",
+   "expected_fixed": "# Weird Name\n\n```js\nfoo12 here  \n```\n"
+  },
+  {
+   "name": "input 23 variant 2",
+   "input": "```js\nfoo12 here  \n```\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\n```js\nfoo12 here  \n```\n",
+   "expected_fixed": "# c\n\n```js\nfoo12 here  \n```\n"
+  },
+  {
+   "name": "input 23 variant 3",
+   "input": "```js\nfoo12 here  \n```\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "```js\nfoo12 here  \n```\n",
+   "expected_fixed": "```js\nfoo12 here  \n```\n"
+  },
+  {
+   "name": "input 23 variant 4",
+   "input": "```js\nfoo12 here  \n```\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\n```js\nfoo12 here  \n```\n",
+   "expected_fixed": "# no-ext\n\n```js\nfoo12 here  \n```\n"
+  },
+  {
+   "name": "input 23 variant 5",
+   "input": "```js\nfoo12 here  \n```\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\n```js\nfoo12 here  \n```\n",
+   "expected_fixed": "# Café\n\n```js\nfoo12 here  \n```\n"
+  },
+  {
+   "name": "input 24 variant 0",
+   "input": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\n```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "expected_fixed": "# my-note\n\n```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n"
+  },
+  {
+   "name": "input 24 variant 1",
+   "input": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\n```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "expected_fixed": "# Weird Name\n\n```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n"
+  },
+  {
+   "name": "input 24 variant 2",
+   "input": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\n```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "expected_fixed": "# c\n\n```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n"
+  },
+  {
+   "name": "input 24 variant 3",
+   "input": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "expected_fixed": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n"
+  },
+  {
+   "name": "input 24 variant 4",
+   "input": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\n```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "expected_fixed": "# no-ext\n\n```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n"
+  },
+  {
+   "name": "input 24 variant 5",
+   "input": "```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\n```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n",
+   "expected_fixed": "# Café\n\n```bash\nsed -i s/a/b/ f\ntimeout 5 x\n```\n"
+  },
+  {
+   "name": "input 25 variant 0",
+   "input": "```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\n```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "expected_fixed": "# my-note\n\n```\nAKIAABCDEFGHIJKLMNOP\n```\n"
+  },
+  {
+   "name": "input 25 variant 1",
+   "input": "```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\n```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "expected_fixed": "# Weird Name\n\n```\nAKIAABCDEFGHIJKLMNOP\n```\n"
+  },
+  {
+   "name": "input 25 variant 2",
+   "input": "```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\n```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "expected_fixed": "# c\n\n```\nAKIAABCDEFGHIJKLMNOP\n```\n"
+  },
+  {
+   "name": "input 25 variant 3",
+   "input": "```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "expected_fixed": "```\nAKIAABCDEFGHIJKLMNOP\n```\n"
+  },
+  {
+   "name": "input 25 variant 4",
+   "input": "```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\n```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "expected_fixed": "# no-ext\n\n```\nAKIAABCDEFGHIJKLMNOP\n```\n"
+  },
+  {
+   "name": "input 25 variant 5",
+   "input": "```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\n```\nAKIAABCDEFGHIJKLMNOP\n```\n",
+   "expected_fixed": "# Café\n\n```\nAKIAABCDEFGHIJKLMNOP\n```\n"
+  },
+  {
+   "name": "input 26 variant 0",
+   "input": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\nBody.\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\n\n# my-note\n\nBody.\n",
+   "expected_fixed": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\n\n# my-note\n\nBody.\n"
+  },
+  {
+   "name": "input 26 variant 1",
+   "input": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\nBody.\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\n\n# Weird Name\n\nBody.\n",
+   "expected_fixed": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\n\n# Weird Name\n\nBody.\n"
+  },
+  {
+   "name": "input 26 variant 2",
+   "input": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\nBody.\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\n\n# c\n\nBody.\n",
+   "expected_fixed": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\n\n# c\n\nBody.\n"
+  },
+  {
+   "name": "input 26 variant 3",
+   "input": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\nBody.\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\nBody.\n",
+   "expected_fixed": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\nBody.\n"
+  },
+  {
+   "name": "input 26 variant 4",
+   "input": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\nBody.\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\n\n# no-ext\n\nBody.\n",
+   "expected_fixed": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\n\n# no-ext\n\nBody.\n"
+  },
+  {
+   "name": "input 26 variant 5",
+   "input": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\nBody.\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\n\n# Café\n\nBody.\n",
+   "expected_fixed": "---\ntags:\n  - zeta\n  - alpha\naliases: [second, first]\nstatus: DRAFT\n---\n\n# Café\n\nBody.\n"
+  },
+  {
+   "name": "input 27 variant 0",
+   "input": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\nBody.\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\n\n# my-note\n\nBody.\n",
+   "expected_fixed": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\n\n# my-note\n\nBody.\n"
+  },
+  {
+   "name": "input 27 variant 1",
+   "input": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\nBody.\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\n\n# Weird Name\n\nBody.\n",
+   "expected_fixed": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\n\n# Weird Name\n\nBody.\n"
+  },
+  {
+   "name": "input 27 variant 2",
+   "input": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\nBody.\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\n\n# c\n\nBody.\n",
+   "expected_fixed": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\n\n# c\n\nBody.\n"
+  },
+  {
+   "name": "input 27 variant 3",
+   "input": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\nBody.\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\nBody.\n",
+   "expected_fixed": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\nBody.\n"
+  },
+  {
+   "name": "input 27 variant 4",
+   "input": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\nBody.\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\n\n# no-ext\n\nBody.\n",
+   "expected_fixed": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\n\n# no-ext\n\nBody.\n"
+  },
+  {
+   "name": "input 27 variant 5",
+   "input": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\nBody.\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\n\n# Café\n\nBody.\n",
+   "expected_fixed": "---\nstatus: DRAFT\ndomain: development\ncategory: notes\ntags:\n  - x\n---\n\n# Café\n\nBody.\n"
+  },
+  {
+   "name": "input 28 variant 2",
+   "input": "---\nflag: true\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\ndate-created: 2024-01-02\nlist-of-maps:\n  - a: 1\n---\nSetext\n===\n** spaced **\n2) second\n\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "---\nflag: true\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\ndate-created: 2024-01-02\nlist-of-maps:\n  - a: 1\n---\n\n# c\n\nSetext\n===\n** spaced **\n2) second\n\n",
+   "expected_fixed": "---\nflag: true\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\ndate-created: 2024-01-02\nlist-of-maps:\n  - a: 1\n---\n\n# c\n\nSetext\n===\n** spaced **\n2) second\n\n"
+  },
+  {
+   "name": "input 28 variant 5",
+   "input": "---\nflag: true\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\ndate-created: 2024-01-02\nlist-of-maps:\n  - a: 1\n---\nSetext\n===\n** spaced **\n2) second\n\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "---\nflag: true\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\ndate-created: 2024-01-02\nlist-of-maps:\n  - a: 1\n---\n\n# Café\n\nSetext\n===\n** spaced **\n2) second\n\n",
+   "expected_fixed": "---\nflag: true\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\ndate-created: 2024-01-02\nlist-of-maps:\n  - a: 1\n---\n\n# Café\n\nSetext\n===\n** spaced **\n2) second\n\n"
+  },
+  {
+   "name": "input 29 variant 1",
+   "input": "---\r\nalpha: 2\r\ntitle: \"Quoted: Title\"\r\n---\r\n- one\r\n-  spaced\r\n1. first\r\n```bash\r\nplain sentence.\r\n-  spaced\r\nx\r\ntext with trailing backslash\\\r\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "---\r\nalpha: 2\r\ntitle: \"Quoted: Title\"\r\n---\r\n\n# Weird Name\n\n- one\r\n-  spaced\r\n1. first\r\n```bash\r\nplain sentence.\r\n-  spaced\r\nx\r\ntext with trailing backslash\\\r\n",
+   "expected_fixed": "---\r\nalpha: 2\r\ntitle: \"Quoted: Title\"\r\n---\r\n\n# Weird Name\n\n- one\r\n-  spaced\r\n1. first\r\n```bash\r\nplain sentence.\r\n-  spaced\r\nx\r\ntext with trailing backslash\\\r\n"
+  },
+  {
+   "name": "input 29 variant 4",
+   "input": "---\r\nalpha: 2\r\ntitle: \"Quoted: Title\"\r\n---\r\n- one\r\n-  spaced\r\n1. first\r\n```bash\r\nplain sentence.\r\n-  spaced\r\nx\r\ntext with trailing backslash\\\r\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "---\r\nalpha: 2\r\ntitle: \"Quoted: Title\"\r\n---\r\n\n# no-ext\n\n- one\r\n-  spaced\r\n1. first\r\n```bash\r\nplain sentence.\r\n-  spaced\r\nx\r\ntext with trailing backslash\\\r\n",
+   "expected_fixed": "---\r\nalpha: 2\r\ntitle: \"Quoted: Title\"\r\n---\r\n\n# no-ext\n\n- one\r\n-  spaced\r\n1. first\r\n```bash\r\nplain sentence.\r\n-  spaced\r\nx\r\ntext with trailing backslash\\\r\n"
+  },
+  {
+   "name": "input 30 variant 0",
+   "input": "---\nstatus: DRAFT\ndate-revised: 2024-01-03\nZeta: 1\naliases: [second, first]\naliases: [second, first]\nalpha: 2\n---\n![[embed]]\n$a**b$ and $$it is not$$\n[ref]: http://x.y",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "---\nstatus: DRAFT\ndate-revised: 2024-01-03\nZeta: 1\naliases: [second, first]\naliases: [second, first]\nalpha: 2\n---\n\n# my-note\n\n![[embed]]\n$a**b$ and $$it is not$$\n[ref]: http://x.y",
+   "expected_fixed": "---\nstatus: DRAFT\ndate-revised: 2024-01-03\nZeta: 1\naliases: [second, first]\naliases: [second, first]\nalpha: 2\n---\n\n# my-note\n\n![[embed]]\n$a**b$ and $$it is not$$\n[ref]: http://x.y"
+  },
+  {
+   "name": "input 30 variant 3",
+   "input": "---\nstatus: DRAFT\ndate-revised: 2024-01-03\nZeta: 1\naliases: [second, first]\naliases: [second, first]\nalpha: 2\n---\n![[embed]]\n$a**b$ and $$it is not$$\n[ref]: http://x.y",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "---\nstatus: DRAFT\ndate-revised: 2024-01-03\nZeta: 1\naliases: [second, first]\naliases: [second, first]\nalpha: 2\n---\n![[embed]]\n$a**b$ and $$it is not$$\n[ref]: http://x.y",
+   "expected_fixed": "---\nstatus: DRAFT\ndate-revised: 2024-01-03\nZeta: 1\naliases: [second, first]\naliases: [second, first]\nalpha: 2\n---\n![[embed]]\n$a**b$ and $$it is not$$\n[ref]: http://x.y"
+  },
+  {
+   "name": "input 31 variant 2",
+   "input": "---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n> quote it is not\nplain sentence.\n| - | - |\n\n[[wiki **link** it is]]\n2) second\n1. first\nreadlink -f x\n> more quote\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n\n# c\n\n> quote it is not\nplain sentence.\n| - | - |\n\n[[wiki **link** it is]]\n2) second\n1. first\nreadlink -f x\n> more quote\n",
+   "expected_fixed": "---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n\n# c\n\n> quote it is not\nplain sentence.\n| - | - |\n\n[[wiki **link** it is]]\n2) second\n1. first\nreadlink -f x\n> more quote\n"
+  },
+  {
+   "name": "input 31 variant 5",
+   "input": "---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n> quote it is not\nplain sentence.\n| - | - |\n\n[[wiki **link** it is]]\n2) second\n1. first\nreadlink -f x\n> more quote\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n\n# Café\n\n> quote it is not\nplain sentence.\n| - | - |\n\n[[wiki **link** it is]]\n2) second\n1. first\nreadlink -f x\n> more quote\n",
+   "expected_fixed": "---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n\n# Café\n\n> quote it is not\nplain sentence.\n| - | - |\n\n[[wiki **link** it is]]\n2) second\n1. first\nreadlink -f x\n> more quote\n"
+  },
+  {
+   "name": "input 32 variant 1",
+   "input": "---\ntype: base\ncategory: notes\ntags: [b, a, C]\nmulti: [a, \"b\"]\n---\nsed -i '' s/a/b/ f\n   indented text\n-  spaced\n| a | b |\n```\nunclosed fence it is\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "---\ntype: base\ncategory: notes\ntags: [b, a, C]\nmulti: [a, \"b\"]\n---\n\n# Weird Name\n\nsed -i '' s/a/b/ f\n   indented text\n-  spaced\n| a | b |\n```\nunclosed fence it is\n",
+   "expected_fixed": "---\ntype: base\ncategory: notes\ntags: [b, a, C]\nmulti: [a, \"b\"]\n---\n\n# Weird Name\n\nsed -i '' s/a/b/ f\n   indented text\n-  spaced\n| a | b |\n```\nunclosed fence it is\n"
+  },
+  {
+   "name": "input 32 variant 4",
+   "input": "---\ntype: base\ncategory: notes\ntags: [b, a, C]\nmulti: [a, \"b\"]\n---\nsed -i '' s/a/b/ f\n   indented text\n-  spaced\n| a | b |\n```\nunclosed fence it is\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "---\ntype: base\ncategory: notes\ntags: [b, a, C]\nmulti: [a, \"b\"]\n---\n\n# no-ext\n\nsed -i '' s/a/b/ f\n   indented text\n-  spaced\n| a | b |\n```\nunclosed fence it is\n",
+   "expected_fixed": "---\ntype: base\ncategory: notes\ntags: [b, a, C]\nmulti: [a, \"b\"]\n---\n\n# no-ext\n\nsed -i '' s/a/b/ f\n   indented text\n-  spaced\n| a | b |\n```\nunclosed fence it is\n"
+  },
+  {
+   "name": "input 33 variant 0",
+   "input": "---\r\ndomain: development\r\ndate-created: 2024-01-02\r\ndate-created: 2024-01-02\r\n---\r\n#\ttab heading\r\n- \r\n```\r\nunclosed fence it is\r\n- pears\r\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "---\r\ndomain: development\r\ndate-created: 2024-01-02\r\ndate-created: 2024-01-02\r\n---\r\n# my-note\n- \r\n```\r\nunclosed fence it is\r\n- pears\r\n",
+   "expected_fixed": "---\r\ndomain: development\r\ndate-created: 2024-01-02\r\ndate-created: 2024-01-02\r\n---\r\n# my-note\n- \r\n```\r\nunclosed fence it is\r\n- pears\r\n"
+  },
+  {
+   "name": "input 33 variant 3",
+   "input": "---\r\ndomain: development\r\ndate-created: 2024-01-02\r\ndate-created: 2024-01-02\r\n---\r\n#\ttab heading\r\n- \r\n```\r\nunclosed fence it is\r\n- pears\r\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "---\r\ndomain: development\r\ndate-created: 2024-01-02\r\ndate-created: 2024-01-02\r\n---\r\n#\ttab heading\r\n- \r\n```\r\nunclosed fence it is\r\n- pears\r\n",
+   "expected_fixed": "---\r\ndomain: development\r\ndate-created: 2024-01-02\r\ndate-created: 2024-01-02\r\n---\r\n#\ttab heading\r\n- \r\n```\r\nunclosed fence it is\r\n- pears\r\n"
+  },
+  {
+   "name": "input 34 variant 2",
+   "input": "— leading\nI am sure\n- [x] done\nx\t\nplain prose  \n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\n— leading\nI am sure\n- [x] done\nx\t\nplain prose  \n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n",
+   "expected_fixed": "# c\n\n— leading\nI am sure\n- [x] done\nx\t\nplain prose  \n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n"
+  },
+  {
+   "name": "input 34 variant 5",
+   "input": "— leading\nI am sure\n- [x] done\nx\t\nplain prose  \n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\n— leading\nI am sure\n- [x] done\nx\t\nplain prose  \n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n",
+   "expected_fixed": "# Café\n\n— leading\nI am sure\n- [x] done\nx\t\nplain prose  \n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n"
+  },
+  {
+   "name": "input 35 variant 1",
+   "input": "~~~sh\n- [x] done\n___\nplain prose  \n[ref]: http://x.y\n** spaced **\nflock x",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\n~~~sh\n- [x] done\n___\nplain prose  \n[ref]: http://x.y\n** spaced **\nflock x",
+   "expected_fixed": "# Weird Name\n\n~~~sh\n- [x] done\n___\nplain prose  \n[ref]: http://x.y\n** spaced **\nflock x"
+  },
+  {
+   "name": "input 35 variant 4",
+   "input": "~~~sh\n- [x] done\n___\nplain prose  \n[ref]: http://x.y\n** spaced **\nflock x",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\n~~~sh\n- [x] done\n___\nplain prose  \n[ref]: http://x.y\n** spaced **\nflock x",
+   "expected_fixed": "# no-ext\n\n~~~sh\n- [x] done\n___\nplain prose  \n[ref]: http://x.y\n** spaced **\nflock x"
+  },
+  {
+   "name": "input 36 variant 0",
+   "input": "---\ntype: base\ntags:\n  - zeta\n  - Alpha\n  - beta\n---\n\n~~~sh\necho hi   \nIntro line  \n<div>it is not **x**</div>\n~~~js\nwe are\n~~~\nreadlink -f x\nwrapped line one\nwrapped line two\n- item, with comma;\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "---\ntype: base\ntags:\n  - zeta\n  - Alpha\n  - beta\n---\n\n# my-note\n\n~~~sh\necho hi   \nIntro line  \n<div>it is not **x**</div>\n~~~js\nwe are\n~~~\nreadlink -f x\nwrapped line one\nwrapped line two\n- item, with comma;\n",
+   "expected_fixed": "---\ntype: base\ntags:\n  - zeta\n  - Alpha\n  - beta\n---\n\n# my-note\n\n~~~sh\necho hi   \nIntro line  \n<div>it is not **x**</div>\n~~~js\nwe are\n~~~\nreadlink -f x\nwrapped line one\nwrapped line two\n- item, with comma;\n"
+  },
+  {
+   "name": "input 36 variant 3",
+   "input": "---\ntype: base\ntags:\n  - zeta\n  - Alpha\n  - beta\n---\n\n~~~sh\necho hi   \nIntro line  \n<div>it is not **x**</div>\n~~~js\nwe are\n~~~\nreadlink -f x\nwrapped line one\nwrapped line two\n- item, with comma;\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "---\ntype: base\ntags:\n  - zeta\n  - Alpha\n  - beta\n---\n\n~~~sh\necho hi   \nIntro line  \n<div>it is not **x**</div>\n~~~js\nwe are\n~~~\nreadlink -f x\nwrapped line one\nwrapped line two\n- item, with comma;\n",
+   "expected_fixed": "---\ntype: base\ntags:\n  - zeta\n  - Alpha\n  - beta\n---\n\n~~~sh\necho hi   \nIntro line  \n<div>it is not **x**</div>\n~~~js\nwe are\n~~~\nreadlink -f x\nwrapped line one\nwrapped line two\n- item, with comma;\n"
+  },
+  {
+   "name": "input 37 variant 2",
+   "input": "---\nrelo-file: false\nlist-of-maps:\n  - a: 1\n---\necho hi   \n> more quote\n```  JS extra\nplain sentence.\n\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n- list **item** it is\n-\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "---\nrelo-file: false\nlist-of-maps:\n  - a: 1\n---\n\n# c\n\necho hi   \n> more quote\n```  JS extra\nplain sentence.\n\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n- list **item** it is\n-\n",
+   "expected_fixed": "---\nrelo-file: false\nlist-of-maps:\n  - a: 1\n---\n\n# c\n\necho hi   \n> more quote\n```  JS extra\nplain sentence.\n\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n- list **item** it is\n-\n"
+  },
+  {
+   "name": "input 37 variant 5",
+   "input": "---\nrelo-file: false\nlist-of-maps:\n  - a: 1\n---\necho hi   \n> more quote\n```  JS extra\nplain sentence.\n\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n- list **item** it is\n-\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "---\nrelo-file: false\nlist-of-maps:\n  - a: 1\n---\n\n# Café\n\necho hi   \n> more quote\n```  JS extra\nplain sentence.\n\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n- list **item** it is\n-\n",
+   "expected_fixed": "---\nrelo-file: false\nlist-of-maps:\n  - a: 1\n---\n\n# Café\n\necho hi   \n> more quote\n```  JS extra\nplain sentence.\n\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n- list **item** it is\n-\n"
+  },
+  {
+   "name": "input 38 variant 1",
+   "input": "---\ndate-revised: 2024-01-03\ndate-created: 2024-01-02\ntags: [b, a, C]\n![[embed]]\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\n---\ndate-revised: 2024-01-03\ndate-created: 2024-01-02\ntags: [b, a, C]\n![[embed]]\n",
+   "expected_fixed": "# Weird Name\n\n---\ndate-revised: 2024-01-03\ndate-created: 2024-01-02\ntags: [b, a, C]\n![[embed]]\n"
+  },
+  {
+   "name": "input 38 variant 4",
+   "input": "---\ndate-revised: 2024-01-03\ndate-created: 2024-01-02\ntags: [b, a, C]\n![[embed]]\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\n---\ndate-revised: 2024-01-03\ndate-created: 2024-01-02\ntags: [b, a, C]\n![[embed]]\n",
+   "expected_fixed": "# no-ext\n\n---\ndate-revised: 2024-01-03\ndate-created: 2024-01-02\ntags: [b, a, C]\n![[embed]]\n"
+  },
+  {
+   "name": "input 39 variant 0",
+   "input": "\n---\n  - nested\nThe kit includes:\n![[embed]]\n- [x] done\n```\nunclosed fence it is",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n\n---\n  - nested\nThe kit includes:\n![[embed]]\n- [x] done\n```\nunclosed fence it is",
+   "expected_fixed": "# my-note\n\n---\n  - nested\nThe kit includes:\n![[embed]]\n- [x] done\n```\nunclosed fence it is"
+  },
+  {
+   "name": "input 39 variant 3",
+   "input": "\n---\n  - nested\nThe kit includes:\n![[embed]]\n- [x] done\n```\nunclosed fence it is",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "\n---\n  - nested\nThe kit includes:\n![[embed]]\n- [x] done\n```\nunclosed fence it is",
+   "expected_fixed": "\n---\n  - nested\nThe kit includes:\n![[embed]]\n- [x] done\n```\nunclosed fence it is"
+  },
+  {
+   "name": "input 40 variant 2",
+   "input": "---\n# comment\naliases:\n  - x\nZeta: 1\nZeta: 1\naliases:\n  - x\n---\n___\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n-  spaced\n\n1. numbered we are\ntext with trailing backslash\\",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "---\n# comment\naliases:\n  - x\nZeta: 1\nZeta: 1\naliases:\n  - x\n---\n\n# c\n\n___\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n-  spaced\n\n1. numbered we are\ntext with trailing backslash\\",
+   "expected_fixed": "---\n# comment\naliases:\n  - x\nZeta: 1\nZeta: 1\naliases:\n  - x\n---\n\n# c\n\n___\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n-  spaced\n\n1. numbered we are\ntext with trailing backslash\\"
+  },
+  {
+   "name": "input 40 variant 5",
+   "input": "---\n# comment\naliases:\n  - x\nZeta: 1\nZeta: 1\naliases:\n  - x\n---\n___\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n-  spaced\n\n1. numbered we are\ntext with trailing backslash\\",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "---\n# comment\naliases:\n  - x\nZeta: 1\nZeta: 1\naliases:\n  - x\n---\n\n# Café\n\n___\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n-  spaced\n\n1. numbered we are\ntext with trailing backslash\\",
+   "expected_fixed": "---\n# comment\naliases:\n  - x\nZeta: 1\nZeta: 1\naliases:\n  - x\n---\n\n# Café\n\n___\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n-  spaced\n\n1. numbered we are\ntext with trailing backslash\\"
+  },
+  {
+   "name": "input 41 variant 1",
+   "input": "---\ncategory: notes\nstatus: DRAFT\ndup: 1\ndup: 2\ndate-created: 2024-01-02\nmulti: [a, \"b\"]\n---\nSetext two\n---\ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "---\ncategory: notes\nstatus: DRAFT\ndup: 1\ndup: 2\ndate-created: 2024-01-02\nmulti: [a, \"b\"]\n---\n\n# Weird Name\n\nSetext two\n---\ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n\n",
+   "expected_fixed": "---\ncategory: notes\nstatus: DRAFT\ndup: 1\ndup: 2\ndate-created: 2024-01-02\nmulti: [a, \"b\"]\n---\n\n# Weird Name\n\nSetext two\n---\ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n\n"
+  },
+  {
+   "name": "input 41 variant 4",
+   "input": "---\ncategory: notes\nstatus: DRAFT\ndup: 1\ndup: 2\ndate-created: 2024-01-02\nmulti: [a, \"b\"]\n---\nSetext two\n---\ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "---\ncategory: notes\nstatus: DRAFT\ndup: 1\ndup: 2\ndate-created: 2024-01-02\nmulti: [a, \"b\"]\n---\n\n# no-ext\n\nSetext two\n---\ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n\n",
+   "expected_fixed": "---\ncategory: notes\nstatus: DRAFT\ndup: 1\ndup: 2\ndate-created: 2024-01-02\nmulti: [a, \"b\"]\n---\n\n# no-ext\n\nSetext two\n---\ntoken abcdef0123abcdef0123abcdef0123abcdef0123\n\n"
+  },
+  {
+   "name": "input 42 variant 0",
+   "input": "---\nn: 3\naliases:\n  - x\nnested:\n  a: 1\n  b: 2\nempty:\ntags:\n  - zeta\n  - Alpha\n  - beta\ntags: [one]\nit is, but they are not\n> more quote\ncafé foo9\nlet us go\n\n<div>\n\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n- apples.",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "---\nn: 3\naliases:\n  - x\nnested:\n  a: 1\n  b: 2\nempty:\ntags:\n  - zeta\n  - Alpha\n  - beta\ntags: [one]\nit is, but they are not\n> more quote\ncafé foo9\nlet us go\n\n<div>\n\n---\n\n# my-note\n\ntitle: \"**keep** it is\"\ntags: [a]\n---\n- apples.",
+   "expected_fixed": "---\nn: 3\naliases:\n  - x\nnested:\n  a: 1\n  b: 2\nempty:\ntags:\n  - zeta\n  - Alpha\n  - beta\ntags: [one]\nit is, but they are not\n> more quote\ncafé foo9\nlet us go\n\n<div>\n\n---\n\n# my-note\n\ntitle: \"**keep** it is\"\ntags: [a]\n---\n- apples."
+  },
+  {
+   "name": "input 42 variant 3",
+   "input": "---\nn: 3\naliases:\n  - x\nnested:\n  a: 1\n  b: 2\nempty:\ntags:\n  - zeta\n  - Alpha\n  - beta\ntags: [one]\nit is, but they are not\n> more quote\ncafé foo9\nlet us go\n\n<div>\n\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n- apples.",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "---\nn: 3\naliases:\n  - x\nnested:\n  a: 1\n  b: 2\nempty:\ntags:\n  - zeta\n  - Alpha\n  - beta\ntags: [one]\nit is, but they are not\n> more quote\ncafé foo9\nlet us go\n\n<div>\n\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n- apples.",
+   "expected_fixed": "---\nn: 3\naliases:\n  - x\nnested:\n  a: 1\n  b: 2\nempty:\ntags:\n  - zeta\n  - Alpha\n  - beta\ntags: [one]\nit is, but they are not\n> more quote\ncafé foo9\nlet us go\n\n<div>\n\n---\ntitle: \"**keep** it is\"\ntags: [a]\n---\n- apples."
+  },
+  {
+   "name": "input 43 variant 2",
+   "input": "---\ndup: 1\ndup: 2\nmulti: [a, \"b\"]\nrelo-folder: \"\"\n---\nwhere is it\n- one\n- [x] done\n```\nunclosed fence it is\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "---\ndup: 1\ndup: 2\nmulti: [a, \"b\"]\nrelo-folder: \"\"\n---\n\n# c\n\nwhere is it\n- one\n- [x] done\n```\nunclosed fence it is\n",
+   "expected_fixed": "---\ndup: 1\ndup: 2\nmulti: [a, \"b\"]\nrelo-folder: \"\"\n---\n\n# c\n\nwhere is it\n- one\n- [x] done\n```\nunclosed fence it is\n"
+  },
+  {
+   "name": "input 43 variant 5",
+   "input": "---\ndup: 1\ndup: 2\nmulti: [a, \"b\"]\nrelo-folder: \"\"\n---\nwhere is it\n- one\n- [x] done\n```\nunclosed fence it is\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "---\ndup: 1\ndup: 2\nmulti: [a, \"b\"]\nrelo-folder: \"\"\n---\n\n# Café\n\nwhere is it\n- one\n- [x] done\n```\nunclosed fence it is\n",
+   "expected_fixed": "---\ndup: 1\ndup: 2\nmulti: [a, \"b\"]\nrelo-folder: \"\"\n---\n\n# Café\n\nwhere is it\n- one\n- [x] done\n```\nunclosed fence it is\n"
+  },
+  {
+   "name": "input 44 variant 1",
+   "input": "---\nrelo-folder: \"\"\ndate-created: 2024-01-02\ntags: [one]\n    indented code it is not **x**\n$$\n***\n    indented code it is not **x**\nSetext two\n---\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "---\nrelo-folder: \"\"\ndate-created: 2024-01-02\ntags: [one]\n    indented code it is not **x**\n$$\n***\n    indented code it is not **x**\nSetext two\n---\n\n# Weird Name\n",
+   "expected_fixed": "---\nrelo-folder: \"\"\ndate-created: 2024-01-02\ntags: [one]\n    indented code it is not **x**\n$$\n***\n    indented code it is not **x**\nSetext two\n---\n\n# Weird Name\n"
+  },
+  {
+   "name": "input 44 variant 4",
+   "input": "---\nrelo-folder: \"\"\ndate-created: 2024-01-02\ntags: [one]\n    indented code it is not **x**\n$$\n***\n    indented code it is not **x**\nSetext two\n---\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "---\nrelo-folder: \"\"\ndate-created: 2024-01-02\ntags: [one]\n    indented code it is not **x**\n$$\n***\n    indented code it is not **x**\nSetext two\n---\n\n# no-ext\n",
+   "expected_fixed": "---\nrelo-folder: \"\"\ndate-created: 2024-01-02\ntags: [one]\n    indented code it is not **x**\n$$\n***\n    indented code it is not **x**\nSetext two\n---\n\n# no-ext\n"
+  },
+  {
+   "name": "input 45 variant 0",
+   "input": "---\ndomain: development\nflag: true\nalpha: 2\n---\nwe are here\nIntro line  \n```bash\n___\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "---\ndomain: development\nflag: true\nalpha: 2\n---\n\n# my-note\n\nwe are here\nIntro line  \n```bash\n___\n",
+   "expected_fixed": "---\ndomain: development\nflag: true\nalpha: 2\n---\n\n# my-note\n\nwe are here\nIntro line  \n```bash\n___\n"
+  },
+  {
+   "name": "input 45 variant 3",
+   "input": "---\ndomain: development\nflag: true\nalpha: 2\n---\nwe are here\nIntro line  \n```bash\n___\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "---\ndomain: development\nflag: true\nalpha: 2\n---\nwe are here\nIntro line  \n```bash\n___\n",
+   "expected_fixed": "---\ndomain: development\nflag: true\nalpha: 2\n---\nwe are here\nIntro line  \n```bash\n___\n"
+  },
+  {
+   "name": "input 46 variant 2",
+   "input": "---\n'single': v\nbad: [unclosed\n---\necho hi   \n— leading\n- \n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "---\n'single': v\nbad: [unclosed\n---\n\n# c\n\necho hi   \n— leading\n- \n",
+   "expected_fixed": "---\n'single': v\nbad: [unclosed\n---\n\n# c\n\necho hi   \n— leading\n- \n"
+  },
+  {
+   "name": "input 46 variant 5",
+   "input": "---\n'single': v\nbad: [unclosed\n---\necho hi   \n— leading\n- \n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "---\n'single': v\nbad: [unclosed\n---\n\n# Café\n\necho hi   \n— leading\n- \n",
+   "expected_fixed": "---\n'single': v\nbad: [unclosed\n---\n\n# Café\n\necho hi   \n— leading\n- \n"
+  },
+  {
+   "name": "input 47 variant 1",
+   "input": "text with trailing backslash\\\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\ntext with trailing backslash\\\n",
+   "expected_fixed": "# Weird Name\n\ntext with trailing backslash\\\n"
+  },
+  {
+   "name": "input 47 variant 4",
+   "input": "text with trailing backslash\\\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\ntext with trailing backslash\\\n",
+   "expected_fixed": "# no-ext\n\ntext with trailing backslash\\\n"
+  },
+  {
+   "name": "input 48 variant 0",
+   "input": "---\ndup: 1\ndup: 2\ntype: base\n---\n```\nunclosed fence it is\ndo not go\n- [x] done\nx\t\n___\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "---\ndup: 1\ndup: 2\ntype: base\n---\n\n# my-note\n\n```\nunclosed fence it is\ndo not go\n- [x] done\nx\t\n___\n",
+   "expected_fixed": "---\ndup: 1\ndup: 2\ntype: base\n---\n\n# my-note\n\n```\nunclosed fence it is\ndo not go\n- [x] done\nx\t\n___\n"
+  },
+  {
+   "name": "input 48 variant 3",
+   "input": "---\ndup: 1\ndup: 2\ntype: base\n---\n```\nunclosed fence it is\ndo not go\n- [x] done\nx\t\n___\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "---\ndup: 1\ndup: 2\ntype: base\n---\n```\nunclosed fence it is\ndo not go\n- [x] done\nx\t\n___\n",
+   "expected_fixed": "---\ndup: 1\ndup: 2\ntype: base\n---\n```\nunclosed fence it is\ndo not go\n- [x] done\nx\t\n___\n"
+  },
+  {
+   "name": "input 49 variant 2",
+   "input": "---\nrelo-folder: \"\"\n---\n- item, with comma;\ntrailing —\n***\n\n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "---\nrelo-folder: \"\"\n---\n\n# c\n\n- item, with comma;\ntrailing —\n***\n\n",
+   "expected_fixed": "---\nrelo-folder: \"\"\n---\n\n# c\n\n- item, with comma;\ntrailing —\n***\n\n"
+  },
+  {
+   "name": "input 49 variant 5",
+   "input": "---\nrelo-folder: \"\"\n---\n- item, with comma;\ntrailing —\n***\n\n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "---\nrelo-folder: \"\"\n---\n\n# Café\n\n- item, with comma;\ntrailing —\n***\n\n",
+   "expected_fixed": "---\nrelo-folder: \"\"\n---\n\n# Café\n\n- item, with comma;\ntrailing —\n***\n\n"
+  },
+  {
+   "name": "input 50 variant 1",
+   "input": "---\r\ntags: [one]\r\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\r\n\"quoted key\": v\r\ntype: base\r\n---\r\nsed -i s/a/b/ f\r\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "---\r\ntags: [one]\r\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\r\n\"quoted key\": v\r\ntype: base\r\n---\r\n\n# Weird Name\n\nsed -i s/a/b/ f\r\n",
+   "expected_fixed": "---\r\ntags: [one]\r\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\r\n\"quoted key\": v\r\ntype: base\r\n---\r\n\n# Weird Name\n\nsed -i s/a/b/ f\r\n"
+  },
+  {
+   "name": "input 50 variant 4",
+   "input": "---\r\ntags: [one]\r\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\r\n\"quoted key\": v\r\ntype: base\r\n---\r\nsed -i s/a/b/ f\r\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "---\r\ntags: [one]\r\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\r\n\"quoted key\": v\r\ntype: base\r\n---\r\n\n# no-ext\n\nsed -i s/a/b/ f\r\n",
+   "expected_fixed": "---\r\ntags: [one]\r\nlinks:\n  - \"[[a]]\"\n  - \"[[B]]\"\r\n\"quoted key\": v\r\ntype: base\r\n---\r\n\n# no-ext\n\nsed -i s/a/b/ f\r\n"
+  },
+  {
+   "name": "input 51 variant 0",
+   "input": "---\n\"quoted key\": v\nstatus: DRAFT\n---\nwrapped line one\n- \n- list **item** it is\nplain prose  \nx\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "---\n\"quoted key\": v\nstatus: DRAFT\n---\n\n# my-note\n\nwrapped line one\n- \n- list **item** it is\nplain prose  \nx\n",
+   "expected_fixed": "---\n\"quoted key\": v\nstatus: DRAFT\n---\n\n# my-note\n\nwrapped line one\n- \n- list **item** it is\nplain prose  \nx\n"
+  },
+  {
+   "name": "input 51 variant 3",
+   "input": "---\n\"quoted key\": v\nstatus: DRAFT\n---\nwrapped line one\n- \n- list **item** it is\nplain prose  \nx\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "---\n\"quoted key\": v\nstatus: DRAFT\n---\nwrapped line one\n- \n- list **item** it is\nplain prose  \nx\n",
+   "expected_fixed": "---\n\"quoted key\": v\nstatus: DRAFT\n---\nwrapped line one\n- \n- list **item** it is\nplain prose  \nx\n"
+  },
+  {
+   "name": "input 52 variant 2",
+   "input": "Intro line  \n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\nIntro line  \n",
+   "expected_fixed": "# c\n\nIntro line  \n"
+  },
+  {
+   "name": "input 52 variant 5",
+   "input": "Intro line  \n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\nIntro line  \n",
+   "expected_fixed": "# Café\n\nIntro line  \n"
+  },
+  {
+   "name": "input 53 variant 1",
+   "input": "Ünïcode it is\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\nÜnïcode it is\n",
+   "expected_fixed": "# Weird Name\n\nÜnïcode it is\n"
+  },
+  {
+   "name": "input 53 variant 4",
+   "input": "Ünïcode it is\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\nÜnïcode it is\n",
+   "expected_fixed": "# no-ext\n\nÜnïcode it is\n"
+  },
+  {
+   "name": "input 54 variant 0",
+   "input": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\naliases:\n  - x\naliases: [second, first]\nstatus: DRAFT\ndomain: development\n---\n- one\n\n![[embed]]\n  - nested\n- one\n![[embed]]\necho hi   \n__under__ score\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\naliases:\n  - x\naliases: [second, first]\nstatus: DRAFT\ndomain: development\n---\n\n# my-note\n\n- one\n\n![[embed]]\n  - nested\n- one\n![[embed]]\necho hi   \n__under__ score\n",
+   "expected_fixed": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\naliases:\n  - x\naliases: [second, first]\nstatus: DRAFT\ndomain: development\n---\n\n# my-note\n\n- one\n\n![[embed]]\n  - nested\n- one\n![[embed]]\necho hi   \n__under__ score\n"
+  },
+  {
+   "name": "input 54 variant 3",
+   "input": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\naliases:\n  - x\naliases: [second, first]\nstatus: DRAFT\ndomain: development\n---\n- one\n\n![[embed]]\n  - nested\n- one\n![[embed]]\necho hi   \n__under__ score\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\naliases:\n  - x\naliases: [second, first]\nstatus: DRAFT\ndomain: development\n---\n- one\n\n![[embed]]\n  - nested\n- one\n![[embed]]\necho hi   \n__under__ score\n",
+   "expected_fixed": "---\ntags:\n  - zeta\n  - Alpha\n  - beta\naliases:\n  - x\naliases: [second, first]\nstatus: DRAFT\ndomain: development\n---\n- one\n\n![[embed]]\n  - nested\n- one\n![[embed]]\necho hi   \n__under__ score\n"
+  },
+  {
+   "name": "input 55 variant 2",
+   "input": "---\ntitle: \"Quoted: Title\"\nrelo-file: false\nrelo-file: false\nalpha: 2\ntags:\n  - zeta\n  - Alpha\n  - beta\nrelo-folder: \"\"\n- \nIntro line  \n2) second\n\n10–12\n1. first\n````\n#    \n",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\n---\ntitle: \"Quoted: Title\"\nrelo-file: false\nrelo-file: false\nalpha: 2\ntags:\n  - zeta\n  - Alpha\n  - beta\nrelo-folder: \"\"\n- \nIntro line  \n2) second\n\n10–12\n1. first\n````\n#    \n",
+   "expected_fixed": "# c\n\n---\ntitle: \"Quoted: Title\"\nrelo-file: false\nrelo-file: false\nalpha: 2\ntags:\n  - zeta\n  - Alpha\n  - beta\nrelo-folder: \"\"\n- \nIntro line  \n2) second\n\n10–12\n1. first\n````\n#    \n"
+  },
+  {
+   "name": "input 55 variant 5",
+   "input": "---\ntitle: \"Quoted: Title\"\nrelo-file: false\nrelo-file: false\nalpha: 2\ntags:\n  - zeta\n  - Alpha\n  - beta\nrelo-folder: \"\"\n- \nIntro line  \n2) second\n\n10–12\n1. first\n````\n#    \n",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\n---\ntitle: \"Quoted: Title\"\nrelo-file: false\nrelo-file: false\nalpha: 2\ntags:\n  - zeta\n  - Alpha\n  - beta\nrelo-folder: \"\"\n- \nIntro line  \n2) second\n\n10–12\n1. first\n````\n#    \n",
+   "expected_fixed": "# Café\n\n---\ntitle: \"Quoted: Title\"\nrelo-file: false\nrelo-file: false\nalpha: 2\ntags:\n  - zeta\n  - Alpha\n  - beta\nrelo-folder: \"\"\n- \nIntro line  \n2) second\n\n10–12\n1. first\n````\n#    \n"
+  },
+  {
+   "name": "input 56 variant 1",
+   "input": "---\n---\n\n```\ncode it is not **x** —\n# Not A Heading\n```\n![[embed]]\n  - nested\n\n- apples.\n[ref]: http://x.y\n1. first",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "---\n---\n\n# Weird Name\n\n```\ncode it is not **x** —\n# Not A Heading\n```\n![[embed]]\n  - nested\n\n- apples.\n[ref]: http://x.y\n1. first",
+   "expected_fixed": "---\n---\n\n# Weird Name\n\n```\ncode it is not **x** —\n# Not A Heading\n```\n![[embed]]\n  - nested\n\n- apples.\n[ref]: http://x.y\n1. first"
+  },
+  {
+   "name": "input 56 variant 4",
+   "input": "---\n---\n\n```\ncode it is not **x** —\n# Not A Heading\n```\n![[embed]]\n  - nested\n\n- apples.\n[ref]: http://x.y\n1. first",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "---\n---\n\n# no-ext\n\n```\ncode it is not **x** —\n# Not A Heading\n```\n![[embed]]\n  - nested\n\n- apples.\n[ref]: http://x.y\n1. first",
+   "expected_fixed": "---\n---\n\n# no-ext\n\n```\ncode it is not **x** —\n# Not A Heading\n```\n![[embed]]\n  - nested\n\n- apples.\n[ref]: http://x.y\n1. first"
+  },
+  {
+   "name": "input 57 variant 0",
+   "input": "#\ttab heading\n* two\nit  is\nx\t\n- \na—b\n",
+   "options": {
+    "file-path": "notes/my-note.md"
+   },
+   "expected": "# my-note\n* two\nit  is\nx\t\n- \na—b\n",
+   "expected_fixed": "# my-note\n* two\nit  is\nx\t\n- \na—b\n"
+  },
+  {
+   "name": "input 57 variant 3",
+   "input": "#\ttab heading\n* two\nit  is\nx\t\n- \na—b\n",
+   "options": {
+    "file-path": ""
+   },
+   "expected": "#\ttab heading\n* two\nit  is\nx\t\n- \na—b\n",
+   "expected_fixed": "#\ttab heading\n* two\nit  is\nx\t\n- \na—b\n"
+  },
+  {
+   "name": "input 58 variant 2",
+   "input": "```\n\n- pears",
+   "options": {
+    "file-path": "a\\b\\c.md"
+   },
+   "expected": "# c\n\n```\n\n- pears",
+   "expected_fixed": "# c\n\n```\n\n- pears"
+  },
+  {
+   "name": "input 58 variant 5",
+   "input": "```\n\n- pears",
+   "options": {
+    "file-path": "x/Café.md"
+   },
+   "expected": "# Café\n\n```\n\n- pears",
+   "expected_fixed": "# Café\n\n```\n\n- pears"
+  },
+  {
+   "name": "input 59 variant 1",
+   "input": "where is it\nSetext two\n---\nx\t\nplain sentence.\n-\n",
+   "options": {
+    "file-path": "Weird Name.MD"
+   },
+   "expected": "# Weird Name\n\nwhere is it\nSetext two\n---\nx\t\nplain sentence.\n-\n",
+   "expected_fixed": "# Weird Name\n\nwhere is it\nSetext two\n---\nx\t\nplain sentence.\n-\n"
+  },
+  {
+   "name": "input 59 variant 4",
+   "input": "where is it\nSetext two\n---\nx\t\nplain sentence.\n-\n",
+   "options": {
+    "file-path": "no-ext"
+   },
+   "expected": "# no-ext\n\nwhere is it\nSetext two\n---\nx\t\nplain sentence.\n-\n",
+   "expected_fixed": "# no-ext\n\nwhere is it\nSetext two\n---\nx\t\nplain sentence.\n-\n"
+  }
+ ]
+}

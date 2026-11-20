@@ -1,0 +1,61 @@
+{
+  "id": "header-increment",
+  "examples": [
+    {
+      "n": 1,
+      "input": "# H1\n### H3\n### H3\n#### H4\n###### H6\n\nWe skipped a 2nd level heading\n",
+      "options": {},
+      "expected": "# H1\n## H3\n## H3\n### H4\n#### H6\n\nWe skipped a 2nd level heading\n"
+    },
+    {
+      "n": 2,
+      "input": "# A\n## B\n### C\n## D\n# E\n",
+      "options": {},
+      "expected": "# A\n## B\n### C\n## D\n# E\n"
+    },
+    {
+      "n": 3,
+      "input": "# A\n### B\n#### C\n# D\n### E\n",
+      "options": {},
+      "expected": "# A\n## B\n### C\n# D\n## E\n"
+    },
+    {
+      "n": 4,
+      "input": "# H1 becomes H2\n#### H4 becomes H3\n###### H6\n",
+      "options": {
+        "start-at-level-2": true
+      },
+      "expected": "## H1 becomes H2\n### H4 becomes H3\n#### H6\n"
+    },
+    {
+      "n": 5,
+      "input": "---\ntitle: x\n# not a heading\n---\n# A\n```\n#### code\n```\n### B\n",
+      "options": {},
+      "expected": "---\ntitle: x\n# not a heading\n---\n# A\n```\n#### code\n```\n## B\n"
+    },
+    {
+      "n": 6,
+      "input": "# A\r\n### B\r\n",
+      "options": {},
+      "expected": "# A\r\n## B\r\n"
+    },
+    {
+      "n": 7,
+      "input": "> [!note]\n> ### inside callout\n# A\n### B\n",
+      "options": {},
+      "expected": "> [!note]\n> ### inside callout\n# A\n## B\n"
+    },
+    {
+      "n": 8,
+      "input": "",
+      "options": {},
+      "expected": ""
+    },
+    {
+      "n": 9,
+      "input": "# H1\n### H3\n###### H6\n##### H5\n## H2\n###### H6\n",
+      "options": {},
+      "expected": null
+    }
+  ]
+}

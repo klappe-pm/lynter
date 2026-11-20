@@ -1,0 +1,59 @@
+{
+  "id": "no-bare-urls",
+  "examples": [
+    {
+      "n": 1,
+      "input": "https://github.com\nbraces around url should stay the same: [https://github.com]\nbackticks: `https://github.com`\nMid-sentence like https://google.com will be.\n'https://github.com'\n\"https://github.com\"\n<https://github.com>\n[](https://github.com)\nhttps://gitlab.com\n",
+      "options": {},
+      "expected": "<https://github.com>\nbraces around url should stay the same: [https://github.com]\nbackticks: `https://github.com`\nMid-sentence like <https://google.com> will be.\n'https://github.com'\n\"https://github.com\"\n<https://github.com>\n[](https://github.com)\n<https://gitlab.com>\n"
+    },
+    {
+      "n": 2,
+      "input": "[https://github.com some text here]\n`https://github.com some text here`\n'https://github.com some text here'\n\"https://github.com some text here\"\n",
+      "options": {},
+      "expected": "[<https://github.com> some text here]\n`https://github.com some text here`\n'<https://github.com> some text here'\n\"<https://github.com> some text here\"\n"
+    },
+    {
+      "n": 3,
+      "input": "<<https://github.com>\n<https://google.com>>\n<<https://gitlab.com>>\n",
+      "options": {},
+      "expected": "<https://github.com>\n<https://google.com>\n<https://gitlab.com>\n"
+    },
+    {
+      "n": 4,
+      "input": "See https://example.com/a, then https://example.com/b.\n",
+      "options": {},
+      "expected": "See <https://example.com/a>, then <https://example.com/b>.\n"
+    },
+    {
+      "n": 5,
+      "input": "[site](https://example.com) and [https://example.com](https://example.com)\n",
+      "options": {},
+      "expected": "[site](https://example.com) and [https://example.com](https://example.com)\n"
+    },
+    {
+      "n": 6,
+      "input": "---\nurl: https://example.com\n---\n```\nhttps://example.com\n```\n",
+      "options": {},
+      "expected": "---\nurl: https://example.com\n---\n```\nhttps://example.com\n```\n"
+    },
+    {
+      "n": 7,
+      "input": "> [!note]\n> see https://example.com now\n",
+      "options": {},
+      "expected": "> [!note]\n> see <https://example.com> now\n"
+    },
+    {
+      "n": 8,
+      "input": "go https://a.io\r\n",
+      "options": {},
+      "expected": "go <https://a.io>\r\n"
+    },
+    {
+      "n": 9,
+      "input": "",
+      "options": {},
+      "expected": ""
+    }
+  ]
+}

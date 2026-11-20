@@ -1,0 +1,31 @@
+# Dependencies and build output
+node_modules/
+target/
+plugin/main.js
+plugin/metafile.json
+packages/site/.next/
+packages/site/out/
+packages/site/next-env.d.ts
+*.tsbuildinfo
+*.map
+
+# Local and private trees (never published)
+/.docs/
+/.private.git/
+/local/
+.claude/settings.local.json
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Environment
+.env
+.env.*
+
+# Agent instruction files (kept privately)
+/AGENTS.md
+/CLAUDE.md
+/CODEX.md
