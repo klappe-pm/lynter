@@ -6,6 +6,8 @@ plugin/metafile.json
 packages/site/.next/
 packages/site/out/
 packages/site/next-env.d.ts
+packaging/npm/bin/lynter
+packaging/npm/bin/lynter.exe
 *.tsbuildinfo
 *.map
 
@@ -24,6 +26,12 @@ packages/site/next-env.d.ts
 # Environment
 .env
 .env.*
+
+# Design tool working files (kept privately)
+/PRODUCT.md
+/DESIGN.md
+/ds.config.json
+/design/
 
 # Agent instruction files (kept privately)
 /AGENTS.md

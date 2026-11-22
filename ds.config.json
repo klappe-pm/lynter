@@ -1,7 +1,0 @@
-{
-  "designFile": "DESIGN.md",
-  "cmsDir": "docs/content-management-system",
-  "out": "design",
-  "src": ["src/ui", "src/styles.css"],
-  "hostVariables": ["--background-", "--text-", "--interactive-", "--font-", "--size-", "--radius-", "--border-", "--line-height-", "--hr-"]
-}

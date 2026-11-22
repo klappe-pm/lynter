@@ -11,7 +11,7 @@ inputs:
     description: Check only files changed against the base ref (true or false).
     default: 'false'
   version:
-    description: Release tag to install, such as v0.1.0, or latest.
+    description: Release tag to install, such as 0.1.0, or latest.
     default: latest
   repository:
     description: Repository that hosts the release assets.

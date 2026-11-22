@@ -2,7 +2,13 @@ import Head from 'next/head';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import type {ReactNode} from 'react';
-import {INSTALL_URL, LAB_URL, site} from '@/content';
+import {INSTALL_URL, LAB_URL, SITE_URL, site} from '@/content';
+
+/** Absolute URL of a route, without query or fragment and with the trailing slash the export uses. */
+export function canonicalUrl(asPath: string): string {
+  const path = asPath.split(/[?#]/)[0];
+  return SITE_URL + (path.endsWith('/') ? path : `${path}/`);
+}
 
 /** Merge Y icon. Colors come from CSS variables so it follows the theme. */
 export function Icon() {
@@ -25,21 +31,32 @@ export function Wordmark() {
 }
 
 export function Layout({title, description, children}: {title?: string; description?: string; children: ReactNode}) {
-  const {asPath} = useRouter();
+  const {asPath, pathname} = useRouter();
   const fullTitle = title ? `${title}: ${site.name}` : site.title;
   const desc = description || site.description;
+  // The 404 page is served for every unknown path, so it has no URL of its own.
+  const url = pathname === '/404' ? null : canonicalUrl(asPath);
+  const card = `${SITE_URL}/brand/og-card.png`;
   return (
     <>
       <Head>
         <title>{fullTitle}</title>
         <meta name="description" content={desc} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#F4F9FD" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#13304F" media="(prefers-color-scheme: dark)" />
+        <meta key="theme-light" name="theme-color" content="#F4F9FD" media="(prefers-color-scheme: light)" />
+        <meta key="theme-dark" name="theme-color" content="#13304F" media="(prefers-color-scheme: dark)" />
+        {url ? <link rel="canonical" href={url} /> : <meta name="robots" content="noindex" />}
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={site.name} />
+        {url ? <meta property="og:url" content={url} /> : null}
         <meta property="og:title" content={fullTitle} />
         <meta property="og:description" content={desc} />
-        <meta property="og:image" content="/brand/og-card.png" />
+        <meta property="og:image" content={card} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={site.title} />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={card} />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
         <link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />

@@ -5,5 +5,8 @@ members = ["crates/*"]
 [workspace.package]
 edition = "2021"
 license = "MIT"
+authors = ["LappeLabs LLC"]
+repository = "https://github.com/klappe-pm/lynter"
+homepage = "https://lynter.dev"
 publish = false
 rust-version = "1.82"

@@ -23,7 +23,7 @@ npm ci --ignore-scripts && npx eslint . --ext .ts
 npm run build -w @lynter/site && npm test -w @lynter/site
 ```
 
-The root `manifest.json` and `versions.json` are exact copies of the files in `plugin/`. Change the plugin's files and copy them to the root.
+The root `manifest.json` and `versions.json` are exact copies of the files in `plugin/`. Change the plugin's files and copy them to the root. After a change to `Cargo.lock`, run `python3 packaging/licenses/generate.py` to refresh the bundled license texts.
 
 ## Guidelines
 
@@ -32,7 +32,7 @@ The root `manifest.json` and `versions.json` are exact copies of the files in `p
 - Documentation goes in `docs/`. Each paragraph and list item is one line, not hard-wrapped. Filenames are lowercase kebab-case, apart from the community files and `README.md`.
 - Do not use a dash as punctuation. Use a comma, colon, semicolon, period or parentheses, and write ranges as "3 to 5".
 - Everything committed here is public. Never add a session link or session provenance keys to any file, and never credit an agent, model, model provider or agent runtime as author or contributor.
-- Do not copy anything from a private repository: no client names, personal paths, notes, plans or prompts. Examples and fixtures are synthetic.
+- Do not copy anything from a private repository: no client names, personal paths, notes, plans or prompts. Examples and fixtures are synthetic, apart from the documented examples credited in `THIRD-PARTY-NOTICES.md`.
 - Never commit a secret, credential, private key, `.env` file or `settings.local.json`. `.env.example` with placeholder values is allowed.
 - Never bypass commit hooks with `--no-verify`; fix what they report.
 - Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).

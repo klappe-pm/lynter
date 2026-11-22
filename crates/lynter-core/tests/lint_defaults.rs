@@ -1,4 +1,4 @@
-//! WI-002 defaults and scaffold, and lint_file wiring that has no TypeScript twin.
+//! Defaults and scaffold, and lint_file wiring that has no TypeScript twin.
 
 use lynter_core::config::{
     default_config, default_rules, parse_config, scaffold, LoadResult, OPT_IN_RULES,

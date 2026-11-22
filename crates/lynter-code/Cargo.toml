@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "Lynter code host: tree-sitter language registry, code rules, and JSON and YAML data rules."
 edition.workspace = true
 license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
 publish.workspace = true
 rust-version.workspace = true
 

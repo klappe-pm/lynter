@@ -6,8 +6,12 @@
 
 /** Where "Install" points. Not in the community directory yet, so this opens the install steps. */
 export const INSTALL_URL = '/getting-started/#install';
+/** Public origin, used for canonical links and social card URLs, which must be absolute. */
+export const SITE_URL = 'https://lynter.dev';
 export const LAB_URL = 'https://lappelabs.dev';
 export const REPO_URL = 'https://github.com/klappe-pm/lynter';
+/** Opens a new GitHub issue from the feature request template. */
+export const FEATURE_REQUEST_URL = `${REPO_URL}/issues/new?template=feature_request.md`;
 
 /** Optional Buttondown username for the notify form; hidden when unset. */
 export const NOTIFY_USER = process.env.NEXT_PUBLIC_BUTTONDOWN_USER || '';
@@ -32,6 +36,7 @@ export const site = {
     {href: '/samples/', label: 'Samples'},
     {href: '/faq/', label: 'FAQ'},
     {href: '/roadmap/', label: 'Roadmap'},
+    {href: FEATURE_REQUEST_URL, label: 'Request a feature'},
     {href: '/switch/', label: 'Switch from Linter'},
   ],
   footer: {
@@ -192,5 +197,5 @@ export const mdPages = {
   faq: {slug: 'faq', title: 'FAQ', lede: 'Short answers about scope, status, and what Lynter does not do.'},
   languages: {slug: 'languages', title: 'Languages', lede: 'The first release covers the languages below. Everything else is Coming soon.'},
   obsidian: {slug: 'obsidian', title: 'Obsidian', lede: 'Tasks, tags, frontmatter, file and folder names, and scopes.'},
-  roadmap: {slug: 'roadmap', title: 'Roadmap', lede: 'What is being built now, what comes next, and what is Coming soon.'},
+  roadmap: {slug: 'roadmap', title: 'Roadmap', lede: 'What is being built now, what comes next, and what comes later.'},
 };
