@@ -10,7 +10,7 @@ lede: The browser and embedding contract of the lynter-wasm crate, with every ex
 | Export | Arguments | Returns |
 | --- | --- | --- |
 | `lint` | `config_yaml`, `note`, `path`, `today` | JSON text, a success or failure object. |
-| `validate_config` | `yaml` | JSON text with `ok` and `errors`. |
+| `validate_config` | `yaml` | JSON text with `ok`, `errors` and `warnings`. |
 | `profile_chain` | `config_yaml`, `path` | JSON array of profile names. |
 | `convert_data_json` | `json` | `lynter.yaml` text, or `undefined`. |
 | `scaffold` | none | The starter `lynter.yaml` text. |
@@ -55,10 +55,10 @@ Sources: `crates/lynter-wasm/src/lib.rs`, `crates/lynter-core/src/lint/mod.rs`
 `validate_config` parses and validates a config without linting anything.
 
 ```json
-{"ok":false,"errors":[{"message":"must be 1","line":null,"path":"version"}]}
+{"ok":false,"errors":[{"message":"must be 1","line":1,"path":"version"}],"warnings":[]}
 ```
 
-`ok` is true exactly when `errors` is empty. `line` is the 1-based YAML line when the parser's message names one, as it does for syntax errors, and `null` otherwise. `path` is the config key path, and is an empty string when the error is not tied to a key. Validity here means the core's rules in [configuration](/docs/configuration/). Adapter blocks are not part of it.
+`ok` is true exactly when `errors` is empty. `warnings` has the same shape and lists what loads but is ignored: unknown keys, and rule ids that no rule answers to, with the closest known id suggested when one is near. `line` is the 1-based YAML line when the parser's message names one or the key can be found in the text, and `null` otherwise. `path` is the config key path, and is an empty string when the error is not tied to a key. Validity here means the core's rules in [configuration](/docs/configuration/). Adapter blocks are not part of it.
 
 Sources: `crates/lynter-wasm/src/lib.rs`, `crates/lynter-core/src/config/validate.rs`
 

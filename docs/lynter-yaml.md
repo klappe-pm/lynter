@@ -16,7 +16,7 @@ For each target file the CLI looks for a config in the file's directory, then wa
 
 ## Loading is fail closed
 
-A structural error anywhere in the file rejects the whole config with every error listed, each with its key path. Lynter never runs with a partial config. An unknown key is not an error: it is ignored with a warning naming the key. Errors and warnings come from validating the parsed YAML, so a YAML syntax error is reported as `yaml parse error`. An empty file is not a mapping and is rejected.
+A structural error anywhere in the file rejects the whole config with every error listed, each with its key path. Lynter never runs with a partial config. An unknown key is not an error: it is ignored with a warning naming the key. A rule id that no rule answers to is reported the same way, with the closest known id suggested. Errors and warnings come from validating the parsed YAML, so a YAML syntax error is reported as `yaml parse error`. An empty file is not a mapping and is rejected.
 
 ## Top-level keys
 

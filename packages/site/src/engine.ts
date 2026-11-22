@@ -28,6 +28,8 @@ export interface ConfigProblem {
   line: number | null;
   /** Config key path such as `profiles.work.rules`, empty when not applicable. */
   path: string;
+  /** An error stops the config from loading; a warning loads but is ignored. */
+  severity: 'error' | 'warning';
 }
 
 interface WasmApi {
@@ -105,11 +107,16 @@ export function lint(configText: string, note: string, path: string, today: stri
 /**
  * Lint a lynter.yaml text itself: syntax, unknown keys, and bad values.
  * @param {string} configText lynter.yaml contents
- * @return {ConfigProblem[]} every problem the loader reports, empty when the file is valid
+ * @return {ConfigProblem[]} errors first, then warnings; empty when the file is clean
  */
 export function validateConfig(configText: string): ConfigProblem[] {
   if (!api) return [];
-  return (JSON.parse(api.validate_config(configText)) as {errors: ConfigProblem[]}).errors;
+  type Raw = Omit<ConfigProblem, 'severity'>;
+  const out = JSON.parse(api.validate_config(configText)) as {errors: Raw[]; warnings?: Raw[]};
+  return [
+    ...out.errors.map((p) => ({...p, severity: 'error' as const})),
+    ...(out.warnings ?? []).map((p) => ({...p, severity: 'warning' as const})),
+  ];
 }
 
 /**

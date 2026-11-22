@@ -43,6 +43,14 @@ impl Cache {
                 for w in warnings.iter().filter(|w| !w.contains(".adapters\"")) {
                     eprintln!("lynter: {}: warning: {w}", path.display());
                 }
+                for unknown in lynter_core::config::unknown_rules(&config) {
+                    eprintln!(
+                        "lynter: {}: warning: {}: {}",
+                        path.display(),
+                        unknown.path,
+                        unknown.message()
+                    );
+                }
                 let adapter_errors = lynter_code::adapters::validate_config(&config.raw);
                 if !adapter_errors.is_empty() {
                     let errs: Vec<String> = adapter_errors

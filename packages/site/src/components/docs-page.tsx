@@ -1,15 +1,19 @@
 import Link from 'next/link';
+import {useEffect, useState} from 'react';
 import {Layout} from '@/components/layout';
 import {docsCopy, REPO_URL} from '@/content';
 import type {DocPage} from '@/docs';
 
 /** One wiki page: section sidebar, the article, and a contents list for the page. */
 export function DocsPage({doc}: {doc: DocPage}) {
+  // Open for the desktop sidebar; on a narrow screen it starts as a closed menu above the article.
+  const [navOpen, setNavOpen] = useState(true);
+  useEffect(() => setNavOpen(!window.matchMedia('(max-width: 960px)').matches), [doc.slug]);
   return (
     <Layout title={doc.title} description={doc.lede}>
       <div className="wrap docs">
         <nav className="docs-nav" aria-label={docsCopy.navLabel}>
-          <details open>
+          <details open={navOpen} onToggle={(e) => setNavOpen(e.currentTarget.open)}>
             <summary>{docsCopy.navLabel}</summary>
             {doc.nav.map((group) => (
               <div key={group.title} className="docs-group">

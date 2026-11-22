@@ -80,7 +80,18 @@ profiles:
       ruff: {enabled: true, select: [E, F]}
 ```
 
-The full reference is [docs/lynter-yaml.md](docs/lynter-yaml.md). Guides, examples and a playground are at [lynter.dev](https://lynter.dev).
+The full key reference is [docs/lynter-yaml.md](docs/lynter-yaml.md). `lynter check` warns about unknown keys and misspelled rule ids in the config itself.
+
+## Documentation
+
+The docs at [lynter.dev/docs](https://lynter.dev/docs/) explain each part from the source:
+
+- [Architecture](https://lynter.dev/docs/architecture/): the crates and how a document moves through them.
+- [Scopes and profiles](https://lynter.dev/docs/scopes-and-profiles/) and [note types](https://lynter.dev/docs/note-types/).
+- [Rules](https://lynter.dev/docs/rules-overview/): every rule with its options and a before and after example.
+- [Code and data linting](https://lynter.dev/docs/code-linting/), the [command line](https://lynter.dev/docs/cli/), and the [Obsidian plugin](https://lynter.dev/docs/obsidian-plugin/).
+
+The [playground](https://lynter.dev/playground/) runs the real engine in your browser.
 
 ## Roadmap
 
