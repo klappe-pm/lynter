@@ -23,7 +23,7 @@ The config is read again for each command and each save event, so edits to the f
 
 The plugin calls the WebAssembly `lint(config, note, path, today)` export. The path is vault-relative, so profile `path` globs work as they do in the CLI. The date is the local date, formatted `yyyy-MM-dd`. A config error comes back as a list of messages, and the note is left untouched. The plugin shows the first one as a notice.
 
-The plugin does not apply the config's `ignore` key, and the `backlink` and `alias` matchers do not match here, because the plugin passes no such facts. See [scopes and profiles](/docs/scopes-and-profiles/).
+The plugin honors the config's `ignore` key: a note under an ignored folder, or listed as an ignored file, is left untouched. The `backlink` and `alias` matchers do not match here yet, because the plugin passes no such facts. See [scopes and profiles](/docs/scopes-and-profiles/).
 
 Sources: `plugin/src/config.ts`, `plugin/src/lynter.ts`, `plugin/src/engine.ts`, `crates/lynter-wasm/src/lib.rs`
 

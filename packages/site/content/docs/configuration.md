@@ -84,11 +84,11 @@ Sources: `crates/lynter-core/src/config/defaults.rs`, `crates/lynter-cli/src/cfg
 
 `config::scaffold()` returns a commented `lynter.yaml` that parses without errors or warnings. Every default carries a comment saying what it does and how to change it. The plugin command "Create lynter.yaml" and the WebAssembly `scaffold` export use it. The plugin validates the text before writing and never overwrites an existing config under any of the three names.
 
-`lynter init` writes a separate, shorter starter from the CLI crate to `lynter.yaml` in the current directory, prints `wrote lynter.yaml`, and refuses to overwrite an existing file with status 2. It enables `strip-strong`, `replace-em-dash`, `header-case` and `contractions`, adds an example `drafts` profile, and leaves `ignore` empty.
+`lynter init` writes the same text to `lynter.yaml` in the current directory, prints `wrote lynter.yaml`, and refuses to overwrite an existing file with status 2. A note fixed under the starter then passes the check.
 
 ```bash
 cd /path/to/notes && lynter init
 cd /path/to/notes && lynter explain notes/example.md
 ```
 
-Sources: `crates/lynter-core/src/config/scaffold.rs`, `crates/lynter-cli/src/init.rs`, `plugin/src/lynter.ts`, `crates/lynter-wasm/src/lib.rs`
+Sources: `crates/lynter-core/src/config/scaffold.rs`, `crates/lynter-cli/src/main.rs`, `plugin/src/lynter.ts`, `crates/lynter-wasm/src/lib.rs`

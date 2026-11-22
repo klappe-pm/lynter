@@ -4,7 +4,6 @@ mod adapt;
 mod catalog;
 mod cfg;
 mod files;
-mod init;
 mod lint;
 
 use clap::{Parser, Subcommand};
@@ -132,7 +131,7 @@ fn init_cmd() -> ExitCode {
     if target.exists() {
         return usage("lynter.yaml already exists; refusing to overwrite it");
     }
-    match std::fs::write(target, init::STARTER) {
+    match std::fs::write(target, lynter_core::config::scaffold()) {
         Ok(()) => {
             println!("wrote lynter.yaml");
             ExitCode::SUCCESS

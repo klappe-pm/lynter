@@ -190,7 +190,18 @@ fn init_writes_a_valid_config_and_refuses_to_overwrite() {
     let d = TempDir::new().unwrap();
     lynter().current_dir(d.path()).arg("init").assert().code(0);
     assert!(d.path().join("lynter.yaml").is_file());
+    // The starter is the one every host shares, so it must load cleanly and a
+    // note it has fixed must then pass the check.
+    assert_eq!(
+        std::fs::read_to_string(d.path().join("lynter.yaml")).unwrap(),
+        lynter_core::config::scaffold()
+    );
     write(d.path(), "a.md", "# A\n\nplain\n");
+    lynter()
+        .current_dir(d.path())
+        .args(["fix", "a.md"])
+        .assert()
+        .code(0);
     lynter()
         .current_dir(d.path())
         .args(["check", "a.md"])

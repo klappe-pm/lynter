@@ -76,7 +76,7 @@ Sources: `crates/lynter-wasm/src/lib.rs`, `crates/lynter-core/src/config/migrate
 
 ## What it does not do
 
-The WebAssembly build depends only on `lynter-core`. It lints Markdown. It does not run code or data rules, adapters, the `ignore` key, file discovery or renames, because those live in the CLI and `lynter-code`. See [architecture](/docs/architecture/).
+The WebAssembly build depends only on `lynter-core`. It lints Markdown. It does not run code or data rules, adapters, file discovery or renames, because those live in the CLI and `lynter-code`. See [architecture](/docs/architecture/). It does apply the config's `ignore` key: `lint` returns an ignored path unchanged, with `"ignored": true` and no violations.
 
 Sources: `crates/lynter-wasm/Cargo.toml`, `crates/lynter-code/src/lib.rs`
 
