@@ -23,7 +23,7 @@ npm ci --ignore-scripts && npx eslint . --ext .ts
 npm run build -w @lynter/site && npm test -w @lynter/site
 ```
 
-The root `manifest.json` and `versions.json` are exact copies of the files in `plugin/`. Change the plugin's files and copy them to the root. After a change to `Cargo.lock`, run `python3 packaging/licenses/generate.py` to refresh the bundled license texts.
+The root `manifest.json` and `versions.json` are exact copies of the files in `plugin/`. Change the plugin's files and copy them to the root. After a change to `Cargo.lock`, run `python3 packaging/licenses/generate.py` to refresh the bundled license texts. After adding a rule or changing a rule's default options, run `cargo run -p lynter-cli -- rules --json > packages/site/src/rule-catalog.json`; the config builder on the site is generated from that file and a site test compares the two.
 
 ## Guidelines
 

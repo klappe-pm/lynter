@@ -2,7 +2,7 @@
 
 `lynter.yaml` is the single configuration file for Lynter. It lives in the root of a vault or project, is tracked in git, and controls which rules run, which files each rule applies to, and what shape each note type must have. The same file is read by the CLI, the Obsidian plugin, and the WASM build used on lynter.dev.
 
-Create a commented starter with `lynter init`. It refuses to overwrite an existing file.
+Create a commented starter with `lynter init`. It refuses to overwrite an existing file. To build the file from a form instead, use the config builder at <https://lynter.dev/configure/>.
 
 ## File names and discovery
 
@@ -206,6 +206,7 @@ Adapters are set in `defaults.adapters` and then overridden by `profiles.<name>.
 | `lynter fix --stdin [--stdin-path PATH]` | Filter mode: read stdin, write fixed text to stdout. |
 | `lynter explain PATH` | Show the governing config, profile chain, and rules for a file. |
 | `lynter init` | Write a commented starter `lynter.yaml` to the current directory. |
+| `lynter rules` | List every rule with its group and description. With `--json`, also each rule's default options. |
 
 Global flags: `--config PATH`, `--json` (one JSON line per file, output version 1), `--changed` (also target git-changed files that Lynter can lint), `--today yyyy-MM-dd` (the date used for age matching), and `--no-adapters`.
 
