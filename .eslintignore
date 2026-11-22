@@ -5,3 +5,4 @@ packages/site/.next/
 packages/site/out/
 packages/site/next-env.d.ts
 packages/site/public/wasm/
+packages/site/public/lynter-config-builder.html

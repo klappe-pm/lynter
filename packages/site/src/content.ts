@@ -157,7 +157,7 @@ export const playground = {
 
 export const builderCopy = {
   title: 'Configure',
-  lede: 'Build a lynter.yaml without writing YAML. Follow the guided steps or jump to any setting; the file on the right updates as you go, and you can edit it directly at any time.',
+  lede: 'Build a lynter.yaml without writing YAML: every rule, option and section has a form. Follow the guided steps or jump to any setting; the file on the right updates as you go, and you can edit it directly at any time.',
   modeLabel: 'How to work',
   guided: 'Guided',
   guidedHint: 'One step at a time, with a short explanation.',
@@ -189,7 +189,8 @@ export const builderCopy = {
     remove: 'Remove from file',
     cliOnly: 'Command line only',
     reset: 'Default',
-    onePerLine: 'One per line',
+    onePerLine: 'One per line.',
+    unset: 'Not set',
     yamlHint: 'YAML',
     none: 'No rule matches that filter.',
     docs: 'Read about these rules',
@@ -210,7 +211,7 @@ export const builderCopy = {
     docs: 'How scopes and matching work',
   },
   files: {
-    title: 'Files',
+    title: 'Ignored files',
     intro: 'Which files Lynter leaves alone, and how it treats file names.',
     rename: 'File name rules',
     renameModes: {off: 'Off', flag: 'Report only', rename: 'Rename (reports only for now)'} as Record<string, string>,
@@ -223,10 +224,11 @@ export const builderCopy = {
     intro: 'Put lynter.yaml at the root of your vault or repository. The Obsidian plugin and the command line both read it from there.',
     enabled: (n: number) => (n === 1 ? '1 rule on' : `${n} rules on`),
     scopes: (n: number) => (n === 1 ? '1 scope' : `${n} scopes`),
-    advancedTitle: 'Settings you edit in the file',
-    advanced: 'Note types, templates, code checks, adapters and rule order have no form yet. Edit them in the lynter.yaml pane; it is checked as you type.',
     reference: 'lynter.yaml reference',
     next: 'Then run lynter check . in that folder, or enable the plugin.',
+    offlineTitle: 'Use it offline',
+    offline: 'The builder is also one HTML file that runs from your disk with no network. Nothing you type leaves your computer in either version.',
+    offlineLink: 'Download the offline builder',
   },
   yaml: {
     label: 'lynter.yaml',

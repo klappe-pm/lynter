@@ -36,7 +36,7 @@ const checks = [
     if (!/<title[^>]*>[^<]*Lynter[^<]*<\/title>/.test(html)) return 'no Lynter title';
     return html.includes('id="main"') ? null : 'no main landmark';
   }]),
-  ...[['/wasm/lynter_wasm_bg.wasm', 'application/wasm'], ['/wasm/lynter_wasm.mjs', 'javascript'], ['/brand/og-card.png', 'image/png'], ['/sitemap.xml', 'xml'], ['/robots.txt', 'text/plain'], ['/fonts/geist-license.txt', 'text/plain']].map(([file, type]) => [file, async () => {
+  ...[['/wasm/lynter_wasm_bg.wasm', 'application/wasm'], ['/wasm/lynter_wasm.mjs', 'javascript'], ['/brand/og-card.png', 'image/png'], ['/sitemap.xml', 'xml'], ['/robots.txt', 'text/plain'], ['/fonts/geist-license.txt', 'text/plain'], ['/lynter-config-builder.html', 'text/html']].map(([file, type]) => [file, async () => {
     const res = await fetch(origin + file, {redirect: 'manual'});
     if (res.status !== 200) return `status ${res.status}`;
     const got = res.headers.get('content-type') || '';

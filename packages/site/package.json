@@ -8,7 +8,8 @@
   "homepage": "https://lynter.dev",
   "scripts": {
     "dev": "next dev -p 4310",
-    "build": "next build",
+    "build": "node scripts/build-standalone.mjs && next build",
+    "build:standalone": "node scripts/build-standalone.mjs",
     "typecheck": "tsc --noEmit",
     "build:wasm": "bash scripts/build-wasm.sh",
     "check:contrast": "node scripts/check-contrast.mjs",
@@ -21,6 +22,7 @@
     "@types/node": "^20.17.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "esbuild": "0.28.2",
     "jest": "^29.7.0",
     "ts-jest": "^29.2.5",
     "typescript": "^5.6.3"

@@ -2,28 +2,15 @@ import Head from 'next/head';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import type {ReactNode} from 'react';
+import {Icon} from '@/components/icon';
 import {INSTALL_URL, LAB_URL, SITE_URL, site} from '@/content';
+
+export {Icon};
 
 /** Absolute URL of a route, without query or fragment and with the trailing slash the export uses. */
 export function canonicalUrl(asPath: string): string {
   const path = asPath.split(/[?#]/)[0];
   return SITE_URL + (path.endsWith('/') ? path : `${path}/`);
-}
-
-/**
- * Merge Y icon with a small watching eye in the fork: Lynter looks for what is
- * out of place. Colors come from CSS variables so it follows the theme.
- */
-export function Icon() {
-  return (
-    <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" strokeLinecap="round" strokeWidth="6">
-      <path className="arm" d="M12 8 L24 26" />
-      <path className="arm" d="M36 8 L24 26" />
-      <path className="stem" d="M24 26 V41" />
-      <path className="eye" d="M19.8 12 Q24 7.6 28.2 12 Q24 16.4 19.8 12 Z" strokeWidth="0" />
-      <ellipse className="pupil" cx="24" cy="12" rx="0.9" ry="2.6" strokeWidth="0" />
-    </svg>
-  );
 }
 
 export function Wordmark() {
