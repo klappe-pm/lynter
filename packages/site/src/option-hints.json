@@ -1,0 +1,794 @@
+{
+  "strip-strong": {
+    "keep-heading-strong": {
+      "description": "Keep strong emphasis inside headings."
+    }
+  },
+  "replace-em-dash": {
+    "replacement": {
+      "description": "Text that replaces each em dash or connector en dash."
+    },
+    "word-joining": {
+      "description": "Also replace dashes that join two words with no spaces around them."
+    }
+  },
+  "header-case": {
+    "h1": {
+      "description": "Case style for level 1 headings; leave empty to keep them as written.",
+      "choices": [
+        "camelCase",
+        "First letter",
+        "kebab-case",
+        "Title Case",
+        "underscore_formatted"
+      ]
+    },
+    "h2": {
+      "description": "Case style for level 2 headings; leave empty to keep them as written.",
+      "choices": [
+        "camelCase",
+        "First letter",
+        "kebab-case",
+        "Title Case",
+        "underscore_formatted"
+      ]
+    },
+    "h3": {
+      "description": "Case style for level 3 headings; leave empty to keep them as written.",
+      "choices": [
+        "camelCase",
+        "First letter",
+        "kebab-case",
+        "Title Case",
+        "underscore_formatted"
+      ]
+    },
+    "h4": {
+      "description": "Case style for level 4 headings; leave empty to keep them as written.",
+      "choices": [
+        "camelCase",
+        "First letter",
+        "kebab-case",
+        "Title Case",
+        "underscore_formatted"
+      ]
+    },
+    "h5": {
+      "description": "Case style for level 5 headings; leave empty to keep them as written.",
+      "choices": [
+        "camelCase",
+        "First letter",
+        "kebab-case",
+        "Title Case",
+        "underscore_formatted"
+      ]
+    },
+    "h6": {
+      "description": "Case style for level 6 headings; leave empty to keep them as written.",
+      "choices": [
+        "camelCase",
+        "First letter",
+        "kebab-case",
+        "Title Case",
+        "underscore_formatted"
+      ]
+    }
+  },
+  "paragraph-spacing": {
+    "blank-lines": {
+      "description": "Number of blank lines between blocks (0, 1 or 2)."
+    }
+  },
+  "list-style": {
+    "marker": {
+      "description": "Bullet marker to use for unordered lists.",
+      "choices": [
+        "-",
+        "*"
+      ]
+    },
+    "tighten": {
+      "description": "Remove blank lines between list items."
+    }
+  },
+  "dedupe-yaml-array-values": {
+    "dedupe-aliases": {
+      "description": "Remove duplicate values from the aliases key."
+    },
+    "dedupe-tags": {
+      "description": "Remove duplicate values from the tags key."
+    },
+    "dedupe-arrays": {
+      "description": "Remove duplicate values from other frontmatter lists."
+    },
+    "keys-to-ignore": {
+      "description": "Frontmatter keys whose lists are left untouched."
+    }
+  },
+  "default-language-for-code-fences": {
+    "language": {
+      "description": "Language added to code fences that have none; empty means no change."
+    }
+  },
+  "emphasis-style": {
+    "style": {
+      "description": "Character used for emphasis; consistent follows the first one found.",
+      "choices": [
+        "consistent",
+        "asterisk",
+        "underscore"
+      ]
+    }
+  },
+  "empty-line-around-math-block": {
+    "number-of-dollar-signs": {
+      "description": "Number of dollar signs that open a math block."
+    }
+  },
+  "escape-yaml-special-characters": {
+    "default-escape-character": {
+      "description": "Quote character used when a frontmatter value needs quoting.",
+      "choices": [
+        "\"",
+        "'"
+      ]
+    },
+    "escape-single-line-arrays": {
+      "description": "Also quote the items of single-line frontmatter lists."
+    }
+  },
+  "format-yaml-arrays": {
+    "format-aliases": {
+      "description": "Reformat the aliases list."
+    },
+    "aliases-style": {
+      "description": "Layout of the aliases list.",
+      "choices": [
+        "single-line",
+        "multi-line",
+        "single string comma delimited",
+        "single string space delimited",
+        "single string to single-line",
+        "single string to multi-line"
+      ]
+    },
+    "format-tags": {
+      "description": "Reformat the tags list."
+    },
+    "tags-style": {
+      "description": "Layout of the tags list.",
+      "choices": [
+        "single-line",
+        "multi-line",
+        "single string comma delimited",
+        "single string space delimited",
+        "single string to single-line",
+        "single string to multi-line"
+      ]
+    },
+    "format-arrays": {
+      "description": "Reformat other frontmatter lists."
+    },
+    "default-array-style": {
+      "description": "Layout of other frontmatter lists.",
+      "choices": [
+        "single-line",
+        "multi-line",
+        "single string comma delimited",
+        "single string space delimited",
+        "single string to single-line",
+        "single string to multi-line"
+      ]
+    },
+    "force-single-line-keys": {
+      "description": "Keys whose lists are always written on a single line."
+    },
+    "force-multi-line-keys": {
+      "description": "Keys whose lists are always written on multiple lines."
+    }
+  },
+  "header-increment": {
+    "start-at-level-2": {
+      "description": "Treat level 2 as the first allowed heading level."
+    }
+  },
+  "heading-blank-lines": {
+    "bottom": {
+      "description": "Require a blank line after each heading."
+    },
+    "empty-line-between-yaml-and-header": {
+      "description": "Require a blank line between frontmatter and a leading heading."
+    }
+  },
+  "insert-yaml-attributes": {
+    "text-to-insert": {
+      "description": "Frontmatter lines added to notes that lack those keys, one key per line."
+    }
+  },
+  "move-tags-to-yaml": {
+    "body-tag-operation": {
+      "description": "What to do with each tag in the body after it is copied to frontmatter.",
+      "choices": [
+        "nothing",
+        "remove-hashtag",
+        "remove-whole-tag"
+      ]
+    },
+    "tags-to-ignore": {
+      "description": "Body tags that are not moved to frontmatter."
+    }
+  },
+  "ordered-list-style": {
+    "number-style": {
+      "description": "Numbering of ordered lists: counting up, or every item numbered 1.",
+      "choices": [
+        "ascending",
+        "lazy"
+      ]
+    },
+    "end-style": {
+      "description": "Character after the number in ordered list items.",
+      "choices": [
+        ".",
+        ")"
+      ]
+    }
+  },
+  "quote-style": {
+    "single-quote-enabled": {
+      "description": "Normalize single quotes."
+    },
+    "single-quote-style": {
+      "description": "Single quote style to enforce.",
+      "choices": [
+        "straight",
+        "smart"
+      ]
+    },
+    "double-quote-enabled": {
+      "description": "Normalize double quotes."
+    },
+    "double-quote-style": {
+      "description": "Double quote style to enforce.",
+      "choices": [
+        "straight",
+        "smart"
+      ]
+    }
+  },
+  "remove-trailing-punctuation-in-heading": {
+    "trailing-punctuation": {
+      "description": "Characters stripped from the end of headings."
+    }
+  },
+  "remove-yaml-keys": {
+    "keys": {
+      "description": "Frontmatter keys to delete."
+    }
+  },
+  "strong-style": {
+    "style": {
+      "description": "Characters used for strong emphasis; consistent follows the first one found.",
+      "choices": [
+        "consistent",
+        "asterisk",
+        "underscore"
+      ]
+    }
+  },
+  "trailing-spaces": {
+    "two-space-linebreak": {
+      "description": "Keep exactly two trailing spaces, which Markdown reads as a line break."
+    }
+  },
+  "unordered-list-style": {
+    "style": {
+      "description": "Bullet marker for unordered lists; consistent follows the first one found.",
+      "choices": [
+        "consistent",
+        "-",
+        "*",
+        "+"
+      ]
+    }
+  },
+  "yaml-key-sort": {
+    "priority-keys": {
+      "description": "Frontmatter keys placed first, in this order."
+    },
+    "defaults": {
+      "description": "Keys and values added when a note lacks them."
+    }
+  },
+  "yaml-timestamp": {
+    "schema": {
+      "description": "Names of the frontmatter keys that hold the created and revised dates."
+    }
+  },
+  "task-format": {
+    "normalize-spacing": {
+      "description": "Normalize the spaces around the task checkbox."
+    },
+    "lowercase-marker": {
+      "description": "Write the done marker as a lowercase x."
+    },
+    "allowed-statuses": {
+      "description": "Status characters tasks may use, written as one string; empty allows any."
+    },
+    "date-format": {
+      "description": "Check that task dates are valid yyyy-mm-dd dates."
+    },
+    "date-order": {
+      "description": "Order in which task date emoji must appear."
+    }
+  },
+  "tag-format": {
+    "case": {
+      "description": "Case style tags must follow; none turns the check off.",
+      "choices": [
+        "none",
+        "kebab",
+        "snake",
+        "camel",
+        "lower"
+      ]
+    },
+    "max-depth": {
+      "description": "Deepest allowed tag nesting; 0 means no limit."
+    },
+    "allowed": {
+      "description": "Tags that are allowed; empty allows any."
+    },
+    "dedupe": {
+      "description": "Report duplicate tags in frontmatter."
+    },
+    "placement": {
+      "description": "Where tags must live: anywhere, in frontmatter, or inline in the body.",
+      "choices": [
+        "any",
+        "frontmatter",
+        "inline"
+      ]
+    }
+  },
+  "folder-naming": {
+    "case": {
+      "description": "Case style folder names must follow; none turns the check off.",
+      "choices": [
+        "none",
+        "kebab",
+        "snake",
+        "camel",
+        "lower"
+      ]
+    },
+    "max-depth": {
+      "description": "Deepest allowed folder nesting; 0 means no limit."
+    },
+    "allowed-names": {
+      "description": "Folder names that are allowed; empty allows any."
+    },
+    "ignore-hidden": {
+      "description": "Skip folders that start with a dot and everything below them."
+    }
+  },
+  "filename-pattern": {
+    "preset": {
+      "description": "Built-in file name check: kebab-case or a yyyy-mm-dd- date prefix.",
+      "choices": [
+        "none",
+        "kebab",
+        "dated"
+      ]
+    },
+    "pattern": {
+      "description": "Regular expression that every file name must match; empty means none."
+    }
+  },
+  "frontmatter-schema": {
+    "required": {
+      "description": "Frontmatter keys every note must have."
+    },
+    "types": {
+      "description": "Expected type per key: string, number, bool, list or date."
+    },
+    "enums": {
+      "description": "Allowed values per key."
+    }
+  },
+  "json-key-order": {
+    "priority": {
+      "description": "Keys placed first, in this order."
+    },
+    "rest": {
+      "description": "Order of the remaining keys: sorted alphabetically or left as written.",
+      "choices": [
+        "alphabetical",
+        "keep"
+      ]
+    },
+    "deep": {
+      "description": "Also sort keys in nested objects."
+    }
+  },
+  "yaml-key-order": {
+    "priority": {
+      "description": "Keys placed first, in this order."
+    },
+    "rest": {
+      "description": "Order of the remaining keys: sorted alphabetically or left as written.",
+      "choices": [
+        "alphabetical",
+        "keep"
+      ]
+    }
+  },
+  "yaml-schema": {
+    "required": {
+      "description": "Top-level keys that must be present."
+    },
+    "types": {
+      "description": "Expected type per key, string, number, integer, boolean, array or object."
+    }
+  },
+  "identifier-case": {
+    "functions": {
+      "description": "Case style for function names per language: snake, camel, pascal or mixed."
+    },
+    "variables": {
+      "description": "Case style for variable names per language: snake, camel, pascal or mixed."
+    },
+    "allow-constants": {
+      "description": "Allow ALL_CAPS names for variables."
+    },
+    "ignore": {
+      "description": "Identifier names that are never reported."
+    }
+  },
+  "comment-tag": {
+    "tags": {
+      "description": "Comment tags that are checked."
+    },
+    "pattern": {
+      "description": "Allowed shapes of a tagged comment, separated by pipes; use {tag}, {owner} and {issue}."
+    }
+  },
+  "commented-out-code": {
+    "min-length": {
+      "description": "Shortest comment, in characters, that is checked for code."
+    }
+  },
+  "max-nesting-depth": {
+    "max": {
+      "description": "Deepest allowed nesting of blocks."
+    }
+  },
+  "max-function-lines": {
+    "max": {
+      "description": "Longest allowed function, in lines."
+    }
+  },
+  "contractions": {
+    "are not": {
+      "description": "Contract this phrase."
+    },
+    "can not": {
+      "description": "Contract this phrase."
+    },
+    "cannot": {
+      "description": "Contract this phrase."
+    },
+    "could not": {
+      "description": "Contract this phrase."
+    },
+    "dare not": {
+      "description": "Contract this phrase."
+    },
+    "did not": {
+      "description": "Contract this phrase."
+    },
+    "does not": {
+      "description": "Contract this phrase."
+    },
+    "do not": {
+      "description": "Contract this phrase."
+    },
+    "had not": {
+      "description": "Contract this phrase."
+    },
+    "has not": {
+      "description": "Contract this phrase."
+    },
+    "have not": {
+      "description": "Contract this phrase."
+    },
+    "is not": {
+      "description": "Contract this phrase."
+    },
+    "must not": {
+      "description": "Contract this phrase."
+    },
+    "need not": {
+      "description": "Contract this phrase."
+    },
+    "ought not": {
+      "description": "Contract this phrase."
+    },
+    "shall not": {
+      "description": "Contract this phrase."
+    },
+    "should not": {
+      "description": "Contract this phrase."
+    },
+    "was not": {
+      "description": "Contract this phrase."
+    },
+    "were not": {
+      "description": "Contract this phrase."
+    },
+    "will not": {
+      "description": "Contract this phrase."
+    },
+    "would not": {
+      "description": "Contract this phrase."
+    },
+    "could have": {
+      "description": "Contract this phrase."
+    },
+    "might have": {
+      "description": "Contract this phrase."
+    },
+    "must have": {
+      "description": "Contract this phrase."
+    },
+    "should have": {
+      "description": "Contract this phrase."
+    },
+    "would have": {
+      "description": "Contract this phrase."
+    },
+    "he had": {
+      "description": "Contract this phrase."
+    },
+    "he has": {
+      "description": "Contract this phrase."
+    },
+    "he is": {
+      "description": "Contract this phrase."
+    },
+    "he will": {
+      "description": "Contract this phrase."
+    },
+    "he would": {
+      "description": "Contract this phrase."
+    },
+    "here is": {
+      "description": "Contract this phrase."
+    },
+    "how are": {
+      "description": "Contract this phrase."
+    },
+    "how did": {
+      "description": "Contract this phrase."
+    },
+    "how does": {
+      "description": "Contract this phrase."
+    },
+    "how has": {
+      "description": "Contract this phrase."
+    },
+    "how is": {
+      "description": "Contract this phrase."
+    },
+    "how will": {
+      "description": "Contract this phrase."
+    },
+    "i am": {
+      "description": "Contract this phrase."
+    },
+    "i had": {
+      "description": "Contract this phrase."
+    },
+    "i have": {
+      "description": "Contract this phrase."
+    },
+    "i shall": {
+      "description": "Contract this phrase."
+    },
+    "i will": {
+      "description": "Contract this phrase."
+    },
+    "i would": {
+      "description": "Contract this phrase."
+    },
+    "it had": {
+      "description": "Contract this phrase."
+    },
+    "it has": {
+      "description": "Contract this phrase."
+    },
+    "it is": {
+      "description": "Contract this phrase."
+    },
+    "it will": {
+      "description": "Contract this phrase."
+    },
+    "it would": {
+      "description": "Contract this phrase."
+    },
+    "let us": {
+      "description": "Contract this phrase."
+    },
+    "she had": {
+      "description": "Contract this phrase."
+    },
+    "she has": {
+      "description": "Contract this phrase."
+    },
+    "she is": {
+      "description": "Contract this phrase."
+    },
+    "she will": {
+      "description": "Contract this phrase."
+    },
+    "she would": {
+      "description": "Contract this phrase."
+    },
+    "that had": {
+      "description": "Contract this phrase."
+    },
+    "that has": {
+      "description": "Contract this phrase."
+    },
+    "that is": {
+      "description": "Contract this phrase."
+    },
+    "that will": {
+      "description": "Contract this phrase."
+    },
+    "that would": {
+      "description": "Contract this phrase."
+    },
+    "there are": {
+      "description": "Contract this phrase."
+    },
+    "there had": {
+      "description": "Contract this phrase."
+    },
+    "there has": {
+      "description": "Contract this phrase."
+    },
+    "there have": {
+      "description": "Contract this phrase."
+    },
+    "there is": {
+      "description": "Contract this phrase."
+    },
+    "there will": {
+      "description": "Contract this phrase."
+    },
+    "there would": {
+      "description": "Contract this phrase."
+    },
+    "they are": {
+      "description": "Contract this phrase."
+    },
+    "they had": {
+      "description": "Contract this phrase."
+    },
+    "they have": {
+      "description": "Contract this phrase."
+    },
+    "they will": {
+      "description": "Contract this phrase."
+    },
+    "they would": {
+      "description": "Contract this phrase."
+    },
+    "we are": {
+      "description": "Contract this phrase."
+    },
+    "we had": {
+      "description": "Contract this phrase."
+    },
+    "we have": {
+      "description": "Contract this phrase."
+    },
+    "we shall": {
+      "description": "Contract this phrase."
+    },
+    "we will": {
+      "description": "Contract this phrase."
+    },
+    "we would": {
+      "description": "Contract this phrase."
+    },
+    "what are": {
+      "description": "Contract this phrase."
+    },
+    "what did": {
+      "description": "Contract this phrase."
+    },
+    "what does": {
+      "description": "Contract this phrase."
+    },
+    "what has": {
+      "description": "Contract this phrase."
+    },
+    "what have": {
+      "description": "Contract this phrase."
+    },
+    "what is": {
+      "description": "Contract this phrase."
+    },
+    "what will": {
+      "description": "Contract this phrase."
+    },
+    "when is": {
+      "description": "Contract this phrase."
+    },
+    "where are": {
+      "description": "Contract this phrase."
+    },
+    "where did": {
+      "description": "Contract this phrase."
+    },
+    "where does": {
+      "description": "Contract this phrase."
+    },
+    "where has": {
+      "description": "Contract this phrase."
+    },
+    "where is": {
+      "description": "Contract this phrase."
+    },
+    "who are": {
+      "description": "Contract this phrase."
+    },
+    "who had": {
+      "description": "Contract this phrase."
+    },
+    "who has": {
+      "description": "Contract this phrase."
+    },
+    "who have": {
+      "description": "Contract this phrase."
+    },
+    "who is": {
+      "description": "Contract this phrase."
+    },
+    "who will": {
+      "description": "Contract this phrase."
+    },
+    "who would": {
+      "description": "Contract this phrase."
+    },
+    "why are": {
+      "description": "Contract this phrase."
+    },
+    "why did": {
+      "description": "Contract this phrase."
+    },
+    "why does": {
+      "description": "Contract this phrase."
+    },
+    "why is": {
+      "description": "Contract this phrase."
+    },
+    "you are": {
+      "description": "Contract this phrase."
+    },
+    "you had": {
+      "description": "Contract this phrase."
+    },
+    "you have": {
+      "description": "Contract this phrase."
+    },
+    "you will": {
+      "description": "Contract this phrase."
+    },
+    "you would": {
+      "description": "Contract this phrase."
+    }
+  }
+}

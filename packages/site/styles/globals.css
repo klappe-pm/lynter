@@ -347,7 +347,8 @@ td:nth-child(2) { font-weight: 650; }
 .b-field .mono, .b-field textarea { font: 13px/1.6 var(--mono); }
 .b-field textarea { resize: vertical; }
 .b-field [aria-invalid='true'] { border-color: var(--violation); }
-.b-hint { font-weight: 400; color: var(--muted); font-size: 12px; margin-left: 4px; }
+.b-hint { font-weight: 400; color: var(--muted); font-size: 12.5px; margin-left: 6px; }
+.b-field label { line-height: 1.45; }
 .b-filter input { max-width: 320px; }
 .b-rule { display: grid; gap: 8px; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg); }
 .b-rule.on { background: var(--surface); box-shadow: inset 3px 0 0 var(--accent); }

@@ -1,5 +1,5 @@
 # Release on a version tag such as 0.1.0: lynter binaries for five targets, the
-# plugin files, checksums, and a GitHub release. The tag is the bare version,
+# plugin files, the offline config builder, checksums, and a GitHub release. The tag is the bare version,
 # with no v prefix, because the Obsidian community directory reads the release
 # whose tag equals the version in manifest.json. Publishing to npm and
 # crates.io stays a manual owner step.
@@ -105,9 +105,30 @@ jobs:
             plugin/styles.css
           if-no-files-found: error
 
+  builder:
+    name: builder
+    needs: version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --ignore-scripts
+      # The config builder as one HTML file that runs from disk, with the engine embedded.
+      - run: npm run build:standalone -w @lynter/site
+      - uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
+        with:
+          name: builder
+          path: packages/site/public/lynter-config-builder.html
+          if-no-files-found: error
+
   release:
     name: release
-    needs: [binaries, plugin]
+    needs: [binaries, plugin, builder]
     runs-on: ubuntu-latest
     permissions:
       contents: write

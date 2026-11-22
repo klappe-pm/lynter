@@ -6,6 +6,7 @@ plugin/metafile.json
 packages/site/.next/
 packages/site/out/
 packages/site/next-env.d.ts
+packages/site/public/lynter-config-builder.html
 packaging/npm/bin/lynter
 packaging/npm/bin/lynter.exe
 *.tsbuildinfo

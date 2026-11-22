@@ -44,15 +44,25 @@ interface WasmApi {
 let api: WasmApi | null = null;
 let loading: Promise<void> | null = null;
 
+/** Fetches the module from the site. The standalone builder swaps this for one that reads embedded bytes. */
+let loader: () => Promise<WasmApi> = async () => {
+  const url = '/wasm/lynter_wasm.mjs';
+  const mod = await import(/* webpackIgnore: true */ url);
+  await mod.default({module_or_path: '/wasm/lynter_wasm_bg.wasm'});
+  return mod as WasmApi;
+};
+
+/** Replace how the engine is loaded. Call before the first render. */
+export function setEngineLoader(next: () => Promise<unknown>): void {
+  loader = next as () => Promise<WasmApi>;
+}
+
 /** Load and instantiate the WASM module once; later calls share the promise. */
 export function initEngine(): Promise<void> {
   if (!loading) {
-    loading = (async () => {
-      const url = '/wasm/lynter_wasm.mjs';
-      const mod = await import(/* webpackIgnore: true */ url);
-      await mod.default({module_or_path: '/wasm/lynter_wasm_bg.wasm'});
-      api = mod as WasmApi;
-    })().catch((error) => {
+    loading = loader().then((mod) => {
+      api = mod;
+    }).catch((error) => {
       loading = null;
       throw error;
     });

@@ -2,7 +2,7 @@
 
 `lynter.yaml` is the single configuration file for Lynter. It lives in the root of a vault or project, is tracked in git, and controls which rules run, which files each rule applies to, and what shape each note type must have. The same file is read by the CLI, the Obsidian plugin, and the WASM build used on lynter.dev.
 
-Create a commented starter with `lynter init`. It refuses to overwrite an existing file. To build the file from a form instead, use the config builder at <https://lynter.dev/configure/>.
+Create a commented starter with `lynter init`. It refuses to overwrite an existing file. To build the file from a form instead, use the config builder at <https://lynter.dev/configure/>, or open `lynter-config-builder.html` from a release, which is the same builder in one offline file.
 
 ## File names and discovery
 
