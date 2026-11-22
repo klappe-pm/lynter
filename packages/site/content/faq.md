@@ -6,9 +6,9 @@ No. Every rule is deterministic code. The same input gives the same output, with
 
 Not yet. You can install the plugin from a clone of the repository. The listing is on the [roadmap](/roadmap/).
 
-## How is this different from Obsidian Linter?
+## Can I bring my existing Obsidian Linter settings?
 
-Obsidian Linter stores its settings inside the plugin folder of one vault. Lynter differs in where the config lives and where it runs. Lynter reads a git-tracked `lynter.yaml`, scopes rules by folder, tag, or property, and runs the same core in Obsidian, the CLI, CI, and agent hooks. See [switch from Linter](/switch/) to convert your settings.
+Yes. [Import settings](/import/) converts a `data.json` into a `lynter.yaml` in your browser. [Importing settings](/docs/importing-settings/) explains what is converted.
 
 ## Which languages does it lint?
 

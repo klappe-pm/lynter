@@ -1,6 +1,6 @@
-import {useEffect, useMemo, useState} from 'react';
+import {useEffect, useMemo, useRef, useState} from 'react';
 import {changedLines} from '@/diff';
-import {lint, todayIso, useEngine} from '@/engine';
+import {lint, todayIso, useEngine, validateConfig} from '@/engine';
 import {playground as copy} from '@/content';
 import {sampleConfig, sampleNote, samplePath} from '@/samples';
 
@@ -18,6 +18,17 @@ export function Bench({showPath = false, seed}: {showPath?: boolean; seed?: {con
   const {ready, slow} = useEngine();
 
   const outcome = useMemo(() => lint(config, note, path, today), [config, note, path, today, ready]);
+  const problems = useMemo(() => validateConfig(config), [config, ready]);
+  const configRef = useRef<HTMLTextAreaElement>(null);
+  /** Put the caret on a 1-based line of the config, so a problem is one click from its fix. */
+  const goToLine = (line: number) => {
+    const el = configRef.current;
+    if (!el) return;
+    const lines = config.split('\n');
+    const start = lines.slice(0, line - 1).reduce((n, l) => n + l.length + 1, 0);
+    el.focus();
+    el.setSelectionRange(start, start + (lines[line - 1]?.length ?? 0));
+  };
   const marks = useMemo(() => (outcome.ok ? changedLines(note, outcome.text) : []), [note, outcome]);
 
   const reset = () => {
@@ -29,8 +40,22 @@ export function Bench({showPath = false, seed}: {showPath?: boolean; seed?: {con
   return (
     <div className="bench">
       <section className="pane" aria-label={copy.configLabel}>
-        <div className="pane-head"><label htmlFor="bench-config">{copy.configLabel}</label></div>
-        <textarea id="bench-config" value={config} onChange={(e) => setConfig(e.target.value)} spellCheck={false} autoCapitalize="off" autoCorrect="off" />
+        <div className="pane-head">
+          <label htmlFor="bench-config">{copy.configLabel}</label>
+          {ready ? <span className={problems.length ? 'config-state bad' : 'config-state'}>{problems.length ? copy.configProblems(problems.length) : copy.configOk}</span> : null}
+        </div>
+        <textarea ref={configRef} id="bench-config" value={config} onChange={(e) => setConfig(e.target.value)} spellCheck={false} autoCapitalize="off" autoCorrect="off" aria-invalid={problems.length > 0} aria-describedby={problems.length ? 'bench-config-problems' : undefined} />
+        {problems.length ? (
+          <ul id="bench-config-problems" className="config-problems" role="alert">
+            {problems.map((p, i) => (
+              <li key={i}>
+                {p.line ? <button type="button" onClick={() => goToLine(p.line!)}>{copy.configLine} {p.line}</button> : null}
+                {p.path ? <code>{p.path}</code> : null}
+                <span>{p.message}</span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </section>
       <section className="pane" aria-label={copy.noteLabel}>
         <div className="pane-head"><label htmlFor="bench-note">{copy.noteLabel}</label></div>
@@ -45,7 +70,7 @@ export function Bench({showPath = false, seed}: {showPath?: boolean; seed?: {con
             ))}
           </div>
         ) : (
-          <div className="out error" role="alert">{`${copy.configError}\n\n${outcome.errors.join('\n')}`}</div>
+          <div className="out error">{copy.configError}</div>
         )}
       </section>
       <div className="bench-foot">

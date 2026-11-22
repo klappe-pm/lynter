@@ -5,6 +5,22 @@
   <url><loc>https://lynter.dev/examples/</loc></url>
   <url><loc>https://lynter.dev/use-cases/</loc></url>
   <url><loc>https://lynter.dev/docs/</loc></url>
+  <url><loc>https://lynter.dev/docs/architecture/</loc></url>
+  <url><loc>https://lynter.dev/docs/configuration/</loc></url>
+  <url><loc>https://lynter.dev/docs/reference/</loc></url>
+  <url><loc>https://lynter.dev/docs/scopes-and-profiles/</loc></url>
+  <url><loc>https://lynter.dev/docs/note-types/</loc></url>
+  <url><loc>https://lynter.dev/docs/rules-overview/</loc></url>
+  <url><loc>https://lynter.dev/docs/rules-frontmatter/</loc></url>
+  <url><loc>https://lynter.dev/docs/rules-content/</loc></url>
+  <url><loc>https://lynter.dev/docs/rules-spacing-and-structure/</loc></url>
+  <url><loc>https://lynter.dev/docs/code-linting/</loc></url>
+  <url><loc>https://lynter.dev/docs/cli/</loc></url>
+  <url><loc>https://lynter.dev/docs/obsidian-plugin/</loc></url>
+  <url><loc>https://lynter.dev/docs/wasm-api/</loc></url>
+  <url><loc>https://lynter.dev/docs/importing-settings/</loc></url>
+  <url><loc>https://lynter.dev/docs/testing/</loc></url>
+  <url><loc>https://lynter.dev/docs/releases/</loc></url>
   <url><loc>https://lynter.dev/playground/</loc></url>
   <url><loc>https://lynter.dev/obsidian/</loc></url>
   <url><loc>https://lynter.dev/languages/</loc></url>
@@ -13,5 +29,5 @@
   <url><loc>https://lynter.dev/samples/</loc></url>
   <url><loc>https://lynter.dev/faq/</loc></url>
   <url><loc>https://lynter.dev/roadmap/</loc></url>
-  <url><loc>https://lynter.dev/switch/</loc></url>
+  <url><loc>https://lynter.dev/import/</loc></url>
 </urlset>

@@ -59,7 +59,7 @@ defaults:
       enabled: false
 ```
 
-With no `lynter.yaml` at all, the compiled defaults apply. These turn on `yaml-key-sort`, `yaml-timestamp`, `alphabetize-property-values`, `paragraph-spacing`, `list-style`, `replace-em-dash`, `code-checks`, `code-checks-fix`, `join-paragraph-lines`, and `prose-list-to-sentences`. Five rules are present but off until you opt in, because they rewrite wording or names: `strip-strong`, `header-case`, `contractions`, `h1-matches-stem`, and `kebab-case-filename`. The default `yaml-key-sort` priority keys are `preset`, `domain`, `category`, `sub-category`, `types`, `date-created`, `date-revised`, and `links`, with `aliases` and `tags` always last. The defaults also set `rename.mode` to `flag` and a `base` note type.
+The command line does not run without a config file: it exits with code 2 and names the files it looked for, so run `lynter init` first. The core also carries a compiled default configuration, which the released tools do not apply on their own. It turns on `yaml-key-sort`, `yaml-timestamp`, `alphabetize-property-values`, `paragraph-spacing`, `list-style`, `replace-em-dash`, `code-checks`, `code-checks-fix`, `join-paragraph-lines`, and `prose-list-to-sentences`. Five rules are present but off until you opt in, because they rewrite wording or names: `strip-strong`, `header-case`, `contractions`, `h1-matches-stem`, and `kebab-case-filename`. The default `yaml-key-sort` priority keys are `preset`, `domain`, `category`, `sub-category`, `types`, `date-created`, `date-revised`, and `links`, with `aliases` and `tags` always last. The defaults also set `rename.mode` to `flag` and a `base` note type.
 
 `join-paragraph-lines` and `prose-list-to-sentences` only report by default. Their `-fix` variants rewrite text when enabled.
 
@@ -158,7 +158,7 @@ ignore:
   files: [inbox/scratch.md]
 ```
 
-`rename.mode` is required when `rename` is present: `off` disables filename rules, `flag` reports only, and `rename` fixes names and updates links. `strategy` is optional. `ignore.folders` and `ignore.files` are lists of vault-relative paths Lynter never touches.
+`rename.mode` is required when `rename` is present: `off` disables filename rules, and `flag` reports only. `rename` is accepted by the loader, but no released surface renames files yet, so today it behaves like `flag`. `strategy` is optional. `ignore.folders` and `ignore.files` are lists of vault-relative paths Lynter never touches.
 
 ## Providers
 
@@ -207,7 +207,7 @@ Adapters are set in `defaults.adapters` and then overridden by `profiles.<name>.
 | `lynter explain PATH` | Show the governing config, profile chain, and rules for a file. |
 | `lynter init` | Write a commented starter `lynter.yaml` to the current directory. |
 
-Global flags: `--config PATH`, `--json` (one JSON line per file, output version 1), `--changed` (also target git-changed `.md` and `.txt` files), `--today yyyy-MM-dd` (the date used for age matching), and `--no-adapters`.
+Global flags: `--config PATH`, `--json` (one JSON line per file, output version 1), `--changed` (also target git-changed files that Lynter can lint), `--today yyyy-MM-dd` (the date used for age matching), and `--no-adapters`.
 
 ## Importing an Obsidian Linter data.json
 
