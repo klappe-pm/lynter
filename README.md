@@ -19,7 +19,7 @@
 
 Lynter lints and fixes notes and code from one `lynter.yaml`. Markdown notes get consistent frontmatter, headings, lists, spacing and wording. Fenced code and source files get declarative checks, with optional adapters for ruff and Biome. The same Rust core runs in a command line tool, in an Obsidian plugin (compiled to WebAssembly), and in the playground on [lynter.dev](https://lynter.dev).
 
-Rules are scoped. Profiles match files by path, extension, frontmatter, tag, age, backlink or alias, and each profile overrides the defaults key by key. Note types describe the frontmatter a kind of note must carry. Loading is fail closed: an invalid `lynter.yaml` is reported in full and never applied in part.
+Rules are scoped. Profiles match files by path, extension, frontmatter, tag or age, and each profile overrides the defaults key by key. Note types describe the frontmatter a kind of note must carry. Loading is fail closed: an invalid `lynter.yaml` is reported in full and never applied in part.
 
 ## Install
 

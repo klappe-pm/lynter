@@ -49,26 +49,7 @@ pub fn vault_path(config_dir: &Path, file: &Path) -> String {
 }
 
 pub fn is_ignored(config: &Config, rel: &str) -> bool {
-    let list = |key: &str| -> Vec<String> {
-        config
-            .raw
-            .get("ignore")
-            .and_then(|i| i.get(key))
-            .and_then(|v| v.as_array())
-            .map(|a| {
-                a.iter()
-                    .filter_map(|s| s.as_str().map(str::to_owned))
-                    .collect()
-            })
-            .unwrap_or_default()
-    };
-    for folder in list("folders") {
-        let n = folder.trim_end_matches('/');
-        if !n.is_empty() && (rel == n || rel.starts_with(&format!("{n}/"))) {
-            return true;
-        }
-    }
-    list("files").iter().any(|f| f == rel)
+    lynter_core::config::is_ignored(config, rel)
 }
 
 fn git(args: &[&str], cwd: &Path) -> Result<String, String> {

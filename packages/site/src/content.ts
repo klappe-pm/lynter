@@ -119,7 +119,7 @@ export const home = {
     title: 'Common questions',
     items: [
       {q: 'Does Lynter call a model?', a: 'No. Every rule is deterministic code. The same input gives the same output, with no tokens and no network.'},
-      {q: 'Is it available in the Obsidian directory?', a: 'Not yet. You can install the plugin from a clone of the repository today.'},
+      {q: 'Is it available in the Obsidian directory?', a: 'Not yet. Download the plugin files from the latest GitHub release; Getting started has the steps.'},
       {q: 'Which languages does it lint?', a: 'The first release targets Rust, Python, TypeScript, JavaScript, SQL, Go, Java, C#, JSON, YAML, and text. Code linting is in progress.'},
     ],
     more: 'Read the full FAQ',
@@ -284,7 +284,7 @@ export const notFound = {
 
 /** Pages rendered from content/*.md. */
 export const mdPages = {
-  gettingStarted: {slug: 'getting-started', title: 'Getting started', lede: 'Install the plugin from a clone, write a first scope, and add a pre-commit hook and a CI check.'},
+  gettingStarted: {slug: 'getting-started', title: 'Getting started', lede: 'Install the plugin and the command line from a release, write a first scope, and add a pre-commit hook and a CI check.'},
   useCases: {slug: 'use-cases', title: 'Use cases', lede: 'Six places where one reviewed config keeps text consistent.'},
   llm: {slug: 'integrations-llm', title: 'LLM integrations', lede: 'Put what agents write into house style with a hook. No model call, no tokens.'},
   ci: {slug: 'integrations-ci', title: 'CI integrations', lede: 'Run check on every pull request and every commit, and read the result as JSON.'},

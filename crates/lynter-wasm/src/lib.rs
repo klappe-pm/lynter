@@ -10,7 +10,9 @@
 //!   "profileChain":[string],"noteType":string|null,
 //!   "violations":[{"rule":string,"message":string,"line":number,"fixed":bool}]}`.
 //!   `rules` lists each rule id that reported, once, in order. `line` is
-//!   1-based. A bad config yields `{"ok":false,"errors":[string]}`.
+//!   1-based. A bad config yields `{"ok":false,"errors":[string]}`. A path
+//!   under the config's `ignore` block comes back unchanged with
+//!   `"ignored":true` and no violations.
 //! - `validate_config(yaml) -> String`:
 //!   `{"ok":bool,"errors":[{"message":string,"line":number|null,"path":string}],
 //!   "warnings":[{"message":string,"line":number|null,"path":string}]}`.
@@ -30,8 +32,8 @@
 #![deny(unsafe_code)]
 
 use lynter_core::config::{
-    migrate_data_json, parse_config, scaffold as core_scaffold, unknown_rules, ConfigError,
-    LoadResult,
+    is_ignored, migrate_data_json, parse_config, scaffold as core_scaffold, unknown_rules,
+    ConfigError, LoadResult,
 };
 use lynter_core::lint::{lint_file, ScopeContext};
 use serde_json::{json, Value};
@@ -61,6 +63,18 @@ fn run(config_yaml: &str, note: &str, path: &str, today: &str) -> Value {
         LoadResult::Err(errs) => errors_json(errs.into_iter().map(error_text).collect()),
         LoadResult::Ok { config, .. } => {
             let path = if path.is_empty() { "note.md" } else { path };
+            if is_ignored(&config, path) {
+                return json!({
+                    "ok": true,
+                    "text": note,
+                    "changed": false,
+                    "rules": [],
+                    "profileChain": [],
+                    "noteType": null,
+                    "violations": [],
+                    "ignored": true,
+                });
+            }
             let r = lint_file(note, path, &config, Some(today), &ScopeContext::default());
             let mut rules: Vec<&str> = Vec::new();
             for v in &r.violations {
@@ -301,6 +315,20 @@ mod tests {
         assert_eq!(key_line(yaml, "profiles.home"), Some(6));
         assert_eq!(key_line(yaml, "missing"), None);
         assert_eq!(key_line(yaml, ""), None);
+    }
+
+    #[test]
+    fn an_ignored_path_is_returned_untouched() {
+        let yaml = "version: 1\ndefaults:\n  rules:\n    trailing-spaces:\n      enabled: true\nignore:\n  folders: [templates]\n";
+        let kept: Value =
+            serde_json::from_str(&lint(yaml, "# a  \n", "templates/a.md", "2026-01-01")).unwrap();
+        assert_eq!(kept["ignored"], true);
+        assert_eq!(kept["changed"], false);
+        assert_eq!(kept["text"], "# a  \n");
+        let linted: Value =
+            serde_json::from_str(&lint(yaml, "# a  \n", "notes/a.md", "2026-01-01")).unwrap();
+        assert_eq!(linted["changed"], true);
+        assert!(linted.get("ignored").is_none());
     }
 
     #[test]

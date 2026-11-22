@@ -2,6 +2,7 @@
 
 mod defaults;
 mod discovery;
+mod ignore;
 mod migrate;
 mod scaffold;
 mod types;
@@ -14,6 +15,7 @@ pub use defaults::{
 pub use discovery::{
     discover_config, load_config_file, Discovered, CANONICAL_CONFIG_FILENAME, CONFIG_FILENAMES,
 };
+pub use ignore::is_ignored;
 pub use migrate::migrate_data_json;
 pub use scaffold::scaffold;
 pub use types::{

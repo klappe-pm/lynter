@@ -4,7 +4,7 @@ No. Every rule is deterministic code. The same input gives the same output, with
 
 ## Is it in the Obsidian community directory?
 
-Not yet. You can install the plugin from a clone of the repository. The listing is on the [roadmap](/roadmap/).
+Not yet. Download the plugin files from the [latest release](https://github.com/klappe-pm/lynter/releases/latest); [getting started](/getting-started/#install) has the steps. The listing is on the [roadmap](/roadmap/).
 
 ## Can I bring my existing Obsidian Linter settings?
 
