@@ -1,6 +1,7 @@
 //! The `lynter` command line.
 
 mod adapt;
+mod catalog;
 mod cfg;
 mod files;
 mod init;
@@ -56,6 +57,8 @@ enum Command {
     Explain { path: PathBuf },
     /// Write a commented starter lynter.yaml to the current directory.
     Init,
+    /// List every rule with its group and description; with --json, also its default options.
+    Rules,
 }
 
 fn parse_date(s: &str) -> Result<String, String> {
@@ -117,6 +120,10 @@ fn main() -> ExitCode {
         }
         Command::Explain { path } => explain(&cli, path, &today),
         Command::Init => init_cmd(),
+        Command::Rules => {
+            catalog::print(cli.json);
+            ExitCode::SUCCESS
+        }
     }
 }
 
