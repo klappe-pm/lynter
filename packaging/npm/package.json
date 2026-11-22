@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Markdown linter. Installs the prebuilt lynter binary for your platform.",
   "license": "MIT",
+  "author": "LappeLabs LLC",
+  "homepage": "https://lynter.dev",
+  "bugs": "https://github.com/klappe-pm/lynter/issues",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/klappe-pm/lynter.git",

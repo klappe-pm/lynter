@@ -1,7 +1,7 @@
 //! Compiled defaults for new users: what runs with no `lynter.yaml`, and the
 //! baseline the scaffold writes.
 //!
-//! Opt-in by default (WI-002): `contractions`, `header-case` (heading casing),
+//! Opt-in by default: `contractions`, `header-case` (heading casing),
 //! `strip-strong`, `h1-matches-stem`, and `kebab-case-filename`. Each is
 //! present and disabled, so turning one on is a one-word edit.
 

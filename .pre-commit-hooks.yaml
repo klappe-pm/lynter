@@ -1,6 +1,7 @@
 # language: system runs the `lynter` binary found on PATH, so the hook needs no
-# build step and no network at commit time. Install it first with
-# `npm install -g lynter`, `brew install lynter`, or a release download.
+# build step and no network at commit time. Install it first from a release
+# download at https://github.com/klappe-pm/lynter/releases or with
+# `cargo install --git https://github.com/klappe-pm/lynter.git lynter-cli`.
 - id: lynter-check
   name: lynter check
   description: Check Markdown files with Lynter.

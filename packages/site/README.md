@@ -35,7 +35,11 @@ When the plugin is listed in the Obsidian community directory, change `INSTALL_U
 
 ## brand and fonts
 
-Geist Sans and Geist Mono come from the `geist` npm package; the variable woff2 files are copied to `public/fonts/` and loaded by `@font-face` in `styles/globals.css`, so no remote fonts load. Logo files live in `public/brand/`. Regenerate `og-card.png` and `apple-touch-icon.png` with `node scripts/brand.cjs` (needs Playwright). `node scripts/shots.cjs <dir>` screenshots every route after a build and reports overflow and console errors.
+Geist Sans and Geist Mono come from the `geist` npm package; the variable woff2 files are copied to `public/fonts/` and loaded by `@font-face` in `styles/globals.css`, so no remote fonts load. Logo files live in `public/brand/`. Regenerate `og-card.png` and `apple-touch-icon.png` with `node scripts/brand.cjs` (needs Playwright). `node scripts/shots.cjs <dir>` screenshots every route after a build and reports overflow and console errors. The Geist license is served beside the fonts as `public/fonts/geist-license.txt`.
+
+## checks
+
+`npm run check:export -w @lynter/site` runs after a build and fails on a broken internal link, a page missing from `public/sitemap.xml`, or a page without an absolute canonical link and social card; CI and the deploy workflow both run it. `npm run smoke -w @lynter/site` fetches every page and the playground assets from https://lynter.dev (or the origin given as an argument); the deploy workflow runs it after each deploy. Add a new page to `public/sitemap.xml`.
 
 ## content
 

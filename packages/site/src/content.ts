@@ -6,6 +6,8 @@
 
 /** Where "Install" points. Not in the community directory yet, so this opens the install steps. */
 export const INSTALL_URL = '/getting-started/#install';
+/** Public origin, used for canonical links and social card URLs, which must be absolute. */
+export const SITE_URL = 'https://lynter.dev';
 export const LAB_URL = 'https://lappelabs.dev';
 export const REPO_URL = 'https://github.com/klappe-pm/lynter';
 

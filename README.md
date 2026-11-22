@@ -1,3 +1,20 @@
+<p align="center">
+  <a href="https://lynter.dev">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="packages/site/public/brand/lockup-dark.svg">
+      <img src="packages/site/public/brand/lockup.svg" alt="Lynter" width="196" height="48">
+    </picture>
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/klappe-pm/lynter/actions/workflows/ci.yml"><img src="https://github.com/klappe-pm/lynter/actions/workflows/ci.yml/badge.svg?branch=master" alt="CI status"></a>
+  <a href="https://github.com/klappe-pm/lynter/actions/workflows/site.yml"><img src="https://github.com/klappe-pm/lynter/actions/workflows/site.yml/badge.svg?branch=master" alt="Site deploy status"></a>
+  <a href="https://github.com/klappe-pm/lynter/releases/latest"><img src="https://img.shields.io/github/v/release/klappe-pm/lynter" alt="Latest release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/klappe-pm/lynter" alt="MIT license"></a>
+  <a href="https://lynter.dev/playground/"><img src="https://img.shields.io/badge/playground-lynter.dev-2563AD" alt="Playground at lynter.dev"></a>
+</p>
+
 # Lynter
 
 Lynter lints and fixes notes and code from one `lynter.yaml`. Markdown notes get consistent frontmatter, headings, lists, spacing and wording. Fenced code and source files get declarative checks, with optional adapters for ruff and Biome. The same Rust core runs in a command line tool, in an Obsidian plugin (compiled to WebAssembly), and in the playground on [lynter.dev](https://lynter.dev).
@@ -8,7 +25,9 @@ Rules are scoped. Profiles match files by path, extension, frontmatter, tag, age
 
 ### Obsidian plugin
 
-The plugin lives in `plugin/`. Build it, then copy `main.js`, `manifest.json` and `styles.css` into a folder named `lynter` in the vault's plugin directory and enable Lynter under Settings, Community plugins. You need Node.js 20 or later.
+Download `main.js`, `manifest.json` and `styles.css` from the [latest release](https://github.com/klappe-pm/lynter/releases/latest) into a folder named `lynter` in the vault's plugin directory (`.obsidian/plugins/lynter`), then enable Lynter under Settings, Community plugins.
+
+To build it yourself, the plugin lives in `plugin/`. Build it, then copy `main.js`, `manifest.json` and `styles.css` into a folder named `lynter` in the vault's plugin directory and enable Lynter under Settings, Community plugins. You need Node.js 20 or later.
 
 ```bash
 cd plugin && npm ci && npm run build
@@ -18,10 +37,12 @@ cp main.js manifest.json styles.css /path/to/vault/.obsidian/plugins/lynter/
 
 ### Command line
 
-The CLI is the `lynter-cli` crate and installs a binary named `lynter`. You need a stable Rust toolchain.
+Each [release](https://github.com/klappe-pm/lynter/releases/latest) has a `lynter` binary for Linux and macOS (x86_64 and arm64) and Windows (x86_64), with a `SHA256SUMS` file. Unpack the archive for your platform and put `lynter` on your `PATH`.
+
+To build from source, the CLI is the `lynter-cli` crate. You need a stable Rust toolchain.
 
 ```bash
-cargo install --path crates/lynter-cli
+cargo install --git https://github.com/klappe-pm/lynter.git lynter-cli
 cd /path/to/notes && lynter init
 cd /path/to/notes && lynter check .
 cd /path/to/notes && lynter fix .
@@ -77,4 +98,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) to run the checks and [SECURITY.md](SECUR
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE). Third-party material and its licenses are listed in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).

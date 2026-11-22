@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "The lynter command line: check, fix, explain, and init for Markdown vaults."
 edition.workspace = true
 license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
 publish.workspace = true
 rust-version.workspace = true
 

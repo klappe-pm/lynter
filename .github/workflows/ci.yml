@@ -28,6 +28,8 @@ jobs:
       - run: cargo fmt --check
       - run: cargo clippy --workspace --all-targets -- -D warnings
       - run: cargo test --workspace
+      # The bundled license texts must match the crates in Cargo.lock.
+      - run: python3 packaging/licenses/generate.py --check
 
   node:
     name: node
@@ -51,7 +53,9 @@ jobs:
       - run: cd plugin && npm ci --ignore-scripts
       - run: npx eslint . --ext .ts
       - run: npm run build -w @lynter/site
+      - run: npm run check:export -w @lynter/site
       - run: npm test -w @lynter/site
+      - run: node --test packaging/npm/install.test.js
 
   manifest:
     name: manifest

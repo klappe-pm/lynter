@@ -1,18 +1,38 @@
-# Release on a v* tag: lynter binaries for five targets, the plugin files,
-# checksums, and a GitHub release. Publishing to npm and crates.io stays a
-# manual owner step.
+# Release on a version tag such as 0.1.0: lynter binaries for five targets, the
+# plugin files, checksums, and a GitHub release. The tag is the bare version,
+# with no v prefix, because the Obsidian community directory reads the release
+# whose tag equals the version in manifest.json. Publishing to npm and
+# crates.io stays a manual owner step.
 name: release
 
 on:
   push:
-    tags: ['v*']
+    tags: ['[0-9]+.[0-9]+.[0-9]+']
 
 permissions:
   contents: read
 
 jobs:
+  version:
+    name: version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - name: Tag matches the plugin manifest, the CLI crate and the npm package
+        env:
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          test "$(jq -r .version plugin/manifest.json)" = "$REF_NAME"
+          test "$(jq -r .version manifest.json)" = "$REF_NAME"
+          test "$(jq -r .version packaging/npm/package.json)" = "$REF_NAME"
+          grep -qx "version = \"$REF_NAME\"" crates/lynter-cli/Cargo.toml
+
   binaries:
     name: binary ${{ matrix.target }}
+    needs: version
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: true
@@ -49,7 +69,8 @@ jobs:
           bin=lynter
           if [ "$EXT" = zip ]; then bin=lynter.exe; fi
           cp "target/$TARGET/release/$bin" "stage/$name/"
-          cp LICENSE "stage/$name/"
+          cp LICENSE THIRD-PARTY-NOTICES.md "stage/$name/"
+          cp packaging/licenses/rust-crates.txt "stage/$name/THIRD-PARTY-LICENSES.txt"
           if [ "$EXT" = zip ]; then
             (cd stage && 7z a "../dist/$name.zip" "$name" > /dev/null)
           else
@@ -63,6 +84,7 @@ jobs:
 
   plugin:
     name: plugin
+    needs: version
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
