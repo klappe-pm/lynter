@@ -66,6 +66,8 @@ The line between the two is whether the key is structurally wrong or merely unkn
 
 In the CLI, warnings print to standard error as `lynter: PATH: warning: unknown key "foo" ignored` and do not change the exit status.
 
+A rule id that no rule answers to is also a warning. The loader accepts any key under `rules`, so a misspelled id would otherwise be ignored without a word. The CLI and the playground report it with its key path and the closest known id, for example `defaults.rules.contraction: unknown rule "contraction" is ignored: did you mean "contractions"?`.
+
 The CLI adds one more validation step. The core does not know the `adapters` key, so the CLI drops the core's warnings about it and validates adapter blocks itself. An unknown adapter id or an unknown adapter key is an error. See [code linting](/docs/code-linting/).
 
 Sources: `crates/lynter-core/src/config/validate.rs`, `crates/lynter-cli/src/cfg.rs`, `crates/lynter-code/src/adapters/config.rs`

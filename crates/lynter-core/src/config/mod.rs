@@ -5,6 +5,7 @@ mod discovery;
 mod migrate;
 mod scaffold;
 mod types;
+mod unknown;
 mod validate;
 
 pub use defaults::{
@@ -18,6 +19,7 @@ pub use scaffold::scaffold;
 pub use types::{
     Config, ConfigError, DateRange, LoadResult, NoteType, Profile, ProfileMatch, RulesConfig,
 };
+pub use unknown::{known_rule_ids, unknown_rules, UnknownRule, CODE_RULE_IDS};
 
 use serde_json::{Map, Value};
 

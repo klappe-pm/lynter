@@ -133,7 +133,7 @@ export const home = {
 
 export const playground = {
   title: 'Playground',
-  lede: 'Edit lynter.yaml, the note, or its path. The output updates as you type. Highlighted lines changed.',
+  lede: 'Edit lynter.yaml, the note, or its path. The output updates as you type, highlighted lines changed, and the config is checked for errors, unknown keys, and misspelled rules.',
   configLabel: 'lynter.yaml',
   noteLabel: 'Note',
   pathLabel: 'Path in vault',
@@ -143,7 +143,10 @@ export const playground = {
   configError: 'lynter.yaml has an error, so nothing ran. Fix it and the result comes back.',
   configOk: 'Valid',
   configProblems: (n: number) => (n === 1 ? '1 problem' : `${n} problems`),
+  configWarnings: (n: number) => (n === 1 ? '1 warning' : `${n} warnings`),
   configLine: 'Line',
+  configErrorLabel: 'Error',
+  configWarningLabel: 'Warning',
   chainLabel: 'Profiles applied',
   loading: 'Loading the engine.',
   reset: 'Reset example',

@@ -19,6 +19,7 @@ export function Bench({showPath = false, seed}: {showPath?: boolean; seed?: {con
 
   const outcome = useMemo(() => lint(config, note, path, today), [config, note, path, today, ready]);
   const problems = useMemo(() => validateConfig(config), [config, ready]);
+  const errorCount = problems.filter((p) => p.severity === 'error').length;
   const configRef = useRef<HTMLTextAreaElement>(null);
   /** Put the caret on a 1-based line of the config, so a problem is one click from its fix. */
   const goToLine = (line: number) => {
@@ -42,15 +43,15 @@ export function Bench({showPath = false, seed}: {showPath?: boolean; seed?: {con
       <section className="pane" aria-label={copy.configLabel}>
         <div className="pane-head">
           <label htmlFor="bench-config">{copy.configLabel}</label>
-          {ready ? <span className={problems.length ? 'config-state bad' : 'config-state'}>{problems.length ? copy.configProblems(problems.length) : copy.configOk}</span> : null}
+          {ready ? <span className={errorCount ? 'config-state bad' : problems.length ? 'config-state warn' : 'config-state'}>{errorCount ? copy.configProblems(errorCount) : problems.length ? copy.configWarnings(problems.length) : copy.configOk}</span> : null}
         </div>
-        <textarea ref={configRef} id="bench-config" value={config} onChange={(e) => setConfig(e.target.value)} spellCheck={false} autoCapitalize="off" autoCorrect="off" aria-invalid={problems.length > 0} aria-describedby={problems.length ? 'bench-config-problems' : undefined} />
+        <textarea ref={configRef} id="bench-config" value={config} onChange={(e) => setConfig(e.target.value)} spellCheck={false} autoCapitalize="off" autoCorrect="off" aria-invalid={errorCount > 0} aria-describedby={problems.length ? 'bench-config-problems' : undefined} />
         {problems.length ? (
-          <ul id="bench-config-problems" className="config-problems" role="alert">
+          <ul id="bench-config-problems" className="config-problems" role="status" aria-live="polite">
             {problems.map((p, i) => (
-              <li key={i}>
+              <li key={i} className={p.severity}>
+                <strong>{p.severity === 'error' ? copy.configErrorLabel : copy.configWarningLabel}</strong>
                 {p.line ? <button type="button" onClick={() => goToLine(p.line!)}>{copy.configLine} {p.line}</button> : null}
-                {p.path ? <code>{p.path}</code> : null}
                 <span>{p.message}</span>
               </li>
             ))}
