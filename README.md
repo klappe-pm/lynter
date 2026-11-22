@@ -82,6 +82,16 @@ profiles:
 
 The full reference is [docs/lynter-yaml.md](docs/lynter-yaml.md). Guides, examples and a playground are at [lynter.dev](https://lynter.dev).
 
+## Roadmap
+
+Lynter 0.1 ships the Rust core, the command line, the Obsidian plugin and the site. Next, in order:
+
+- **Now:** the Obsidian community directory listing, `npm` and Homebrew installs for the command line, and the GitHub Action.
+- **Next:** task formatting, tag rules, and code linting for Rust, Python, TypeScript, JavaScript, SQL, Go, Java, C#, JSON and YAML.
+- **Later:** a VS Code extension, a JetBrains plugin, more languages, presets, and team checks on pull requests.
+
+The full list is on [lynter.dev/roadmap](https://lynter.dev/roadmap/). To ask for a rule, an option, a language or an integration, [open a feature request](https://github.com/klappe-pm/lynter/issues/new?template=feature_request.md).
+
 ## Repository layout
 
 | Path | What it holds |
