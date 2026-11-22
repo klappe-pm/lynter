@@ -140,6 +140,53 @@ Run the **full suite** before a push. It takes
 about two minutes on a laptop.
 `,
   },
+  {
+    id: 'code-blocks',
+    title: 'Code blocks by language',
+    blurb: 'Checks written in lynter.yaml run inside fenced code and are scoped by language: var becomes let in JavaScript, tabs become spaces in Python, and the Rust block is left alone.',
+    path: 'docs/snippets.md',
+    config: `version: 1
+defaults:
+  rules:
+    code-checks:
+      enabled: true
+    code-checks-fix:
+      enabled: true
+code-checks:
+  no-trailing-whitespace-in-code:
+    enabled: true
+  let-not-var:
+    enabled: true
+    languages: [javascript, typescript]
+    pattern: '\\bvar\\b'
+    message: Use let or const.
+    fix:
+      replacement: let
+  tabs-to-spaces:
+    enabled: true
+    languages: [python]
+    pattern: '\\t'
+    message: Indent Python with spaces.
+    fix:
+      replacement: '    '
+`,
+    note: `# Snippets
+
+\`\`\`javascript
+var total = 0;
+for (var i = 0; i < 3; i++) total += i;
+\`\`\`
+
+\`\`\`python
+def greet(name):
+	return f"hello {name}"   
+\`\`\`
+
+\`\`\`rust
+let total = 0;
+\`\`\`
+`,
+  },
 ];
 
 export function findExample(id: string): Example | undefined {

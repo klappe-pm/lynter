@@ -3,15 +3,19 @@ import {Bench} from '@/components/bench';
 import {CodeBlock} from '@/components/code-block';
 import {Layout} from '@/components/layout';
 import {ScopePicker} from '@/components/scope-picker';
-import {home, INSTALL_URL, NOTIFY_USER, site} from '@/content';
+import {home, INSTALL_URL, NOTIFY_USER, OBSIDIAN_URL, site} from '@/content';
 import {cliSnippet} from '@/samples';
 
 export default function Home() {
+  const [ledeBefore, ...ledeRest] = home.lede.split('Obsidian');
+  const ledeAfter = ledeRest.join('Obsidian');
   return (
     <Layout>
       <section className="hero wrap">
         <h1>{home.headline}</h1>
-        <p className="lede">{home.lede}</p>
+        <p className="lede">
+          {ledeRest.length === 0 ? home.lede : <>{ledeBefore}<a href={OBSIDIAN_URL}>Obsidian</a>{ledeAfter}</>}
+        </p>
         <div className="actions">
           <a className="button primary" href={INSTALL_URL}>{site.install}</a>
           <Link className="button quiet" href="/playground/">{home.secondary}</Link>
@@ -68,22 +72,14 @@ export default function Home() {
       </div></section>
 
       <section className="section"><div className="wrap">
-        <h2>{home.compare.title}</h2>
-        <div className="table-wrap">
-          <table>
-            <thead>
-              <tr>{home.compare.columns.map((c, i) => <th key={i} scope="col">{c}</th>)}</tr>
-            </thead>
-            <tbody>
-              {home.compare.rows.map(([label, ...cells]) => (
-                <tr key={label}>
-                  <th scope="row">{label}</th>
-                  {cells.map((c, i) => <td key={i}>{c}</td>)}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <h2>{home.deepDives.title}</h2>
+        <p className="intro">{home.deepDives.body}</p>
+        <ul className="strip">
+          {home.deepDives.items.map((i) => (
+            <li key={i.title}><Link className="card" href={i.href}><h3>{i.title}</h3><p>{i.body}</p></Link></li>
+          ))}
+        </ul>
+        <div className="actions" style={{marginTop: 24}}><Link className="button quiet" href="/docs/">{home.deepDives.more}</Link></div>
       </div></section>
 
       <section className="section"><div className="wrap">
@@ -94,14 +90,6 @@ export default function Home() {
           ))}
         </div>
         <div className="actions" style={{marginTop: 24}}><Link className="button quiet" href="/faq/">{home.faq.more}</Link></div>
-      </div></section>
-
-      <section className="section"><div className="wrap split">
-        <div>
-          <h2>{home.switch.title}</h2>
-          <p className="intro">{home.switch.body}</p>
-        </div>
-        <div className="actions"><Link className="button primary" href="/switch/">{home.switch.action}</Link></div>
       </div></section>
 
       {NOTIFY_USER ? (

@@ -10,6 +10,8 @@ export const INSTALL_URL = '/getting-started/#install';
 export const SITE_URL = 'https://lynter.dev';
 export const LAB_URL = 'https://lappelabs.dev';
 export const REPO_URL = 'https://github.com/klappe-pm/lynter';
+/** The Obsidian product site. The first "Obsidian" in the home lede links here. */
+export const OBSIDIAN_URL = 'https://obsidian.md';
 /** Opens a new GitHub issue from the feature request template. */
 export const FEATURE_REQUEST_URL = `${REPO_URL}/issues/new?template=feature_request.md`;
 
@@ -37,7 +39,7 @@ export const site = {
     {href: '/faq/', label: 'FAQ'},
     {href: '/roadmap/', label: 'Roadmap'},
     {href: FEATURE_REQUEST_URL, label: 'Request a feature'},
-    {href: '/switch/', label: 'Switch from Linter'},
+    {href: '/import/', label: 'Import settings'},
   ],
   footer: {
     project: 'A LappeLabs project',
@@ -88,7 +90,7 @@ export const home = {
     body: 'One config, four places to run it.',
     items: [
       {title: 'Obsidian', body: 'Fix notes on save from the plugin.', href: '/obsidian/'},
-      {title: 'CLI', body: 'check, fix, and explain from a terminal.', href: '/docs/#cli'},
+      {title: 'CLI', body: 'check, fix, and explain from a terminal.', href: '/docs/cli/'},
       {title: 'CI and hooks', body: 'GitHub Actions, GitLab CI, pre-commit, lefthook, husky.', href: '/integrations/ci/'},
       {title: 'Agents', body: 'Claude Code, Codex, and Cursor hooks.', href: '/integrations/llm/'},
     ],
@@ -99,16 +101,18 @@ export const home = {
     action: 'Copy',
     copied: 'Copied',
   },
-  compare: {
-    title: 'How it compares',
-    columns: ['', 'Lynter', 'Obsidian Linter', 'markdownlint'],
-    rows: [
-      ['Config in a git-tracked file', 'Yes, lynter.yaml', 'No, plugin data.json', 'Yes'],
-      ['Rules scoped by folder, tag, or property', 'Yes, with inheritance', 'No', 'No'],
-      ['Frontmatter schemas per note type', 'Yes', 'No', 'No'],
-      ['Same engine in Obsidian and CI', 'Yes', 'No', 'Separate plugin and CLI'],
-      ['Code linting from the same file', 'In progress', 'No', 'No'],
+  deepDives: {
+    title: 'How it works, in depth',
+    body: 'Each page explains one part of Lynter from the source: what it does, how to configure it, and where the code lives.',
+    items: [
+      {title: 'Scopes and profiles', body: 'How a file picks up its rules: matchers, inheritance, and the profile chain.', href: '/docs/scopes-and-profiles/'},
+      {title: 'Note types', body: 'Frontmatter schemas, required keys, key order, and filename patterns per kind of note.', href: '/docs/note-types/'},
+      {title: 'Rules', body: 'Every rule, what it changes, its options, and a before and after example.', href: '/docs/rules-overview/'},
+      {title: 'Code linting', body: 'Checks for fenced code, JSON and YAML data rules, code rules, and the ruff and Biome adapters.', href: '/docs/code-linting/'},
+      {title: 'Configuration', body: 'How lynter.yaml is found, validated, and applied, and why a bad file changes nothing.', href: '/docs/configuration/'},
+      {title: 'Architecture', body: 'One Rust core behind the command line, the Obsidian plugin, and the browser.', href: '/docs/architecture/'},
     ],
+    more: 'Browse all docs',
   },
   faq: {
     title: 'Common questions',
@@ -118,11 +122,6 @@ export const home = {
       {q: 'Which languages does it lint?', a: 'The first release targets Rust, Python, TypeScript, JavaScript, SQL, Go, Java, C#, JSON, YAML, and text. Code linting is in progress.'},
     ],
     more: 'Read the full FAQ',
-  },
-  switch: {
-    title: 'Already use Obsidian Linter?',
-    body: 'Paste its data.json and get a lynter.yaml. Nothing leaves your browser.',
-    action: 'Convert my settings',
   },
   notify: {
     title: 'Presets and team checks are next',
@@ -141,11 +140,15 @@ export const playground = {
   outputLabel: 'Result',
   violationsLabel: 'Rules that fired',
   noViolations: 'Nothing to change. The note already follows this config.',
-  configError: 'lynter.yaml has an error, so nothing ran. Fix the line below and the result comes back.',
+  configError: 'lynter.yaml has an error, so nothing ran. Fix it and the result comes back.',
+  configOk: 'Valid',
+  configProblems: (n: number) => (n === 1 ? '1 problem' : `${n} problems`),
+  configLine: 'Line',
   chainLabel: 'Profiles applied',
   loading: 'Loading the engine.',
   reset: 'Reset example',
   exampleLabel: 'Example',
+  exampleDefault: 'Weekly review',
 };
 
 export const examplesPage = {
@@ -158,9 +161,9 @@ export const examplesPage = {
   path: 'Path',
 };
 
-export const switchPage = {
-  title: 'Switch from Obsidian Linter',
-  lede: 'Lynter reads a lynter.yaml instead of plugin settings. Paste the data.json from .obsidian/plugins/ (the Obsidian Linter folder) and copy the result to the root of your vault. The conversion runs in your browser. The older names linter.yaml and lappe-linter.yaml are still read, with a notice.',
+export const importPage = {
+  title: 'Import settings',
+  lede: 'Convert an Obsidian Linter data.json into a lynter.yaml. Paste the file from .obsidian/plugins/obsidian-linter/ and copy the result to the root of your vault. The conversion runs in your browser, and nothing is uploaded.',
   inputLabel: 'data.json',
   outputLabel: 'lynter.yaml',
   placeholder: '{"ruleConfigs": {...}}',
@@ -169,16 +172,15 @@ export const switchPage = {
   copied: 'Copied',
   error: 'That is not valid JSON. Copy the whole data.json file, including the outer braces.',
   note: 'Settings Lynter does not map yet land in a commented block at the end, so nothing is lost.',
+  more: 'How the conversion works',
 };
 
-export const docs = {
-  title: 'Docs',
-  installTitle: 'Install',
-  installBody: 'Lynter is not in the Obsidian community directory yet. Build it from the repository: you need Git, Node.js 20 or later, and a Rust toolchain for the command line.',
-  pluginTitle: 'Obsidian plugin',
-  pluginBody: 'Copy main.js, manifest.json, and styles.css into .obsidian/plugins/lynter in your vault, then enable the plugin under Settings, Community plugins.',
-  cliTitle: 'Command line',
-  referenceTitle: 'lynter.yaml reference',
+export const docsCopy = {
+  navLabel: 'Docs',
+  tocLabel: 'On this page',
+  prev: 'Previous',
+  next: 'Next',
+  edit: 'Edit this page on GitHub',
 };
 
 export const notFound = {

@@ -9,7 +9,7 @@ const srv = http.createServer((q, r) => {
   if (!fs.existsSync(f)) { r.statusCode = 404; return r.end(); }
   r.setHeader('content-type', types[path.extname(f)] || 'application/octet-stream'); r.end(fs.readFileSync(f));
 });
-const routes = ['/', '/getting-started/', '/docs/', '/examples/', '/use-cases/', '/integrations/llm/', '/integrations/ci/', '/samples/', '/faq/', '/languages/', '/obsidian/', '/roadmap/', '/playground/', '/playground/?example=client-formal', '/switch/', '/nope/'];
+const routes = ['/', '/getting-started/', '/docs/', '/examples/', '/use-cases/', '/integrations/llm/', '/integrations/ci/', '/samples/', '/faq/', '/languages/', '/obsidian/', '/roadmap/', '/playground/', '/playground/?example=client-formal', '/import/', '/nope/'];
 const outDir = process.argv[2];
 (async () => {
   await new Promise((r) => srv.listen(4399, r));

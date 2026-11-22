@@ -22,8 +22,17 @@ export interface LintFailed {
 
 export type LintOutcome = LintOk | LintFailed;
 
+export interface ConfigProblem {
+  message: string;
+  /** 1-based line in lynter.yaml when the parser reports one. */
+  line: number | null;
+  /** Config key path such as `profiles.work.rules`, empty when not applicable. */
+  path: string;
+}
+
 interface WasmApi {
   lint(config: string, note: string, path: string, today: string): string;
+  validate_config(yaml: string): string;
   profile_chain(config: string, path: string): string;
   convert_data_json(json: string): string | undefined;
   scaffold(): string;
@@ -91,6 +100,16 @@ export function useEngine(): {ready: boolean; slow: boolean} {
 export function lint(configText: string, note: string, path: string, today: string): LintOutcome {
   if (!api) return {ok: true, text: note, changed: false, rules: [], profileChain: [], noteType: null};
   return JSON.parse(api.lint(configText, note, path || 'note.md', today)) as LintOutcome;
+}
+
+/**
+ * Lint a lynter.yaml text itself: syntax, unknown keys, and bad values.
+ * @param {string} configText lynter.yaml contents
+ * @return {ConfigProblem[]} every problem the loader reports, empty when the file is valid
+ */
+export function validateConfig(configText: string): ConfigProblem[] {
+  if (!api) return [];
+  return (JSON.parse(api.validate_config(configText)) as {errors: ConfigProblem[]}).errors;
 }
 
 /**

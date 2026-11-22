@@ -1,9 +1,10 @@
 import {useState} from 'react';
 import {Layout} from '@/components/layout';
-import {switchPage as copy} from '@/content';
+import Link from 'next/link';
+import {importPage as copy} from '@/content';
 import {convertDataJson, useEngine} from '@/engine';
 
-export default function Switch() {
+export default function Import() {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [error, setError] = useState(false);
@@ -46,7 +47,7 @@ export default function Switch() {
         <div className="actions" style={{marginTop: 16}}>
           <button type="button" className="button primary" onClick={convert} disabled={!ready || !input.trim()}>{copy.action}</button>
         </div>
-        {error ? <p className="message error" role="alert">{copy.error}</p> : <p className="message">{copy.note}</p>}
+        {error ? <p className="message error" role="alert">{copy.error}</p> : <p className="message">{copy.note} <Link href="/docs/importing-settings/">{copy.more}</Link>.</p>}
       </div>
     </Layout>
   );

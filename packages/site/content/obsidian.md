@@ -1,4 +1,4 @@
-The Obsidian plugin runs the same core as the CLI. Settings in the plugin are a view over `lynter.yaml`, and edits to the file win.
+The [Obsidian](https://obsidian.md) plugin runs the same core as the CLI. Settings in the plugin are a view over `lynter.yaml`, and edits to the file win.
 
 ## Frontmatter
 
@@ -25,7 +25,7 @@ Task formatting is Coming soon.
 
 ## File and folder naming
 
-Shipped today: flag file names that are not kebab-case, keep the first heading equal to the file name, and rename with link updates when `rename.mode` is `rename`. Folder name rules are Coming soon.
+Shipped today: flag file names that are not kebab-case, and keep the first heading equal to the file name. Renaming files with link updates and folder name rules are Coming soon.
 
 ## Scopes
 
