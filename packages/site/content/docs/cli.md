@@ -21,10 +21,11 @@ cd /path/to/notes && lynter explain notes/a.md
 | `lynter fix --stdin [--stdin-path PATH]` | Filter mode. Reads text from standard input and writes the fixed text to standard output. |
 | `lynter explain PATH` | Prints the governing config, profile chain, note type and rules for one file. |
 | `lynter init` | Writes a commented starter `lynter.yaml` to the current directory. |
+| `lynter rules [--json]` | Lists every rule with its group and description. With `--json` it prints an array that also carries each rule's default options; the [config builder](/configure/) is generated from it. |
 
 `check` and `fix` need at least one path or `--changed`. Without either they exit with status 2. `lynter --version` and `lynter --help` work as usual.
 
-Sources: `crates/lynter-cli/src/main.rs`, `crates/lynter-cli/tests/cli.rs`
+Sources: `crates/lynter-cli/src/main.rs`, `crates/lynter-cli/src/catalog.rs`, `crates/lynter-cli/tests/cli.rs`
 
 ## Flags
 

@@ -140,6 +140,11 @@ export function convertDataJson(dataJson: string): string | null {
   return api.convert_data_json(dataJson) ?? null;
 }
 
+/** The commented starter lynter.yaml the engine ships, or null until the engine has loaded. */
+export function starterConfig(): string | null {
+  return api ? api.scaffold() : null;
+}
+
 /** Today as yyyy-MM-dd in the viewer's local time. */
 export function todayIso(): string {
   const d = new Date();

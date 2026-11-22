@@ -1,0 +1,747 @@
+[
+  {
+    "id": "strip-strong",
+    "group": "wording",
+    "host": "core",
+    "description": "Remove ** and __ strong emphasis, keeping the inner text; never edits inside code, math, YAML, tables, wikilinks, or URLs.",
+    "options": {
+      "keep-heading-strong": false
+    }
+  },
+  {
+    "id": "replace-em-dash",
+    "group": "wording",
+    "host": "core",
+    "description": "Replace em dashes and connector en dashes with a configured separator (default comma plus space), preserving numeric en dash ranges.",
+    "options": {
+      "replacement": ", ",
+      "word-joining": false
+    }
+  },
+  {
+    "id": "header-case",
+    "group": "wording",
+    "host": "core",
+    "description": "Normalize each ATX heading level to a chosen case style (camelCase, First letter, kebab-case, Title Case, underscore_formatted); levels left unset are untouched, and headings in code, math, tables, or frontmatter are never edited.",
+    "options": {
+      "h1": "",
+      "h2": "",
+      "h3": "",
+      "h4": "",
+      "h5": "",
+      "h6": ""
+    }
+  },
+  {
+    "id": "contractions",
+    "group": "wording",
+    "host": "core",
+    "description": "Replace selected expanded English phrases with contractions, preserving capitalization and protected Markdown regions.",
+    "options": {
+      "are not": true,
+      "can not": true,
+      "cannot": true,
+      "could not": true,
+      "dare not": true,
+      "did not": true,
+      "does not": true,
+      "do not": true,
+      "had not": true,
+      "has not": true,
+      "have not": true,
+      "is not": true,
+      "must not": true,
+      "need not": true,
+      "ought not": true,
+      "shall not": true,
+      "should not": true,
+      "was not": true,
+      "were not": true,
+      "will not": true,
+      "would not": true,
+      "could have": true,
+      "might have": true,
+      "must have": true,
+      "should have": true,
+      "would have": true,
+      "he had": true,
+      "he has": true,
+      "he is": true,
+      "he will": true,
+      "he would": true,
+      "here is": true,
+      "how are": true,
+      "how did": true,
+      "how does": true,
+      "how has": true,
+      "how is": true,
+      "how will": true,
+      "i am": true,
+      "i had": true,
+      "i have": true,
+      "i shall": true,
+      "i will": true,
+      "i would": true,
+      "it had": true,
+      "it has": true,
+      "it is": true,
+      "it will": true,
+      "it would": true,
+      "let us": true,
+      "she had": true,
+      "she has": true,
+      "she is": true,
+      "she will": true,
+      "she would": true,
+      "that had": true,
+      "that has": true,
+      "that is": true,
+      "that will": true,
+      "that would": true,
+      "there are": true,
+      "there had": true,
+      "there has": true,
+      "there have": true,
+      "there is": true,
+      "there will": true,
+      "there would": true,
+      "they are": true,
+      "they had": true,
+      "they have": true,
+      "they will": true,
+      "they would": true,
+      "we are": true,
+      "we had": true,
+      "we have": true,
+      "we shall": true,
+      "we will": true,
+      "we would": true,
+      "what are": true,
+      "what did": true,
+      "what does": true,
+      "what has": true,
+      "what have": true,
+      "what is": true,
+      "what will": true,
+      "when is": true,
+      "where are": true,
+      "where did": true,
+      "where does": true,
+      "where has": true,
+      "where is": true,
+      "who are": true,
+      "who had": true,
+      "who has": true,
+      "who have": true,
+      "who is": true,
+      "who will": true,
+      "who would": true,
+      "why are": true,
+      "why did": true,
+      "why does": true,
+      "why is": true,
+      "you are": true,
+      "you had": true,
+      "you have": true,
+      "you will": true,
+      "you would": true
+    }
+  },
+  {
+    "id": "join-paragraph-lines",
+    "group": "content",
+    "host": "core",
+    "description": "Flag hard-wrapped prose lines inside a paragraph that could be unwrapped into a single line; enable join-paragraph-lines-fix to apply the rewrite.",
+    "options": {}
+  },
+  {
+    "id": "join-paragraph-lines-fix",
+    "group": "content",
+    "host": "core",
+    "description": "Unwrap hard-wrapped prose lines inside a paragraph into a single line, leaving lists, blockquotes, tables, headings, code, math, YAML, and intentional breaks untouched; destructive opt-in twin of join-paragraph-lines.",
+    "options": {}
+  },
+  {
+    "id": "prose-list-to-sentences",
+    "group": "content",
+    "host": "core",
+    "description": "Flag simple one-level bullet lists that could be comma-joined prose; enable prose-list-to-sentences-fix to apply the rewrite.",
+    "options": {}
+  },
+  {
+    "id": "prose-list-to-sentences-fix",
+    "group": "content",
+    "host": "core",
+    "description": "Convert simple one-level bullet lists into comma-joined prose sentences; destructive opt-in twin of prose-list-to-sentences.",
+    "options": {}
+  },
+  {
+    "id": "paragraph-spacing",
+    "group": "content",
+    "host": "core",
+    "description": "Normalize blank lines between blocks to a fixed count (0, 1, or 2); trims leading and trailing blank lines and preserves blank lines inside code, math, tables, and frontmatter.",
+    "options": {
+      "blank-lines": 1
+    }
+  },
+  {
+    "id": "list-style",
+    "group": "content",
+    "host": "core",
+    "description": "Normalize unordered list bullets to a single marker (\"- \" or \"* \") and, by default, remove blank lines between items; ordered lists, thematic breaks, and masked blocks are untouched.",
+    "options": {
+      "marker": "-",
+      "tighten": true
+    }
+  },
+  {
+    "id": "code-checks",
+    "group": "content",
+    "host": "core",
+    "description": "Declarative code checks over fenced code blocks (patterns from lynter.yaml code-checks; never executes code).",
+    "options": {}
+  },
+  {
+    "id": "code-checks-fix",
+    "group": "content",
+    "host": "core",
+    "description": "Apply fixing code checks (those with fix.replacement) inside fenced code blocks.",
+    "options": {}
+  },
+  {
+    "id": "consecutive-blank-lines",
+    "group": "formatting",
+    "host": "core",
+    "description": "Collapse runs of blank lines outside code, math, and frontmatter to a single blank line.",
+    "options": {}
+  },
+  {
+    "id": "dedupe-yaml-array-values",
+    "group": "formatting",
+    "host": "core",
+    "description": "Remove duplicate values from YAML arrays, case sensitively.",
+    "options": {
+      "dedupe-aliases": true,
+      "dedupe-tags": true,
+      "dedupe-arrays": true,
+      "keys-to-ignore": []
+    }
+  },
+  {
+    "id": "default-language-for-code-fences",
+    "group": "formatting",
+    "host": "core",
+    "description": "Add a default language to opening code fences that have none.",
+    "options": {
+      "language": ""
+    }
+  },
+  {
+    "id": "emphasis-style",
+    "group": "formatting",
+    "host": "core",
+    "description": "Make emphasis delimiters consistently asterisks or underscores.",
+    "options": {
+      "style": "consistent"
+    }
+  },
+  {
+    "id": "empty-line-around-blockquotes",
+    "group": "formatting",
+    "host": "core",
+    "description": "Ensure a blank line before and after blockquotes and callouts.",
+    "options": {}
+  },
+  {
+    "id": "empty-line-around-code-fences",
+    "group": "formatting",
+    "host": "core",
+    "description": "Ensure a blank line before and after fenced code blocks.",
+    "options": {}
+  },
+  {
+    "id": "empty-line-around-horizontal-rules",
+    "group": "formatting",
+    "host": "core",
+    "description": "Ensure a blank line before and after horizontal rules.",
+    "options": {}
+  },
+  {
+    "id": "empty-line-around-math-block",
+    "group": "formatting",
+    "host": "core",
+    "description": "Ensure a blank line before and after display math blocks.",
+    "options": {
+      "number-of-dollar-signs": 2
+    }
+  },
+  {
+    "id": "empty-line-around-tables",
+    "group": "formatting",
+    "host": "core",
+    "description": "Ensure a blank line before and after tables.",
+    "options": {}
+  },
+  {
+    "id": "escape-yaml-special-characters",
+    "group": "formatting",
+    "host": "core",
+    "description": "Quote frontmatter values that contain a colon and space, single quotes, or double quotes.",
+    "options": {
+      "default-escape-character": "\"",
+      "escape-single-line-arrays": false
+    }
+  },
+  {
+    "id": "format-tags-in-yaml",
+    "group": "formatting",
+    "host": "core",
+    "description": "Remove leading hashtags from tags in frontmatter.",
+    "options": {}
+  },
+  {
+    "id": "format-yaml-arrays",
+    "group": "formatting",
+    "host": "core",
+    "description": "Format YAML arrays, tags, and aliases as single-line arrays, multi-line lists, or strings.",
+    "options": {
+      "format-aliases": true,
+      "aliases-style": "single-line",
+      "format-tags": true,
+      "tags-style": "single-line",
+      "format-arrays": true,
+      "default-array-style": "single-line",
+      "force-single-line-keys": [],
+      "force-multi-line-keys": []
+    }
+  },
+  {
+    "id": "header-increment",
+    "group": "formatting",
+    "host": "core",
+    "description": "Heading levels may only go one level deeper than their parent heading.",
+    "options": {
+      "start-at-level-2": false
+    }
+  },
+  {
+    "id": "heading-blank-lines",
+    "group": "formatting",
+    "host": "core",
+    "description": "Ensure a blank line before and after every heading.",
+    "options": {
+      "bottom": true,
+      "empty-line-between-yaml-and-header": true
+    }
+  },
+  {
+    "id": "headings-start-line",
+    "group": "formatting",
+    "host": "core",
+    "description": "Remove whitespace before a heading marker so the line is a heading.",
+    "options": {}
+  },
+  {
+    "id": "insert-yaml-attributes",
+    "group": "formatting",
+    "host": "core",
+    "description": "Add missing frontmatter attributes from a template.",
+    "options": {
+      "text-to-insert": "aliases: \ntags: "
+    }
+  },
+  {
+    "id": "line-break-at-document-end",
+    "group": "formatting",
+    "host": "core",
+    "description": "End the document with exactly one line break and no trailing blank lines.",
+    "options": {}
+  },
+  {
+    "id": "move-tags-to-yaml",
+    "group": "formatting",
+    "host": "core",
+    "description": "Move inline body tags into the frontmatter tags list.",
+    "options": {
+      "body-tag-operation": "nothing",
+      "tags-to-ignore": []
+    }
+  },
+  {
+    "id": "no-bare-urls",
+    "group": "formatting",
+    "host": "core",
+    "description": "Wrap bare URLs in angle brackets so they stay links.",
+    "options": {}
+  },
+  {
+    "id": "ordered-list-style",
+    "group": "formatting",
+    "host": "core",
+    "description": "Normalize ordered list numbering (ascending or lazy) and the character after the number.",
+    "options": {
+      "number-style": "ascending",
+      "end-style": "."
+    }
+  },
+  {
+    "id": "proper-ellipsis",
+    "group": "formatting",
+    "host": "core",
+    "description": "Replace three consecutive periods with the ellipsis character.",
+    "options": {}
+  },
+  {
+    "id": "quote-style",
+    "group": "formatting",
+    "host": "core",
+    "description": "Make single and double quotes in body text either all straight or all smart.",
+    "options": {
+      "single-quote-enabled": true,
+      "single-quote-style": "straight",
+      "double-quote-enabled": true,
+      "double-quote-style": "straight"
+    }
+  },
+  {
+    "id": "remove-empty-list-markers",
+    "group": "formatting",
+    "host": "core",
+    "description": "Delete list items that have a marker but no content.",
+    "options": {}
+  },
+  {
+    "id": "remove-multiple-spaces",
+    "group": "formatting",
+    "host": "core",
+    "description": "Collapse two or more consecutive spaces inside a line to one space.",
+    "options": {}
+  },
+  {
+    "id": "remove-trailing-punctuation-in-heading",
+    "group": "formatting",
+    "host": "core",
+    "description": "Strip configured punctuation from the end of headings, keeping HTML entities.",
+    "options": {
+      "trailing-punctuation": ".,;:!。，；：！"
+    }
+  },
+  {
+    "id": "remove-yaml-keys",
+    "group": "formatting",
+    "host": "core",
+    "description": "Delete listed keys, with their values, from the frontmatter.",
+    "options": {
+      "keys": []
+    }
+  },
+  {
+    "id": "space-after-list-markers",
+    "group": "formatting",
+    "host": "core",
+    "description": "Use exactly one space after list markers and after checkboxes.",
+    "options": {}
+  },
+  {
+    "id": "strong-style",
+    "group": "formatting",
+    "host": "core",
+    "description": "Make strong delimiters consistently double asterisks or double underscores.",
+    "options": {
+      "style": "consistent"
+    }
+  },
+  {
+    "id": "trailing-spaces",
+    "group": "formatting",
+    "host": "core",
+    "description": "Remove spaces and tabs at the end of every line.",
+    "options": {
+      "two-space-linebreak": false
+    }
+  },
+  {
+    "id": "unordered-list-style",
+    "group": "formatting",
+    "host": "core",
+    "description": "Use one bullet marker for all unordered list items.",
+    "options": {
+      "style": "consistent"
+    }
+  },
+  {
+    "id": "yaml-key-sort",
+    "group": "note-types",
+    "host": "core",
+    "description": "Sort frontmatter keys into the configured order (priority-keys first, remaining alphabetical, aliases and tags last), inserting configured default keys when absent.",
+    "options": {
+      "priority-keys": [],
+      "defaults": {}
+    }
+  },
+  {
+    "id": "alphabetize-property-values",
+    "group": "note-types",
+    "host": "core",
+    "description": "Alphabetize the values of list properties (aliases, tags, links); keys and non-list values are untouched.",
+    "options": {}
+  },
+  {
+    "id": "yaml-timestamp",
+    "group": "note-types",
+    "host": "core",
+    "description": "Keep date-created and date-revised current (yyyy-MM-dd): created set on first lint, revised bumped only when other content changed.",
+    "options": {
+      "schema": {
+        "date-keys": {
+          "created": "date-created",
+          "revised": "date-revised"
+        }
+      }
+    }
+  },
+  {
+    "id": "note-type-insert-keys",
+    "group": "note-types",
+    "host": "core",
+    "description": "Insert required note-type frontmatter keys with their schema defaults when absent; existing values are never overwritten.",
+    "options": {}
+  },
+  {
+    "id": "note-type-key-sort",
+    "group": "note-types",
+    "host": "core",
+    "description": "Order frontmatter keys by the note-type key-order, then the global default order (domain, category, sub-category, date-created, date-revised, remaining alphabetical, aliases and tags last).",
+    "options": {}
+  },
+  {
+    "id": "note-type-date-keys",
+    "group": "note-types",
+    "host": "core",
+    "description": "Set the created date key on first lint when absent and bump the revised date key only when the run changed other content.",
+    "options": {}
+  },
+  {
+    "id": "note-type-validate",
+    "group": "note-types",
+    "host": "core",
+    "description": "Report note-type frontmatter violations: enum constraints, nested maps in managed keys, and missing required keys without defaults.",
+    "options": {}
+  },
+  {
+    "id": "h1-matches-stem",
+    "group": "note-types",
+    "host": "core",
+    "description": "Keep the first H1 equal to the filename stem, rewriting it in place or inserting it after the frontmatter.",
+    "options": {}
+  },
+  {
+    "id": "kebab-case-filename",
+    "group": "note-types",
+    "host": "core",
+    "description": "Flag filenames that are not kebab-case and propose the compliant name; the rename runs only where rename mode allows it.",
+    "options": {}
+  },
+  {
+    "id": "task-format",
+    "group": "notes",
+    "host": "core",
+    "description": "Normalize task checkbox spacing and marker case, restrict status characters, write due, scheduled, start, and done dates as yyyy-mm-dd, and keep date tokens in a consistent order.",
+    "options": {
+      "normalize-spacing": true,
+      "lowercase-marker": true,
+      "allowed-statuses": "",
+      "date-format": true,
+      "date-order": [
+        "start",
+        "scheduled",
+        "due",
+        "done"
+      ]
+    }
+  },
+  {
+    "id": "tag-format",
+    "group": "notes",
+    "host": "core",
+    "description": "Apply a case style to inline tags, and report tags that are too deeply nested, not on the allowed list, duplicated in frontmatter, or placed against the preferred location.",
+    "options": {
+      "case": "none",
+      "max-depth": 0,
+      "allowed": [],
+      "dedupe": true,
+      "placement": "any"
+    }
+  },
+  {
+    "id": "folder-naming",
+    "group": "notes",
+    "host": "core",
+    "description": "Report folder names in the file path that break a case style, the maximum depth, or the allowed names. Report only; needs the file-path option.",
+    "options": {
+      "case": "none",
+      "max-depth": 0,
+      "allowed-names": [],
+      "ignore-hidden": true
+    }
+  },
+  {
+    "id": "filename-pattern",
+    "group": "notes",
+    "host": "core",
+    "description": "Report file names (without extension) that do not match a regex or a preset (kebab, dated). Report only; needs the file-path option.",
+    "options": {
+      "preset": "none",
+      "pattern": ""
+    }
+  },
+  {
+    "id": "frontmatter-schema",
+    "group": "notes",
+    "host": "core",
+    "description": "Report frontmatter that lacks required keys, holds values of the wrong type, or uses values outside an enum. Report only.",
+    "options": {
+      "required": [],
+      "types": {},
+      "enums": {}
+    }
+  },
+  {
+    "id": "json-syntax",
+    "group": "data",
+    "host": "code",
+    "description": "Report JSON parse errors with line and column.",
+    "options": {}
+  },
+  {
+    "id": "json-duplicate-keys",
+    "group": "data",
+    "host": "code",
+    "description": "Report repeated keys inside one JSON object.",
+    "options": {}
+  },
+  {
+    "id": "json-key-order",
+    "group": "data",
+    "host": "code",
+    "description": "Sort JSON object keys, priority keys first.",
+    "options": {
+      "priority": [],
+      "rest": "alphabetical",
+      "deep": false
+    }
+  },
+  {
+    "id": "yaml-syntax",
+    "group": "data",
+    "host": "code",
+    "description": "Report YAML parse errors with line and column.",
+    "options": {}
+  },
+  {
+    "id": "yaml-duplicate-keys",
+    "group": "data",
+    "host": "code",
+    "description": "Report repeated keys inside one YAML mapping.",
+    "options": {}
+  },
+  {
+    "id": "yaml-key-order",
+    "group": "data",
+    "host": "code",
+    "description": "Sort top-level YAML keys, priority keys first, keeping comments with their key.",
+    "options": {
+      "priority": [],
+      "rest": "alphabetical"
+    }
+  },
+  {
+    "id": "yaml-schema",
+    "group": "data",
+    "host": "code",
+    "description": "Check required top-level keys and value types.",
+    "options": {
+      "required": [],
+      "types": {}
+    }
+  },
+  {
+    "id": "identifier-case",
+    "group": "code",
+    "host": "code",
+    "description": "Function and variable names follow the configured case style for the language.",
+    "options": {
+      "functions": {
+        "rust": "snake",
+        "python": "snake",
+        "typescript": "camel",
+        "javascript": "camel",
+        "sql": "snake",
+        "go": "mixed",
+        "java": "camel",
+        "csharp": "pascal"
+      },
+      "variables": {
+        "rust": "snake",
+        "python": "snake",
+        "typescript": "camel",
+        "javascript": "camel",
+        "sql": "snake",
+        "go": "mixed",
+        "java": "camel",
+        "csharp": "camel"
+      },
+      "allow-constants": true,
+      "ignore": []
+    }
+  },
+  {
+    "id": "syntax-error",
+    "group": "code",
+    "host": "code",
+    "description": "Report every ERROR and MISSING node of the tree-sitter parse, with line and column.",
+    "options": {}
+  },
+  {
+    "id": "comment-tag",
+    "group": "code",
+    "host": "code",
+    "description": "TODO, FIXME, HACK and XXX comments must carry an owner or an issue.",
+    "options": {
+      "tags": [
+        "TODO",
+        "FIXME",
+        "HACK",
+        "XXX"
+      ],
+      "pattern": "{tag}({owner}):|{tag} {issue}:|{tag}({issue}):"
+    }
+  },
+  {
+    "id": "commented-out-code",
+    "group": "code",
+    "host": "code",
+    "description": "Comments whose text parses as code in the same language are commented-out code.",
+    "options": {
+      "min-length": 12
+    }
+  },
+  {
+    "id": "max-nesting-depth",
+    "group": "code",
+    "host": "code",
+    "description": "Block nesting depth, or subquery and CASE depth in SQL, stays within `max` (default 4).",
+    "options": {
+      "max": 4
+    }
+  },
+  {
+    "id": "max-function-lines",
+    "group": "code",
+    "host": "code",
+    "description": "Lines per function or method, or per SQL statement, stay within `max` (default 60).",
+    "options": {
+      "max": 60
+    }
+  }
+]

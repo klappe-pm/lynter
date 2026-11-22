@@ -52,7 +52,7 @@ cd /path/to/notes && lynter fix .
 
 ## Configuration
 
-`lynter init` writes a commented starter. A small file looks like this:
+`lynter init` writes a commented starter, and the [config builder](https://lynter.dev/configure/) builds the file from a form with every rule and option. A small file looks like this:
 
 ```yaml
 version: 1
