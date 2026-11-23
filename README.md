@@ -98,7 +98,7 @@ The [playground](https://lynter.dev/playground/) runs the real engine in your br
 Lynter 0.1 ships the Rust core, the command line, the Obsidian plugin and the site. Next, in order:
 
 - **Now:** the Obsidian community directory listing, `npm` and Homebrew installs for the command line, and the GitHub Action.
-- **Next:** task formatting, tag rules, and code linting for Rust, Python, TypeScript, JavaScript, SQL, Go, Java, C#, JSON and YAML.
+- **Next:** task formatting, tag rules, and source file linting in the plugin and the playground (the command line already lints Rust, Python, TypeScript, JavaScript, Go, Java, C#, JSON and YAML files).
 - **Later:** a VS Code extension, a JetBrains plugin, more languages, presets, and team checks on pull requests.
 
 The full list is on [lynter.dev/roadmap](https://lynter.dev/roadmap/). To ask for a rule, an option, a language or an integration, [open a feature request](https://github.com/klappe-pm/lynter/issues/new?template=feature_request.md).

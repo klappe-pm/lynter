@@ -62,7 +62,7 @@ Two notes need a manual check — they have no title.
   {
     id: 'lists-and-spacing',
     title: 'Lists and spacing',
-    blurb: 'Dash bullets, tight lists, and one blank line between blocks.',
+    blurb: 'Dash bullets, a tight list, and runs of blank lines collapsed to one.',
     path: 'notes/shopping.md',
     config: `version: 1
 defaults:
