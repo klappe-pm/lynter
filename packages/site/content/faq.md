@@ -12,7 +12,7 @@ Yes. [Import settings](/import/) converts a `data.json` into a `lynter.yaml` in 
 
 ## Which languages does it lint?
 
-The first release targets Rust, Python, TypeScript, JavaScript, SQL, Go, Java, C#, JSON, YAML, and text. Code linting is in progress. See [languages](/languages/).
+Markdown everywhere. The command line also lints plain text, Rust, Python, TypeScript, JavaScript, Go, Java, C#, JSON, and YAML files. See [languages](/languages/).
 
 ## Does it work without Obsidian?
 

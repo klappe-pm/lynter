@@ -120,7 +120,7 @@ export const home = {
     items: [
       {q: 'Does Lynter call a model?', a: 'No. Every rule is deterministic code. The same input gives the same output, with no tokens and no network.'},
       {q: 'Is it available in the Obsidian directory?', a: 'Not yet. Download the plugin files from the latest GitHub release; Getting started has the steps.'},
-      {q: 'Which languages does it lint?', a: 'The first release targets Rust, Python, TypeScript, JavaScript, SQL, Go, Java, C#, JSON, YAML, and text. Code linting is in progress.'},
+      {q: 'Which languages does it lint?', a: 'Markdown everywhere. The command line also lints plain text, Rust, Python, TypeScript, JavaScript, Go, Java, C#, JSON, and YAML files.'},
     ],
     more: 'Read the full FAQ',
   },
@@ -292,7 +292,7 @@ export const mdPages = {
   ci: {slug: 'integrations-ci', title: 'CI integrations', lede: 'Run check on every pull request and every commit, and read the result as JSON.'},
   samples: {slug: 'samples', title: 'Samples', lede: 'Four starter configs you can copy into a vault or repository.'},
   faq: {slug: 'faq', title: 'FAQ', lede: 'Short answers about scope, status, and what Lynter does not do.'},
-  languages: {slug: 'languages', title: 'Languages', lede: 'The first release covers the languages below. Everything else is Coming soon.'},
+  languages: {slug: 'languages', title: 'Languages', lede: 'What Lynter lints in the 0.1 release, where each language runs, and what is Coming soon.'},
   obsidian: {slug: 'obsidian', title: 'Obsidian', lede: 'Tasks, tags, frontmatter, file and folder names, and scopes.'},
   roadmap: {slug: 'roadmap', title: 'Roadmap', lede: 'What is being built now, what comes next, and what comes later.'},
 };

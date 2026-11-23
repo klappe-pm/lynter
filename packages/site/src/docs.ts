@@ -101,6 +101,33 @@ export function anchorHeadings(html: string): {html: string; headings: DocHeadin
   return {html: out, headings};
 }
 
+/**
+ * On the rule pages, two code blocks in a row in the same language are an
+ * example before and after the rule runs. Label them and set them side by side.
+ */
+export function labelBeforeAfter(html: string): string {
+  // The body may not cross a closing tag, or a lone block would pair with a later example.
+  const body = '(?:(?!</code>)[\\s\\S])*';
+  return html.replace(
+      new RegExp(`(<pre><code class="language-([a-z]+)">${body}</code></pre>)\\s*(<pre><code class="language-\\2">${body}</code></pre>)`, 'g'),
+      (_m, before: string, _lang: string, after: string) =>
+        `<div class="before-after"><figure><figcaption>Before</figcaption>${before}</figure><figure><figcaption>After</figcaption>${after}</figure></div>`,
+  );
+}
+
+/**
+ * Tables that end in a prose column ("Meaning", "What it does") get a class, so
+ * that column keeps a readable width on a phone. Tables that end in a short
+ * column such as Yes or No are left to size themselves.
+ */
+export function markProseTables(html: string): string {
+  const cell = '<th[^>]*>(?:(?!</th>)[\\s\\S])*</th>\\s*';
+  return html.replace(
+      new RegExp(`<table>(?=\\s*<thead>\\s*<tr>\\s*(?:${cell})*<th[^>]*>(?:Meaning|What it does)</th>\\s*</tr>)`, 'g'),
+      '<table class="ends-in-prose">',
+  );
+}
+
 /** "Sources: ..." paragraphs become a quiet footnote under their section. */
 const markSources = (html: string) => html.replace(/<p>Sources: /g, '<p class="sources"><span>Sources</span> ');
 
@@ -109,7 +136,8 @@ export async function loadDoc(slug: string): Promise<DocPage> {
   const at = all.findIndex((d) => d.slug === slug);
   if (at < 0) throw new Error(`unknown docs page: ${slug}`);
   const doc = read(slug);
-  const {html, headings} = anchorHeadings(renderFlows(await marked.parse(doc.body)));
+  const rendered = markProseTables(renderFlows(await marked.parse(doc.body)));
+  const {html, headings} = anchorHeadings(slug.startsWith('rules-') ? labelBeforeAfter(rendered) : rendered);
   return {
     slug,
     title: doc.title,

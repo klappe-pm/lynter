@@ -314,6 +314,12 @@ td:nth-child(2) { font-weight: 650; }
 .prose td:nth-child(2) { font-weight: inherit; }
 .prose td:first-child code { white-space: nowrap; }
 
+.before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 20px; }
+.before-after figure { min-width: 0; display: flex; flex-direction: column; }
+.before-after figcaption { font-size: 12px; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.before-after pre { margin: 0; flex: 1; }
+.prose .ends-in-prose th:last-child, .prose .ends-in-prose td:last-child { min-width: 220px; }
+
 /* Config builder: steps, the form, and the live lynter.yaml pane */
 .b-mode { border: 0; padding: 0; margin: 24px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
 .b-mode legend { font-size: 13px; font-weight: 650; color: var(--muted); margin-bottom: 8px; padding: 0; }
@@ -408,8 +414,9 @@ td:nth-child(2) { font-weight: 650; }
 @media (max-width: 1100px) {
   .builder { grid-template-columns: minmax(0, 1fr) minmax(280px, 380px); }
   .b-steps { position: static; grid-column: 1 / -1; max-height: none; }
-  .b-steps ol { display: flex; flex-wrap: wrap; }
-  .b-steps button { width: auto; }
+  .b-steps ol { display: flex; flex-wrap: nowrap; overflow-x: auto; padding: 0 36px 6px 0; }
+  .b-steps button { width: auto; white-space: nowrap; }
+  .b-steps { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); }
   .docs { grid-template-columns: 200px minmax(0, 1fr); }
   .docs-toc { display: none; }
 }
@@ -429,7 +436,8 @@ td:nth-child(2) { font-weight: 650; }
   body { font-size: 16px; }
   :root { --header: 104px; }
   .site-header .wrap { flex-wrap: wrap; gap: 4px 20px; padding-block: 8px; }
-  .site-nav { margin-left: 0; gap: 16px; flex-wrap: nowrap; overflow-x: auto; width: 100%; padding-bottom: 4px; scrollbar-width: none; }
+  .site-nav { margin-left: 0; gap: 16px; flex-wrap: nowrap; overflow-x: auto; width: 100%; padding: 0 28px 4px 0; scrollbar-width: none; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); }
+  .before-after { grid-template-columns: 1fr; }
   .site-nav a { white-space: nowrap; }
   .site-nav .button { display: none; }
   .wordmark { font-size: 26px; }

@@ -10,7 +10,7 @@ Lynter 0.1 ships the Rust core, the command line, the Obsidian plugin and this s
 
 - **Task formatting.** Consistent checkbox, date and priority style for tasks.
 - **Tag rules.** Normalize tag case and separators, and limit a vault to an allowed list.
-- **Code linting for the first languages.** Rust, Python, TypeScript, JavaScript, SQL, Go, Java, C#, JSON and YAML, from the same `lynter.yaml`. See [languages](/languages/).
+- **Source file linting in the plugin and the playground.** The command line lints Rust, Python, TypeScript, JavaScript, Go, Java, C#, JSON and YAML files today; the browser build lints Markdown and the code inside its fences. See [languages](/languages/).
 
 ## Later
 
