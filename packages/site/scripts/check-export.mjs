@@ -55,7 +55,7 @@ for (const route of pages) {
 for (const loc of listed) {
   if (!loc.startsWith(`${origin}/`) || !pages.includes(loc.slice(origin.length))) problems.push(`sitemap.xml: lists ${loc}, which is not a page`);
 }
-for (const file of ['robots.txt', 'fonts/geist-license.txt', 'wasm/lynter_wasm_bg.wasm', '404.html', 'lynter-config-builder.html']) {
+for (const file of ['robots.txt', 'fonts/geist-license.txt', 'fonts/jost-license.txt','wasm/lynter_wasm_bg.wasm', '404.html', 'lynter-config-builder.html']) {
   if (!exists(`/${file}`)) problems.push(`missing ${file}`);
 }
 

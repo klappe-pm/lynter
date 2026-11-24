@@ -8,7 +8,8 @@
 export const INSTALL_URL = '/getting-started/#install';
 /** Public origin, used for canonical links and social card URLs, which must be absolute. */
 export const SITE_URL = 'https://lynter.dev';
-export const LAB_URL = 'https://lappelabs.dev';
+/** The maker's site. The footer sign-off links here. */
+export const LAPPE_URL = 'https://lappe.ai';
 export const REPO_URL = 'https://github.com/klappe-pm/lynter';
 /** The Obsidian product site. The first "Obsidian" in the home lede links here. */
 export const OBSIDIAN_URL = 'https://obsidian.md';
@@ -31,19 +32,43 @@ export const site = {
     {href: '/configure/', label: 'Configure'},
   ],
   install: 'Install',
-  footerLinks: [
-    {href: '/obsidian/', label: 'Obsidian'},
-    {href: '/languages/', label: 'Languages'},
-    {href: '/integrations/llm/', label: 'LLM hooks'},
-    {href: '/integrations/ci/', label: 'CI'},
-    {href: '/samples/', label: 'Samples'},
-    {href: '/faq/', label: 'FAQ'},
-    {href: '/roadmap/', label: 'Roadmap'},
-    {href: FEATURE_REQUEST_URL, label: 'Request a feature'},
-    {href: '/import/', label: 'Import settings'},
-  ],
+  // The shared lappe.ai product footer: a brand block, up to three columns of
+  // up to five links (product, help, legal last), a base bar and the sign-off.
   footer: {
-    project: 'A LappeLabs project',
+    line: 'One config file for every style.',
+    action: {href: '/getting-started/', label: 'Get Started'},
+    columns: [
+      {
+        label: 'Product',
+        links: [
+          {href: '/docs/', label: 'Docs'},
+          {href: '/obsidian/', label: 'Obsidian'},
+          {href: '/languages/', label: 'Languages'},
+          {href: '/integrations/llm/', label: 'LLM hooks'},
+          {href: '/integrations/ci/', label: 'CI'},
+        ],
+      },
+      {
+        label: 'Help',
+        links: [
+          {href: '/faq/', label: 'FAQ'},
+          {href: '/samples/', label: 'Samples'},
+          {href: '/import/', label: 'Import settings'},
+          {href: '/roadmap/', label: 'Roadmap'},
+          {href: FEATURE_REQUEST_URL, label: 'Request a feature'},
+        ],
+      },
+      {
+        label: 'Legal',
+        links: [
+          {href: `${REPO_URL}/blob/master/LICENSE`, label: 'License'},
+          {href: `${REPO_URL}/blob/master/SECURITY.md`, label: 'Security'},
+          {href: `${REPO_URL}/blob/master/THIRD-PARTY-NOTICES.md`, label: 'Third-party notices'},
+        ],
+      },
+    ],
+    copyright: '© 2026 Lynter',
+    signoff: 'A lappe.ai product',
   },
 };
 

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import {useRouter} from 'next/router';
 import type {ReactNode} from 'react';
 import {Icon} from '@/components/icon';
-import {INSTALL_URL, LAB_URL, SITE_URL, site} from '@/content';
+import {INSTALL_URL, LAPPE_URL, SITE_URL, site} from '@/content';
 
 export {Icon};
 
@@ -13,12 +13,30 @@ export function canonicalUrl(asPath: string): string {
   return SITE_URL + (path.endsWith('/') ? path : `${path}/`);
 }
 
-export function Wordmark() {
+export function Wordmark({icon = true}: {icon?: boolean}) {
   return (
     <Link href="/" className="wordmark" aria-label="Lynter home">
-      <Icon />
+      {icon ? <Icon /> : null}
       <span aria-hidden="true">Lynter</span>
     </Link>
+  );
+}
+
+/**
+ * "A lappe.ai product", the sign-off every lappe.ai product footer ends with.
+ * The wordmark keeps its own colours (one span per colour run) and typeface;
+ * it is never recoloured to match this site.
+ */
+function LappeSignoff() {
+  const [before, after] = site.footer.signoff.split('lappe.ai');
+  return (
+    <a className="signoff" href={LAPPE_URL} aria-label={site.footer.signoff}>
+      {before}
+      <span className="lappe-ai" aria-hidden="true">
+        <span>l</span><span>a</span><span>p</span><span>p</span><span>e</span><span>.ai</span>
+      </span>
+      {after}
+    </a>
   );
 }
 
@@ -70,12 +88,22 @@ export function Layout({title, description, children}: {title?: string; descript
       <main id="main">{children}</main>
       <footer className="site-footer">
         <div className="wrap">
-          <Wordmark />
-          <nav aria-label="Footer">
-            {site.footerLinks.map((l) => <Link key={l.href} href={l.href}>{l.label}</Link>)}
-          </nav>
-          <div className="meta">
-            <a href={LAB_URL}>{site.footer.project}</a>
+          <div className="footer-main">
+            <div className="footer-brand">
+              <Wordmark icon={false} />
+              <p>{site.footer.line}</p>
+              <Link className="button primary" href={site.footer.action.href}>{site.footer.action.label}</Link>
+            </div>
+            {site.footer.columns.map((column) => (
+              <nav key={column.label} aria-label={column.label}>
+                <h2>{column.label}</h2>
+                {column.links.map((l) => <Link key={l.href} href={l.href}>{l.label}</Link>)}
+              </nav>
+            ))}
+          </div>
+          <div className="footer-base">
+            <span>{site.footer.copyright}</span>
+            <LappeSignoff />
           </div>
         </div>
       </footer>
