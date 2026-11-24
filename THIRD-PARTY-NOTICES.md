@@ -20,6 +20,8 @@ The `lynter` binary and the WebAssembly build (used by the Obsidian plugin and b
 
 lynter.dev serves Geist Sans and Geist Mono, copyright (c) 2023 Vercel, in collaboration with basement.studio, under the SIL Open Font License, Version 1.1. The license is in [packages/site/public/fonts/geist-license.txt](packages/site/public/fonts/geist-license.txt) and is served beside the fonts at <https://lynter.dev/fonts/geist-license.txt>.
 
+The lappe.ai wordmark in the site footer is set in six glyphs of Jost, copyright 2020 The Jost Project Authors, under the SIL Open Font License, Version 1.1. The license is in [packages/site/public/fonts/jost-license.txt](packages/site/public/fonts/jost-license.txt) and is served beside the font at <https://lynter.dev/fonts/jost-license.txt>.
+
 ## JavaScript libraries
 
 The Obsidian plugin bundle (`main.js`) includes:
