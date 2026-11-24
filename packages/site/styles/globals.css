@@ -416,7 +416,7 @@ td:nth-child(2) { font-weight: 650; }
    only the colours, type and button shape are Lynter's. The --lappe-* values
    are the lappe.ai wordmark's own colours, reversed on the dark ground. */
 .site-footer {
-  --lappe-l: #1C1F23; --lappe-a: #F26522; --lappe-p: #2F86A6; --lappe-p2: #357D58; --lappe-e: #4F94B2;
+  --lappe-word: #2F86A6; --lappe-dot: #357D58; --lappe-ai: #F26522;
   border-top: 1px solid var(--line); margin-top: 40px; padding-top: 56px; background: var(--bg); color: var(--ink);
 }
 .site-footer .wrap { display: flex; flex-direction: column; gap: 40px; }
@@ -432,15 +432,13 @@ td:nth-child(2) { font-weight: 650; }
 .footer-base { border-top: 1px solid var(--line); padding-block: 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; font-size: 14px; color: var(--muted); }
 .signoff { display: inline-flex; gap: 6px; min-height: 44px; padding-block: 11px; align-items: baseline; text-decoration: none; color: var(--muted); }
 .lappe-ai { font: 500 18px/1 'Jost', Futura, 'Century Gothic', sans-serif; }
-.lappe-ai span:nth-child(1) { color: var(--lappe-l); }
-.lappe-ai span:nth-child(2), .lappe-ai span:nth-child(6) { color: var(--lappe-a); }
-.lappe-ai span:nth-child(3) { color: var(--lappe-p); }
-.lappe-ai span:nth-child(4) { color: var(--lappe-p2); }
-.lappe-ai span:nth-child(5) { color: var(--lappe-e); }
+.lappe-ai span:nth-child(1) { color: var(--lappe-word); }
+.lappe-ai span:nth-child(2) { color: var(--lappe-dot); }
+.lappe-ai span:nth-child(3) { color: var(--lappe-ai); }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .site-footer { --lappe-l: #F3F4F6; --lappe-a: #F6824C; --lappe-p: #8CC7DA; --lappe-p2: #8FCBA4; --lappe-e: #B3DBE8; }
+  :root:not([data-theme='light']) .site-footer { --lappe-word: #8CC7DA; --lappe-dot: #8FCBA4; --lappe-ai: #F6824C; }
 }
-:root[data-theme='dark'] .site-footer { --lappe-l: #F3F4F6; --lappe-a: #F6824C; --lappe-p: #8CC7DA; --lappe-p2: #8FCBA4; --lappe-e: #B3DBE8; }
+:root[data-theme='dark'] .site-footer { --lappe-word: #8CC7DA; --lappe-dot: #8FCBA4; --lappe-ai: #F6824C; }
 
 @media (max-width: 1100px) {
   .builder { grid-template-columns: minmax(0, 1fr) minmax(280px, 380px); }

@@ -33,7 +33,7 @@ function LappeSignoff() {
     <a className="signoff" href={LAPPE_URL} aria-label={site.footer.signoff}>
       {before}
       <span className="lappe-ai" aria-hidden="true">
-        <span>l</span><span>a</span><span>p</span><span>p</span><span>e</span><span>.ai</span>
+        <span>lappe</span><span>.</span><span>ai</span>
       </span>
       {after}
     </a>
