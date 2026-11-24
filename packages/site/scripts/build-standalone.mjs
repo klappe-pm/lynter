@@ -40,7 +40,11 @@ const result = await esbuild.build({
 });
 
 // Fonts are not embedded: the file falls back to the system font, which keeps it small.
-const css = fs.readFileSync(path.join(root, 'styles', 'globals.css'), 'utf8').replace(/@font-face\s*\{[^}]*\}\s*/g, '');
+// tokens.css is generated from DESIGN.md by ds sync and must come first.
+const css = ['tokens.css', 'globals.css']
+  .map((file) => fs.readFileSync(path.join(root, 'styles', file), 'utf8'))
+  .join('\n')
+  .replace(/@font-face\s*\{[^}]*\}\s*/g, '');
 // A closing script tag inside the bundle would end the inline script early.
 const js = result.outputFiles[0].text.replace(/<\/script/gi, '<\\/script');
 const version = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8')).version;

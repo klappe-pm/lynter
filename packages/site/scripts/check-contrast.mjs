@@ -1,14 +1,18 @@
-// Checks text-on-background contrast for the tokens in styles/globals.css.
+// Checks text-on-background contrast for the site's colour names. The values
+// come from styles/tokens.css (generated from DESIGN.md by ds sync) and the
+// names from the :root aliases in styles/globals.css.
 // Exits 1 when any pair is under 4.5:1. Run: node scripts/check-contrast.mjs
 import {readFileSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 
-const css = readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'styles', 'globals.css'), 'utf8');
+const styles = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'styles');
+const tokensCss = readFileSync(path.join(styles, 'tokens.css'), 'utf8');
+const globalsCss = readFileSync(path.join(styles, 'globals.css'), 'utf8');
 const MIN = 4.5;
 
-/** Returns the declarations of the first block whose selector starts with the given text. */
-function block(selector) {
+/** Returns the declarations of the first block in css whose selector starts with the given text. */
+function block(css, selector) {
   const start = css.indexOf(selector);
   if (start < 0) throw new Error(`selector not found: ${selector}`);
   const open = css.indexOf('{', start);
@@ -21,9 +25,10 @@ function declarations(body) {
   return out;
 }
 
-const light = declarations(block(':root {'));
-const dark = {...light, ...declarations(block(":root[data-theme='dark']"))};
-const media = {...light, ...declarations(block(":root:not([data-theme='light'])"))};
+const aliases = declarations(block(globalsCss, ':root {'));
+const light = {...aliases, ...declarations(block(tokensCss, ':root {'))};
+const dark = {...light, ...declarations(block(tokensCss, "[data-theme='dark'] {"))};
+const media = {...light, ...declarations(block(tokensCss, ":root:not([data-theme='light'])"))};
 
 /** Resolves var(--x) chains to a hex colour. */
 function resolve(tokens, name, depth = 0) {

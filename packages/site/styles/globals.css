@@ -1,8 +1,9 @@
 /* lynter.dev, palette v3. Light to medium blues that complement the aqua
    changed-line highlight. Link blue carries actions, aqua marks a line Lynter
    changed, coral marks a violation and nothing else. Cornflower is for the
-   logo, icons and focus rings only. Run scripts/check-contrast.mjs
-   after editing any token. */
+   logo, icons and focus rings only. Token values live in DESIGN.md at the
+   checkout root; run ds sync, then scripts/check-contrast.mjs, after editing
+   any token. */
 
 @font-face {
   font-family: 'Geist';
@@ -25,95 +26,44 @@
   unicode-range: U+2E, U+61, U+65, U+69, U+6C, U+70;
 }
 
+/* Tokens come from styles/tokens.css, generated from DESIGN.md by ds sync and
+   loaded before this file. These short names are the site's vocabulary for
+   the generated --ds-* roles; component rules below read only these. */
 :root {
-  --ice: #F4F9FD;
-  --frost: #E6F1FB;
-  --mist: #D6E8F7;
-  --sky: #BFDBF2;
-  --powder: #9CC6EC;
-  --cornflower: #4885CC;
-  --link: #2563AD;
-  --ink-blue: #1F3A5C;
-  --muted-blue: #4A6480;
-  --aqua: #CDEFEA;
-  --aqua-edge: #6FCBBB;
-  --coral: #B33A34;
+  --bg: var(--ds-role-background);
+  --surface: var(--ds-role-surface);
+  --ink: var(--ds-role-on-surface);
+  --muted: var(--ds-role-secondary-text);
+  --line: var(--ds-role-outline);
+  --accent: var(--ds-role-primary);
+  --accent-ink: var(--ds-role-on-primary);
+  --changed: var(--ds-role-changed);
+  --changed-ink: var(--ds-role-on-changed);
+  --changed-edge: var(--ds-role-changed-edge);
+  --violation: var(--ds-role-error);
+  --code-bg: var(--ds-role-code-surface);
+  --code-ink: var(--ds-role-code-text);
+  --code-muted: var(--ds-role-code-muted);
+  --code-line: var(--ds-role-code-outline);
+  --code-error: var(--ds-role-code-error);
+  --focus: var(--ds-role-focus);
+  --icon-arm: var(--ds-role-icon-arm);
+  --icon-stem: var(--ds-role-icon-stem);
 
-  --bg: var(--ice);
-  --surface: var(--frost);
-  --ink: var(--ink-blue);
-  --muted: var(--muted-blue);
-  --line: var(--sky);
-  --accent: var(--link);
-  --accent-ink: #FFFFFF;
-  --changed: var(--aqua);
-  --changed-ink: var(--ink-blue);
-  --changed-edge: var(--aqua-edge);
-  --violation: var(--coral);
-  --code-bg: var(--mist);
-  --code-ink: var(--ink-blue);
-  --code-muted: var(--muted-blue);
-  --code-line: var(--sky);
-  --code-error: var(--coral);
-  --focus: var(--cornflower);
-  --icon-arm: #4885CC;
-  --icon-stem: #2563AD;
-
-  --sans: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
-  --measure: 66ch;
-  --page: 1180px;
-  --gutter: clamp(16px, 4vw, 40px);
-  --radius: 6px;
-  --header: 76px;
+  --sans: var(--ds-font-body-medium-family);
+  --mono: var(--ds-font-code-family);
+  --measure: var(--ds-space-measure);
+  --page: var(--ds-space-page);
+  --gutter: var(--ds-space-gutter);
+  --radius: var(--ds-radius-default);
+  --header: var(--ds-space-header);
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --bg: #13304F;
-    --surface: #1B3C61;
-    --ink: #E6F0FA;
-    --muted: #B5CDE6;
-    --line: #34628A;
-    --accent: #9CC6EC;
-    --accent-ink: #13304F;
-    --changed: #1F5450;
-    --changed-ink: #E6F0FA;
-    --violation: #FAA8A0;
-    --code-bg: #24506F;
-    --code-ink: #E6F0FA;
-    --code-muted: #B5CDE6;
-    --code-line: #34628A;
-    --code-error: #FAA8A0;
-    --focus: #9CC6EC;
-    --icon-arm: #5E9BDA;
-    --icon-stem: #9CC6EC;
-    color-scheme: dark;
-  }
+  :root:not([data-theme='light']) { color-scheme: dark; }
 }
-
-:root[data-theme='dark'] {
-  --bg: #13304F;
-  --surface: #1B3C61;
-  --ink: #E6F0FA;
-  --muted: #B5CDE6;
-  --line: #34628A;
-  --accent: #9CC6EC;
-  --accent-ink: #13304F;
-  --changed: #1F5450;
-  --changed-ink: #E6F0FA;
-  --violation: #FAA8A0;
-  --code-bg: #24506F;
-  --code-ink: #E6F0FA;
-  --code-muted: #B5CDE6;
-  --code-line: #34628A;
-  --code-error: #FAA8A0;
-  --focus: #9CC6EC;
-  --icon-arm: #5E9BDA;
-  --icon-stem: #9CC6EC;
-  color-scheme: dark;
-}
+:root[data-theme='dark'] { color-scheme: dark; }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--header) + 16px); }
