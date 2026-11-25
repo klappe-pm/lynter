@@ -4,7 +4,7 @@ Code linting runs from the same `lynter.yaml` as note formatting. Markdown is li
 
 | Language | Where it runs | What is checked |
 |---|---|---|
-| Markdown | Everywhere | Every note rule, and code checks inside fenced blocks. |
+| Markdown | Everywhere | Every note rule, frontmatter rules such as `yaml-key-sort` and `alphabetize-property-values`, and code checks inside fenced blocks. |
 | Plain text | Command line | The same note rules as Markdown. |
 | Rust | Command line | Identifier case, syntax errors, comment tags, commented-out code, nesting depth, function length. |
 | Python | Command line | The same code rules, plus the optional ruff adapter. |
@@ -13,10 +13,10 @@ Code linting runs from the same `lynter.yaml` as note formatting. Markdown is li
 | Go | Command line | The same code rules. |
 | Java | Command line | The same code rules. |
 | C# | Command line | The same code rules. |
-| JSON | Command line | Syntax, duplicate keys, key order. |
-| YAML | Command line | Syntax, duplicate keys, key order, schema. |
+| JSON | Command line | Syntax, duplicate keys, and key order (`json-key-order`, which `fix` rewrites). |
+| YAML | Command line | Syntax, duplicate keys, schema, and key order (`yaml-key-order`, which `fix` rewrites). |
 
-SQL has a grammar in the source but is not part of the release build. [Code and data linting](/docs/code-linting/) describes each rule and its options.
+In data files, `fix` changes key order and nothing else; it never edits values or converts one format to another. SQL has a grammar in the source but is not part of the release build. [Code and data linting](/docs/code-linting/) describes each rule and its options.
 
 ## Coming soon
 

@@ -1,6 +1,6 @@
 ## Install
 
-Each [release](https://github.com/klappe-pm/lynter/releases/latest) carries the plugin files and a `{{CLI}}` binary for Linux, macOS and Windows, with a `SHA256SUMS` file.
+Lynter is free and [MIT licensed](https://github.com/klappe-pm/lynter/blob/master/LICENSE). Each [release](https://github.com/klappe-pm/lynter/releases/latest) carries the plugin files and a `{{CLI}}` binary for Linux, macOS and Windows, with a `SHA256SUMS` file.
 
 ### Obsidian plugin
 
